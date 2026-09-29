@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qralia.local/schemas/retrieval_evaluation_case.schema.json",
+  "title": "QraLia retrieval evaluation case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "case_id",
+    "question",
+    "language",
+    "category",
+    "audience",
+    "relevant_section_ids",
+    "should_abstain",
+    "split"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "case_id": {"type": "string", "pattern": "^retrieval-[0-9]{3}$"},
+    "question": {"type": "string", "minLength": 1},
+    "language": {"enum": ["fr", "ar", "darija_latn", "darija_arab"]},
+    "category": {
+      "enum": [
+        "direct",
+        "paraphrase",
+        "multilingual",
+        "multi_relevant",
+        "hard_negative",
+        "easy_negative"
+      ]
+    },
+    "audience": {"enum": ["residential", "professional", "local_authority", "unknown"]},
+    "relevant_section_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "should_abstain": {"type": "boolean"},
+    "split": {"enum": ["calibration", "test"]},
+    "notes": {"type": "string"}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"should_abstain": {"const": true}},
+        "required": ["should_abstain"]
+      },
+      "then": {
+        "properties": {"relevant_section_ids": {"maxItems": 0}}
+      },
+      "else": {
+        "properties": {"relevant_section_ids": {"minItems": 1}}
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "category": {"enum": ["hard_negative", "easy_negative"]}
+        },
+        "required": ["category"]
+      },
+      "then": {
+        "properties": {"should_abstain": {"const": true}}
+      }
+    }
+  ]
+}

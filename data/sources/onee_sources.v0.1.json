@@ -1,0 +1,93 @@
+{
+  "schema_version": "0.1.0",
+  "registry_id": "onee-electricity-mvp",
+  "verified_on": "2026-09-29",
+  "download_authorized": true,
+  "notes": "Acquisition autorisée uniquement pour onee-regler-facture-residentiel après revue humaine. Les autres sources restent soumises à leur décision individuelle.",
+  "sources": [
+    {
+      "source_id": "onee-guide-facture-interactif",
+      "title": "Guide interactif de compréhension de la facture",
+      "publisher": "ONEE - Branche Electricité",
+      "url": "https://www.one.org.ma/FR/Projet_Simulation/guide.html",
+      "language": ["fr", "ar"],
+      "audience": ["residential", "professional", "unknown"],
+      "topics": ["invoice_fields", "invoice_layout"],
+      "access_status": "degraded",
+      "scope_status": "candidate",
+      "observed": "La recherche officielle indexe le guide, mais l'ouverture directe a expiré lors de la vérification.",
+      "ingestion_decision": "hold",
+      "risk_level": "medium"
+    },
+    {
+      "source_id": "onee-comprendre-facture",
+      "title": "Comprendre votre facture",
+      "publisher": "ONEE - Branche Electricité",
+      "url": "https://www.one.org.ma/FR/pages/interne.asp?esp=1&id1=14&id2=91&t2=1",
+      "language": ["fr"],
+      "audience": ["unknown"],
+      "topics": ["invoice_components", "tariff_bands"],
+      "access_status": "verified",
+      "scope_status": "candidate",
+      "observed": "Page accessible ; décrit notamment entretien-branchement, compteur et PERG/PERIURBAIN.",
+      "ingestion_decision": "review",
+      "risk_level": "medium"
+    },
+    {
+      "source_id": "onee-reglement-retard-collectivites",
+      "title": "Règlement de facture",
+      "publisher": "ONEE - Branche Electricité",
+      "url": "https://www.one.org.ma/FR/pages/interne.asp?id1=14&id2=92&t2=1",
+      "language": ["fr"],
+      "audience": ["local_authority", "unknown"],
+      "topics": ["payment_deadline", "late_payment", "reconnection"],
+      "access_status": "verified",
+      "scope_status": "restricted",
+      "observed": "Page accessible ; la navigation l'associe aux collectivités locales. Ne pas généraliser aux particuliers.",
+      "ingestion_decision": "hold",
+      "risk_level": "high"
+    },
+    {
+      "source_id": "onee-facturation-estimee-professionnels",
+      "title": "Facturation Moyenne Tension et Basse Tension",
+      "publisher": "ONEE - Branche Electricité",
+      "url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=2&id2=36&t2=1",
+      "language": ["fr"],
+      "audience": ["professional"],
+      "topics": ["estimated_invoice", "meter_reading", "adjustment"],
+      "access_status": "verified",
+      "scope_status": "out_of_primary_scope",
+      "observed": "Page accessible ; le texte vise les clients industriels, agricoles et tertiaires MT/BT.",
+      "ingestion_decision": "exclude_primary_index",
+      "risk_level": "high"
+    },
+    {
+      "source_id": "onee-wakalaty-faq",
+      "title": "Application Mobile Wakalaty - Foire aux questions",
+      "publisher": "ONEE - Branche Electricité",
+      "url": "https://www.one.org.ma/FR/FAQ/Wakalaty.html",
+      "language": ["fr"],
+      "audience": ["residential", "professional"],
+      "topics": ["wakalaty", "online_payment", "self_meter_reading"],
+      "access_status": "not_found_direct_but_search_indexed",
+      "scope_status": "candidate",
+      "observed": "Le contenu est visible dans l'index de recherche, mais l'URL directe renvoie 404.",
+      "ingestion_decision": "hold",
+      "risk_level": "high"
+    },
+    {
+      "source_id": "onee-regler-facture-residentiel",
+      "title": "Régler votre facture - Résidentiel",
+      "publisher": "ONEE - Branche Electricité",
+      "url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+      "language": ["fr"],
+      "audience": ["residential"],
+      "topics": ["payment_channels", "payment_date", "direct_debit"],
+      "access_status": "verified",
+      "scope_status": "in_primary_scope",
+      "observed": "Page accessible dans la rubrique Résidentiel ; le HTML brut, le document normalisé et les cinq chunks ont été comparés puis approuvés humainement le 2026-09-29.",
+      "ingestion_decision": "approved",
+      "risk_level": "medium"
+    }
+  ]
+}

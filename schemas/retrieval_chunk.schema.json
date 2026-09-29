@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qralia.local/schemas/retrieval_chunk.schema.json",
+  "title": "QraLia retrieval chunk",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "chunk_id", "document_id", "source_id", "section_id", "text", "metadata"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "chunk_id": {"type": "string", "minLength": 1},
+    "document_id": {"type": "string", "minLength": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "section_id": {"type": "string", "minLength": 1},
+    "text": {"type": "string", "minLength": 1},
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "publisher", "canonical_url", "languages", "audiences", "validity_status", "verified_at", "risk_level"],
+      "properties": {
+        "title": {"type": "string"},
+        "publisher": {"type": "string"},
+        "canonical_url": {"type": "string", "format": "uri"},
+        "languages": {"type": "array", "items": {"type": "string"}},
+        "audiences": {"type": "array", "items": {"enum": ["residential", "professional", "local_authority", "unknown"]}},
+        "validity_status": {"enum": ["active", "restricted", "stale", "unknown", "withdrawn"]},
+        "verified_at": {"type": "string", "format": "date"},
+        "risk_level": {"enum": ["low", "medium", "high"]},
+        "heading_path": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}
+

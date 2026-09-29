@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qralia"
+version = "0.1.0"
+description = "Pipeline pédagogique QraLia pour normaliser et découper des sources ONEE approuvées."
+requires-python = ">=3.11"
+dependencies = [
+    "jsonschema>=4.23,<5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8,<9",
+]
+
+[project.scripts]
+qralia-build-onee-corpus = "qralia.rag.onee_corpus:main"
+qralia-evaluate-bm25 = "qralia.rag.bm25_evaluation:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

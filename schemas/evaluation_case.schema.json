@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qralia.local/schemas/evaluation_case.schema.json",
+  "title": "QraLia RAG evaluation case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["case_id", "language", "question", "intent", "audience", "needs_user_document", "expected_sources", "reference_answer", "required_facts", "forbidden_claims", "should_abstain"],
+  "properties": {
+    "case_id": {"type": "string", "pattern": "^onee-[0-9]{3}$"},
+    "language": {"enum": ["fr", "ar", "darija_latn", "darija_arab"]},
+    "question": {"type": "string", "minLength": 1},
+    "intent": {"type": "string", "minLength": 1},
+    "audience": {"enum": ["residential", "professional", "unknown"]},
+    "needs_user_document": {"type": "boolean"},
+    "expected_sources": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "reference_answer": {"type": "string", "minLength": 1},
+    "required_facts": {"type": "array", "items": {"type": "string"}},
+    "forbidden_claims": {"type": "array", "items": {"type": "string"}},
+    "should_abstain": {"type": "boolean"},
+    "notes": {"type": "string"}
+  }
+}
+

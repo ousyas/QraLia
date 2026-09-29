@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qralia.local/schemas/normalized_document.schema.json",
+  "title": "QraLia normalized official document",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "document_id", "source", "acquisition", "classification", "sections"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "document_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]+$"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_id", "title", "publisher", "canonical_url", "languages"],
+      "properties": {
+        "source_id": {"type": "string"},
+        "title": {"type": "string", "minLength": 1},
+        "publisher": {"type": "string", "minLength": 1},
+        "canonical_url": {"type": "string", "format": "uri"},
+        "languages": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+        "published_at": {"type": ["string", "null"], "format": "date"}
+      }
+    },
+    "acquisition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["retrieved_at", "http_status", "media_type", "sha256", "raw_artifact_path"],
+      "properties": {
+        "retrieved_at": {"type": "string", "format": "date-time"},
+        "http_status": {"type": "integer", "minimum": 100, "maximum": 599},
+        "media_type": {"type": "string"},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "raw_artifact_path": {"type": "string"}
+      }
+    },
+    "classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["domain", "audiences", "risk_level", "validity_status", "verified_at"],
+      "properties": {
+        "domain": {"const": "onee_electricity_invoice"},
+        "audiences": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["residential", "professional", "local_authority", "unknown"]}},
+        "risk_level": {"enum": ["low", "medium", "high"]},
+        "validity_status": {"enum": ["active", "restricted", "stale", "unknown", "withdrawn"]},
+        "verified_at": {"type": "string", "format": "date"}
+      }
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["section_id", "order", "heading_path", "text"],
+        "properties": {
+          "section_id": {"type": "string"},
+          "order": {"type": "integer", "minimum": 0},
+          "heading_path": {"type": "array", "items": {"type": "string"}},
+          "text": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}
+

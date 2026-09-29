@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qralia.local/schemas/source_registry.schema.json",
+  "title": "QraLia source registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "registry_id", "verified_on", "download_authorized", "notes", "sources"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "registry_id": {"type": "string", "minLength": 1},
+    "verified_on": {"type": "string", "format": "date"},
+    "download_authorized": {"type": "boolean"},
+    "notes": {"type": "string"},
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_id", "title", "publisher", "url", "language", "audience", "topics", "access_status", "scope_status", "observed", "ingestion_decision", "risk_level"],
+        "properties": {
+          "source_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]+$"},
+          "title": {"type": "string", "minLength": 1},
+          "publisher": {"type": "string", "minLength": 1},
+          "url": {"type": "string", "format": "uri"},
+          "language": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+          "audience": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["residential", "professional", "local_authority", "unknown"]}},
+          "topics": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+          "access_status": {"enum": ["verified", "degraded", "not_found_direct_but_search_indexed"]},
+          "scope_status": {"enum": ["candidate", "restricted", "out_of_primary_scope", "in_primary_scope"]},
+          "observed": {"type": "string", "minLength": 1},
+          "ingestion_decision": {"enum": ["hold", "review", "exclude_primary_index", "approve_after_human_review", "approved"]},
+          "risk_level": {"enum": ["low", "medium", "high"]}
+        }
+      }
+    }
+  }
+}
