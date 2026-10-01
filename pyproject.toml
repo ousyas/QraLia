@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Pipeline pédagogique QraLia pour normaliser et découper des sources ONEE approuvées."
 requires-python = ">=3.11"
 dependencies = [
-    "jsonschema>=4.23,<5",
+    "jsonschema>=4.23,<5", "pydantic>=2,<3",
 ]
 
 [project.optional-dependencies]
