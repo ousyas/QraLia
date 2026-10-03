@@ -1,15 +1,27 @@
 """Random generator for InvoiceParams used by the synthetic invoice pipeline."""
+
 import random
 import string
 from datetime import date, timedelta
 
 from qralia.domain.invoice import InvoiceParams
 
-
 # Approximate values — to replace with real ONEE grid later (TODO weekend talk with Oussama)
 VAT_RATE = 0.14          # Moroccan electricity VAT
 STAMP_DUTY = 0.33        # Droit de timbre on cash payments (approximate)
 PRICE_PER_KWH = 1.0      # Approximate average BT Domestique price (DH/kWh)
+
+_FIRST_NAMES = [
+    "Mohamed", "Fatima", "Youssef", "Khadija", "Ahmed", "Amina", "Omar",
+    "Salma", "Hassan", "Nadia", "Sanae", "Rachid", "Imane", "Karim",
+    "Souad", "Abdel", "Leila", "Hicham", "Samira", "Nabil",
+]
+_LAST_NAMES = [
+    "Alaoui", "Bennani", "El Fassi", "Idrissi", "Tazi", "Berrada",
+    "Chraibi", "Moussaoui", "Lahlou", "Ziani", "Bouhajeb", "El Amrani",
+    "Rifi", "Ouazzani", "Bouzid", "El Ghazali", "Haddad", "Jabri",
+    "Kabbaj", "Mouline",
+]
 
 
 def random_invoice_params() -> InvoiceParams:
@@ -41,13 +53,11 @@ def random_invoice_params() -> InvoiceParams:
     total_check = total_ttc
     total_cash = round(total_ttc + STAMP_DUTY, 2)
 
-    # --- Identity (random strings for now; realistic names will come later)
+    # --- Identity
     invoice_number = "F" + "".join(random.choices(string.digits, k=8))
     contract_number = "".join(random.choices(string.digits, k=10))
-    client_name = "".join(random.choices(string.ascii_uppercase, k=1)) + \
-                  "".join(random.choices(string.ascii_lowercase, k=6))
-    client_address = "Rue " + "".join(random.choices(string.digits, k=2)) + \
-                     ", Rabat"
+    client_name = f"{random.choice(_FIRST_NAMES)} {random.choice(_LAST_NAMES)}"
+    client_address = "Rue " + "".join(random.choices(string.digits, k=2)) + ", Rabat"
 
     return InvoiceParams(
         invoice_number=invoice_number,
