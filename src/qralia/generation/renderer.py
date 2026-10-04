@@ -36,9 +36,9 @@ def _ar(text: str) -> str:
 
 
 def _fmt_money(value: float) -> str:
-    """Format a float as '12 345,67' (Moroccan style)."""
+    """Format a float as '12.345,67' (Moroccan/ONEE style with dot separator)."""
     integer, decimal = f"{value:,.2f}".rsplit(".", 1)
-    integer = integer.replace(",", " ")
+    integer = integer.replace(",", ".")
     return f"{integer},{decimal}"
 
 
