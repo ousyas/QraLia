@@ -3,6 +3,7 @@ from __future__ import annotations
 from qralia.rag.bm25_evaluation import (
     BM25Index,
     abstention_metrics,
+    build_parser,
     build_report,
     evaluate_case,
     ranking_metrics,
@@ -10,9 +11,32 @@ from qralia.rag.bm25_evaluation import (
 )
 
 
-def _chunk(section_id: str, text: str, audience: str = "residential") -> dict:
+def test_bm25_cli_accepts_multiple_chunk_files() -> None:
+    args = build_parser().parse_args(
+        [
+            "--chunks",
+            "onee.jsonl",
+            "--chunks",
+            "redal.jsonl",
+            "--evaluation",
+            "questions.jsonl",
+            "--output",
+            "report.json",
+        ]
+    )
+
+    assert [path.name for path in args.chunks] == ["onee.jsonl", "redal.jsonl"]
+
+
+def _chunk(
+    section_id: str,
+    text: str,
+    audience: str = "residential",
+    distributor_id: str = "onee",
+    service_zone_id: str = "onee_be_national",
+) -> dict:
     return {
-        "schema_version": "0.1.0",
+        "schema_version": "0.3.0",
         "chunk_id": f"doc--{section_id}",
         "document_id": "doc",
         "source_id": "source",
@@ -23,6 +47,13 @@ def _chunk(section_id: str, text: str, audience: str = "residential") -> dict:
             "publisher": "ONEE",
             "canonical_url": "https://example.test/source",
             "languages": ["fr"],
+            "domain": "utilities",
+            "provider_id": distributor_id,
+            "provider_name": distributor_id.upper(),
+            "service_type": "electricity",
+            "service_zone_id": service_zone_id,
+            "legacy_operator": None,
+            "source_role": "operator_primary",
             "audiences": [audience],
             "validity_status": "active",
             "verified_at": "2026-09-29",
@@ -40,6 +71,8 @@ def _case(case_id: str, question: str, relevant: list[str], *, abstain: bool, sp
         "language": "fr",
         "category": "hard_negative" if abstain else "direct",
         "audience": "residential",
+        "distributor_id": "onee",
+        "service_zone_id": "onee_be_national",
         "relevant_section_ids": relevant,
         "should_abstain": abstain,
         "split": split,
@@ -51,6 +84,16 @@ def test_tokenize_handles_accents_and_arabic() -> None:
     assert tokenize("أداء الفاتورة") == ["أداء", "الفاتورة"]
 
 
+def test_darija_lexicon_normalizes_common_latin_spellings() -> None:
+    assert tokenize(
+        "Factora b chik, cash, virman, tasbi9 w nhar 3tla",
+        normalization="darija_lexicon",
+    ) == ["facture", "b", "cheque", "especes", "virement", "acompte", "w", "nhar", "ferie"]
+    assert tokenize("chèque espèces", normalization="darija_lexicon") == ["cheque", "especes"]
+    assert tokenize("lfactura lflous", normalization="darija_lexicon") == ["facture", "especes"]
+    assert tokenize("الفاتورة بالشيك", normalization="darija_lexicon") == ["facture", "cheque"]
+
+
 def test_bm25_ranks_matching_chunk_first() -> None:
     index = BM25Index(
         [
@@ -58,16 +101,70 @@ def test_bm25_ranks_matching_chunk_first() -> None:
             _chunk("paiement-especes", "payer la facture en espèces"),
         ]
     )
-    results = index.search("paiement par chèque", audience="residential", top_k=2)
+    results = index.search(
+        "paiement par chèque",
+        audience="residential",
+        distributor_id="onee",
+        service_zone_id="onee_be_national",
+        top_k=2,
+    )
 
     assert results[0]["section_id"] == "paiement-cheque"
     assert results[0]["score"] > results[1]["score"]
 
 
+def test_darija_lexicon_ranks_chik_as_cheque() -> None:
+    index = BM25Index(
+        [
+            _chunk("paiement-cheque", "payer la facture par chèque"),
+            _chunk("paiement-especes", "payer la facture en espèces"),
+        ],
+        normalization="darija_lexicon",
+    )
+
+    results = index.search(
+        "n9der nkhlles factora b chik",
+        audience="residential",
+        distributor_id="onee",
+        service_zone_id="onee_be_national",
+        top_k=2,
+    )
+
+    assert results[0]["section_id"] == "paiement-cheque"
+
+
+def test_bm25_filters_distributor_before_scoring() -> None:
+    index = BM25Index(
+        [
+            _chunk("onee-cheque", "paiement par chèque ONEE", distributor_id="onee"),
+            _chunk("radeef-cheque", "paiement par chèque RADEEF", distributor_id="radeef", service_zone_id="fes_ex_radeef"),
+            _chunk("other-zone", "paiement par chèque", distributor_id="onee", service_zone_id="zone_non_autorisee"),
+        ]
+    )
+
+    results = index.search(
+        "paiement par chèque",
+        audience="residential",
+        distributor_id="onee",
+        service_zone_id="onee_be_national",
+        top_k=5,
+    )
+
+    assert [result["section_id"] for result in results] == ["onee-cheque"]
+    assert results[0]["provider_id"] == "onee"
+    assert results[0]["service_zone_id"] == "onee_be_national"
+
+
 def test_bm25_does_not_return_zero_score_chunks() -> None:
     index = BM25Index([_chunk("cheque", "paiement par chèque")])
 
-    assert index.search("قطعت الكهرباء", audience="residential", top_k=5) == []
+    assert index.search(
+        "قطعت الكهرباء",
+        audience="residential",
+        distributor_id="onee",
+        service_zone_id="onee_be_national",
+        top_k=5,
+    ) == []
 
 
 def test_ranking_metrics_distinguish_recall_and_binary_recall() -> None:

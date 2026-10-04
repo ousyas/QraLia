@@ -12,6 +12,7 @@ __pycache__/
 .env
 .env.*
 !.env.example
+Api_Key_*.txt
 
 # Editors and operating systems
 .idea/

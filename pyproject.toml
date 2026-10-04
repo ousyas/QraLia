@@ -15,10 +15,30 @@ dependencies = [
 dev = [
     "pytest>=8,<9",
 ]
+semantic = [
+    "langchain-core>=1.2,<2",
+    "numpy>=2,<3",
+    "sentence-transformers>=5,<6",
+]
+generation = [
+    "google-genai>=1,<2",
+    "pydantic>=2,<3",
+    "python-dotenv>=1,<2",
+]
+atlas = [
+    "torch>=2.5,<3",
+    "transformers>=5,<6",
+]
 
 [project.scripts]
 qralia-build-onee-corpus = "qralia.rag.onee_corpus:main"
 qralia-evaluate-bm25 = "qralia.rag.bm25_evaluation:main"
+qralia-acquire-source = "qralia.rag.acquire_public_source:main"
+qralia-build-redal-corpus = "qralia.rag.redal_corpus:main"
+qralia-evaluate-semantic = "qralia.rag.semantic_evaluation:main"
+qralia-evaluate-hybrid = "qralia.rag.hybrid_evaluation:main"
+qralia-evaluate-reranker = "qralia.rag.reranker_evaluation:main"
+qralia-evaluate-generation = "qralia.rag.generation_evaluation:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

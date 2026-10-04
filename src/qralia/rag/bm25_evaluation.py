@@ -10,17 +10,111 @@ import math
 from pathlib import Path
 import re
 from typing import Any, Iterable, Sequence
+import unicodedata
 
 from qralia.rag.onee_corpus import validate_with_schema
 
 
 TOKEN_PATTERN = re.compile(r"[^\W_]+", flags=re.UNICODE)
 
+# Petit lexique volontairement explicite. Il ne cherche pas à "traduire la
+# darija" : il rapproche seulement des graphies courantes observées dans les
+# questions utilisateur des mots présents dans le corpus français.
+DARIJA_LATIN_ALIASES = {
+    "factora": "facture",
+    "fatoura": "facture",
+    "factoura": "facture",
+    "fatora": "facture",
+    "factura": "facture",
+    "fawatir": "facture",
+    "chik": "cheque",
+    "chek": "cheque",
+    "cash": "especes",
+    "kach": "especes",
+    "flous": "especes",
+    "virman": "virement",
+    "virmon": "virement",
+    "tasbi9": "acompte",
+    "tsbi9": "acompte",
+    "avance": "acompte",
+    "3tla": "ferie",
+    "3otla": "ferie",
+    "l3id": "ferie",
+    "echeance": "date",
+    "ajal": "date",
+    "fo9ach": "date",
+    "banka": "banque",
+    "wakala": "agence",
+    "nkhlles": "paiement",
+    "khllest": "paiement",
+    "tkhlles": "paiement",
+    "khlass": "paiement",
+    "chki": "reclamation",
+    "chikaya": "reclamation",
+    "t9t3": "suspension",
+    "y9t3o": "suspension",
+    "richarj": "recharge",
+    "الفاتورة": "facture",
+    "فاتورة": "facture",
+    "الشيك": "cheque",
+    "بالشيك": "cheque",
+    "الكاش": "especes",
+    "بالكاش": "especes",
+    "فيرمان": "virement",
+    "عطلة": "ferie",
+    "الكارط": "carte",
+    "بالكارط": "carte",
+    "نخلص": "paiement",
+    "خلصت": "paiement",
+    "تخلص": "paiement",
+    "الأداء": "paiement",
+    "اداء": "paiement",
+    "الوكالة": "agence",
+    "فالوكالة": "agence",
+    "الشكوى": "reclamation",
+    "نشكي": "reclamation",
+    "الاقتطاع": "prelevement",
+    "التأخير": "retard",
+    "التعبئة": "recharge",
+}
 
-def tokenize(text: str) -> list[str]:
-    """Découpe simplement un texte Unicode et normalise sa casse."""
+NORMALIZATION_MODES = ("basic", "darija_lexicon")
 
-    return [match.group(0).casefold() for match in TOKEN_PATTERN.finditer(text)]
+
+def _strip_accents(token: str) -> str:
+    """Retire les signes diacritiques afin d'aligner ``chèque`` et ``cheque``."""
+
+    decomposed = unicodedata.normalize("NFKD", token)
+    return "".join(character for character in decomposed if not unicodedata.combining(character))
+
+
+def tokenize(text: str, *, normalization: str = "basic") -> list[str]:
+    """Découpe le texte et applique la normalisation demandée.
+
+    ``basic`` conserve exactement la baseline historique. ``darija_lexicon``
+    retire les accents des tokens latins puis applique un petit dictionnaire
+    d'alias déterministe. Le même traitement est utilisé pour les chunks et
+    pour les questions.
+    """
+
+    if normalization not in NORMALIZATION_MODES:
+        raise ValueError(f"Normalisation inconnue : {normalization}")
+
+    tokens = [match.group(0).casefold() for match in TOKEN_PATTERN.finditer(text)]
+    if normalization == "basic":
+        return tokens
+
+    normalized: list[str] = []
+    for token in tokens:
+        accentless = _strip_accents(token)
+        canonical = DARIJA_LATIN_ALIASES.get(accentless)
+        # En darija latine, l'article défini est souvent collé au nom :
+        # ``lfactura`` ou ``lflous``. On ne retire le ``l`` que si le reste du
+        # token appartient déjà au lexique, ce qui évite un stemming agressif.
+        if canonical is None and accentless.startswith("l"):
+            canonical = DARIJA_LATIN_ALIASES.get(accentless[1:])
+        normalized.append(canonical or accentless)
+    return normalized
 
 
 @dataclass(frozen=True)
@@ -38,22 +132,54 @@ class IndexedChunk:
     def audiences(self) -> tuple[str, ...]:
         return tuple(self.payload["metadata"]["audiences"])
 
+    @property
+    def provider_id(self) -> str:
+        metadata = self.payload["metadata"]
+        # Les jeux d'évaluation 0.2 parlent encore de distributeur. Les chunks
+        # 0.3 utilisent le terme générique fournisseur, valable aussi en télécom.
+        return str(metadata.get("provider_id", metadata.get("distributor_id")))
+
+    @property
+    def service_zone_id(self) -> str:
+        return str(self.payload["metadata"]["service_zone_id"])
+
+    @property
+    def domain(self) -> str | None:
+        return self.payload["metadata"].get("domain")
+
+    @property
+    def service_type(self) -> str | None:
+        return self.payload["metadata"].get("service_type")
+
 
 class BM25Index:
     """Implémentation minimale et explicable de BM25 Okapi."""
 
-    def __init__(self, chunks: Sequence[dict[str, Any]], *, k1: float = 1.5, b: float = 0.75) -> None:
+    def __init__(
+        self,
+        chunks: Sequence[dict[str, Any]],
+        *,
+        k1: float = 1.5,
+        b: float = 0.75,
+        normalization: str = "basic",
+    ) -> None:
         if not chunks:
             raise ValueError("BM25 exige au moins un chunk actif.")
         if k1 <= 0:
             raise ValueError("k1 doit être strictement positif.")
         if not 0 <= b <= 1:
             raise ValueError("b doit être compris entre 0 et 1.")
+        if normalization not in NORMALIZATION_MODES:
+            raise ValueError(f"Normalisation inconnue : {normalization}")
 
         self.k1 = k1
         self.b = b
+        self.normalization = normalization
         self.chunks = tuple(
-            IndexedChunk(payload=chunk, tokens=tuple(tokenize(_searchable_text(chunk))))
+            IndexedChunk(
+                payload=chunk,
+                tokens=tuple(tokenize(_searchable_text(chunk), normalization=normalization)),
+            )
             for chunk in chunks
         )
         self.average_document_length = sum(len(chunk.tokens) for chunk in self.chunks) / len(self.chunks)
@@ -82,7 +208,7 @@ class BM25Index:
         score = 0.0
 
         # dict.fromkeys retire les répétitions de la requête tout en gardant l'ordre.
-        for term in dict.fromkeys(tokenize(query)):
+        for term in dict.fromkeys(tokenize(query, normalization=self.normalization)):
             frequency = term_frequencies.get(term, 0)
             if frequency == 0:
                 continue
@@ -95,13 +221,31 @@ class BM25Index:
 
         return score
 
-    def search(self, query: str, *, audience: str, top_k: int = 5) -> list[dict[str, Any]]:
-        """Classe les chunks actifs compatibles avec l'audience demandée."""
+    def search(
+        self,
+        query: str,
+        *,
+        audience: str,
+        distributor_id: str,
+        service_zone_id: str,
+        domain: str | None = None,
+        service_type: str | None = None,
+        top_k: int = 5,
+    ) -> list[dict[str, Any]]:
+        """Classe les chunks compatibles avec l'audience et le distributeur."""
 
         if top_k < 1:
             raise ValueError("top_k doit être au moins égal à 1.")
 
-        candidates = [chunk for chunk in self.chunks if audience in chunk.audiences]
+        candidates = [
+            chunk
+            for chunk in self.chunks
+            if audience in chunk.audiences
+            and chunk.provider_id == distributor_id
+            and chunk.service_zone_id == service_zone_id
+            and (domain is None or chunk.domain == domain)
+            and (service_type is None or chunk.service_type == service_type)
+        ]
         scored = [
             {
                 "chunk_id": chunk.payload["chunk_id"],
@@ -109,6 +253,9 @@ class BM25Index:
                 "score": self.score(query, chunk),
                 "title": chunk.payload["metadata"]["title"],
                 "canonical_url": chunk.payload["metadata"]["canonical_url"],
+                "provider_id": chunk.payload["metadata"].get("provider_id", chunk.payload["metadata"].get("distributor_id")),
+                "provider_name": chunk.payload["metadata"].get("provider_name", chunk.payload["metadata"].get("distributor_name")),
+                "service_zone_id": chunk.payload["metadata"]["service_zone_id"],
             }
             for chunk in candidates
         ]
@@ -161,8 +308,19 @@ def load_evaluation_cases(path: Path, schema_path: Path) -> list[dict[str, Any]]
     return cases
 
 
-def evaluate_case(index: BM25Index, case: dict[str, Any], *, top_k: int) -> dict[str, Any]:
-    ranking = index.search(case["question"], audience=case["audience"], top_k=top_k)
+def evaluate_case(
+    index: BM25Index,
+    case: dict[str, Any],
+    *,
+    top_k: int,
+) -> dict[str, Any]:
+    ranking = index.search(
+        case["question"],
+        audience=case["audience"],
+        distributor_id=case["distributor_id"],
+        service_zone_id=case["service_zone_id"],
+        top_k=top_k,
+    )
     relevant = set(case["relevant_section_ids"])
     retrieved = [result["section_id"] for result in ranking]
     relevant_ranks = [rank for rank, section_id in enumerate(retrieved, start=1) if section_id in relevant]
@@ -190,6 +348,8 @@ def evaluate_case(index: BM25Index, case: dict[str, Any], *, top_k: int) -> dict
         "language": case["language"],
         "category": case["category"],
         "audience": case["audience"],
+        "distributor_id": case["distributor_id"],
+        "service_zone_id": case["service_zone_id"],
         "split": case["split"],
         "should_abstain": case["should_abstain"],
         "relevant_section_ids": case["relevant_section_ids"],
@@ -310,7 +470,10 @@ def build_report(
     *,
     top_k: int,
 ) -> dict[str, Any]:
-    records = [evaluate_case(index, case, top_k=top_k) for case in cases]
+    records = [
+        evaluate_case(index, case, top_k=top_k)
+        for case in cases
+    ]
     calibration = [record for record in records if record["split"] == "calibration"]
     test = [record for record in records if record["split"] == "test"]
     threshold, calibration_abstention = calibrate_threshold(calibration)
@@ -324,10 +487,21 @@ def build_report(
             "algorithm": "BM25Okapi",
             "k1": index.k1,
             "b": index.b,
+            "normalization": index.normalization,
+            "routes": sorted(
+                {
+                    f"{case['distributor_id']}::{case['service_zone_id']}"
+                    for case in cases
+                }
+            ),
             "top_k": top_k,
             "indexed_chunk_count": len(index.chunks),
             "indexed_fields": ["metadata.heading_path", "text"],
-            "tokenization": "Unicode alphanumeric tokens with casefold; no stemming, translation or stopword removal",
+            "tokenization": (
+                "Unicode alphanumeric tokens with casefold"
+                if index.normalization == "basic"
+                else "Unicode tokens, casefold, accent folding and curated Darija-Latin aliases"
+            ),
         },
         "calibration": {
             "case_count": len(calibration),
@@ -347,33 +521,98 @@ def build_report(
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Évalue une baseline BM25 sur les chunks actifs QraLia.")
-    parser.add_argument("--chunks", required=True, type=Path, help="Fichier JSONL contenant les chunks.")
+    parser.add_argument(
+        "--chunks",
+        required=True,
+        action="append",
+        type=Path,
+        help="Fichier JSONL de chunks ; l'option peut être répétée.",
+    )
     parser.add_argument("--evaluation", required=True, type=Path, help="Jeu JSONL d'évaluation de la récupération.")
     parser.add_argument("--output", required=True, type=Path, help="Rapport JSON à produire.")
     parser.add_argument("--schemas-dir", type=Path, default=Path("schemas"), help="Dossier des schémas JSON.")
     parser.add_argument("--top-k", type=int, default=5, help="Nombre maximal de résultats conservés.")
+    parser.add_argument(
+        "--distributor-id",
+        help="Optionnel : ne conserver que les cas de ce distributeur.",
+    )
+    parser.add_argument(
+        "--service-zone-id",
+        help="Optionnel : ne conserver que les cas de cette zone.",
+    )
     parser.add_argument("--k1", type=float, default=1.5, help="Saturation de fréquence BM25.")
     parser.add_argument("--b", type=float, default=0.75, help="Normalisation par longueur BM25.")
+    parser.add_argument(
+        "--normalization",
+        choices=NORMALIZATION_MODES,
+        default="basic",
+        help="Normalisation lexicale appliquée à l'index et aux questions.",
+    )
     return parser
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    chunks = load_active_chunks(args.chunks, args.schemas_dir / "retrieval_chunk.schema.json")
+    chunks: list[dict[str, Any]] = []
+    for path in args.chunks:
+        chunks.extend(
+            load_active_chunks(path, args.schemas_dir / "retrieval_chunk.schema.json")
+        )
+    chunk_ids = [chunk["chunk_id"] for chunk in chunks]
+    if len(chunk_ids) != len(set(chunk_ids)):
+        raise ValueError("Les chunk_id doivent être uniques dans l'index BM25.")
     cases = load_evaluation_cases(
         args.evaluation,
         args.schemas_dir / "retrieval_evaluation_case.schema.json",
     )
-    active_sections = {chunk["section_id"] for chunk in chunks}
-    referenced_sections = {
-        section_id for case in cases for section_id in case["relevant_section_ids"]
+    if bool(args.distributor_id) != bool(args.service_zone_id):
+        raise ValueError("--distributor-id et --service-zone-id doivent être fournis ensemble.")
+    if args.distributor_id:
+        cases = [
+            case for case in cases
+            if case["distributor_id"] == args.distributor_id
+            and case["service_zone_id"] == args.service_zone_id
+        ]
+        if not cases:
+            raise ValueError("Aucun cas d'évaluation ne correspond à la route demandée.")
+
+    active_routes = {
+        (
+            chunk["section_id"],
+            chunk["metadata"].get("provider_id", chunk["metadata"].get("distributor_id")),
+            chunk["metadata"]["service_zone_id"],
+            audience,
+        )
+        for chunk in chunks
+        for audience in chunk["metadata"]["audiences"]
     }
-    if not referenced_sections <= active_sections:
-        unknown = sorted(referenced_sections - active_sections)
+    unknown = sorted(
+        {
+            (section_id, case["distributor_id"], case["service_zone_id"], case["audience"])
+            for case in cases
+            for section_id in case["relevant_section_ids"]
+            if (
+                section_id,
+                case["distributor_id"],
+                case["service_zone_id"],
+                case["audience"],
+            ) not in active_routes
+        }
+    )
+    if unknown:
         raise ValueError(f"Sections attendues absentes des chunks actifs : {unknown}")
 
-    index = BM25Index(chunks, k1=args.k1, b=args.b)
-    report = build_report(index, cases, top_k=args.top_k)
+    index = BM25Index(
+        chunks,
+        k1=args.k1,
+        b=args.b,
+        normalization=args.normalization,
+    )
+    report = build_report(
+        index,
+        cases,
+        top_k=args.top_k,
+    )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n",

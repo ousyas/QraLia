@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qralia.local/schemas/sft_example_v0.2.schema.json",
+  "title": "QraLia SFT example v0.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "sample_id", "intent_id", "source_case_id", "language", "provider_id", "style", "should_abstain", "provider_mentioned", "contrast_group", "question", "split", "critical_values", "source_chunk_ids", "review_status", "messages"],
+  "properties": {
+    "schema_version": {"const": "0.2.0"},
+    "sample_id": {"type": "string", "pattern": "^sft-v02-[0-9]{4}$"},
+    "intent_id": {"type": "string", "minLength": 1},
+    "source_case_id": {"type": ["string", "null"]},
+    "language": {"enum": ["fr", "ar", "darija_latn", "darija_arab"]},
+    "provider_id": {"type": "string", "minLength": 1},
+    "style": {"enum": ["natural", "indirect", "lexical_gap", "edge_or_numeric", "contextual", "alias_or_implicit", "asr", "whatsapp"]},
+    "should_abstain": {"type": "boolean"},
+    "provider_mentioned": {"type": "boolean"},
+    "contrast_group": {"type": "string", "minLength": 1},
+    "question": {"type": "string", "minLength": 3},
+    "split": {"enum": ["train", "validation"]},
+    "critical_values": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "source_chunk_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1, "uniqueItems": true},
+    "review_status": {"const": "candidate_human_review"},
+    "messages": {
+      "type": "array", "minItems": 2, "maxItems": 2,
+      "prefixItems": [
+        {"type": "object", "additionalProperties": false, "required": ["role", "content"], "properties": {"role": {"const": "user"}, "content": {"type": "string", "minLength": 1}}},
+        {"type": "object", "additionalProperties": false, "required": ["role", "content"], "properties": {"role": {"const": "assistant"}, "content": {"type": "string", "minLength": 1}}}
+      ]
+    }
+  }
+}

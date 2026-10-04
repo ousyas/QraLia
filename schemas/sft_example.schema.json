@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qralia.local/schemas/sft_example.schema.json",
+  "title": "QraLia supervised fine-tuning example",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "sample_id",
+    "intent_id",
+    "source_case_id",
+    "language",
+    "provider_id",
+    "question",
+    "split",
+    "should_abstain",
+    "critical_values",
+    "source_chunk_ids",
+    "review_status",
+    "messages"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "sample_id": {"type": "string", "pattern": "^sft-[a-z0-9-]+-[0-9]{3}$"},
+    "intent_id": {"type": "string", "minLength": 1},
+    "source_case_id": {"type": ["string", "null"]},
+    "language": {
+      "type": "string",
+      "enum": ["fr", "ar", "darija_latn", "darija_arab"]
+    },
+    "provider_id": {"type": "string", "minLength": 1},
+    "question": {"type": "string", "minLength": 1},
+    "split": {"type": "string", "enum": ["train", "validation"]},
+    "should_abstain": {"type": "boolean"},
+    "critical_values": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "source_chunk_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "review_status": {"const": "candidate_human_review"},
+    "messages": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["role", "content"],
+          "properties": {
+            "role": {"const": "user"},
+            "content": {"type": "string", "minLength": 1}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["role", "content"],
+          "properties": {
+            "role": {"const": "assistant"},
+            "content": {"type": "string", "minLength": 1}
+          }
+        }
+      ],
+      "minItems": 2,
+      "maxItems": 2
+    }
+  }
+}

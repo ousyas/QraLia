@@ -22,6 +22,9 @@ CANONICAL_URL = (
     "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1"
 )
 PUBLISHER = "ONEE - Branche Electricité"
+PROVIDER_ID = "onee"
+PROVIDER_NAME = "ONEE - Branche Electricité"
+SERVICE_ZONE_ID = "onee_be_national"
 
 
 @dataclass(frozen=True)
@@ -174,7 +177,7 @@ def normalize_html(
     )
 
     return {
-        "schema_version": "0.1.0",
+        "schema_version": "0.3.0",
         "document_id": _document_id(retrieved_at),
         "source": {
             "source_id": SOURCE_ID,
@@ -192,7 +195,13 @@ def normalize_html(
             "raw_artifact_path": raw_path.as_posix(),
         },
         "classification": {
-            "domain": "onee_electricity_invoice",
+            "domain": "utilities",
+            "provider_id": PROVIDER_ID,
+            "provider_name": PROVIDER_NAME,
+            "service_type": "electricity",
+            "service_zone_id": SERVICE_ZONE_ID,
+            "legacy_operator": None,
+            "source_role": "operator_primary",
             "audiences": ["residential"],
             "risk_level": "medium",
             "validity_status": validity_status,
@@ -220,7 +229,7 @@ def build_chunks(document: dict[str, Any]) -> list[dict[str, Any]]:
     for section in document["sections"]:
         chunks.append(
             {
-                "schema_version": "0.1.0",
+                "schema_version": "0.3.0",
                 "chunk_id": f"{document['document_id']}--{section['section_id']}",
                 "document_id": document["document_id"],
                 "source_id": source["source_id"],
@@ -231,6 +240,13 @@ def build_chunks(document: dict[str, Any]) -> list[dict[str, Any]]:
                     "publisher": source["publisher"],
                     "canonical_url": source["canonical_url"],
                     "languages": source["languages"],
+                    "domain": classification["domain"],
+                    "provider_id": classification["provider_id"],
+                    "provider_name": classification["provider_name"],
+                    "service_type": classification["service_type"],
+                    "service_zone_id": classification["service_zone_id"],
+                    "legacy_operator": classification["legacy_operator"],
+                    "source_role": classification["source_role"],
                     "audiences": classification["audiences"],
                     "validity_status": classification["validity_status"],
                     "verified_at": classification["verified_at"],

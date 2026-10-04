@@ -1,0 +1,2216 @@
+{
+  "schema_version": "0.1.0",
+  "configuration": {
+    "algorithm": "BM25Okapi",
+    "k1": 1.5,
+    "b": 0.75,
+    "normalization": "basic",
+    "distributor_id": "onee",
+    "service_zone_id": "onee_be_national",
+    "top_k": 5,
+    "indexed_chunk_count": 5,
+    "indexed_fields": [
+      "metadata.heading_path",
+      "text"
+    ],
+    "tokenization": "Unicode alphanumeric tokens with casefold"
+  },
+  "calibration": {
+    "case_count": 10,
+    "selected_threshold": 2.592509258841641,
+    "abstention_metrics": {
+      "case_count": 10,
+      "threshold": 2.592509258841641,
+      "true_positive": 5,
+      "false_positive": 1,
+      "true_negative": 2,
+      "false_negative": 2,
+      "answer_recall": 0.7142857142857143,
+      "abstention_recall": 0.6666666666666666,
+      "accuracy": 0.7,
+      "balanced_accuracy": 0.6904761904761905
+    }
+  },
+  "test": {
+    "case_count": 25,
+    "ranking_metrics": {
+      "positive_case_count": 18,
+      "recall_at_1": 0.5833333333333334,
+      "recall_at_3": 0.6944444444444444,
+      "recall_at_5": 0.6944444444444444,
+      "binary_recall_at_1": 0.6666666666666666,
+      "binary_recall_at_3": 0.7222222222222222,
+      "binary_recall_at_5": 0.7222222222222222,
+      "mrr": 0.6944444444444444
+    },
+    "abstention_metrics": {
+      "case_count": 25,
+      "threshold": 2.592509258841641,
+      "true_positive": 10,
+      "false_positive": 2,
+      "true_negative": 5,
+      "false_negative": 8,
+      "answer_recall": 0.5555555555555556,
+      "abstention_recall": 0.7142857142857143,
+      "accuracy": 0.6,
+      "balanced_accuracy": 0.6349206349206349
+    },
+    "ranking_by_language": {
+      "ar": {
+        "positive_case_count": 2,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "binary_recall_at_1": 0.0,
+        "binary_recall_at_3": 0.0,
+        "binary_recall_at_5": 0.0,
+        "mrr": 0.0
+      },
+      "darija_arab": {
+        "positive_case_count": 3,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "binary_recall_at_1": 0.0,
+        "binary_recall_at_3": 0.0,
+        "binary_recall_at_5": 0.0,
+        "mrr": 0.0
+      },
+      "darija_latn": {
+        "positive_case_count": 5,
+        "recall_at_1": 0.9,
+        "recall_at_3": 0.9,
+        "recall_at_5": 0.9,
+        "binary_recall_at_1": 1.0,
+        "binary_recall_at_3": 1.0,
+        "binary_recall_at_5": 1.0,
+        "mrr": 1.0
+      },
+      "fr": {
+        "positive_case_count": 8,
+        "recall_at_1": 0.75,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "binary_recall_at_1": 0.875,
+        "binary_recall_at_3": 1.0,
+        "binary_recall_at_5": 1.0,
+        "mrr": 0.9375
+      }
+    },
+    "ranking_by_category": {
+      "direct": {
+        "positive_case_count": 3,
+        "recall_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "binary_recall_at_1": 1.0,
+        "binary_recall_at_3": 1.0,
+        "binary_recall_at_5": 1.0,
+        "mrr": 1.0
+      },
+      "easy_negative": {
+        "positive_case_count": 0,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "binary_recall_at_1": 0.0,
+        "binary_recall_at_3": 0.0,
+        "binary_recall_at_5": 0.0,
+        "mrr": 0.0
+      },
+      "hard_negative": {
+        "positive_case_count": 0,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "binary_recall_at_1": 0.0,
+        "binary_recall_at_3": 0.0,
+        "binary_recall_at_5": 0.0,
+        "mrr": 0.0
+      },
+      "multi_relevant": {
+        "positive_case_count": 4,
+        "recall_at_1": 0.375,
+        "recall_at_3": 0.625,
+        "recall_at_5": 0.625,
+        "binary_recall_at_1": 0.75,
+        "binary_recall_at_3": 0.75,
+        "binary_recall_at_5": 0.75,
+        "mrr": 0.75
+      },
+      "multilingual": {
+        "positive_case_count": 8,
+        "recall_at_1": 0.5,
+        "recall_at_3": 0.5,
+        "recall_at_5": 0.5,
+        "binary_recall_at_1": 0.5,
+        "binary_recall_at_3": 0.5,
+        "binary_recall_at_5": 0.5,
+        "mrr": 0.5
+      },
+      "paraphrase": {
+        "positive_case_count": 3,
+        "recall_at_1": 0.6666666666666666,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "binary_recall_at_1": 0.6666666666666666,
+        "binary_recall_at_3": 1.0,
+        "binary_recall_at_5": 1.0,
+        "mrr": 0.8333333333333334
+      }
+    }
+  },
+  "cases": [
+    {
+      "case_id": "retrieval-001",
+      "question": "Où figure la date de règlement de ma facture ?",
+      "language": "fr",
+      "category": "direct",
+      "audience": "residential",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "date-reglement"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 3.575049204970584,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.4416206434241676,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 0.2944454677225052,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 0.28844721920421923,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 0.2749323607031155,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 3.575049204970584,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-002",
+      "question": "Puis-je régler ma facture en espèces ?",
+      "language": "fr",
+      "category": "direct",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-especes"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 5.052509309126566,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 2.025618516403926,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 0.1259375193270956,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 0.11832591101611728,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 0.1077439189740255,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 5.052509309126566,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-003",
+      "question": "Puis-je payer ma facture par chèque ?",
+      "language": "fr",
+      "category": "direct",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-cheque"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 3.2964314191564625,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 0.9060640335454586,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 0.7152012306194284,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.15263125265954974,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 0.12014123182668533,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 3.2964314191564625,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-004",
+      "question": "Puis-je payer ma facture par virement bancaire ?",
+      "language": "fr",
+      "category": "direct",
+      "audience": "residential",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-virement"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 3.4409006931977437,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 2.0845058458018526,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 0.9060640335454586,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.15263125265954974,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 0.12014123182668533,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 3.4409006931977437,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-005",
+      "question": "Puis-je verser un acompte pour mes prochaines factures ?",
+      "language": "fr",
+      "category": "direct",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-acompte"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.8981598019472345,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.2147576105530704,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 1.6207836371769253,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.8981598019472345,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-006",
+      "question": "Que devient mon échéance lorsqu’elle tombe pendant un jour férié ?",
+      "language": "fr",
+      "category": "paraphrase",
+      "audience": "residential",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "date-reglement"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 4.556366346077215,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 1.5921182068315467,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 0.8916811213789722,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 4.556366346077215,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-007",
+      "question": "Existe-t-il des points d’encaissement externes pour régler la facture ?",
+      "language": "fr",
+      "category": "paraphrase",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-especes"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 8.52088349927456,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 4.618187009358028,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.622962899258905,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 0.6749154367400177,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 0.1077439189740255,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 8.52088349927456,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-008",
+      "question": "À quel ordre dois-je établir le moyen de paiement bancaire sur papier ?",
+      "language": "fr",
+      "category": "paraphrase",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-cheque"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 4.0050400793942655,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 2.5527816054090025,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.2714878476800995,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.0413619211544773,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 0.8990122386747011,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 4.0050400793942655,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-009",
+      "question": "Comment autoriser ma banque à régler automatiquement mes factures chaque mois ?",
+      "language": "fr",
+      "category": "paraphrase",
+      "audience": "residential",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-virement"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 3.8824508759840963,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.549795024799755,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.1997441897276273,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 0.356229207914025,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 3.8824508759840963,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.5,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-010",
+      "question": "Est-il possible de constituer une provision à l’avance auprès de l’agence ?",
+      "language": "fr",
+      "category": "paraphrase",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-acompte"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 3.9442715392649097,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 3.474556532138322,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.619320092519328,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 2.3233160273189055,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 0.9492269774880425,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 3.9442715392649097,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.5,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-011",
+      "question": "Ila jat date dyal l-khlass f nhar 3tla, ach kaytra ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "date-reglement"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 1.8957302781000587,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 1.0739251033466368,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 1.0059774322598571,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 1.8957302781000587,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-012",
+      "question": "Fin n9der nkhlles l-factura b cash ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-especes"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 1.0739251033466368,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.4989308421929502,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 0.3833380285383335,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 1.0739251033466368,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-013",
+      "question": "N9der nkhlles l-factura b chèque ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-cheque"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 3.3699207829931304,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.4989308421929502,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 0.3833380285383335,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 3.3699207829931304,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-014",
+      "question": "Kifach nkhlles l-factura b virement bancaire ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-virement"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 3.1090374911166485,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 2.1579952096385204,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.4989308421929502,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 3.1090374911166485,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-015",
+      "question": "N9der nkhelli acompte 3la l-fawatir jayine ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-acompte"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.0064786805682626,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 1.0739251033466368,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.4989308421929502,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 0.3833380285383335,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.0064786805682626,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-016",
+      "question": "ماذا يحدث إذا صادف تاريخ الأداء يوم عطلة؟",
+      "language": "ar",
+      "category": "multilingual",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "date-reglement"
+      ],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-017",
+      "question": "واش نقدر نخلص الفاتورة نقداً فالوكالة؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-especes"
+      ],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-018",
+      "question": "هل يمكنني أداء فاتورة الكهرباء بالشيك؟",
+      "language": "ar",
+      "category": "multilingual",
+      "audience": "residential",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-cheque"
+      ],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-019",
+      "question": "كيفاش ندير الأداء الشهري بالتحويل البنكي؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-virement"
+      ],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-020",
+      "question": "واش نقدر نخلي تسبيق فالوكالة للفواتير الجاية؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-acompte"
+      ],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-021",
+      "question": "Quels sont tous les moyens proposés pour régler ma facture ?",
+      "language": "fr",
+      "category": "multi_relevant",
+      "audience": "residential",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-especes",
+        "paiement-cheque",
+        "paiement-virement",
+        "paiement-acompte"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 2.8360103349923884,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 1.710444117847664,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 1.0176186407060677,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 0.12014123182668533,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 0.1077439189740255,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.8360103349923884,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.5,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.5,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-022",
+      "question": "Puis-je choisir entre un paiement en espèces et un paiement par chèque ?",
+      "language": "fr",
+      "category": "multi_relevant",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-especes",
+        "paiement-cheque"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 5.676589187098152,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 4.21234201857221,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 1.62211394986921,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 1.5380888304023101,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 1.0766893891609386,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 5.676589187098152,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.5,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-023",
+      "question": "Explique-moi le paiement par virement et le paiement par acompte.",
+      "language": "fr",
+      "category": "multi_relevant",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-virement",
+        "paiement-acompte"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 4.536086738813935,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 3.047482931416862,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 1.9163463389257163,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.9945221160864443,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 0.7442211097982709,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 4.536086738813935,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.5,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-024",
+      "question": "Fin n9der nkhelles b cash wla b chèque ?",
+      "language": "darija_latn",
+      "category": "multi_relevant",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-especes",
+        "paiement-cheque"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 2.2959956796464938,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.2959956796464938,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.5,
+        "3": 0.5,
+        "5": 0.5
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-025",
+      "question": "ما هي طرق الأداء وهل يتغير التاريخ إذا صادف يوم عطلة؟",
+      "language": "ar",
+      "category": "multi_relevant",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "date-reglement",
+        "paiement-especes",
+        "paiement-cheque",
+        "paiement-virement",
+        "paiement-acompte"
+      ],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-026",
+      "question": "Puis-je payer ma facture par carte bancaire ?",
+      "language": "fr",
+      "category": "hard_negative",
+      "audience": "residential",
+      "split": "calibration",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 2.0845058458018526,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 1.9057425080649788,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 0.9060640335454586,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.15263125265954974,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 0.12014123182668533,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.0845058458018526,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-027",
+      "question": "Comment régler directement ma facture sur Internet ?",
+      "language": "fr",
+      "category": "hard_negative",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 3.3088643485766154,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 1.5379039982455027,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 0.12014123182668533,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 0.11832591101611728,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 0.1077439189740255,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 3.3088643485766154,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-028",
+      "question": "Quels frais dois-je payer si je règle ma facture en retard ?",
+      "language": "fr",
+      "category": "hard_negative",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 2.5863252704766255,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 1.1042680212953497,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.15263125265954974,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 0.1259375193270956,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 0.1077439189740255,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.5863252704766255,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-029",
+      "question": "Après combien de jours suivant la date limite l’électricité est-elle coupée ?",
+      "language": "fr",
+      "category": "hard_negative",
+      "audience": "residential",
+      "split": "calibration",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 6.014986445265136,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 3.692574871225617,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 1.2546284035768305,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 1.0601890697743817,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 0.15479112887643018,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 6.014986445265136,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-030",
+      "question": "Une entreprise en moyenne tension peut-elle utiliser ces mêmes moyens de paiement ?",
+      "language": "fr",
+      "category": "hard_negative",
+      "audience": "professional",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-031",
+      "question": "Quel est le prix actuel d’un kilowattheure ?",
+      "language": "fr",
+      "category": "easy_negative",
+      "audience": "residential",
+      "split": "calibration",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 2.349008182690894,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 1.914130289412401,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 1.799175229755435,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 1.219514723324835,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.349008182690894,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-032",
+      "question": "كيف أقرأ رقم العداد في الفاتورة؟",
+      "language": "ar",
+      "category": "easy_negative",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-033",
+      "question": "Fin kayn numéro dyal contrat f l-factura ?",
+      "language": "darija_latn",
+      "category": "easy_negative",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 1.0739251033466368,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.4989308421929502,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 0.3833380285383335,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 1.0739251033466368,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-034",
+      "question": "كيف يمكنني تحميل تطبيق وكالتي؟",
+      "language": "ar",
+      "category": "easy_negative",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-035",
+      "question": "Comment comprendre une facture d’eau potable ?",
+      "language": "fr",
+      "category": "easy_negative",
+      "audience": "residential",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 3.540968227938857,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 2.0342715212390865,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 1.0878047141261404,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.9630230712480123,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 0.1259375193270956,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 3.540968227938857,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": false
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": "0.3.0",
+  "status": "candidate_human_review",
+  "counts": {
+    "questions": 124,
+    "intents": 31,
+    "positive_intents": 25,
+    "negative_intents": 6
+  },
+  "split_counts": {
+    "test": 20,
+    "train": 84,
+    "validation": 20
+  },
+  "language_counts": {
+    "ar": 31,
+    "darija_arab": 31,
+    "darija_latn": 31,
+    "fr": 31
+  },
+  "abstention_count": 24,
+  "abstention_rate": 0.1935483870967742,
+  "positive_chunk_coverage": 25,
+  "split_policy": "Group split by intent_id; all languages and future paraphrases remain with their intent.",
+  "asr_policy": "No ASR-labelled case without real audio and an observed recognizer transcript.",
+  "file": {
+    "path": "sft_questions.v0.3.jsonl",
+    "sha256": "6ffb7e530c1573af52a3c517b8fd21531b7646aac3ba7ea8b9e7129d66c45d37"
+  }
+}

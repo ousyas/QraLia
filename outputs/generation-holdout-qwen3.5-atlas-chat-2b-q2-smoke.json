@@ -1,0 +1,350 @@
+{
+  "schema_version": "0.1.0",
+  "protocol": "gold_context_generation_then_deterministic_checks_then_llm_judge",
+  "configuration": {
+    "generator_model": "qwen3.5:4b",
+    "judge_model": null,
+    "temperature": 0,
+    "seed": 42,
+    "prompt_profile": "baseline",
+    "prompt_version": "0.1.0",
+    "run_label": "posthoc_smoke_atlas_chat_2b_q2",
+    "atlas_rewriter_backend": "ollama",
+    "atlas_rewriter_model": "hf.co/tensorblock/MBZUAI-Paris_Atlas-Chat-2B-GGUF:latest",
+    "rewrite_languages": [
+      "darija_arab"
+    ],
+    "case_count": 3,
+    "indexed_chunk_count": 39,
+    "contains_personal_data": false
+  },
+  "summary": {
+    "case_count": 3,
+    "deterministic_pass_rate": 0.6666666666666666,
+    "final_pass_rate": 0.6666666666666666,
+    "critical_fact_violation_count": 0,
+    "judge_mean_scores": null,
+    "generator_mean_latency_ms": 26754.896199999774,
+    "darija_rewriter_mean_latency_ms": 20894.25666666648,
+    "darija_rewrite_case_count": 3,
+    "darija_rewrite_fallback_count": 1,
+    "judge_mean_latency_ms": null,
+    "generator_prompt_tokens": 1755,
+    "generator_completion_tokens": 477,
+    "judge_prompt_tokens": 0,
+    "judge_completion_tokens": 0,
+    "judge_error_count": 0
+  },
+  "breakdown": {
+    "by_split": {
+      "test": {
+        "case_count": 3,
+        "deterministic_pass_rate": 0.6666666666666666,
+        "final_pass_rate": 0.6666666666666666,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      }
+    },
+    "by_language": {
+      "darija_arab": {
+        "case_count": 3,
+        "deterministic_pass_rate": 0.6666666666666666,
+        "final_pass_rate": 0.6666666666666666,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      }
+    }
+  },
+  "cases": [
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-104",
+        "question": "إلا فاتني آخر أجل ديال فاتورة Redal، شنو يقدر يوقع؟",
+        "language": "darija_arab",
+        "provider_id": "srm_rsk",
+        "gold_chunk_ids": [
+          "redal-questions-frequentes-20260930t201159z--date-limite-suspension"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "تاريخ آخر أجل للأداء مكتوب في الفاتورة.",
+          "عدم الأداء بعد هذا التاريخ يؤدي إلى تعليق التزويد."
+        ],
+        "forbidden_claims": [
+          "تلغى الفاتورة تلقائيا.",
+          "لا يحدث أي شيء بعد تاريخ الأداء."
+        ],
+        "critical_values": [],
+        "split": "test",
+        "notes": "Holdout créé avant l'exécution de Qwen3.5-4B."
+      },
+      "context_chunk_ids": [
+        "redal-questions-frequentes-20260930t201159z--date-limite-suspension"
+      ],
+      "answer_before_rewrite": {
+        "answer": "La date limite de paiement est indiquée sur votre facture. [redal-questions-frequentes-20260930t201159z--date-limite-suspension] Au-delà de cette date, le défaut de paiement entraînera la suspension des fournitures. [redal-questions-frequentes-20260930t201159z--date-limite-suspension]",
+        "claims": [
+          {
+            "text": "La date limite de paiement est indiquée sur votre facture.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--date-limite-suspension"
+            ]
+          },
+          {
+            "text": "Au-delà de cette date, le défaut de paiement entraînera la suspension des fournitures.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--date-limite-suspension"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "La date ديال تاريخ الإخلاص ديال الفاتورة ديالك. [redal-questions-frequentes-20260930t201159z--date-limite-suspension] ملي يبداو يجيبو هاد التوقيعات، غادي يوقفو الخدمة. [redal-questions-frequentes-20260930t201159z--date-limite-suspension]",
+        "claims": [
+          {
+            "text": "La date ديال تاريخ الإخلاص ديال الفاتورة ديالك.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--date-limite-suspension"
+            ]
+          },
+          {
+            "text": "ملي يبداو يجيبو هاد التوقيعات، غادي يوقفو الخدمة.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--date-limite-suspension"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": true,
+            "fallback": false,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": []
+          },
+          {
+            "changed": true,
+            "fallback": false,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": []
+          }
+        ],
+        "changed_claim_count": 2,
+        "fallback_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "redal-questions-frequentes-20260930t201159z--date-limite-suspension"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 35120.37849999979,
+        "darija_rewriter": 58190.16359999932,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 35075.3805,
+          "load_duration_ms": 11520.4692,
+          "prompt_tokens": 644,
+          "completion_tokens": 231,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "baseline",
+          "prompt_version": "0.1.0"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-108",
+        "question": "شحال عندي على الأقل باش نخلص فاتورة Orange؟",
+        "language": "darija_arab",
+        "provider_id": "orange_ma",
+        "gold_chunk_ids": [
+          "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "الحد الأدنى لمهلة أداء الفاتورة هو 10 أيام."
+        ],
+        "forbidden_claims": [
+          "المهلة أقل من 10 أيام.",
+          "المهلة 30 يوما."
+        ],
+        "critical_values": [
+          "10"
+        ],
+        "split": "test",
+        "notes": "Holdout créé avant l'exécution de Qwen3.5-4B."
+      },
+      "context_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+      ],
+      "answer_before_rewrite": {
+        "answer": "Vous disposez d'un délai de minimum 10 jours pour effectuer le règlement votre facture. [telecom-orange-payer-facture-20261001t082112z--delai-paiement]",
+        "claims": [
+          {
+            "text": "Vous disposez d'un délai de minimum 10 jours pour effectuer le règlement votre facture.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "Vous disposez d'un délai de minimum 10 jours pour effectuer le règlement votre facture. [telecom-orange-payer-facture-20261001t082112z--delai-paiement]",
+        "claims": [
+          {
+            "text": "Vous disposez d'un délai de minimum 10 jours pour effectuer le règlement votre facture.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": false,
+            "fallback": true,
+            "reason": "protected_value_missing_or_duplicated",
+            "protected_values": [
+              "10"
+            ]
+          }
+        ],
+        "changed_claim_count": 0,
+        "fallback_count": 1
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Le texte produit n'utilise pas majoritairement l'écriture arabe."
+        ],
+        "cited_chunk_ids": [
+          "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 24345.250000000306,
+        "darija_rewriter": 4492.604899999606,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 24323.7752,
+          "load_duration_ms": 9406.6456,
+          "prompt_tokens": 590,
+          "completion_tokens": 144,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "baseline",
+          "prompt_version": "0.1.0"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-112",
+        "question": "واش نقدر نخلص فاتورة IAM فوكالة Orange بنفس الشروط ديال Orange؟",
+        "language": "darija_arab",
+        "provider_id": "iam",
+        "gold_chunk_ids": [],
+        "should_abstain": true,
+        "required_facts": [],
+        "forbidden_claims": [
+          "يمكن أداء فاتورة IAM في وكالة Orange بنفس شروط Orange.",
+          "قواعد أداء Orange تنطبق على IAM."
+        ],
+        "critical_values": [],
+        "split": "test",
+        "notes": "Hard negative inter-opérateur. Holdout créé avant l'exécution de Qwen3.5-4B."
+      },
+      "context_chunk_ids": [],
+      "answer_before_rewrite": {
+        "answer": "مازورنكوش، ماخودناش معلومات كافية عشان نجيبك.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ماخودناش أي شوي من المراجع اللي تاني فـ <passage> عشان نعرف إزاي يخلصو فاتورة IAM فوكالة Orange.",
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "مازورنكوش، ماخودناش معلومات كافية عشان نجيبك.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ماخودناش أي شوي من المراجع اللي تاني فـ <passage> عشان نعرف إزاي يخلصو فاتورة IAM فوكالة Orange.",
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": false,
+        "reason": "abstention_or_no_claims",
+        "claims": []
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": []
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 20799.060099999224,
+        "darija_rewriter": 0.0015000005078036338,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 20795.9095,
+          "load_duration_ms": 9586.6703,
+          "prompt_tokens": 521,
+          "completion_tokens": 102,
+          "citation_renderer_changed_answer": false,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "baseline",
+          "prompt_version": "0.1.0"
+        },
+        "judge": null
+      }
+    }
+  ]
+}

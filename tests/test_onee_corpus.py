@@ -46,9 +46,15 @@ def test_normalize_then_build_one_chunk_per_section(tmp_path: Path) -> None:
     chunks = build_chunks(document)
 
     assert document["classification"]["audiences"] == ["residential"]
+    assert document["classification"]["domain"] == "utilities"
+    assert document["classification"]["provider_id"] == "onee"
+    assert document["classification"]["service_type"] == "electricity"
+    assert document["classification"]["service_zone_id"] == "onee_be_national"
+    assert document["classification"]["source_role"] == "operator_primary"
     assert document["classification"]["validity_status"] == "unknown"
     assert len(document["acquisition"]["sha256"]) == 64
     assert len(document["sections"]) == 5
     assert len(chunks) == 5
     assert chunks[0]["metadata"]["canonical_url"].startswith("https://www.one.org.ma/")
+    assert all(chunk["metadata"]["provider_id"] == "onee" for chunk in chunks)
     assert all(chunk["document_id"] == document["document_id"] for chunk in chunks)

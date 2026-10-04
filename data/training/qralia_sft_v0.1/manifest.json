@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "status": "candidate_human_review",
+  "base_model": "Qwen/Qwen3.5-4B",
+  "prompt_profile": "darija_few_shot",
+  "seed": 42,
+  "counts": {
+    "train": 478,
+    "validation": 100,
+    "test": 40,
+    "review_queue": 52
+  },
+  "train_language_counts": {
+    "ar": 71,
+    "darija_arab": 168,
+    "darija_latn": 168,
+    "fr": 71
+  },
+  "validation_language_counts": {
+    "ar": 21,
+    "darija_arab": 29,
+    "darija_latn": 29,
+    "fr": 21
+  },
+  "train_abstention_count": 110,
+  "validation_abstention_count": 20,
+  "test_source": "data\\evaluation\\generation_darija_questions.v0.2.jsonl",
+  "test_policy": "Le test est exporté pour l'inférence, jamais passé à swift sft.",
+  "source_case_ids": [
+    "generation-001",
+    "generation-003",
+    "generation-006",
+    "generation-008",
+    "generation-010",
+    "generation-012",
+    "generation-013",
+    "generation-015"
+  ],
+  "files": {
+    "train": {
+      "path": "train.jsonl",
+      "sha256": "9cfd32af387ebb262b5c09148162d039c02583ed57af1c7c0fab065f42ebafd4"
+    },
+    "validation": {
+      "path": "validation.jsonl",
+      "sha256": "6aae547cc517c7966a17d49ad9c47dfb7552a8ee4c9f6708c4cf3d077e57cc5f"
+    },
+    "test_prompts": {
+      "path": "test_prompts.jsonl",
+      "sha256": "83602a98a467d22df62d490cbe2c787ecda57d780399a9cae9593142b5562f85"
+    },
+    "test_cases": {
+      "path": "test_cases.jsonl",
+      "sha256": "4e954a66b043cbe221cd7b569202226b33270d1f038704891c7a2dfbe76f407c"
+    },
+    "review_queue": {
+      "path": "review_queue.jsonl",
+      "sha256": "ebfac8580693e5bcb9c05f4279424a977935d4ee935cd480cd668693fca6dce8"
+    }
+  }
+}

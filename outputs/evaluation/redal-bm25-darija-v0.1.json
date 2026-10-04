@@ -1,0 +1,2736 @@
+{
+  "schema_version": "0.1.0",
+  "configuration": {
+    "algorithm": "BM25Okapi",
+    "k1": 1.5,
+    "b": 0.75,
+    "normalization": "darija_lexicon",
+    "routes": [
+      "srm_cs::casablanca_ex_lydec",
+      "srm_fm::fes_ex_radeef",
+      "srm_ms::marrakech_ex_radeema",
+      "srm_rsk::rabat_sale_ex_redal",
+      "srm_tta::tanger_tetouan_ex_amendis"
+    ],
+    "top_k": 5,
+    "indexed_chunk_count": 9,
+    "indexed_fields": [
+      "metadata.heading_path",
+      "text"
+    ],
+    "tokenization": "Unicode tokens, casefold, accent folding and curated Darija-Latin aliases"
+  },
+  "calibration": {
+    "case_count": 21,
+    "selected_threshold": 0.8541449250453234,
+    "abstention_metrics": {
+      "case_count": 21,
+      "threshold": 0.8541449250453234,
+      "true_positive": 15,
+      "false_positive": 0,
+      "true_negative": 5,
+      "false_negative": 1,
+      "answer_recall": 0.9375,
+      "abstention_recall": 1.0,
+      "accuracy": 0.9523809523809523,
+      "balanced_accuracy": 0.96875
+    }
+  },
+  "test": {
+    "case_count": 21,
+    "ranking_metrics": {
+      "positive_case_count": 12,
+      "recall_at_1": 0.5,
+      "recall_at_3": 0.5277777777777778,
+      "recall_at_5": 0.6944444444444445,
+      "binary_recall_at_1": 0.5,
+      "binary_recall_at_3": 0.5833333333333334,
+      "binary_recall_at_5": 0.75,
+      "mrr": 0.5791666666666667
+    },
+    "abstention_metrics": {
+      "case_count": 21,
+      "threshold": 0.8541449250453234,
+      "true_positive": 9,
+      "false_positive": 5,
+      "true_negative": 4,
+      "false_negative": 3,
+      "answer_recall": 0.75,
+      "abstention_recall": 0.4444444444444444,
+      "accuracy": 0.6190476190476191,
+      "balanced_accuracy": 0.5972222222222222
+    },
+    "ranking_by_language": {
+      "darija_arab": {
+        "positive_case_count": 2,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "binary_recall_at_1": 0.0,
+        "binary_recall_at_3": 0.0,
+        "binary_recall_at_5": 0.0,
+        "mrr": 0.0
+      },
+      "darija_latn": {
+        "positive_case_count": 10,
+        "recall_at_1": 0.6,
+        "recall_at_3": 0.6333333333333333,
+        "recall_at_5": 0.8333333333333334,
+        "binary_recall_at_1": 0.6,
+        "binary_recall_at_3": 0.7,
+        "binary_recall_at_5": 0.9,
+        "mrr": 0.6950000000000001
+      }
+    },
+    "ranking_by_category": {
+      "hard_negative": {
+        "positive_case_count": 0,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "binary_recall_at_1": 0.0,
+        "binary_recall_at_3": 0.0,
+        "binary_recall_at_5": 0.0,
+        "mrr": 0.0
+      },
+      "multi_relevant": {
+        "positive_case_count": 1,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.3333333333333333,
+        "recall_at_5": 0.3333333333333333,
+        "binary_recall_at_1": 0.0,
+        "binary_recall_at_3": 1.0,
+        "binary_recall_at_5": 1.0,
+        "mrr": 0.5
+      },
+      "multilingual": {
+        "positive_case_count": 11,
+        "recall_at_1": 0.5454545454545454,
+        "recall_at_3": 0.5454545454545454,
+        "recall_at_5": 0.7272727272727273,
+        "binary_recall_at_1": 0.5454545454545454,
+        "binary_recall_at_3": 0.5454545454545454,
+        "binary_recall_at_5": 0.7272727272727273,
+        "mrr": 0.5863636363636364
+      }
+    }
+  },
+  "cases": [
+    {
+      "case_id": "retrieval-147",
+      "question": "Kifach nkhlles factora dyal Redal b la carte f internet ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-en-ligne-carte"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 2.783458366164698,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 2.4426102792657707,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 1.8271830748730575,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 1.776765297275623,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.7235738439563768,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 2.783458366164698,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-148",
+      "question": "Wash n9der nkhlles fatora men site dyal Redal b carte guichet ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-en-ligne-carte"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 2.627475558370059,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 2.158869861623428,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 1.646459135151848,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.5055875524225706,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 1.4369733126310316,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 2.627475558370059,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-149",
+      "question": "Mn b3d ma khllest online, fin nl9a le reçu ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-en-ligne-carte"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 3.129644145218291,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 2.9269783463080694,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 2.8501874853712232,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 1.92469302498407,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.2705554998019035,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 3.129644145218291,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-150",
+      "question": "N9der nkhlles lfactora men Attijari Net ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-ebanking"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 3.9775438888326584,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 1.7640521240544627,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.1107698148536052,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar",
+          "section_id": "paiement-mobile-jiwar",
+          "score": 0.9881620149618382,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.941670716216107,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 3.9775438888326584,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-151",
+      "question": "Wash CIH Online fih khlass dyal Redal ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-ebanking"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 4.8900132736384965,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar",
+          "section_id": "paiement-mobile-jiwar",
+          "score": 1.6910805559708053,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 1.3569923748645996,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 0.5975200352370416,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.4953025964149246,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 4.8900132736384965,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-152",
+      "question": "Kifach nkhlles b l'application dyal lbanka f telephone ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-mobile-jiwar"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar",
+          "section_id": "paiement-mobile-jiwar",
+          "score": 2.2930339520708287,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 1.9105737329066699,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 1.8192129422164227,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 1.4187239265663143,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-prelevement",
+          "section_id": "paiement-prelevement",
+          "score": 0.832564601799356,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 2.2930339520708287,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-153",
+      "question": "N9der nkhlles factora b Orange Money ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-mobile-jiwar"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar",
+          "section_id": "paiement-mobile-jiwar",
+          "score": 4.380226472991543,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.1107698148536052,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.941670716216107,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.8018774867588285,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--date-limite-suspension",
+          "section_id": "date-limite-suspension",
+          "score": 0.7510973508984652,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 4.380226472991543,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-154",
+      "question": "Wash Barid Pay kaykhlles Redal ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-mobile-jiwar"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar",
+          "section_id": "paiement-mobile-jiwar",
+          "score": 5.139869132417622,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 0.5975200352370416,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.4953025964149246,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.4790382634281716,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 0.46259825128997845,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 5.139869132417622,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-155",
+      "question": "N9der nkhlles b Cash+ men telephone ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-mobile-jiwar"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar",
+          "section_id": "paiement-mobile-jiwar",
+          "score": 4.659046271196454,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.9912493785318993,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 4.659046271196454,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-156",
+      "question": "Bghit lbanka tkhlles liya factora automatiquement kol chher",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-prelevement"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 1.8192129422164227,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 1.7640521240544627,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.1107698148536052,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar",
+          "section_id": "paiement-mobile-jiwar",
+          "score": 0.9881620149618382,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.941670716216107,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.8192129422164227,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-157",
+      "question": "Fin nl9a lwar9a dyal prélèvement ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-prelevement"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-prelevement",
+          "section_id": "paiement-prelevement",
+          "score": 3.749083998534355,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 1.2705554998019035,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.2705554998019035,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 3.749083998534355,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-158",
+      "question": "Ana dima kanensa nkhlles, kayn chi 7al bach tkhlles bohdha ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-prelevement"
+      ],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-159",
+      "question": "N9der nkhlles factora f la machine dyal lbanka ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-gab"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 2.047792541696805,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 1.993734655540483,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.3287561063874114,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 1.2814627008606982,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar",
+          "section_id": "paiement-mobile-jiwar",
+          "score": 1.275501153481112,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 2.047792541696805,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-160",
+      "question": "F guichet automatique chno ndkhel bach nl9a factora ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-gab"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-prelevement",
+          "section_id": "paiement-prelevement",
+          "score": 3.749083998534355,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.1107698148536052,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.941670716216107,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.8018774867588285,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--date-limite-suspension",
+          "section_id": "date-limite-suspension",
+          "score": 0.7510973508984652,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 3.749083998534355,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.25,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-161",
+      "question": "Wash n9der nkhlles f GAB ila ma 3ndich compte f banka ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-gab"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 4.560341634495742,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar",
+          "section_id": "paiement-mobile-jiwar",
+          "score": 2.8840803854313704,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 1.8192129422164227,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 1.593923925039511,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.3305409255745597,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 4.560341634495742,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-162",
+      "question": "Chkoun kay9ra lcompteur dyal lma w dow ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "releve-et-auto-releve"
+      ],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-163",
+      "question": "L'agent ma l9anich f dar w khlla liya karta, chno ndir biha ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "releve-et-auto-releve"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 2.281300809418137,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.9043343554818386,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.9483990956110359,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-prelevement",
+          "section_id": "paiement-prelevement",
+          "score": 0.832564601799356,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.4274745480344151,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 2.281300809418137,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.2,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-164",
+      "question": "Kifach nsifet l'auto-relevé dyali ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "releve-et-auto-releve"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 5.657666967849414,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.2705554998019035,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.9483990956110359,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-prelevement",
+          "section_id": "paiement-prelevement",
+          "score": 0.832564601799356,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.6873768843786257,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 5.657666967849414,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-165",
+      "question": "Fin nchouf akhir ajal f factora ?",
+      "language": "darija_latn",
+      "category": "multi_relevant",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "lecture-facture",
+        "date-limite-suspension"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--date-limite-suspension",
+          "section_id": "date-limite-suspension",
+          "score": 2.506724058760167,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 2.3813253146555087,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 2.148727924414284,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 2.072432986560732,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.7506598581542924,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 2.506724058760167,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.5,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-166",
+      "question": "Chno hadou TVA w taxes li f factora ?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 3.1229281874918553,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.1107698148536052,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.8018774867588285,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--date-limite-suspension",
+          "section_id": "date-limite-suspension",
+          "score": 0.7510973508984652,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 0.573793429907279,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 3.1229281874918553,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-167",
+      "question": "3lach kat jini factora wa7da dyal lma w dow ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "facturation-mensuelle"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.1107698148536052,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.941670716216107,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.8018774867588285,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--date-limite-suspension",
+          "section_id": "date-limite-suspension",
+          "score": 0.7510973508984652,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 0.573793429907279,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.1107698148536052,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-168",
+      "question": "Wash factora kat ji kol chher wla kol jouj chhour ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "facturation-mensuelle"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.1107698148536052,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.941670716216107,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.8018774867588285,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--date-limite-suspension",
+          "section_id": "date-limite-suspension",
+          "score": 0.7510973508984652,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 0.573793429907279,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.1107698148536052,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-169",
+      "question": "Consommation tal3at bzaf had chher, wash kayt verifiw ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "facturation-mensuelle"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.6654210966677803,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 1.207057208198177,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 1.1674208717236765,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.6654210966677803,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-170",
+      "question": "Ila fatet date limite ach ghadi ytra ?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "date-limite-suspension"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--date-limite-suspension",
+          "section_id": "date-limite-suspension",
+          "score": 3.4973088400926935,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 2.8009811332376877,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.7506598581542924,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 3.4973088400926935,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-171",
+      "question": "9t3ou 3liya do 7it ma khllestch, chno ndir ?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 1.593923925039511,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.3305409255745597,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.593923925039511,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-172",
+      "question": "N9der nkhlles f GAB wla b Jiwar ?",
+      "language": "darija_latn",
+      "category": "multi_relevant",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-gab",
+        "paiement-mobile-jiwar"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar",
+          "section_id": "paiement-mobile-jiwar",
+          "score": 2.5945316746613845,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 1.7387333442182291,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 2.5945316746613845,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.5,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-173",
+      "question": "Chno toro9 li n9der nkhlles bihom men dar bla ma nkhrej ?",
+      "language": "darija_latn",
+      "category": "multi_relevant",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-en-ligne-carte",
+        "paiement-ebanking",
+        "paiement-mobile-jiwar"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 1.593923925039511,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.3305409255745597,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.593923925039511,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.3333333333333333,
+        "5": 0.3333333333333333
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.5,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-174",
+      "question": "Ila derit prélèvement, wash y9der y9t3ou liya ila fatet date limite ?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-prelevement",
+          "section_id": "paiement-prelevement",
+          "score": 3.749083998534355,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--date-limite-suspension",
+          "section_id": "date-limite-suspension",
+          "score": 3.4973088400926935,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 2.8009811332376877,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.7506598581542924,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 3.749083998534355,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-175",
+      "question": "كيفاش نخلص فاتورة ريضال بالكارط فالانترنيت؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-en-ligne-carte"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.4561620932257384,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 1.1674208717236765,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.9621746372956341,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.4561620932257384,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-176",
+      "question": "واش نقدر نخلص بجوار موبايل؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-mobile-jiwar"
+      ],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-177",
+      "question": "إلا ما لقاونيش فالدار شنو نكتب فالكارطة ديال العداد؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "releve-et-auto-releve"
+      ],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-178",
+      "question": "Redal n9der nkhlles lihom b chik ?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 0.5975200352370416,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.4953025964149246,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.4790382634281716,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 0.46259825128997845,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.3948177375689655,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 0.5975200352370416,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-179",
+      "question": "N9der nkhlles factora Redal b kach f l'agence ?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar",
+          "section_id": "paiement-mobile-jiwar",
+          "score": 3.3541743340874635,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 2.263020533602808,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 2.14509431993883,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 2.124350197009657,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.7451068950515993,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 3.3541743340874635,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-180",
+      "question": "Kifach nbeddel smiya f contrat dyal Redal ?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 0.5975200352370416,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.4953025964149246,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.4790382634281716,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 0.46259825128997845,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.3948177375689655,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 0.5975200352370416,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-181",
+      "question": "Chhal taman dyal kilowatt 3nd Redal ?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 0.5975200352370416,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.4953025964149246,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.4790382634281716,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 0.46259825128997845,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.3948177375689655,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 0.5975200352370416,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-182",
+      "question": "Bghit ndir réclamation 3la factora ghalia, fin nmchi ?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 2.3813253146555087,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 2.072432986560732,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.941670716216107,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--date-limite-suspension",
+          "section_id": "date-limite-suspension",
+          "score": 0.7510973508984652,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 0.573793429907279,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 2.3813253146555087,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-183",
+      "question": "Kifach nkhlles factora dyal RADEEF ?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_fm",
+      "service_zone_id": "fes_ex_radeef",
+      "split": "calibration",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-184",
+      "question": "Wash Lydec kat9bel virman ?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_cs",
+      "service_zone_id": "casablanca_ex_lydec",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-185",
+      "question": "Amendis wash fihom tasbi9 ?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_tta",
+      "service_zone_id": "tanger_tetouan_ex_amendis",
+      "split": "calibration",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-186",
+      "question": "Fin nkhlles factora RADEEMA f Marrakech ?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_ms",
+      "service_zone_id": "marrakech_ex_radeema",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-187",
+      "question": "واش نقدر نخلص فاتورة راديف بالشيك؟",
+      "language": "darija_arab",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_fm",
+      "service_zone_id": "fes_ex_radeef",
+      "split": "calibration",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-188",
+      "question": "Kifach nkhlles factora d SRM Fès-Meknès b Jiwar ?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_fm",
+      "service_zone_id": "fes_ex_radeef",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    }
+  ]
+}

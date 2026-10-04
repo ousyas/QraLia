@@ -1,0 +1,13 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://qralia.local/schemas/sft_example_v0.4.schema.json",
+  "type":"object","additionalProperties":false,
+  "required":["schema_version","sample_id","source_question_case_id","intent_id","semantic_family_id","language","provider_id","formulation_kind","split","retrieval_outcome","should_abstain","gold_chunk_ids","context_chunk_ids","critical_values","review_status","messages"],
+  "properties":{
+    "schema_version":{"const":"0.4.0"},"sample_id":{"type":"string","pattern":"^sft-v04-[0-9]{4}$"},"source_question_case_id":{"type":"string","pattern":"^sftq-v04-[0-9]{4}$"},
+    "intent_id":{"type":"string","minLength":1},"semantic_family_id":{"type":"string","minLength":1},"language":{"enum":["fr","ar","darija_latn","darija_arab"]},"provider_id":{"type":"string","minLength":1},
+    "formulation_kind":{"enum":["direct","indirect","contextual_long","provider_implicit","informal_typed"]},"split":{"enum":["train","validation"]},"retrieval_outcome":{"enum":["hit","miss","not_in_corpus"]},"should_abstain":{"type":"boolean"},
+    "gold_chunk_ids":{"type":"array","items":{"type":"string","minLength":1},"uniqueItems":true},"context_chunk_ids":{"type":"array","items":{"type":"string","minLength":1},"minItems":4,"maxItems":4,"uniqueItems":true},
+    "critical_values":{"type":"array","items":{"type":"string","minLength":1},"uniqueItems":true},"review_status":{"const":"candidate_human_review"},
+    "messages":{"type":"array","minItems":2,"maxItems":2,"prefixItems":[{"type":"object","additionalProperties":false,"required":["role","content"],"properties":{"role":{"const":"user"},"content":{"type":"string","minLength":1}}},{"type":"object","additionalProperties":false,"required":["role","content"],"properties":{"role":{"const":"assistant"},"content":{"type":"string","minLength":1}}}]}
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.1.0",
+  "registry_id": "redal-residential-rabat-sale",
+  "verified_on": "2026-09-30",
+  "download_authorized": true,
+  "notes": "Deux pages officielles Redal approuvées pour la zone rabat_sale_ex_redal. Les liens bancaires externes ne sont pas des sources du corpus.",
+  "sources": [
+    {
+      "source_id": "redal-e-paiement",
+      "title": "E-paiement",
+      "publisher": "Redal",
+      "url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+      "language": ["fr"],
+      "audience": ["residential"],
+      "topics": ["payment_channels", "online_payment", "direct_debit"],
+      "access_status": "verified",
+      "scope_status": "in_primary_scope",
+      "observed": "Page officielle accessible ; cinq sujets de paiement ont été extraits et comparés au HTML acquis le 2026-09-30.",
+      "ingestion_decision": "approved",
+      "risk_level": "medium"
+    },
+    {
+      "source_id": "redal-questions-frequentes",
+      "title": "Questions fréquentes",
+      "publisher": "Redal",
+      "url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+      "language": ["fr"],
+      "audience": ["residential"],
+      "topics": ["meter_reading", "invoice_fields", "payment_deadline"],
+      "access_status": "verified",
+      "scope_status": "in_primary_scope",
+      "observed": "Page officielle accessible ; six réponses utiles ont été regroupées en quatre chunks cohérents après revue du HTML acquis le 2026-09-30.",
+      "ingestion_decision": "approved",
+      "risk_level": "medium"
+    }
+  ]
+}
