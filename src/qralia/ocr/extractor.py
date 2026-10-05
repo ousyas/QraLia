@@ -1,98 +1,104 @@
-"""Extract invoice fields from a PDF using EasyOCR."""
+"""Extract invoice fields from a PDF using Tesseract."""
 
 import re
+import unicodedata
 from pathlib import Path
 
-import easyocr
-import numpy as np
+from PIL import Image, ImageOps
 from pdf2image import convert_from_path
 
-
-# Initialize reader once (model loading is slow)
-_reader = None
+_IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".tiff", ".webp"}
 
 
-def _get_reader():
-    global _reader
-    if _reader is None:
-        _reader = easyocr.Reader(["ar", "en"], gpu=False)
-    return _reader
+def _normalize(text: str) -> str:
+    """Remove accents for tolerant matching."""
+    return unicodedata.normalize("NFD", text).encode("ascii", "ignore").decode("ascii").lower()
 
 
-def _ocr_pdf(pdf_path: Path) -> list[tuple[str, float]]:
-    """Convert PDF to image, run OCR, return [(text, confidence), ...]."""
-    images = convert_from_path(pdf_path)
-    reader = _get_reader()
-    results = []
-    for image in images:
-        detections = reader.readtext(np.array(image))
-        for _bbox, text, conf in detections:
-            results.append((text.strip(), conf))
-    return results
+def _ocr_file(file_path: Path) -> list[tuple[str, float]]:
+    """Run OCR on a PDF or image file, return [(text, confidence), ...]."""
+    import pytesseract
+
+    if file_path.suffix.lower() in _IMAGE_EXTENSIONS:
+        img = Image.open(file_path)
+        img = ImageOps.exif_transpose(img)
+
+        best_results = []
+        best_conf = 0.0
+
+        for angle in [0, 90, 180, 270]:
+            rotated = img.rotate(angle, expand=True) if angle else img
+            data = pytesseract.image_to_data(rotated, lang='fra', config='--psm 6', output_type=pytesseract.Output.DICT)
+            pairs = []
+            for i in range(len(data["text"])):
+                if int(data["conf"][i]) >= 0 and data["text"][i].strip():
+                    pairs.append((data["text"][i].strip(), float(data["conf"][i]) / 100))
+            if pairs:
+                avg = sum(c for _, c in pairs) / len(pairs)
+                if avg > best_conf:
+                    best_conf = avg
+                    best_results = pairs
+        return best_results
+    else:
+        images = convert_from_path(file_path)
+        results = []
+        for image in images:
+            data = pytesseract.image_to_data(image, lang='fra', config='--psm 6', output_type=pytesseract.Output.DICT)
+            for i in range(len(data["text"])):
+                if int(data["conf"][i]) >= 0 and data["text"][i].strip():
+                    results.append((data["text"][i].strip(), float(data["conf"][i]) / 100))
+        return results
 
 
 def _find_value_after(results, keyword, start=0):
-    """Find keyword in results, return the next item's text and confidence."""
+    """Find keyword in results, return the next non-punctuation item."""
+    kw = _normalize(keyword)
     for i in range(start, len(results)):
         text, _conf = results[i]
-        if keyword.lower() in text.lower():
+        if kw in _normalize(text):
+            for j in range(i + 1, min(i + 4, len(results))):
+                nxt_text, nxt_conf = results[j]
+                if len(nxt_text) > 1 or nxt_text.isdigit():
+                    return j, (nxt_text, nxt_conf)
             if i + 1 < len(results):
-                return i + 1, results[i + 1]  # index, (text, conf)
+                return i + 1, results[i + 1]
     return None, None
 
 
 def _collect_money_after(results, keyword):
-    """Find a money value after a keyword, merging split thousands digits.
-
-    OCR splits '1 034,48' into ['1', '034,48'] because of the space.
-    This function detects that pattern and merges them.
-    """
-    idx, val = _find_value_after(results, keyword)
-    if val is None:
-        return 0.0, 0.0
-
-    val_text, val_conf = val
-
-    # If the value looks like a partial number (starts with 0 or is 2-3 digits + comma)
-    # check the PREVIOUS item — it might be the leading digit(s)
-    if idx >= 2:
-        prev_text, prev_conf = results[idx - 1]
-        # Previous item is isolated digits AND not the keyword itself
-        if (re.fullmatch(r"\d{1,2}", prev_text)
-                and keyword.lower() not in prev_text.lower()):
-            # Check if merging makes a valid number
-            merged = prev_text + val_text
-            if re.search(r"\d+[.,]\d{2}", merged):
-                return _parse_money(merged), min(val_conf, prev_conf)
-
-    # Also check if the value at idx is just isolated digits and the NEXT item
-    # has the decimal part
-    if re.fullmatch(r"\d{1,3}", val_text) and idx + 1 < len(results):
-        next_text, next_conf = results[idx + 1]
-        if re.search(r"\d+[.,]\d{2}", next_text):
-            merged = val_text + next_text
-            return _parse_money(merged), min(val_conf, next_conf)
-
-    return _parse_money(val_text), val_conf
+    """Find a money value after a keyword, scanning forward for a number."""
+    kw = _normalize(keyword)
+    for i in range(len(results)):
+        if kw in _normalize(results[i][0]):
+            for j in range(i + 1, min(i + 8, len(results))):
+                txt, conf = results[j]
+                if re.search(r"\d", txt):
+                    if j >= 1:
+                        prev_txt, prev_conf = results[j - 1]
+                        if re.fullmatch(r"\d{1,2}", prev_txt) and kw not in _normalize(prev_txt):
+                            merged = prev_txt + txt
+                            if re.search(r"\d+[.,]\d{2}", merged):
+                                return _parse_money(merged), min(conf, prev_conf)
+                    return _parse_money(txt), conf
+            break
+    return 0.0, 0.0
 
 
 def _extract_stamp_duty(results):
     """Extract stamp duty amount from the 'timbre' line."""
-    for text, conf in results:
+    for i, (text, conf) in enumerate(results):
         if "timbre" in text.lower():
-            match = re.search(r"(\d+[.,]\d{2})", text)
-            if match:
-                return float(match.group(1).replace(",", ".")), conf
-    return 0.33, 0.0  # fallback
+            for j in range(i + 1, min(i + 5, len(results))):
+                match = re.search(r"(\d+[.,]\d{2})", results[j][0])
+                if match:
+                    return float(match.group(1).replace(",", ".")), results[j][1]
+    return 0.33, 0.0
 
 
 def _parse_money(text: str) -> float:
     """Convert '883,50' or '1.034,48' or '23.419,20' to float."""
     cleaned = text.replace(" ", "")
-    # Remove dot thousands separators: '1.034,48' → '1034,48'
-    # A dot followed by exactly 3 digits and then a comma or end is a thousands sep
     cleaned = re.sub(r"\.(\d{3})", r"\1", cleaned)
-    # Now swap comma for decimal point: '1034,48' → '1034.48'
     cleaned = cleaned.replace(",", ".")
     match = re.search(r"(\d+\.?\d*)", cleaned)
     if match:
@@ -111,7 +117,6 @@ def _parse_date(text: str) -> str:
 
 def _extract_previous_unpaid(results):
     """Extract previous unpaid amount (Arriérés) if present."""
-    # Look for "Arri" or "rri" — OCR may mangle accents
     for i, (text, conf) in enumerate(results):
         if "rri" in text.lower() or "arri" in text.lower():
             if i + 1 < len(results):
@@ -123,17 +128,18 @@ def _extract_previous_unpaid(results):
 
 
 def extract_fields(pdf_path: Path) -> dict:
-    """Extract the 8 ground-truth fields from an ONEE invoice PDF.
-
-    Returns a dict matching the extracted_invoice.schema.json format.
-    """
-    results = _ocr_pdf(pdf_path)
+    """Extract the 8 ground-truth fields from an ONEE invoice PDF."""
+    results = _ocr_file(pdf_path)
 
     # --- amount_before_tax (after "Total HT")
-    amount_before_tax, ht_conf = _collect_money_after(results, "Total HT")
+    amount_before_tax, ht_conf = _collect_money_after(results, "Total")
 
     # --- taxes (after "Taxes")
-    taxes, tx_conf = _collect_money_after(results, "Taxes")
+    taxes, tx_conf = 0.0, 0.0
+    for keyword in ["Taxes", "axes", "oxes", "Toxes"]:
+        taxes, tx_conf = _collect_money_after(results, keyword)
+        if taxes > 0:
+            break
 
     # --- total_check (after "regler")
     total_check, tc_conf = _collect_money_after(results, "regler")
@@ -145,36 +151,54 @@ def extract_fields(pdf_path: Path) -> dict:
     # --- previous_unpaid (after "Arriérés")
     previous_unpaid, pu_conf = _extract_previous_unpaid(results)
 
-    # --- invoice_date (first "Date" that is NOT "echeance")
+    # --- invoice_date
     inv_date_text, inv_date_conf = "", 0.0
     for i, (text, conf) in enumerate(results):
-        if text.lower().strip() in ("date", "date :"):
-            if i + 1 < len(results):
-                nxt = results[i + 1][0]
-                if re.search(r"\d{2}[./]\d{2}[./]\d{4}", nxt):
-                    inv_date_text = nxt
-                    inv_date_conf = results[i + 1][1]
+        if "date" in _normalize(text) and "che" not in _normalize(text) and "regle" not in _normalize(text):
+            for j in range(i + 1, min(i + 3, len(results))):
+                nxt = results[j][0]
+                if re.search(r"\d{2}[.,/]\d{2}[.,/]\d{4}", nxt):
+                    inv_date_text = nxt.replace(",", ".")
+                    inv_date_conf = results[j][1]
                     break
+            if inv_date_text:
+                break
 
-    # --- due_date (after "echeance")
-    _, dd = _find_value_after(results, "cheance")
-    due_date_text = dd[0] if dd else ""
-    dd_conf = dd[1] if dd else 0.0
+    # --- due_date (after "echeance" / "reglement")
+    due_date_text, dd_conf = "", 0.0
+    for keyword in ["echeance", "cheance", "reglement"]:
+        for i, (text, conf) in enumerate(results):
+            if keyword in _normalize(text):
+                for j in range(i + 1, min(i + 5, len(results))):
+                    nxt = results[j][0].replace(",", ".")
+                    if re.search(r"\d{2}[.]\d{2}[.]\d{4}", nxt):
+                        due_date_text = nxt
+                        dd_conf = results[j][1]
+                        break
+                if due_date_text:
+                    break
+        if due_date_text:
+            break
 
     # --- tariff (after "Tarif")
-    _, tf = _find_value_after(results, "Tarif")
-    tariff_text = tf[0] if tf else ""
-    tf_conf = tf[1] if tf else 0.0
-    # EasyOCR may split "MT" and "GENERAL" — merge them
-    if tariff_text in ("MT", "BT") and tf:
-        idx = next(
-            (i for i, (t, _) in enumerate(results) if t == tariff_text),
-            None,
-        )
-        if idx is not None and idx + 1 < len(results):
-            tariff_text = f"{tariff_text}_{results[idx + 1][0]}"
+       # --- tariff (after standalone "Tarif")
+    tariff_text, tf_conf = "", 0.0
+    for i, (text, conf) in enumerate(results):
+        if _normalize(text) == "tarif":  # exact match, not "tarif:0,72"
+            # Merge next words until we hit a number or unrelated label
+            parts = []
+            for j in range(i + 1, min(i + 4, len(results))):
+                nxt = results[j][0]
+                if re.search(r"\d", nxt) or _normalize(nxt) in ("total", "date"):
+                    break
+                if len(nxt) > 1:
+                    parts.append(nxt)
+            if parts:
+                tariff_text = "_".join(parts)
+                tf_conf = conf
+            break
 
-    def _field(raw, normalized, conf, method="easyocr"):
+    def _field(raw, normalized, conf, method="tesseract"):
         return {
             "raw_value": raw,
             "normalized_value": normalized,
@@ -187,7 +211,7 @@ def extract_fields(pdf_path: Path) -> dict:
     return {
         "schema_version": "0.1.0",
         "invoice_id": "",
-        "extraction": {"method": "easyocr", "timestamp": None},
+        "extraction": {"method": "tesseract", "timestamp": None},
         "fields": {
             "total_cash": _field(fmt(total_cash), total_cash, tc_conf),
             "total_check": _field(fmt(total_check), total_check, tc_conf),
@@ -216,6 +240,6 @@ def extract_fields(pdf_path: Path) -> dict:
 if __name__ == "__main__":
     import json
 
-    path = Path("data/generated/F02916547.pdf")
+    path = Path("data/real/facture_2.png")
     result = extract_fields(path)
     print(json.dumps(result, indent=2, ensure_ascii=False))

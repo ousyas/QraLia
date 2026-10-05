@@ -1,0 +1,91 @@
+{
+  "schema_version": "0.1.0",
+  "invoice_id": "F65008713",
+  "extraction": {
+    "method": "synthetic_generation",
+    "timestamp": "2026-10-04"
+  },
+  "fields": {
+    "total_cash": {
+      "raw_value": "504,21",
+      "normalized_value": 504.21,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "total_check": {
+      "raw_value": "503,88",
+      "normalized_value": 503.88,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "due_date": {
+      "raw_value": "14.08.2026",
+      "normalized_value": "2026-08-14",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "invoice_date": {
+      "raw_value": "26.07.2026",
+      "normalized_value": "2026-07-26",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "tariff": {
+      "raw_value": "MT_GENERAL",
+      "normalized_value": "MT_GENERAL",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "amount_before_tax": {
+      "raw_value": "442,00",
+      "normalized_value": 442.0,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "taxes": {
+      "raw_value": "61,88",
+      "normalized_value": 61.88,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "previous_unpaid": {
+      "raw_value": "0,00",
+      "normalized_value": 0.0,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    }
+  },
+  "document_confidence": 1.0
+}

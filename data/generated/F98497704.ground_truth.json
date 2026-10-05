@@ -1,0 +1,91 @@
+{
+  "schema_version": "0.1.0",
+  "invoice_id": "F98497704",
+  "extraction": {
+    "method": "synthetic_generation",
+    "timestamp": "2026-10-04"
+  },
+  "fields": {
+    "total_cash": {
+      "raw_value": "1.033,73",
+      "normalized_value": 1033.73,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "total_check": {
+      "raw_value": "1.033,40",
+      "normalized_value": 1033.4,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "due_date": {
+      "raw_value": "09.01.2026",
+      "normalized_value": "2026-01-09",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "invoice_date": {
+      "raw_value": "30.12.2025",
+      "normalized_value": "2025-12-30",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "tariff": {
+      "raw_value": "BT_DOMESTIQUE",
+      "normalized_value": "BT_DOMESTIQUE",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "amount_before_tax": {
+      "raw_value": "565,00",
+      "normalized_value": 565.0,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "taxes": {
+      "raw_value": "79,10",
+      "normalized_value": 79.1,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "previous_unpaid": {
+      "raw_value": "389,30",
+      "normalized_value": 389.3,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    }
+  },
+  "document_confidence": 1.0
+}
