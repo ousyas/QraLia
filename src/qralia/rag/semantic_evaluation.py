@@ -45,6 +45,7 @@ class Qwen3LangChainEmbeddings(Embeddings):
         device: str = "cpu",
         batch_size: int = 8,
         max_seq_length: int = 1024,
+        local_files_only: bool = False,
     ) -> None:
         if batch_size < 1:
             raise ValueError("batch_size doit être au moins égal à 1.")
@@ -67,6 +68,7 @@ class Qwen3LangChainEmbeddings(Embeddings):
             model_name,
             revision=revision,
             device=device,
+            local_files_only=local_files_only,
         )
         # Nos chunks sont courts. Cette borne réduit le coût et rend la
         # troncature explicite au lieu de dépendre d'un défaut du modèle.

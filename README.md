@@ -100,7 +100,14 @@ documents utilisent les mêmes mots.
   prompts sans réponse assistant. Oussama et Meryeme ont accepté les 124
   groupes de questions et les 168 groupes de réponses ; le manifeste est
   désormais `human_reviewed` et le notebook Kaggle peut démarrer ;
-- aucune donnée personnelle utilisée.
+- aucune donnée personnelle utilisée ;
+- une API FastAPI et une interface React locales relient désormais OCR,
+  validation, routage de preuves, recherche hybride rerankée et génération
+  Qwen3.5 ; toute sortie qui altère une valeur ou une citation revient au
+  rendu déterministe sûr.
+- une pile Docker sépare l'API FastAPI/OCR du frontend React/Nginx, monte le
+  corpus officiel en lecture seule, conserve les modèles dans un volume et
+  vérifie la construction des deux images dans GitHub Actions.
 
 ## Structure cible
 
@@ -145,6 +152,7 @@ Les dossiers de code seront ajoutés au moment du premier incrément exécutable
 - [Reranking Qwen3 du Top-N hybride](docs/rag/reranker-search.md)
 - [Génération Qwen3 et juge Gemini](docs/rag/generation-and-judge.md)
 - [SFT QLoRA Qwen3.5 sur Kaggle](docs/rag/sft-qwen35-kaggle.md)
+- [Conteneurisation locale FastAPI + React](docs/architecture/docker-deployment.md)
 - [Registre des sources](data/sources/onee_sources.v0.1.json)
 - [Registre des sources Redal](data/sources/redal_sources.v0.1.json)
 - [Jeu d’évaluation](data/evaluation/onee_questions.v0.1.jsonl)

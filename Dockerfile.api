@@ -1,0 +1,41 @@
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    HF_HOME=/home/qralia/.cache/huggingface
+
+WORKDIR /app
+
+# Tesseract lit les images, le paquet français fournit fra.traineddata et
+# Poppler transforme les pages PDF en images avant l'OCR.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        libglib2.0-0 \
+        poppler-utils \
+        tesseract-ocr \
+        tesseract-ocr-fra \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY pyproject.toml README.md ./
+COPY src ./src
+
+RUN python -m pip install --upgrade pip \
+    && python -m pip install ".[api,invoice,semantic]"
+
+# L'image ne contient ni facture, ni secret, ni corpus local. Docker Compose
+# monte le corpus approuvé en lecture seule au démarrage.
+RUN useradd --create-home --uid 10001 qralia \
+    && mkdir -p /home/qralia/.cache/huggingface \
+    && chown -R qralia:qralia /app /home/qralia
+
+USER qralia
+
+EXPOSE 8000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=90s --retries=3 \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)"
+
+# Un seul worker tant que les sessions de factures sont stockées en mémoire.
+CMD ["uvicorn", "qralia.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+

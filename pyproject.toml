@@ -9,11 +9,25 @@ description = "Pipeline pédagogique QraLia pour normaliser et découper des sou
 requires-python = ">=3.11"
 dependencies = [
     "jsonschema>=4.23,<5",
+    "pydantic>=2,<3",
 ]
 
 [project.optional-dependencies]
 dev = [
+    "httpx>=0.27,<1",
     "pytest>=8,<9",
+]
+api = [
+    "fastapi>=0.115,<1",
+    "python-multipart>=0.0.20,<1",
+    "uvicorn[standard]>=0.34,<1",
+]
+invoice = [
+    "numpy>=2,<3",
+    "opencv-python-headless>=4.10,<5",
+    "pdf2image>=1.17,<2",
+    "pillow>=10,<12",
+    "pytesseract>=0.3,<1",
 ]
 semantic = [
     "langchain-core>=1.2,<2",
@@ -39,6 +53,11 @@ qralia-evaluate-semantic = "qralia.rag.semantic_evaluation:main"
 qralia-evaluate-hybrid = "qralia.rag.hybrid_evaluation:main"
 qralia-evaluate-reranker = "qralia.rag.reranker_evaluation:main"
 qralia-evaluate-generation = "qralia.rag.generation_evaluation:main"
+qralia-evaluate-question-decomposition = "qralia.rag.question_decomposition:main"
+qralia-evaluate-question-fusion = "qralia.rag.question_fusion:main"
+qralia-evaluate-question-routing = "qralia.rag.question_routing:main"
+qralia-evaluate-evidence-routing = "qralia.rag.evidence_router:main"
+qralia-api = "qralia.api.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -1,0 +1,30 @@
+{"case_id":"decomp-fr-001","language":"fr","question":"Quel est le montant à payer et où puis-je régler ma facture ?","expected_need_count":2,"expected_is_composite":true,"expected_markers":["montant","où"]}
+{"case_id":"decomp-fr-002","language":"fr","question":"Quelle est la date limite et comment puis-je payer ?","expected_need_count":2,"expected_is_composite":true,"expected_markers":["date limite","comment"]}
+{"case_id":"decomp-fr-003","language":"fr","question":"Donnez-moi le numéro de facture et le montant total.","expected_need_count":2,"expected_is_composite":true,"expected_markers":["numéro de facture","montant total"]}
+{"case_id":"decomp-fr-004","language":"fr","question":"Où puis-je payer et que se passe-t-il si je suis en retard ?","expected_need_count":2,"expected_is_composite":true,"expected_markers":["Où","retard"]}
+{"case_id":"decomp-fr-005","language":"fr","question":"Je dois payer combien, avant quelle date et dans quelle agence ?","expected_need_count":3,"expected_is_composite":true,"expected_markers":["combien","quelle date","quelle agence"]}
+{"case_id":"decomp-fr-006","language":"fr","question":"Quel est mon numéro de contrat, et est-ce que je peux payer par chèque ?","expected_need_count":2,"expected_is_composite":true,"expected_markers":["numéro de contrat","chèque"]}
+{"case_id":"decomp-fr-007","language":"fr","question":"Puis-je payer par carte ou par chèque ?","expected_need_count":1,"expected_is_composite":false,"expected_markers":["carte"]}
+{"case_id":"decomp-fr-008","language":"fr","question":"L'eau et l'électricité figurent-elles sur la même facture ?","expected_need_count":1,"expected_is_composite":false,"expected_markers":["eau"]}
+{"case_id":"decomp-fr-009","language":"fr","question":"Le total comprend-il les taxes et les frais ?","expected_need_count":1,"expected_is_composite":false,"expected_markers":["total"]}
+{"case_id":"decomp-fr-010","language":"fr","question":"Est-ce que je peux payer en agence ou en ligne ?","expected_need_count":1,"expected_is_composite":false,"expected_markers":["payer"]}
+{"case_id":"decomp-ar-001","language":"ar","question":"كم يجب أن أدفع وأين يمكنني أداء الفاتورة؟","expected_need_count":2,"expected_is_composite":true,"expected_markers":["كم","أين"]}
+{"case_id":"decomp-ar-002","language":"ar","question":"ما هو تاريخ الاستحقاق وكيف يمكنني الدفع؟","expected_need_count":2,"expected_is_composite":true,"expected_markers":["تاريخ الاستحقاق","كيف"]}
+{"case_id":"decomp-ar-003","language":"ar","question":"أريد رقم الفاتورة والمبلغ الإجمالي.","expected_need_count":2,"expected_is_composite":true,"expected_markers":["رقم الفاتورة","المبلغ الإجمالي"]}
+{"case_id":"decomp-ar-004","language":"ar","question":"أين أدفع وماذا يحدث إذا تأخرت؟","expected_need_count":2,"expected_is_composite":true,"expected_markers":["أين","تأخرت"]}
+{"case_id":"decomp-ar-005","language":"ar","question":"كم أدفع وما آخر أجل وفي أي وكالة يمكنني الأداء؟","expected_need_count":3,"expected_is_composite":true,"expected_markers":["كم","آخر أجل","أي وكالة"]}
+{"case_id":"decomp-ar-006","language":"ar","question":"ما رقم العقد وهل أستطيع الدفع بالشيك؟","expected_need_count":2,"expected_is_composite":true,"expected_markers":["رقم العقد","الشيك"]}
+{"case_id":"decomp-ar-007","language":"ar","question":"هل يمكنني الدفع نقداً أو بالشيك؟","expected_need_count":1,"expected_is_composite":false,"expected_markers":["الدفع"]}
+{"case_id":"decomp-ar-008","language":"ar","question":"هل الماء والكهرباء موجودان في الفاتورة نفسها؟","expected_need_count":1,"expected_is_composite":false,"expected_markers":["الماء"]}
+{"case_id":"decomp-ar-009","language":"ar","question":"هل يشمل المبلغ الضرائب والرسوم؟","expected_need_count":1,"expected_is_composite":false,"expected_markers":["المبلغ"]}
+{"case_id":"decomp-ar-010","language":"ar","question":"هل يمكنني الأداء في الوكالة أو عبر الإنترنت؟","expected_need_count":1,"expected_is_composite":false,"expected_markers":["الأداء"]}
+{"case_id":"decomp-da-001","language":"darija_arab","question":"شحال خاصني نخلص وفين نقدر نخلص؟","expected_need_count":2,"expected_is_composite":true,"expected_markers":["شحال","فين"]}
+{"case_id":"decomp-da-002","language":"darija_arab","question":"فوقاش آخر نهار وكيفاش نقدر نخلص؟","expected_need_count":2,"expected_is_composite":true,"expected_markers":["فوقاش","كيفاش"]}
+{"case_id":"decomp-da-003","language":"darija_arab","question":"عطيني نمرة الفاتورة وشحال المبلغ كامل.","expected_need_count":2,"expected_is_composite":true,"expected_markers":["نمرة الفاتورة","شحال"]}
+{"case_id":"decomp-da-004","language":"darija_arab","question":"فين نمشي نخلص وشنو يوقع إلا تعطلت؟","expected_need_count":2,"expected_is_composite":true,"expected_markers":["فين","شنو"]}
+{"case_id":"decomp-da-005","language":"darija_arab","question":"شحال نخلص وفوقاش آخر أجل وفين كاينة الوكالة؟","expected_need_count":3,"expected_is_composite":true,"expected_markers":["شحال","فوقاش","فين"]}
+{"case_id":"decomp-da-006","language":"darija_arab","question":"شنو هي نمرة الكونطرا وواش نقدر نخلص بالشيك؟","expected_need_count":2,"expected_is_composite":true,"expected_markers":["نمرة الكونطرا","الشيك"]}
+{"case_id":"decomp-da-007","language":"darija_arab","question":"واش نقدر نخلص بالكارت ولا بالشيك؟","expected_need_count":1,"expected_is_composite":false,"expected_markers":["نخلص"]}
+{"case_id":"decomp-da-008","language":"darija_arab","question":"واش الما والضو مجموعين فنفس الفاتورة؟","expected_need_count":1,"expected_is_composite":false,"expected_markers":["الما"]}
+{"case_id":"decomp-da-009","language":"darija_arab","question":"واش المبلغ فيه الضريبة والمصاريف؟","expected_need_count":1,"expected_is_composite":false,"expected_markers":["المبلغ"]}
+{"case_id":"decomp-da-010","language":"darija_arab","question":"واش نقدر نخلص فالوكالة ولا فالإنترنت؟","expected_need_count":1,"expected_is_composite":false,"expected_markers":["نخلص"]}

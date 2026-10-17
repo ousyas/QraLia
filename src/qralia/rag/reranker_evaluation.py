@@ -48,6 +48,7 @@ class Qwen3CrossEncoderReranker:
         batch_size: int = 4,
         max_length: int = 1024,
         instruction: str | None = None,
+        local_files_only: bool = False,
     ) -> None:
         if batch_size < 1:
             raise ValueError("batch_size doit être au moins égal à 1.")
@@ -84,6 +85,7 @@ class Qwen3CrossEncoderReranker:
             max_length=max_length,
             model_kwargs={"torch_dtype": dtype},
             trust_remote_code=True,
+            local_files_only=local_files_only,
             **prompt_kwargs,
         )
 

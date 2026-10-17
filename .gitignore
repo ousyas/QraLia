@@ -29,3 +29,21 @@ artifacts/
 
 # Never version user documents
 data/user_documents/
+
+# Runtime uploads and generated reports/models
+/uploads/
+/output/
+/outputs/
+/tmp/
+/*.pdf
+/qralia_sft*.zip
+*.gguf
+*.safetensors
+
+# React/Vite
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/*.tsbuildinfo
+frontend/vite.config.js
+frontend/vite.config.d.ts

@@ -1,0 +1,56 @@
+name: qralia
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    environment:
+      QRALIA_AI_ENABLED: "true"
+      QRALIA_CORS_ORIGINS: "http://localhost:8080,http://127.0.0.1:8080"
+      QRALIA_GENERATOR_MODEL: "${QRALIA_GENERATOR_MODEL:-qwen3.5:4b}"
+      QRALIA_HF_LOCAL_FILES_ONLY: "${QRALIA_HF_LOCAL_FILES_ONLY:-false}"
+      QRALIA_LLM_TIMEOUT_SECONDS: "${QRALIA_LLM_TIMEOUT_SECONDS:-300}"
+      QRALIA_OCR_LANGUAGE: "fra"
+      QRALIA_OLLAMA_URL: "${QRALIA_OLLAMA_URL:-http://host.docker.internal:11434/api/chat}"
+      QRALIA_ONEE_CHUNKS_PATH: "/app/data/processed/onee-regler-facture-residentiel/chunks.jsonl"
+      QRALIA_RAG_DEVICE: "${QRALIA_RAG_DEVICE:-cpu}"
+      QRALIA_ROUTER_MODEL: "${QRALIA_ROUTER_MODEL:-qwen3.5:4b}"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8000:8000"
+    volumes:
+      - type: bind
+        source: ./data/processed/onee-regler-facture-residentiel/chunks.jsonl
+        target: /app/data/processed/onee-regler-facture-residentiel/chunks.jsonl
+        read_only: true
+      - huggingface-cache:/home/qralia/.cache/huggingface
+    tmpfs:
+      - /tmp:size=256m
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/ready', timeout=5)"
+      interval: 30s
+      timeout: 10s
+      start_period: 90s
+      retries: 5
+
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: /api
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+
+volumes:
+  huggingface-cache:
+

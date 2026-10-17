@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.1.0",
+  "document_id": "synthetic-onee-invoice-router-001",
+  "synthetic": true,
+  "provider_id": "onee",
+  "service_type": "electricity",
+  "service_zone_id": "onee_be_national",
+  "audience": "residential",
+  "fields": [
+    {"field_id": "total_due", "value": "438.70", "status": "validated", "extraction_confidence": 0.98, "provenance_present": true, "validation_errors": [], "provenance": {"page": 1, "source_text": "438,70 DH"}},
+    {"field_id": "due_date", "value": "2026-11-17", "status": "validated", "extraction_confidence": 0.97, "provenance_present": true, "validation_errors": [], "provenance": {"page": 1, "source_text": "17/11/2026"}},
+    {"field_id": "invoice_number", "value": "SYN-FAC-2026-0042", "status": "validated", "extraction_confidence": 0.99, "provenance_present": true, "validation_errors": [], "provenance": {"page": 1, "source_text": "SYN-FAC-2026-0042"}},
+    {"field_id": "contract_number", "value": "SYN-CTR-104875", "status": "validated", "extraction_confidence": 0.98, "provenance_present": true, "validation_errors": [], "provenance": {"page": 1, "source_text": "SYN-CTR-104875"}},
+    {"field_id": "subtotal_excl_tax", "value": "365.58", "status": "validated", "extraction_confidence": 0.95, "provenance_present": true, "validation_errors": [], "provenance": {"page": 1, "source_text": "365,58 DH"}},
+    {"field_id": "tax_amount", "value": "73.12", "status": "validated", "extraction_confidence": 0.94, "provenance_present": true, "validation_errors": [], "provenance": {"page": 1, "source_text": "73,12 DH"}}
+  ]
+}
