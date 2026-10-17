@@ -48,6 +48,23 @@ Invoke-RestMethod http://127.0.0.1:8000/ready
 Le smoke test vérifie les deux endpoints de santé, téléverse la facture,
 contrôle que l'extraction est valide, puis supprime la session créée.
 
+## Tests continus
+
+Le workflow `.github/workflows/docker.yml` exécute trois contrôles successifs :
+
+1. les tests Python déterministes, sans téléchargement ni appel de modèle ;
+2. l'installation reproductible du frontend, son contrôle TypeScript et son build ;
+3. la construction des deux images, puis un smoke test de la pile complète.
+
+Le smoke test démarre FastAPI et Nginx avec l'IA désactivée, fabrique une
+facture entièrement synthétique, vérifie `/health` et `/ready`, envoie le PDF
+à l'OCR, contrôle que la validation aboutit, puis supprime la facture. Les logs
+des conteneurs sont affichés même en cas d'échec. Ollama et les modèles Qwen ne
+sont volontairement pas requis dans la CI : leurs évaluations lourdes restent
+des expériences versionnées séparées. Comme le corpus de travail est ignoré par
+Git, la CI monte uniquement `tests/fixtures/onee_chunks.jsonl`, un passage
+minimal sans donnée utilisateur destiné au contrôle de disponibilité.
+
 ## Diagnostic
 
 ```powershell

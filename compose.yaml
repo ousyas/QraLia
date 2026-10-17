@@ -2,11 +2,12 @@ name: qralia
 
 services:
   api:
+    image: "${QRALIA_API_IMAGE:-qralia-api:local}"
     build:
       context: .
       dockerfile: Dockerfile.api
     environment:
-      QRALIA_AI_ENABLED: "true"
+      QRALIA_AI_ENABLED: "${QRALIA_AI_ENABLED:-true}"
       QRALIA_CORS_ORIGINS: "http://localhost:8080,http://127.0.0.1:8080"
       QRALIA_GENERATOR_MODEL: "${QRALIA_GENERATOR_MODEL:-qwen3.5:4b}"
       QRALIA_HF_LOCAL_FILES_ONLY: "${QRALIA_HF_LOCAL_FILES_ONLY:-false}"
@@ -22,7 +23,7 @@ services:
       - "8000:8000"
     volumes:
       - type: bind
-        source: ./data/processed/onee-regler-facture-residentiel/chunks.jsonl
+        source: ${QRALIA_ONEE_CHUNKS_HOST_PATH:-./data/processed/onee-regler-facture-residentiel/chunks.jsonl}
         target: /app/data/processed/onee-regler-facture-residentiel/chunks.jsonl
         read_only: true
       - huggingface-cache:/home/qralia/.cache/huggingface
@@ -40,6 +41,7 @@ services:
       retries: 5
 
   web:
+    image: "${QRALIA_WEB_IMAGE:-qralia-web:local}"
     build:
       context: ./frontend
       dockerfile: Dockerfile

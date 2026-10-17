@@ -107,7 +107,9 @@ documents utilisent les mêmes mots.
   rendu déterministe sûr.
 - une pile Docker sépare l'API FastAPI/OCR du frontend React/Nginx, monte le
   corpus officiel en lecture seule, conserve les modèles dans un volume et
-  vérifie la construction des deux images dans GitHub Actions.
+  vérifie dans GitHub Actions les tests Python, la construction React, les deux
+  images et un parcours conteneurisé `/health` -> `/ready` -> OCR synthétique
+  -> validation -> suppression.
 
 ## Structure cible
 
