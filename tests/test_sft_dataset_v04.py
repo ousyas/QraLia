@@ -1,4 +1,3 @@
-import hashlib
 import json
 import re
 from collections import Counter
@@ -6,6 +5,7 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
+from qralia.integrity import text_sha256_matches
 from qralia.rag.generation_evaluation import GroundedAnswer
 
 
@@ -40,7 +40,7 @@ def test_v04_counts_schema_and_hashes() -> None:
 
     for metadata in manifest["files"].values():
         path = DATASET / metadata["path"]
-        assert hashlib.sha256(path.read_bytes()).hexdigest() == metadata["sha256"]
+        assert text_sha256_matches(path, metadata["sha256"])
 
     validator = Draft202012Validator(json.loads(SCHEMA.read_text(encoding="utf-8")))
     records = load_jsonl(DATASET / "train.jsonl") + load_jsonl(

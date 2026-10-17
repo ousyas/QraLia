@@ -1,10 +1,10 @@
-import hashlib
 import json
 import re
 from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
+from qralia.integrity import text_sha256_matches
 from qralia.rag.generation_evaluation import GroundedAnswer, load_generation_cases
 
 
@@ -43,7 +43,7 @@ def test_sft_dataset_counts_schema_and_hashes() -> None:
         validator.validate(record)
     for metadata in manifest["files"].values():
         path = DATASET / metadata["path"]
-        assert hashlib.sha256(path.read_bytes()).hexdigest() == metadata["sha256"]
+        assert text_sha256_matches(path, metadata["sha256"])
 
 
 def test_sft_targets_are_structured_grounded_and_script_consistent() -> None:

@@ -1,4 +1,3 @@
-import hashlib
 import json
 import re
 from collections import defaultdict
@@ -7,6 +6,7 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
+from qralia.integrity import text_sha256_matches
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data/evaluation/sft_questions.v0.3.jsonl"
@@ -28,7 +28,7 @@ def test_v03_counts_schema_and_hash() -> None:
     assert manifest["language_counts"] == {"ar": 31, "darija_arab": 31, "darija_latn": 31, "fr": 31}
     assert manifest["positive_chunk_coverage"] == 25
     assert 0.15 <= manifest["abstention_rate"] <= 0.25
-    assert hashlib.sha256(DATA.read_bytes()).hexdigest() == manifest["file"]["sha256"]
+    assert text_sha256_matches(DATA, manifest["file"]["sha256"])
     for item in items:
         validator.validate(item)
 

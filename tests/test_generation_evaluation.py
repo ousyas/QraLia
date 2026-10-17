@@ -2,6 +2,8 @@ from pathlib import Path
 import re
 from types import SimpleNamespace
 
+import pytest
+
 from qralia.rag.bm25_evaluation import load_active_chunks
 from qralia.rag.darija_rewriter import AtlasDarijaRewriter
 from qralia.rag.generation_evaluation import (
@@ -324,6 +326,12 @@ def test_real_generation_cases_are_valid_and_reference_existing_chunks() -> None
         ROOT / "data" / "processed" / "redal" / "chunks.jsonl",
         ROOT / "data" / "processed" / "telecom" / "chunks.jsonl",
     ]
+    missing_paths = [path for path in chunk_paths if not path.is_file()]
+    if missing_paths:
+        pytest.skip(
+            "Corpus générés locaux absents du checkout : "
+            + ", ".join(str(path.relative_to(ROOT)) for path in missing_paths)
+        )
     chunks = [chunk for path in chunk_paths for chunk in load_active_chunks(path, CHUNK_SCHEMA)]
     chunks_by_id = {chunk["chunk_id"]: chunk for chunk in chunks}
 
