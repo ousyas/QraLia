@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.1.0",
+  "invoice_id": "facture_001",
+  "extraction": {
+    "extracted_at": "2026-09-30T14:00:00Z",
+    "ocr_engine": "paddleocr-2.7",
+    "source_file": "data/synthetic/facture_001.pdf"
+  },
+  "fields": {
+    "total_cash": {
+      "raw_value": "133,26 DH",
+      "normalized_value": 133.26,
+      "confidence": 0.95,
+      "provenance": {"page": 1, "bbox": [420, 210, 560, 240], "method": "regex"}
+    },
+    "total_check": {
+      "raw_value": "132,93 DH",
+      "normalized_value": 132.93,
+      "confidence": 0.95,
+      "provenance": {"page": 1, "bbox": [420, 250, 560, 280], "method": "regex"}
+    },
+    "due_date": {
+      "raw_value": "31/08/2023",
+      "normalized_value": "2023-08-31",
+      "confidence": 0.98,
+      "provenance": {"page": 1, "bbox": [420, 170, 560, 200], "method": "regex"}
+    },
+    "invoice_date": {
+      "raw_value": "16.08.2023",
+      "normalized_value": "2023-08-16",
+      "confidence": 0.97,
+      "provenance": {"page": 1, "bbox": [50, 60, 180, 90], "method": "regex"}
+    },
+    "tariff": {
+      "raw_value": "BT Domestique",
+      "normalized_value": "BT_DOMESTIQUE",
+      "confidence": 0.99,
+      "provenance": {"page": 1, "bbox": [50, 300, 180, 330], "method": "keyword_match"}
+    }
+  },
+  "document_confidence": 0.94
+}
