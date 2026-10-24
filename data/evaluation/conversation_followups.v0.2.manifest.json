@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.2.0",
+  "status": "candidate_human_review",
+  "case_count": 80,
+  "scenario_family_count": 20,
+  "language_counts": {
+    "fr": 20,
+    "ar": 20,
+    "darija_arab": 20,
+    "darija_latn": 20
+  },
+  "action_counts": {
+    "standalone": 20,
+    "rewrite": 48,
+    "clarify": 12
+  },
+  "sha256": "93f06224b79ff232280abc0e9578c3a20de7bd1a1e3af9113a9bd124e3e6bce9",
+  "warning": "Formulations synthétiques candidates ; ne pas présenter comme conversations d'utilisateurs réels."
+}

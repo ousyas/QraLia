@@ -110,6 +110,13 @@ documents utilisent les mêmes mots.
   vérifie dans GitHub Actions les tests Python, la construction React, les deux
   images et un parcours conteneurisé `/health` -> `/ready` -> OCR synthétique
   -> validation -> suppression.
+- une première couche conversationnelle lie une mémoire courte à la facture,
+  reconstruit avec Qwen3.5 les questions de suivi en questions autonomes,
+  valide déterministiquement la reformulation et repasse systématiquement par
+  les preuves facture/RAG ; un holdout candidat v0.2 de 80 conversations
+  multilingues couvre les suivis, changements de sujet et ambiguïtés. Son
+  validateur contrôle aussi les concepts, la dimension interrogative, l'écriture
+  et les moyens de paiement introduits.
 
 ## Structure cible
 
@@ -155,6 +162,7 @@ Les dossiers de code seront ajoutés au moment du premier incrément exécutable
 - [Génération Qwen3 et juge Gemini](docs/rag/generation-and-judge.md)
 - [SFT QLoRA Qwen3.5 sur Kaggle](docs/rag/sft-qwen35-kaggle.md)
 - [Conteneurisation locale FastAPI + React](docs/architecture/docker-deployment.md)
+- [Chatbot conversationnel v0.1](docs/architecture/chatbot-v0.1.md)
 - [Registre des sources](data/sources/onee_sources.v0.1.json)
 - [Registre des sources Redal](data/sources/redal_sources.v0.1.json)
 - [Jeu d’évaluation](data/evaluation/onee_questions.v0.1.jsonl)

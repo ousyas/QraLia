@@ -8,7 +8,25 @@ import logging
 from pathlib import Path
 from typing import Callable
 
-from qralia.api.models import CitationView, EvidenceView, FieldView, InvoiceResponse, QuestionResponse, ValidationView
+from qralia.api.conversation import (
+    ConversationRecord,
+    ConversationResolver,
+    InMemoryConversationStore,
+    ResolutionResult,
+    new_turn,
+)
+from qralia.api.models import (
+    CitationView,
+    ConversationMessageResponse,
+    ConversationResolutionView,
+    ConversationResponse,
+    ConversationTurnView,
+    EvidenceView,
+    FieldView,
+    InvoiceResponse,
+    QuestionResponse,
+    ValidationView,
+)
 from qralia.api.store import InMemoryInvoiceStore, InvoiceRecord
 from qralia.domain.extracted_invoice import ExtractedInvoice
 from qralia.domain.invoice_evidence import FIELD_LABELS, build_invoice_evidence
@@ -34,8 +52,9 @@ FIELD_ALIASES = {
 
 RAG_MARKERS = (
     "comment payer", "ou payer", "moyen de paiement", "par cheque", "par virement", "prelevement",
-    "agence", "jour ferie", "acompte", "fin nkhlles", "kifach nkhlles", "chik", "virman", "3otla",
-    "كيفاش نخلص", "فين نخلص", "بالشيك", "تحويل بنكي", "وكالة", "عطلة",
+    "deposer le cheque", "remettre le cheque", "agence", "jour ferie", "acompte",
+    "fin nkhlles", "kifach nkhlles", "n9dem chik", "chik", "virman", "3otla",
+    "كيفاش نخلص", "فين نخلص", "نقدم الشيك", "اقدم الشيك", "بالشيك", "تحويل بنكي", "وكالة", "عطلة",
 )
 
 
@@ -174,4 +193,95 @@ class QuestionAnswerService:
                 )
                 return fallback
         return self._deterministic_answer(question, language, record)
+
+
+class ConversationService:
+    """Ajoute une mémoire courte sans transformer l'historique en preuve."""
+
+    def __init__(
+        self,
+        questions: QuestionAnswerService,
+        *,
+        store: InMemoryConversationStore | None = None,
+        resolver: ConversationResolver | None = None,
+    ) -> None:
+        self.questions = questions
+        self.store = store or InMemoryConversationStore()
+        self.resolver = resolver or ConversationResolver(use_llm=questions.ai_enabled)
+
+    @staticmethod
+    def response(record: ConversationRecord) -> ConversationResponse:
+        return ConversationResponse(
+            conversation_id=record.public_id,
+            invoice_id=record.invoice_id,
+            preferred_language=record.preferred_language,
+            created_at=record.created_at,
+            updated_at=record.updated_at,
+            expires_at=record.expires_at,
+            turns=[
+                ConversationTurnView(
+                    message_id=turn.message_id,
+                    role=turn.role,
+                    text=turn.raw_text,
+                    language=turn.language,
+                    created_at=turn.created_at,
+                    standalone_question=turn.standalone_question,
+                    route=turn.route,
+                    evidence_ids=list(turn.evidence_ids),
+                )
+                for turn in record.turns
+            ],
+        )
+
+    @staticmethod
+    def _resolution_view(result: ResolutionResult) -> ConversationResolutionView:
+        return ConversationResolutionView.model_validate(result.model_dump())
+
+    def message(
+        self,
+        conversation: ConversationRecord,
+        invoice: InvoiceRecord,
+        message: str,
+        language: str,
+    ) -> ConversationMessageResponse:
+        requested_language = language if language != "auto" else conversation.preferred_language
+        resolution = self.resolver.resolve(
+            message,
+            conversation.turns,
+            requested_language=requested_language,
+            provider="onee",
+        )
+        user_turn = new_turn(
+            "user", message, resolution.language,
+            standalone_question=resolution.standalone_question,
+        )
+        current = self.store.append(conversation.public_id, user_turn)
+
+        if resolution.action == "clarify":
+            clarification = resolution.clarification_question or "Pouvez-vous préciser votre question ?"
+            assistant_turn = new_turn("assistant", clarification, resolution.language, route="unknown")
+            self.store.append(current.public_id, assistant_turn)
+            return ConversationMessageResponse(
+                conversation_id=current.public_id,
+                user_message_id=user_turn.message_id,
+                assistant_message_id=assistant_turn.message_id,
+                resolution=self._resolution_view(resolution),
+                clarification_question=clarification,
+            )
+
+        standalone = resolution.standalone_question or message
+        answer = self.questions.answer(standalone, resolution.language, invoice)
+        evidence_ids = tuple(item.evidence_id for item in answer.evidence)
+        assistant_turn = new_turn(
+            "assistant", answer.answer, answer.language,
+            route=answer.route, evidence_ids=evidence_ids,
+        )
+        self.store.append(current.public_id, assistant_turn)
+        return ConversationMessageResponse(
+            conversation_id=current.public_id,
+            user_message_id=user_turn.message_id,
+            assistant_message_id=assistant_turn.message_id,
+            resolution=self._resolution_view(resolution),
+            answer=answer,
+        )
 

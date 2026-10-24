@@ -1,4 +1,4 @@
-import type { InvoiceResponse, QuestionResponse } from "./types";
+import type { ConversationMessageResponse, ConversationResponse, InvoiceResponse, QuestionResponse } from "./types";
 
 const API_ROOT = import.meta.env.VITE_API_BASE_URL ?? "/api";
 
@@ -42,6 +42,29 @@ export async function askQuestion(
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ question, language }),
+  }));
+}
+
+export async function createConversation(
+  invoiceId: string,
+  language = "auto",
+): Promise<ConversationResponse> {
+  return checked(await fetch(`${API_ROOT}/v1/invoices/${invoiceId}/conversations`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ language }),
+  }));
+}
+
+export async function sendConversationMessage(
+  conversationId: string,
+  message: string,
+  language: string,
+): Promise<ConversationMessageResponse> {
+  return checked(await fetch(`${API_ROOT}/v1/conversations/${conversationId}/messages`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message, language }),
   }));
 }
 

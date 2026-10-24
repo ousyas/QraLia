@@ -46,6 +46,15 @@ button:disabled { opacity: .55; cursor: not-allowed; }
 .field-card > span { white-space: nowrap; font-size: .68rem; align-self: start; padding: .28rem .45rem; background: #edf2ee; border-radius: 5px; }
 .question-card { display: grid; gap: .65rem; }
 .question-card label { margin-top: .35rem; font-weight: 700; font-size: .88rem; }
+.chat-thread { display: grid; gap: 1rem; margin-bottom: 1rem; }
+.chat-exchange { display: grid; gap: .7rem; }
+.chat-message { max-width: 88%; border-radius: 16px; padding: 1rem 1.1rem; box-shadow: 0 8px 24px rgba(34,54,49,.06); }
+.chat-message > span { display: block; margin-bottom: .4rem; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; opacity: .7; }
+.chat-message > p { margin: 0; line-height: 1.65; }
+.user-message { justify-self: end; color: #fffdf8; background: #245b53; border-bottom-right-radius: 4px; }
+.assistant-message { justify-self: start; background: #fffdf8; border: 1px solid #ded8ca; border-bottom-left-radius: 4px; }
+.assistant-message .answer-meta { margin-bottom: .65rem; gap: 1rem; }
+.rewrite-note { display: block; margin-bottom: .75rem; padding: .55rem .7rem; color: #6d5a34; background: #fff4d8; border-radius: 7px; line-height: 1.45; }
 select, textarea { width: 100%; color: #18352f; background: #fbfaf6; border: 1px solid #aab7b2; border-radius: 9px; padding: .85rem; }
 textarea { resize: vertical; line-height: 1.55; }
 select:focus, textarea:focus { outline: 3px solid rgba(217,164,65,.35); border-color: #a17017; }
@@ -68,5 +77,6 @@ footer p { margin: .4rem 0 0; font-size: .85rem; }
   .field-grid { grid-template-columns: 1fr; }
   .alert, .answer-meta { flex-direction: column; }
   .field-card { align-items: flex-start; }
+  .chat-message { max-width: 96%; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; } }

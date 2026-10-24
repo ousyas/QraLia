@@ -57,6 +57,7 @@ qralia-evaluate-question-decomposition = "qralia.rag.question_decomposition:main
 qralia-evaluate-question-fusion = "qralia.rag.question_fusion:main"
 qralia-evaluate-question-routing = "qralia.rag.question_routing:main"
 qralia-evaluate-evidence-routing = "qralia.rag.evidence_router:main"
+qralia-evaluate-conversation = "qralia.rag.conversation_evaluation:main"
 qralia-api = "qralia.api.cli:main"
 
 [tool.setuptools.packages.find]

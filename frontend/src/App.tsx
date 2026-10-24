@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
-import { askQuestion, checkHealth, deleteInvoice, uploadInvoice } from "./api";
-import type { InvoiceResponse, QuestionResponse } from "./types";
+import { checkHealth, createConversation, deleteInvoice, sendConversationMessage, uploadInvoice } from "./api";
+import type { ConversationMessageResponse, InvoiceResponse } from "./types";
 
 const routeLabels = {
   invoice: "Facture",
@@ -22,7 +22,8 @@ export default function App() {
   const [invoice, setInvoice] = useState<InvoiceResponse | null>(null);
   const [question, setQuestion] = useState("");
   const [language, setLanguage] = useState("auto");
-  const [answer, setAnswer] = useState<QuestionResponse | null>(null);
+  const [conversationId, setConversationId] = useState<string | null>(null);
+  const [messages, setMessages] = useState<Array<{ question: string; result: ConversationMessageResponse }>>([]);
   const [busy, setBusy] = useState<"upload" | "question" | "delete" | null>(null);
   const [error, setError] = useState("");
 
@@ -36,8 +37,13 @@ export default function App() {
   async function handleUpload(event: FormEvent) {
     event.preventDefault();
     if (!file || !confirmed) return;
-    setBusy("upload"); setError(""); setAnswer(null);
-    try { setInvoice(await uploadInvoice(file)); }
+    setBusy("upload"); setError(""); setMessages([]); setConversationId(null);
+    try {
+      const uploaded = await uploadInvoice(file);
+      const conversation = await createConversation(uploaded.invoice_id, language);
+      setInvoice(uploaded);
+      setConversationId(conversation.conversation_id);
+    }
     catch (cause) { setError(cause instanceof Error ? cause.message : "Impossible de lire la facture."); }
     finally { setBusy(null); }
   }
@@ -46,7 +52,14 @@ export default function App() {
     event.preventDefault();
     if (!invoice || !question.trim()) return;
     setBusy("question"); setError("");
-    try { setAnswer(await askQuestion(invoice.invoice_id, question.trim(), language)); }
+    try {
+      const activeConversation = conversationId ?? (await createConversation(invoice.invoice_id, language)).conversation_id;
+      setConversationId(activeConversation);
+      const currentQuestion = question.trim();
+      const result = await sendConversationMessage(activeConversation, currentQuestion, language);
+      setMessages((current) => [...current, { question: currentQuestion, result }]);
+      setQuestion("");
+    }
     catch (cause) { setError(cause instanceof Error ? cause.message : "Impossible de répondre."); }
     finally { setBusy(null); }
   }
@@ -56,7 +69,7 @@ export default function App() {
     setBusy("delete"); setError("");
     try {
       await deleteInvoice(invoice.invoice_id);
-      setInvoice(null); setAnswer(null); setQuestion(""); setFile(null); setConfirmed(false);
+      setInvoice(null); setConversationId(null); setMessages([]); setQuestion(""); setFile(null); setConfirmed(false);
     } catch (cause) { setError(cause instanceof Error ? cause.message : "Suppression impossible."); }
     finally { setBusy(null); }
   }
@@ -106,7 +119,24 @@ export default function App() {
             </article>)}
           </div>
 
-          <div className="step-heading"><span>03</span><div><h2>Poser une question</h2><p>Sur votre facture, les moyens de paiement ou une règle officielle.</p></div></div>
+          <div className="step-heading"><span>03</span><div><h2>Discuter avec QraLia</h2><p>Vous pouvez poser une question, puis continuer avec « Et avant quelle date ? ».</p></div></div>
+          {messages.length > 0 && <section className="chat-thread" aria-label="Conversation avec QraLia">
+            {messages.map(({ question: userQuestion, result }) => <div className="chat-exchange" key={result.user_message_id}>
+              <div className="chat-message user-message"><span>Vous</span><p>{userQuestion}</p></div>
+              <div className="chat-message assistant-message">
+                <span>QraLia</span>
+                {result.resolution.action === "rewrite" && result.resolution.standalone_question && <small className="rewrite-note">Question comprise comme : {result.resolution.standalone_question}</small>}
+                {result.clarification_question
+                  ? <p>{result.clarification_question}</p>
+                  : result.answer && <>
+                    <div className="answer-meta"><span>{routeLabels[result.answer.route]}</span><span>{Math.round(result.answer.confidence * 100)} % de confiance</span></div>
+                    <p>{result.answer.answer}</p>
+                    {result.answer.citations.length > 0 && <div className="sources"><strong>Sources officielles</strong>{result.answer.citations.map((citation) => <a href={citation.url} target="_blank" rel="noreferrer" key={citation.chunk_id}>{citation.title} ↗</a>)}</div>}
+                    {result.answer.warnings.map((warning) => <small className="answer-warning" key={warning}>{warning}</small>)}
+                  </>}
+              </div>
+            </div>)}
+          </section>}
           <form className="question-card" onSubmit={handleQuestion}>
             <label htmlFor="language">Langue souhaitée</label>
             <select id="language" value={language} onChange={(event) => setLanguage(event.target.value)}>
@@ -114,17 +144,9 @@ export default function App() {
               <option value="ar">العربية الفصحى</option><option value="darija_arab">الدارجة</option><option value="darija_latn">Darija latine</option>
             </select>
             <label htmlFor="question">Votre question</label>
-            <textarea id="question" value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="Exemple : Combien dois-je payer et où puis-je régler cette facture ?" rows={4} maxLength={500} />
-            <button className="primary" disabled={!question.trim() || busy !== null}>{busy === "question" ? "Recherche des preuves…" : "Obtenir une réponse"}</button>
+            <textarea id="question" value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="Exemple : Combien dois-je payer ? Puis : Et avant quelle date ?" rows={3} maxLength={500} />
+            <button className="primary" disabled={!question.trim() || busy !== null}>{busy === "question" ? "Recherche des preuves…" : messages.length ? "Envoyer" : "Commencer la conversation"}</button>
           </form>
-
-          {answer && <article className="answer-card">
-            <div className="answer-meta"><span>{routeLabels[answer.route]}</span><span>{Math.round(answer.confidence * 100)} % de confiance</span></div>
-            <h3>{answer.abstained ? "Information insuffisante" : "Réponse"}</h3>
-            <p>{answer.answer}</p>
-            {answer.citations.length > 0 && <div className="sources"><strong>Sources officielles</strong>{answer.citations.map((citation) => <a href={citation.url} target="_blank" rel="noreferrer" key={citation.chunk_id}>{citation.title} ↗</a>)}</div>}
-            {answer.warnings.map((warning) => <small className="answer-warning" key={warning}>{warning}</small>)}
-          </article>}
 
           <button className="delete" onClick={handleDelete} disabled={busy !== null}>{busy === "delete" ? "Suppression…" : "Supprimer cette facture de la session"}</button>
         </>}

@@ -81,3 +81,56 @@ class QuestionResponse(BaseModel):
     citations: list[CitationView]
     warnings: list[str]
 
+
+class ConversationCreateRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    language: Literal["auto", "fr", "ar", "darija_arab", "darija_latn"] = "auto"
+
+
+class ConversationMessageRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    message: str = Field(min_length=2, max_length=500)
+    language: Literal["auto", "fr", "ar", "darija_arab", "darija_latn"] = "auto"
+
+
+class ConversationTurnView(BaseModel):
+    message_id: str
+    role: Literal["user", "assistant"]
+    text: str
+    language: str
+    created_at: datetime
+    standalone_question: str | None = None
+    route: str | None = None
+    evidence_ids: list[str] = Field(default_factory=list)
+
+
+class ConversationResponse(BaseModel):
+    conversation_id: str
+    invoice_id: str
+    preferred_language: str
+    created_at: datetime
+    updated_at: datetime
+    expires_at: datetime
+    turns: list[ConversationTurnView]
+
+
+class ConversationResolutionView(BaseModel):
+    action: Literal["standalone", "rewrite", "clarify"]
+    standalone_question: str | None = None
+    clarification_question: str | None = None
+    language: str
+    history_used: bool
+    resolved_references: list[str]
+    method: Literal["direct", "qwen", "deterministic_fallback"]
+
+
+class ConversationMessageResponse(BaseModel):
+    conversation_id: str
+    user_message_id: str
+    assistant_message_id: str
+    resolution: ConversationResolutionView
+    answer: QuestionResponse | None = None
+    clarification_question: str | None = None
+

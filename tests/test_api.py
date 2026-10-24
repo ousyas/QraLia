@@ -160,3 +160,51 @@ def test_upload_security_checks(tmp_path):
     )
     assert disguised.status_code == 415
 
+
+def test_conversation_rewrites_followup_then_reuses_existing_qa_pipeline(tmp_path):
+    app = create_app(
+        extractor=lambda path: _invoice(path.name),
+        corpus_path=_corpus(tmp_path / "chunks.jsonl"),
+        ocr_ready_override=True,
+        ai_enabled_override=False,
+    )
+    client = TestClient(app)
+    upload = client.post(
+        "/v1/invoices",
+        data={"confirm_synthetic": "true"},
+        files={"file": ("facture.pdf", b"%PDF-1.4 synthetic", "application/pdf")},
+    )
+    invoice_id = upload.json()["invoice_id"]
+    created = client.post(
+        f"/v1/invoices/{invoice_id}/conversations",
+        json={"language": "fr"},
+    )
+    assert created.status_code == 201
+    conversation_id = created.json()["conversation_id"]
+
+    first = client.post(
+        f"/v1/conversations/{conversation_id}/messages",
+        json={"message": "Puis-je payer cette facture par chèque ?", "language": "fr"},
+    )
+    assert first.status_code == 200
+    assert first.json()["resolution"]["action"] == "standalone"
+    assert first.json()["answer"]["route"] == "official_rag"
+
+    followup = client.post(
+        f"/v1/conversations/{conversation_id}/messages",
+        json={"message": "Et où le déposer ?", "language": "fr"},
+    )
+    body = followup.json()
+    assert followup.status_code == 200
+    assert body["resolution"]["action"] == "rewrite"
+    assert "chèque" in body["resolution"]["standalone_question"]
+    assert body["answer"]["route"] == "official_rag"
+
+    history = client.get(f"/v1/conversations/{conversation_id}").json()
+    assert len(history["turns"]) == 4
+    assert history["turns"][2]["text"] == "Et où le déposer ?"
+    assert history["turns"][2]["standalone_question"] == body["resolution"]["standalone_question"]
+
+    assert client.delete(f"/v1/invoices/{invoice_id}").status_code == 204
+    assert client.get(f"/v1/conversations/{conversation_id}").status_code == 404
+

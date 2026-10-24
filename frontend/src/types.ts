@@ -40,3 +40,39 @@ export type QuestionResponse = {
   citations: Array<{ chunk_id: string; title: string; url: string }>;
   warnings: string[];
 };
+
+export type ConversationResponse = {
+  conversation_id: string;
+  invoice_id: string;
+  preferred_language: string;
+  created_at: string;
+  updated_at: string;
+  expires_at: string;
+  turns: Array<{
+    message_id: string;
+    role: "user" | "assistant";
+    text: string;
+    language: string;
+    created_at: string;
+    standalone_question?: string | null;
+    route?: QuestionResponse["route"] | null;
+    evidence_ids: string[];
+  }>;
+};
+
+export type ConversationMessageResponse = {
+  conversation_id: string;
+  user_message_id: string;
+  assistant_message_id: string;
+  resolution: {
+    action: "standalone" | "rewrite" | "clarify";
+    standalone_question?: string | null;
+    clarification_question?: string | null;
+    language: string;
+    history_used: boolean;
+    resolved_references: string[];
+    method: "direct" | "qwen" | "deterministic_fallback";
+  };
+  answer?: QuestionResponse | null;
+  clarification_question?: string | null;
+};

@@ -15,8 +15,18 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 from qralia import __version__
-from qralia.api.models import HealthResponse, InvoiceResponse, QuestionRequest, QuestionResponse, ReadinessResponse
-from qralia.api.services import InvoiceApplicationService, QuestionAnswerService
+from qralia.api.models import (
+    ConversationCreateRequest,
+    ConversationMessageRequest,
+    ConversationMessageResponse,
+    ConversationResponse,
+    HealthResponse,
+    InvoiceResponse,
+    QuestionRequest,
+    QuestionResponse,
+    ReadinessResponse,
+)
+from qralia.api.services import ConversationService, InvoiceApplicationService, QuestionAnswerService
 from qralia.domain.extracted_invoice import ExtractedInvoice
 from qralia.ocr.extractor import extract_invoice
 
@@ -74,8 +84,10 @@ def create_app(
         else os.getenv("QRALIA_AI_ENABLED", "true").casefold() in {"1", "true", "yes", "on"}
     )
     questions = QuestionAnswerService(configured_corpus, ai_enabled=ai_enabled)
+    conversations = ConversationService(questions)
     app.state.invoices = invoices
     app.state.questions = questions
+    app.state.conversations = conversations
 
     @app.exception_handler(Exception)
     async def unexpected_error(request: Request, exc: Exception) -> JSONResponse:
@@ -164,10 +176,53 @@ def create_app(
             raise HTTPException(status_code=404, detail="Facture inconnue ou session expirée.")
         return await run_in_threadpool(questions.answer, request.question, request.language, record)
 
+    @app.post(
+        "/v1/invoices/{invoice_id}/conversations",
+        response_model=ConversationResponse,
+        status_code=status.HTTP_201_CREATED,
+    )
+    def create_conversation(invoice_id: str, request: ConversationCreateRequest) -> ConversationResponse:
+        if invoices.store.get(invoice_id) is None:
+            raise HTTPException(status_code=404, detail="Facture inconnue ou session expirée.")
+        return conversations.response(conversations.store.create(invoice_id, request.language))
+
+    @app.get("/v1/conversations/{conversation_id}", response_model=ConversationResponse)
+    def get_conversation(conversation_id: str) -> ConversationResponse:
+        conversation = conversations.store.get(conversation_id)
+        if conversation is None or invoices.store.get(conversation.invoice_id) is None:
+            raise HTTPException(status_code=404, detail="Conversation inconnue ou session expirée.")
+        return conversations.response(conversation)
+
+    @app.post(
+        "/v1/conversations/{conversation_id}/messages",
+        response_model=ConversationMessageResponse,
+    )
+    async def send_conversation_message(
+        conversation_id: str,
+        request: ConversationMessageRequest,
+    ) -> ConversationMessageResponse:
+        conversation = conversations.store.get(conversation_id)
+        if conversation is None:
+            raise HTTPException(status_code=404, detail="Conversation inconnue ou session expirée.")
+        record = invoices.store.get(conversation.invoice_id)
+        if record is None:
+            conversations.store.delete(conversation_id)
+            raise HTTPException(status_code=404, detail="Facture inconnue ou session expirée.")
+        return await run_in_threadpool(
+            conversations.message, conversation, record, request.message, request.language,
+        )
+
+    @app.delete("/v1/conversations/{conversation_id}", status_code=status.HTTP_204_NO_CONTENT)
+    def delete_conversation(conversation_id: str) -> Response:
+        if not conversations.store.delete(conversation_id):
+            raise HTTPException(status_code=404, detail="Conversation inconnue ou session expirée.")
+        return Response(status_code=status.HTTP_204_NO_CONTENT)
+
     @app.delete("/v1/invoices/{invoice_id}", status_code=status.HTTP_204_NO_CONTENT)
     def delete_invoice(invoice_id: str) -> Response:
         if not invoices.store.delete(invoice_id):
             raise HTTPException(status_code=404, detail="Facture inconnue ou session expirée.")
+        conversations.store.delete_for_invoice(invoice_id)
         return Response(status_code=status.HTTP_204_NO_CONTENT)
 
     return app
