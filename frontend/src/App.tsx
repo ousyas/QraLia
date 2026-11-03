@@ -1,6 +1,7 @@
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, KeyboardEvent, useEffect, useMemo, useState } from "react";
 import { checkHealth, createConversation, deleteInvoice, sendConversationMessage, uploadInvoice } from "./api";
-import type { ConversationMessageResponse, InvoiceResponse } from "./types";
+import { confidenceLabel, formatField, isReadable, withoutCitationIds } from "./format";
+import type { ConversationMessageResponse, FieldView, InvoiceResponse } from "./types";
 
 const routeLabels = {
   invoice: "Facture",
@@ -9,10 +10,20 @@ const routeLabels = {
   unknown: "Réponse non trouvée",
 };
 
-function confidenceLabel(value: number) {
-  if (value >= 0.85) return "Confiance élevée";
-  if (value >= 0.7) return "À vérifier";
-  return "Lecture incertaine";
+const SUGGESTED_QUESTIONS = [
+  "Combien dois-je payer ?",
+  "Quelle est la date limite de paiement ?",
+  "Où puis-je payer ma facture ?",
+  "Puis-je payer par chèque ?",
+];
+
+function SummaryValue({ field, label, missing }: { field: FieldView | undefined; label: string; missing: string }) {
+  const readable = isReadable(field) && field.confidence >= 0.7;
+  return <div className={`summary-value ${readable ? "" : "uncertain"}`}>
+    <p>{label}</p>
+    <strong>{readable ? formatField(field) : missing}</strong>
+    <span>{readable ? confidenceLabel(field.confidence) : "Demandez l'aide d'un proche pour vérifier sur le papier"}</span>
+  </div>;
 }
 
 export default function App() {
@@ -24,13 +35,18 @@ export default function App() {
   const [language, setLanguage] = useState("auto");
   const [conversationId, setConversationId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Array<{ question: string; result: ConversationMessageResponse }>>([]);
+  const [pending, setPending] = useState<string | null>(null);
   const [busy, setBusy] = useState<"upload" | "question" | "delete" | null>(null);
   const [error, setError] = useState("");
 
   useEffect(() => { void checkHealth().then(setOnline); }, []);
 
-  const usefulFields = useMemo(
-    () => invoice?.fields.filter((field) => field.status !== "not_present") ?? [],
+  const fields = useMemo(
+    () => new Map((invoice?.fields ?? []).map((field) => [field.name, field])),
+    [invoice],
+  );
+  const detailFields = useMemo(
+    () => invoice?.fields.filter((field) => field.status !== "not_present" && !["total_check", "due_date"].includes(field.name)) ?? [],
     [invoice],
   );
 
@@ -48,20 +64,30 @@ export default function App() {
     finally { setBusy(null); }
   }
 
-  async function handleQuestion(event: FormEvent) {
-    event.preventDefault();
-    if (!invoice || !question.trim()) return;
-    setBusy("question"); setError("");
+  async function ask(text: string) {
+    const currentQuestion = text.trim();
+    if (!invoice || !currentQuestion || busy) return;
+    setBusy("question"); setError(""); setPending(currentQuestion); setQuestion("");
     try {
       const activeConversation = conversationId ?? (await createConversation(invoice.invoice_id, language)).conversation_id;
       setConversationId(activeConversation);
-      const currentQuestion = question.trim();
       const result = await sendConversationMessage(activeConversation, currentQuestion, language);
       setMessages((current) => [...current, { question: currentQuestion, result }]);
-      setQuestion("");
     }
-    catch (cause) { setError(cause instanceof Error ? cause.message : "Impossible de répondre."); }
-    finally { setBusy(null); }
+    catch (cause) {
+      setQuestion(currentQuestion);
+      setError(cause instanceof Error ? cause.message : "Impossible de répondre.");
+    }
+    finally { setBusy(null); setPending(null); }
+  }
+
+  function handleQuestion(event: FormEvent) {
+    event.preventDefault();
+    void ask(question);
+  }
+
+  function handleQuestionKey(event: KeyboardEvent<HTMLTextAreaElement>) {
+    if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); void ask(question); }
   }
 
   async function handleDelete() {
@@ -74,6 +100,8 @@ export default function App() {
     finally { setBusy(null); }
   }
 
+  const cash = fields.get("total_cash");
+
   return (
     <main>
       <header className="hero">
@@ -85,70 +113,100 @@ export default function App() {
         </nav>
         <div className="hero-copy" id="top">
           <p className="eyebrow">Comprendre sans deviner</p>
-          <h1>Votre facture,<br /><em>en mots simples.</em></h1>
+          <h1>Votre facture, <em>en mots simples.</em></h1>
           <p>Déposez une facture synthétique. QraLia lit les informations utiles, signale les incertitudes et cite les règles officielles.</p>
         </div>
       </header>
 
       <section className="workspace" aria-live="polite">
-        <div className="step-heading"><span>01</span><div><h2>Ajouter une facture</h2><p>PDF, PNG ou JPEG — 10 Mo maximum</p></div></div>
-        <form className="upload-card" onSubmit={handleUpload}>
-          <label className="dropzone">
-            <input type="file" accept=".pdf,.png,.jpg,.jpeg" onChange={(event) => setFile(event.target.files?.[0] ?? null)} />
-            <span className="upload-icon" aria-hidden="true">↑</span>
-            <strong>{file ? file.name : "Choisir une facture"}</strong>
-            <small>{file ? `${(file.size / 1024 / 1024).toFixed(2)} Mo` : "Touchez ici ou glissez votre fichier"}</small>
-          </label>
-          <label className="consent"><input type="checkbox" checked={confirmed} onChange={(event) => setConfirmed(event.target.checked)} /> Cette facture est entièrement synthétique et ne contient aucune donnée personnelle réelle.</label>
-          <button className="primary" disabled={!file || !confirmed || busy !== null}>{busy === "upload" ? "Lecture en cours…" : "Lire la facture"}</button>
-        </form>
+        {!invoice && <>
+          <div className="step-heading"><span>01</span><div><h2>Ajouter une facture</h2><p>PDF, PNG ou JPEG — 10 Mo maximum</p></div></div>
+          <form className="upload-card" onSubmit={handleUpload}>
+            <label className="dropzone">
+              <input type="file" accept=".pdf,.png,.jpg,.jpeg" onChange={(event) => setFile(event.target.files?.[0] ?? null)} />
+              <span className="upload-icon" aria-hidden="true">↑</span>
+              <strong>{file ? file.name : "Choisir une facture"}</strong>
+              <small>{file ? `${(file.size / 1024 / 1024).toFixed(2)} Mo` : "Touchez ici ou glissez votre fichier"}</small>
+            </label>
+            <label className="consent"><input type="checkbox" checked={confirmed} onChange={(event) => setConfirmed(event.target.checked)} /> Cette facture est entièrement synthétique et ne contient aucune donnée personnelle réelle.</label>
+            <button className="primary" disabled={!file || !confirmed || busy !== null}>{busy === "upload" ? "Lecture en cours…" : "Lire la facture"}</button>
+          </form>
+        </>}
 
         {error && <div className="alert error" role="alert">{error}</div>}
 
         {invoice && <>
-          <div className="step-heading"><span>02</span><div><h2>Informations détectées</h2><p>Vérifiez toujours les champs marqués comme incertains.</p></div></div>
-          <div className={`alert ${invoice.validation.valid && invoice.validation.scope_supported ? "success" : "warning"}`}>
-            <strong>{!invoice.validation.valid ? "Vérification nécessaire" : invoice.validation.scope_supported ? "Contrôles cohérents" : "Document hors périmètre résidentiel"}</strong>
-            <span>{Math.round(invoice.document_confidence * 100)} % de confiance globale</span>
-          </div>
-          {invoice.validation.warnings.includes("outside_mvp_professional_tariff") && <div className="alert warning">Les champs peuvent être consultés, mais QraLia n'appliquera pas les règles résidentielles à cette facture professionnelle.</div>}
-          <div className="field-grid">
-            {usefulFields.map((field) => <article className={`field-card confidence-${field.confidence >= 0.85 ? "high" : "low"}`} key={field.name}>
-              <div><p>{field.label}</p><strong>{field.display_value || "Non lisible"}</strong></div>
-              <span>{confidenceLabel(field.confidence)}</span>
-            </article>)}
+          <section className="summary-card" aria-label="Résumé de la facture">
+            <div className="summary-head">
+              <p className="eyebrow">Facture {fields.get("invoice_number")?.display_value || ""}</p>
+              <span className={`badge ${invoice.validation.valid && invoice.validation.scope_supported ? "ok" : "warn"}`}>
+                {!invoice.validation.valid ? "Vérification nécessaire" : invoice.validation.scope_supported ? "Contrôles cohérents" : "Facture professionnelle"}
+              </span>
+            </div>
+            <div className="summary-values">
+              <SummaryValue field={fields.get("total_check")} label="À payer" missing="Montant non lisible" />
+              <SummaryValue field={fields.get("due_date")} label="Avant le" missing="Date non lisible" />
+            </div>
+            {isReadable(cash) && <p className="summary-note">En espèces, timbre inclus : <strong>{formatField(cash)}</strong></p>}
+            {!invoice.validation.scope_supported && <p className="summary-note warn">Les champs peuvent être consultés, mais QraLia n'appliquera pas les règles résidentielles à cette facture professionnelle.</p>}
+          </section>
+
+          <details className="details-card">
+            <summary><span>Voir tous les détails lus sur la facture</span><small>{Math.round(invoice.document_confidence * 100)} % de confiance globale</small></summary>
+            <ul className="field-list">
+              {detailFields.map((field) => <li className={field.confidence >= 0.85 ? "" : "low"} key={field.name}>
+                <span>{field.label}</span>
+                <strong>{formatField(field)}</strong>
+                <small>{isReadable(field) ? confidenceLabel(field.confidence) : "À vérifier sur le papier"}</small>
+              </li>)}
+            </ul>
+          </details>
+
+          <div className="step-heading"><span>?</span><div><h2>Poser une question</h2><p>Touchez une question ou écrivez la vôtre, en français, en arabe ou en darija.</p></div></div>
+          <div className="chat-card">
+            {(messages.length > 0 || pending) && <section className="chat-thread" aria-label="Conversation avec QraLia">
+              {messages.map(({ question: userQuestion, result }) => <div className="chat-exchange" key={result.user_message_id}>
+                <div className="chat-message user-message"><p>{userQuestion}</p></div>
+                <div className="chat-message assistant-message">
+                  {result.clarification_question
+                    ? <p>{result.clarification_question}</p>
+                    : result.answer && <>
+                      <p>{withoutCitationIds(result.answer.answer)}</p>
+                      <div className="answer-meta"><span>{routeLabels[result.answer.route]}</span><span>{confidenceLabel(result.answer.confidence)}</span></div>
+                      {result.answer.citations.length > 0 && <div className="sources">{result.answer.citations.map((citation) => <a href={citation.url} target="_blank" rel="noreferrer" key={citation.chunk_id}>Source : {citation.title} ↗</a>)}</div>}
+                    </>}
+                  {(result.answer?.warnings.length || (result.resolution.action === "rewrite" && result.resolution.standalone_question)) ? <details className="tech-details">
+                    <summary>Détails techniques</summary>
+                    {result.resolution.action === "rewrite" && result.resolution.standalone_question && <small>Question comprise comme : {result.resolution.standalone_question}</small>}
+                    {result.answer?.warnings.map((warning) => <small key={warning}>{warning}</small>)}
+                  </details> : null}
+                </div>
+              </div>)}
+              {pending && <div className="chat-exchange">
+                <div className="chat-message user-message"><p>{pending}</p></div>
+                <div className="chat-message assistant-message thinking" role="status"><p>QraLia cherche dans la facture et les sources officielles</p></div>
+              </div>}
+            </section>}
+
+            <div className="suggestions" aria-label="Questions suggérées">
+              {SUGGESTED_QUESTIONS.map((suggestion) => <button type="button" key={suggestion} onClick={() => void ask(suggestion)} disabled={busy !== null}>{suggestion}</button>)}
+            </div>
+
+            <form className="question-form" onSubmit={handleQuestion}>
+              <label className="visually-hidden" htmlFor="question">Votre question</label>
+              <textarea id="question" value={question} onChange={(event) => setQuestion(event.target.value)} onKeyDown={handleQuestionKey} placeholder="Écrivez votre question…" rows={2} maxLength={500} />
+              <button className="primary" disabled={!question.trim() || busy !== null}>Envoyer</button>
+            </form>
+            <div className="language-row">
+              <label htmlFor="language">Langue de réponse</label>
+              <select id="language" value={language} onChange={(event) => setLanguage(event.target.value)}>
+                <option value="auto">Automatique</option><option value="fr">Français</option>
+                <option value="ar">العربية الفصحى</option><option value="darija_arab">الدارجة</option><option value="darija_latn">Darija latine</option>
+              </select>
+            </div>
           </div>
 
-          <div className="step-heading"><span>03</span><div><h2>Discuter avec QraLia</h2><p>Vous pouvez poser une question, puis continuer avec « Et avant quelle date ? ».</p></div></div>
-          {messages.length > 0 && <section className="chat-thread" aria-label="Conversation avec QraLia">
-            {messages.map(({ question: userQuestion, result }) => <div className="chat-exchange" key={result.user_message_id}>
-              <div className="chat-message user-message"><span>Vous</span><p>{userQuestion}</p></div>
-              <div className="chat-message assistant-message">
-                <span>QraLia</span>
-                {result.resolution.action === "rewrite" && result.resolution.standalone_question && <small className="rewrite-note">Question comprise comme : {result.resolution.standalone_question}</small>}
-                {result.clarification_question
-                  ? <p>{result.clarification_question}</p>
-                  : result.answer && <>
-                    <div className="answer-meta"><span>{routeLabels[result.answer.route]}</span><span>{Math.round(result.answer.confidence * 100)} % de confiance</span></div>
-                    <p>{result.answer.answer}</p>
-                    {result.answer.citations.length > 0 && <div className="sources"><strong>Sources officielles</strong>{result.answer.citations.map((citation) => <a href={citation.url} target="_blank" rel="noreferrer" key={citation.chunk_id}>{citation.title} ↗</a>)}</div>}
-                    {result.answer.warnings.map((warning) => <small className="answer-warning" key={warning}>{warning}</small>)}
-                  </>}
-              </div>
-            </div>)}
-          </section>}
-          <form className="question-card" onSubmit={handleQuestion}>
-            <label htmlFor="language">Langue souhaitée</label>
-            <select id="language" value={language} onChange={(event) => setLanguage(event.target.value)}>
-              <option value="auto">Détection automatique</option><option value="fr">Français</option>
-              <option value="ar">العربية الفصحى</option><option value="darija_arab">الدارجة</option><option value="darija_latn">Darija latine</option>
-            </select>
-            <label htmlFor="question">Votre question</label>
-            <textarea id="question" value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="Exemple : Combien dois-je payer ? Puis : Et avant quelle date ?" rows={3} maxLength={500} />
-            <button className="primary" disabled={!question.trim() || busy !== null}>{busy === "question" ? "Recherche des preuves…" : messages.length ? "Envoyer" : "Commencer la conversation"}</button>
-          </form>
-
-          <button className="delete" onClick={handleDelete} disabled={busy !== null}>{busy === "delete" ? "Suppression…" : "Supprimer cette facture de la session"}</button>
+          <button className="delete" onClick={handleDelete} disabled={busy !== null}>{busy === "delete" ? "Suppression…" : "Supprimer cette facture et lire une autre"}</button>
         </>}
       </section>
 
