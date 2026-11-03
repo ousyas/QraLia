@@ -46,6 +46,9 @@ class InvoiceResponse(BaseModel):
     created_at: datetime
     expires_at: datetime
     document_confidence: float
+    provider_id: str
+    provider_name: str | None = None
+    document_kind: str | None = None
     fields: list[FieldView]
     validation: ValidationView
 

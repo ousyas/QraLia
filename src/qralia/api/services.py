@@ -30,7 +30,7 @@ from qralia.api.models import (
 from qralia.api.store import InMemoryInvoiceStore, InvoiceRecord
 from qralia.domain.extracted_invoice import ExtractedInvoice
 from qralia.domain.invoice_evidence import FIELD_LABELS, build_invoice_evidence
-from qralia.domain.providers import rag_context
+from qralia.domain.providers import PROVIDERS, rag_context
 from qralia.rag.bm25_evaluation import BM25Index, load_jsonl
 from qralia.validation.validator import validate_invoice
 
@@ -99,11 +99,15 @@ class InvoiceApplicationService:
                 display_value=field.raw_value or ("" if field.normalized_value is None else str(field.normalized_value)),
                 status=field.status.value, confidence=field.confidence, page=field.provenance.page,
             ))
+        profile = PROVIDERS.get(record.invoice.provider_id)
         return InvoiceResponse(
             invoice_id=record.public_id,
             created_at=record.created_at,
             expires_at=record.expires_at,
             document_confidence=record.invoice.document_confidence,
+            provider_id=record.invoice.provider_id,
+            provider_name=profile.display_name if profile else None,
+            document_kind=profile.document_kind if profile else None,
             fields=fields,
             validation=ValidationView.model_validate(record.validation),
         )

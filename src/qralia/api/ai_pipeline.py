@@ -114,7 +114,10 @@ def _invoice_fields(record: InvoiceRecord) -> list[dict[str, Any]]:
 
 def _fallback_need(question: str) -> RoutedNeed:
     folded = question.casefold()
-    invoice_markers = ("combien", "montant", "total", "date limite", "échéance", "numero", "numéro", "شحال", "المبلغ", "رقم", "تاريخ")
+    invoice_markers = (
+        "combien", "montant", "total", "date limite", "échéance", "numero", "numéro", "شحال", "المبلغ", "رقم", "تاريخ",
+        "mon offre", "quelle offre", "forfait", "العرض", "الباقة",
+    )
     rag_markers = ("comment payer", "où payer", "ou payer", "chèque", "cheque", "virement", "agence", "jour férié", "kifach", "fin", "chik", "كيفاش", "فين", "الشيك", "وكالة", "عطلة")
     invoice = any(marker in folded for marker in invoice_markers)
     # Reconnaît aussi les formulations où un pronom sépare l'interrogatif du

@@ -10,12 +10,21 @@ const routeLabels = {
   unknown: "Réponse non trouvée",
 };
 
-const SUGGESTED_QUESTIONS = [
-  "Combien dois-je payer ?",
-  "Quelle est la date limite de paiement ?",
-  "Où puis-je payer ma facture ?",
-  "Puis-je payer par chèque ?",
-];
+const SUGGESTED_QUESTIONS = {
+  utilities: [
+    "Combien dois-je payer ?",
+    "Quelle est la date limite de paiement ?",
+    "Où puis-je payer ma facture ?",
+    "Puis-je payer par chèque ?",
+  ],
+  telecom: [
+    "Combien dois-je payer ?",
+    "Quelle est la date limite de paiement ?",
+    "Quelle est mon offre ?",
+    "Comment payer ma facture ?",
+  ],
+};
+const TELECOM_PROVIDERS = new Set(["iam", "orange_ma", "inwi"]);
 
 function SummaryValue({ field, label, missing }: { field: FieldView | undefined; label: string; missing: string }) {
   const readable = isReadable(field) && field.confidence >= 0.7;
@@ -107,6 +116,10 @@ export default function App() {
   }
 
   const cash = fields.get("total_cash");
+  const plan = fields.get("plan_name");
+  const suggestions = SUGGESTED_QUESTIONS[invoice && TELECOM_PROVIDERS.has(invoice.provider_id) ? "telecom" : "utilities"];
+  const professional = invoice?.validation.warnings.includes("outside_mvp_professional_tariff");
+  const unknownProvider = invoice?.provider_id === "unknown";
 
   return (
     <main className={invoice ? "has-invoice" : undefined}>
@@ -120,7 +133,7 @@ export default function App() {
         <div className="hero-copy" id="top">
           <p className="eyebrow">Comprendre sans deviner</p>
           <h1>Votre facture, <em>en mots simples.</em></h1>
-          <p>Déposez une facture synthétique. QraLia lit les informations utiles, signale les incertitudes et cite les règles officielles.</p>
+          <p>Déposez une facture synthétique d'électricité ou d'abonnement télécom. QraLia lit les informations utiles, signale les incertitudes et cite les règles officielles.</p>
         </div>
       </header>
 
@@ -144,17 +157,22 @@ export default function App() {
         {invoice && <>
           <section className="summary-card" aria-label="Résumé de la facture">
             <div className="summary-head">
-              <p className="eyebrow">Facture {fields.get("invoice_number")?.display_value || ""}</p>
+              <div>
+                <p className="provider">{invoice.provider_name ?? "Fournisseur non reconnu"}</p>
+                <p className="eyebrow">{invoice.document_kind ?? "Facture"} {isReadable(fields.get("invoice_number")) ? `· ${fields.get("invoice_number")!.display_value}` : ""}</p>
+              </div>
               <span className={`badge ${invoice.validation.valid && invoice.validation.scope_supported ? "ok" : "warn"}`}>
-                {!invoice.validation.valid ? "Vérification nécessaire" : invoice.validation.scope_supported ? "Contrôles cohérents" : "Facture professionnelle"}
+                {!invoice.validation.valid ? "Vérification nécessaire" : invoice.validation.scope_supported ? "Contrôles cohérents" : professional ? "Facture professionnelle" : "Hors périmètre"}
               </span>
             </div>
             <div className="summary-values">
               <SummaryValue field={fields.get("total_check")} label="À payer" missing="Montant non lisible" />
               <SummaryValue field={fields.get("due_date")} label="Avant le" missing="Date non lisible" />
             </div>
+            {isReadable(plan) && <p className="summary-note">Offre : <strong>{formatField(plan)}</strong></p>}
             {isReadable(cash) && <p className="summary-note">En espèces, timbre inclus : <strong>{formatField(cash)}</strong></p>}
-            {!invoice.validation.scope_supported && <p className="summary-note warn">Les champs peuvent être consultés, mais QraLia n'appliquera pas les règles résidentielles à cette facture professionnelle.</p>}
+            {professional && <p className="summary-note warn">Les champs peuvent être consultés, mais QraLia n'appliquera pas les règles résidentielles à cette facture professionnelle.</p>}
+            {unknownProvider && <p className="summary-note warn">QraLia n'a pas reconnu le fournisseur de cette facture : les champs lus sont affichés, mais aucune règle officielle ne sera appliquée.</p>}
           </section>
 
           <details className="details-card">
@@ -196,7 +214,7 @@ export default function App() {
             </section>}
 
             <div className="suggestions" aria-label="Questions suggérées">
-              {SUGGESTED_QUESTIONS.map((suggestion) => <button type="button" key={suggestion} onClick={() => void ask(suggestion)} disabled={busy !== null}>{suggestion}</button>)}
+              {suggestions.map((suggestion) => <button type="button" key={suggestion} onClick={() => void ask(suggestion)} disabled={busy !== null}>{suggestion}</button>)}
             </div>
 
             <form className="question-form" onSubmit={handleQuestion}>

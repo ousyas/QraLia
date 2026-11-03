@@ -5,7 +5,7 @@ import type { FieldView } from "./types";
 const money = new Intl.NumberFormat("fr-MA", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const longDate = new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 
-const MONEY_FIELDS = new Set(["total_cash", "total_check", "amount_before_tax", "taxes", "previous_unpaid"]);
+const MONEY_FIELDS = new Set(["total_cash", "total_check", "amount_before_tax", "taxes", "previous_unpaid", "out_of_plan_amount"]);
 const DATE_FIELDS = new Set(["due_date", "invoice_date"]);
 
 const TARIFF_LABELS: Record<string, string> = {
