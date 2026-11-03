@@ -1,0 +1,91 @@
+{
+  "schema_version": "0.1.0",
+  "invoice_id": "F98054201",
+  "extraction": {
+    "method": "synthetic_generation",
+    "timestamp": "2026-10-04"
+  },
+  "fields": {
+    "total_cash": {
+      "raw_value": "731,57",
+      "normalized_value": 731.57,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "total_check": {
+      "raw_value": "731,24",
+      "normalized_value": 731.24,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "due_date": {
+      "raw_value": "19.01.2026",
+      "normalized_value": "2026-01-19",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "invoice_date": {
+      "raw_value": "09.01.2026",
+      "normalized_value": "2026-01-09",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "tariff": {
+      "raw_value": "BT_DOMESTIQUE",
+      "normalized_value": "BT_DOMESTIQUE",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "amount_before_tax": {
+      "raw_value": "537,00",
+      "normalized_value": 537.0,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "taxes": {
+      "raw_value": "75,18",
+      "normalized_value": 75.18,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "previous_unpaid": {
+      "raw_value": "119,06",
+      "normalized_value": 119.06,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    }
+  },
+  "document_confidence": 1.0
+}
