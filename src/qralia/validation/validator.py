@@ -61,8 +61,9 @@ def validate_invoice(extracted: ExtractedInvoice | dict) -> dict:
         errors.append("total_cash cannot be lower than total_check")
     elif total_cash is not None and total_check is not None and abs(total_cash - total_check - STAMP_DUTY) > TOLERANCE:
         warnings.append(f"stamp_duty_unexpected ({total_cash - total_check} != {STAMP_DUTY})")
-    if amount_ht is not None and taxes is not None:
-        expected_taxes = (amount_ht * PROVIDERS[invoice.provider_id].vat_rate).quantize(TOLERANCE)
+    profile = PROVIDERS.get(invoice.provider_id)
+    if profile is not None and amount_ht is not None and taxes is not None:
+        expected_taxes = (amount_ht * profile.vat_rate).quantize(TOLERANCE)
         if abs(taxes - expected_taxes) > VAT_TOLERANCE:
             warnings.append(f"taxes_differ_from_vat_rate ({taxes} != {expected_taxes})")
 
@@ -80,7 +81,10 @@ def validate_invoice(extracted: ExtractedInvoice | dict) -> dict:
     tariff = str(invoice.fields.tariff.normalized_value or "").upper()
     # Seule l'ONEE distingue ici tarifs résidentiels et professionnels.
     scope_supported = invoice.provider_id != "onee" or not (tariff.startswith("MT") or "GENERAL" in tariff)
-    if not scope_supported:
+    if profile is None:
+        scope_supported = False
+        warnings.append("unknown_provider")
+    elif not scope_supported:
         warnings.append("outside_mvp_professional_tariff")
     return {
         "valid": not errors,

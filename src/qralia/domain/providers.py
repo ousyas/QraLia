@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import Literal
 
-ProviderId = Literal["onee", "iam", "orange_ma", "inwi"]
+ProviderId = Literal["onee", "iam", "orange_ma", "inwi", "unknown"]
 
 
 @dataclass(frozen=True)

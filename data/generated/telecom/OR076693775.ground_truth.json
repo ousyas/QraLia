@@ -1,0 +1,122 @@
+{
+  "schema_version": "0.2.0",
+  "invoice_id": "OR076693775",
+  "provider_id": "orange_ma",
+  "extraction": {
+    "method": "synthetic_generation",
+    "timestamp": "2026-11-03"
+  },
+  "fields": {
+    "invoice_number": {
+      "raw_value": "OR076693775",
+      "normalized_value": "OR076693775",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "contract_number": {
+      "raw_value": "635179199",
+      "normalized_value": "635179199",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "line_number": {
+      "raw_value": "07 ** ** 71 53",
+      "normalized_value": "07****7153",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "plan_name": {
+      "raw_value": "Box Fibre 100 Méga",
+      "normalized_value": "Box Fibre 100 Méga",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "invoice_date": {
+      "raw_value": "03.07.2026",
+      "normalized_value": "2026-07-03",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "due_date": {
+      "raw_value": "23.07.2026",
+      "normalized_value": "2026-07-23",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "out_of_plan_amount": {
+      "raw_value": "0,00",
+      "normalized_value": 0.0,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "amount_before_tax": {
+      "raw_value": "349,00",
+      "normalized_value": 349.0,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "taxes": {
+      "raw_value": "69,80",
+      "normalized_value": 69.8,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "previous_unpaid": {
+      "raw_value": "0,00",
+      "normalized_value": 0.0,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "total_check": {
+      "raw_value": "418,80",
+      "normalized_value": 418.8,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    }
+  },
+  "document_confidence": 1.0
+}
