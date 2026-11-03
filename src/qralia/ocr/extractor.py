@@ -201,6 +201,11 @@ def _parse_money(text: str) -> float | None:
     # Une date comme 01.03.2017 ne doit jamais devenir le montant 1 032 017.
     if re.fullmatch(r"\s*\d{1,2}[./-]\d{1,2}[./-]\d{4}\s*", text):
         return None
+    # Une lettre collée aux chiffres signale une confusion OCR (« L66,26 » pour
+    # « 466,26 ») : la supprimer fabriquerait silencieusement un autre montant.
+    body = re.sub(r"\s*(?:DH|DHS|MAD|TTC|HT)\s*$", "", text.strip(), flags=re.IGNORECASE)
+    if re.search(r"[^\W\d_]", body):
+        return None
     cleaned = re.sub(r"[^0-9,.-]", "", text).replace("-", "")
     if not re.search(r"\d", cleaned):
         return None
@@ -349,7 +354,7 @@ def _tariff(tokens: list[OcrToken]) -> ExtractedField:
             raw = " ".join(item.text for item in candidates)
             return ExtractedField(
                 raw_value=raw,
-                normalized_value="_".join(_label_text(item.text).upper() for item in candidates),
+                normalized_value="_".join(_label_text(item.text).upper().replace(" ", "_") for item in candidates),
                 confidence=round(min(item.confidence for item in candidates), 4),
                 status=FieldStatus.EXTRACTED,
                 provenance=FieldProvenance(page=candidates[0].page, method="tesseract"),

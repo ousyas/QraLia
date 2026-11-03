@@ -27,6 +27,20 @@ def test_moroccan_money_formats():
     assert _parse_money("23 419,20") == 23419.20
     assert _parse_money("930.50") == 930.50
     assert _parse_money("01.03.2017") is None
+    assert _parse_money("466,26 DH") == 466.26
+
+
+def test_letter_glued_to_amount_is_never_silently_dropped():
+    # Tesseract a lu « 466,26 » comme « L66,26 » sur une facture synthétique.
+    assert _parse_money("L66,26") is None
+    invoice = parse_ocr_tokens(_tokens("Total", "à", "régler", "L66,26"), "synthetic.pdf")
+    assert invoice.fields.total_check.status == FieldStatus.UNREADABLE
+    assert invoice.fields.total_check.normalized_value is None
+
+
+def test_underscored_tariff_keeps_its_canonical_code():
+    invoice = parse_ocr_tokens(_tokens("Tarif", ":", "BT_DOMESTIQUE"), "synthetic.pdf")
+    assert invoice.fields.tariff.normalized_value == "BT_DOMESTIQUE"
 
 
 def test_parse_validate_and_build_evidence():

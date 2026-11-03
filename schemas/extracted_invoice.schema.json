@@ -1,0 +1,95 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://qralia.local/schemas/extracted_invoice.schema.json",
+    "title": "QraLia extracted ONEE invoice",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "invoice_id",
+        "extraction","fields","document_confidence"
+    ],
+    "properties": {
+        "schema_version": {
+            "const": "0.1.0"
+        },
+        "invoice_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._-]+$"
+        },
+        "extraction": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "extracted_at",
+                "ocr_engine",
+                "source_file"
+            ],
+            "properties": {
+                "extracted_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "ocr_engine": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "source_file": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },"fields": {
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "total_cash",
+    "total_check",
+    "due_date",
+    "invoice_date",
+    "tariff"
+  ],
+  "properties": {
+    "total_cash": {"$ref": "#/$defs/extracted_field"},
+    "total_check": {"$ref": "#/$defs/extracted_field"},
+    "due_date": {"$ref": "#/$defs/extracted_field"},
+    "invoice_date": {"$ref": "#/$defs/extracted_field"},
+    "tariff": {"$ref": "#/$defs/extracted_field"},
+    "amount_before_tax": {"$ref": "#/$defs/extracted_field"},
+    "taxes": {"$ref": "#/$defs/extracted_field"},
+    "previous_unpaid": {"$ref": "#/$defs/extracted_field"}
+  }
+},"document_confidence": {
+  "type": "number",
+  "minimum": 0,
+  "maximum": 1
+}
+    },
+"$defs": {
+  "extracted_field": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["raw_value", "confidence"],
+    "properties": {
+      "raw_value": {"type": "string"},
+      "normalized_value": {},
+      "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+      "provenance": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["page"],
+        "properties": {
+          "page": {"type": "integer", "minimum": 1},
+          "bbox": {
+            "type": "array",
+            "items": {"type": "number"},
+            "minItems": 4,
+            "maxItems": 4
+          },
+          "method": {"type": "string"}
+        }
+      }
+    }
+  }
+}
+}

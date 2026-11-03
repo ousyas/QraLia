@@ -8,6 +8,11 @@ from decimal import Decimal, InvalidOperation
 from qralia.domain.extracted_invoice import ExtractedInvoice, FieldStatus
 
 TOLERANCE = Decimal("0.01")
+# Valeurs observées sur les factures résidentielles ONEE synthétiques ; elles
+# peuvent varier, donc un écart produit un avertissement et non une erreur.
+STAMP_DUTY = Decimal("0.33")
+VAT_RATE = Decimal("0.14")
+VAT_TOLERANCE = Decimal("1.00")
 
 
 def _as_invoice(extracted: ExtractedInvoice | dict) -> ExtractedInvoice:
@@ -53,6 +58,12 @@ def validate_invoice(extracted: ExtractedInvoice | dict) -> dict:
         warnings.append("arithmetic_check_skipped_missing_amount")
     if total_cash is not None and total_check is not None and total_cash < total_check:
         errors.append("total_cash cannot be lower than total_check")
+    elif total_cash is not None and total_check is not None and abs(total_cash - total_check - STAMP_DUTY) > TOLERANCE:
+        warnings.append(f"stamp_duty_unexpected ({total_cash - total_check} != {STAMP_DUTY})")
+    if amount_ht is not None and taxes is not None:
+        expected_taxes = (amount_ht * VAT_RATE).quantize(TOLERANCE)
+        if abs(taxes - expected_taxes) > VAT_TOLERANCE:
+            warnings.append(f"taxes_differ_from_vat_rate ({taxes} != {expected_taxes})")
 
     due_date = _date(invoice, "due_date")
     invoice_date = _date(invoice, "invoice_date")
