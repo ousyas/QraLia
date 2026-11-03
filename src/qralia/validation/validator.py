@@ -6,12 +6,13 @@ from datetime import date
 from decimal import Decimal, InvalidOperation
 
 from qralia.domain.extracted_invoice import ExtractedInvoice, FieldStatus
+from qralia.domain.providers import PROVIDERS, critical_fields
 
 TOLERANCE = Decimal("0.01")
-# Valeurs observées sur les factures résidentielles ONEE synthétiques ; elles
-# peuvent varier, donc un écart produit un avertissement et non une erreur.
+# Valeurs observées sur les factures synthétiques ; elles peuvent varier, donc
+# un écart produit un avertissement et non une erreur. Le taux de TVA dépend du
+# fournisseur (registre des profils).
 STAMP_DUTY = Decimal("0.33")
-VAT_RATE = Decimal("0.14")
 VAT_TOLERANCE = Decimal("1.00")
 
 
@@ -61,7 +62,7 @@ def validate_invoice(extracted: ExtractedInvoice | dict) -> dict:
     elif total_cash is not None and total_check is not None and abs(total_cash - total_check - STAMP_DUTY) > TOLERANCE:
         warnings.append(f"stamp_duty_unexpected ({total_cash - total_check} != {STAMP_DUTY})")
     if amount_ht is not None and taxes is not None:
-        expected_taxes = (amount_ht * VAT_RATE).quantize(TOLERANCE)
+        expected_taxes = (amount_ht * PROVIDERS[invoice.provider_id].vat_rate).quantize(TOLERANCE)
         if abs(taxes - expected_taxes) > VAT_TOLERANCE:
             warnings.append(f"taxes_differ_from_vat_rate ({taxes} != {expected_taxes})")
 
@@ -72,12 +73,13 @@ def validate_invoice(extracted: ExtractedInvoice | dict) -> dict:
     elif due_date <= invoice_date:
         errors.append(f"due_date ({due_date}) must be after invoice_date ({invoice_date})")
 
-    critical = ("invoice_number", "total_check", "due_date", "invoice_date", "tariff")
+    critical = critical_fields(invoice.provider_id)
     low_confidence = [name for name in critical if getattr(invoice.fields, name).confidence < 0.70]
     if low_confidence:
         warnings.append("low_confidence:" + ",".join(low_confidence))
     tariff = str(invoice.fields.tariff.normalized_value or "").upper()
-    scope_supported = not (tariff.startswith("MT") or "GENERAL" in tariff)
+    # Seule l'ONEE distingue ici tarifs résidentiels et professionnels.
+    scope_supported = invoice.provider_id != "onee" or not (tariff.startswith("MT") or "GENERAL" in tariff)
     if not scope_supported:
         warnings.append("outside_mvp_professional_tariff")
     return {
