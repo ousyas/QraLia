@@ -65,3 +65,17 @@ COMMON_CRITICAL_FIELDS = ("invoice_number", "total_check", "due_date", "invoice_
 def critical_fields(provider_id: str) -> tuple[str, ...]:
     """Le tarif ONEE décide du périmètre résidentiel ; il n'existe pas en télécom."""
     return COMMON_CRITICAL_FIELDS + (("tariff",) if provider_id == "onee" else ())
+
+
+def rag_context(provider_id: str) -> dict[str, str] | None:
+    """Filtres de recherche du corpus officiel pour ce fournisseur."""
+    profile = PROVIDERS.get(provider_id)
+    if profile is None:
+        return None
+    return {
+        "domain": profile.domain,
+        "provider_id": profile.provider_id,
+        "service_type": profile.service_type,
+        "service_zone_id": profile.service_zone_id,
+        "audience": "residential",
+    }

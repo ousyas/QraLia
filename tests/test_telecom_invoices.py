@@ -109,3 +109,51 @@ def test_generated_telecom_ground_truth_is_arithmetically_consistent():
             assert abs(fields["taxes"] - round(fields["amount_before_tax"] * 0.20, 2)) < 0.01
             assert invoice.due_date > invoice.invoice_date > invoice.period_end
             assert "**" in invoice.line_number
+
+
+def test_api_routes_official_rules_to_the_invoice_provider(tmp_path):
+    import json
+
+    from fastapi.testclient import TestClient
+
+    from qralia.api.main import create_app
+
+    def chunk(chunk_id, provider_id, domain, service_type, zone, text):
+        return {
+            "schema_version": "0.3.0", "chunk_id": chunk_id, "document_id": chunk_id, "source_id": chunk_id,
+            "section_id": "paiement", "text": text,
+            "metadata": {
+                "title": f"Paiement {provider_id}", "publisher": provider_id, "canonical_url": f"https://example.test/{chunk_id}",
+                "languages": ["fr"], "domain": domain, "provider_id": provider_id, "provider_name": provider_id,
+                "service_type": service_type, "service_zone_id": zone, "legacy_operator": None,
+                "source_role": "operator_primary", "audiences": ["residential"], "validity_status": "active",
+                "verified_at": "2026-10-17", "risk_level": "low", "heading_path": ["Paiement"],
+            },
+        }
+
+    onee = tmp_path / "onee.jsonl"
+    onee.write_text(json.dumps(chunk(
+        "onee-cheque", "onee", "utilities", "electricity", "onee_be_national",
+        "Le paiement par chèque se fait à l'ordre de l'ONEE en agence.",
+    ), ensure_ascii=False) + "\n", encoding="utf-8")
+    telecom = tmp_path / "telecom.jsonl"
+    telecom.write_text(json.dumps(chunk(
+        "orange-cheque", "orange_ma", "telecommunications", "consumer_postpaid", "morocco_national",
+        "Le paiement par chèque de votre facture Orange se fait en boutique.",
+    ), ensure_ascii=False) + "\n", encoding="utf-8")
+
+    orange = parse_ocr_tokens(_lines(*ORANGE), "synthetic.pdf")
+    app = create_app(
+        extractor=lambda path: orange, corpus_path=[onee, telecom],
+        ocr_ready_override=True, ai_enabled_override=False,
+    )
+    client = TestClient(app)
+    uploaded = client.post(
+        "/v1/invoices", data={"confirm_synthetic": "true"},
+        files={"file": ("orange.pdf", b"%PDF-1.4 synthetic", "application/pdf")},
+    ).json()
+    answer = client.post(
+        f"/v1/invoices/{uploaded['invoice_id']}/questions",
+        json={"question": "Puis-je payer par chèque ?", "language": "fr"},
+    ).json()
+    assert [citation["chunk_id"] for citation in answer["citations"]] == ["orange-cheque"]

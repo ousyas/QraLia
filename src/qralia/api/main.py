@@ -32,6 +32,7 @@ from qralia.ocr.extractor import extract_invoice
 
 ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_CORPUS = ROOT / "data/processed/onee-regler-facture-residentiel/chunks.jsonl"
+DEFAULT_TELECOM_CORPUS = ROOT / "data/processed/telecom/chunks.jsonl"
 ALLOWED_EXTENSIONS = {".pdf", ".png", ".jpg", ".jpeg"}
 ALLOWED_CONTENT_TYPES = {"application/pdf", "image/png", "image/jpeg"}
 MAX_UPLOAD_BYTES = 10 * 1024 * 1024
@@ -60,7 +61,7 @@ def _tesseract_available() -> bool:
 def create_app(
     *,
     extractor: Callable[[Path], ExtractedInvoice] = extract_invoice,
-    corpus_path: Path | None = None,
+    corpus_path: Path | list[Path] | None = None,
     ocr_ready_override: bool | None = None,
     ai_enabled_override: bool | None = None,
 ) -> FastAPI:
@@ -77,7 +78,10 @@ def create_app(
         allow_headers=["Content-Type"],
     )
     invoices = InvoiceApplicationService(extractor=extractor)
-    configured_corpus = corpus_path or Path(os.getenv("QRALIA_ONEE_CHUNKS_PATH", str(DEFAULT_CORPUS)))
+    configured_corpus = corpus_path or [
+        Path(os.getenv("QRALIA_ONEE_CHUNKS_PATH", str(DEFAULT_CORPUS))),
+        Path(os.getenv("QRALIA_TELECOM_CHUNKS_PATH", str(DEFAULT_TELECOM_CORPUS))),
+    ]
     ai_enabled = (
         ai_enabled_override
         if ai_enabled_override is not None

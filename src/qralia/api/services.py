@@ -6,7 +6,7 @@ import re
 import unicodedata
 import logging
 from pathlib import Path
-from typing import Callable
+from typing import Callable, Sequence
 
 from qralia.api.conversation import (
     ConversationRecord,
@@ -30,6 +30,7 @@ from qralia.api.models import (
 from qralia.api.store import InMemoryInvoiceStore, InvoiceRecord
 from qralia.domain.extracted_invoice import ExtractedInvoice
 from qralia.domain.invoice_evidence import FIELD_LABELS, build_invoice_evidence
+from qralia.domain.providers import rag_context
 from qralia.rag.bm25_evaluation import BM25Index, load_jsonl
 from qralia.validation.validator import validate_invoice
 
@@ -47,7 +48,10 @@ FIELD_ALIASES = {
     "tariff": ("tarif", "تعريفة", "الطاريف"),
     "amount_before_tax": ("hors taxes", "montant ht", "بلا ضريبة"),
     "taxes": ("taxes", "tva", "الضريبة", "الضرائب"),
-    "previous_unpaid": ("impaye precedent", "arrieres", "متأخرات"),
+    "previous_unpaid": ("impaye precedent", "arrieres", "solde precedent", "متأخرات"),
+    "plan_name": ("mon offre", "mon forfait", "quelle offre", "quel forfait", "العرض", "الباقة"),
+    "line_number": ("numero de ligne", "رقم الخط"),
+    "out_of_plan_amount": ("hors forfait", "خارج الباقة"),
 }
 
 RAG_MARKERS = (
@@ -62,6 +66,11 @@ def _fold(text: str) -> str:
     value = unicodedata.normalize("NFKD", text.casefold())
     value = "".join(char for char in value if not unicodedata.combining(char))
     return re.sub(r"[^\w\u0600-\u06ff]+", " ", value).strip()
+
+
+def record_provider(record: InvoiceRecord) -> str:
+    """Nom court du fournisseur utilisé par le résolveur conversationnel."""
+    return {"orange_ma": "orange"}.get(record.invoice.provider_id, record.invoice.provider_id)
 
 
 class InvoiceApplicationService:
@@ -103,15 +112,21 @@ class InvoiceApplicationService:
 class QuestionAnswerService:
     """Baseline sûre : faits exacts de facture + extraits officiels cités."""
 
-    def __init__(self, corpus_path: Path | None, *, ai_enabled: bool = True) -> None:
-        self.corpus_path = corpus_path
+    def __init__(self, corpus_path: Path | Sequence[Path] | None, *, ai_enabled: bool = True) -> None:
+        # Le premier corpus (ONEE) conditionne la disponibilité ; les suivants
+        # (télécom) sont ajoutés s'ils ont été construits localement.
+        paths = [corpus_path] if isinstance(corpus_path, Path) else list(corpus_path or [])
+        self.corpus_path = paths[0] if paths else None
         self.chunks: list[dict] = []
         self.by_id: dict[str, dict] = {}
         self.index: BM25Index | None = None
         self.ai_enabled = ai_enabled
         self.ai_pipeline = None
-        if corpus_path and corpus_path.exists():
-            self.chunks = [item for item in load_jsonl(corpus_path) if item["metadata"]["validity_status"] == "active"]
+        if self.corpus_path and self.corpus_path.exists():
+            self.chunks = [
+                item for path in paths if path.exists() for item in load_jsonl(path)
+                if item["metadata"]["validity_status"] == "active"
+            ]
             if self.chunks:
                 self.index = BM25Index(self.chunks, normalization="darija_lexicon")
                 self.by_id = {item["chunk_id"]: item for item in self.chunks}
@@ -131,13 +146,14 @@ class QuestionAnswerService:
             if any(_fold(alias) in folded for alias in FIELD_ALIASES.get(item.field, ()))
         ]
 
-    def _rag_matches(self, question: str) -> list[dict]:
-        if not self.index or not any(_fold(marker) in _fold(question) for marker in RAG_MARKERS):
+    def _rag_matches(self, question: str, provider_id: str) -> list[dict]:
+        context = rag_context(provider_id)
+        if not self.index or context is None or not any(_fold(marker) in _fold(question) for marker in RAG_MARKERS):
             return []
         ranked = self.index.search(
-            question, audience="residential", distributor_id="onee",
-            service_zone_id="onee_be_national", domain="utilities",
-            service_type="electricity", top_k=3,
+            question, audience=context["audience"], distributor_id=context["provider_id"],
+            service_zone_id=context["service_zone_id"], domain=context["domain"],
+            service_type=context["service_type"], top_k=3,
         )
         # La présence d'un marqueur métier explicite est le garde-fou de cette
         # baseline. Un seuil BM25 absolu serait instable lorsque la taille du
@@ -146,7 +162,7 @@ class QuestionAnswerService:
 
     def _deterministic_answer(self, question: str, language: str, record: InvoiceRecord) -> QuestionResponse:
         invoice = self._invoice_matches(question, record)
-        rag = self._rag_matches(question) if record.validation.get("scope_supported", False) else []
+        rag = self._rag_matches(question, record.invoice.provider_id) if record.validation.get("scope_supported", False) else []
         route = "both" if invoice and rag else "invoice" if invoice else "official_rag" if rag else "unknown"
         evidence = [
             EvidenceView(source="invoice", evidence_id=item.evidence_id, label=FIELD_LABELS[item.field],
@@ -249,7 +265,7 @@ class ConversationService:
             message,
             conversation.turns,
             requested_language=requested_language,
-            provider="onee",
+            provider=record_provider(invoice),
         )
         user_turn = new_turn(
             "user", message, resolution.language,

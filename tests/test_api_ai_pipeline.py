@@ -111,6 +111,7 @@ def test_rag_retrieval_runs_even_when_qwen_hint_is_invoice():
 
         def retrieve(self, question, context):
             self.called = True
+            self.context = context
             return [{"chunk_id": "official-proof"}]
 
     class Router:
@@ -131,7 +132,8 @@ def test_rag_retrieval_runs_even_when_qwen_hint_is_invoice():
     runtime._matcher = object()
     runtime._provider = provider
     runtime._router = Router()
-    record = type("Record", (), {"validation": {}, "evidence": ()})()
+    invoice = type("Invoice", (), {"provider_id": "onee"})()
+    record = type("Record", (), {"validation": {}, "evidence": (), "invoice": invoice})()
 
     decision = runtime.decide(
         question="question procédurale",
@@ -141,6 +143,7 @@ def test_rag_retrieval_runs_even_when_qwen_hint_is_invoice():
     )
 
     assert provider.called is True
+    assert provider.context["provider_id"] == "onee"
     assert decision.route == "official_rag"
 
 
