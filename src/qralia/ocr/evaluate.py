@@ -29,6 +29,7 @@ def evaluate():
         return
 
     total_correct = 0
+    total_altered = 0
     total_fields = 0
     per_field_correct = {f: 0 for f in FIELDS}
     per_field_total = {f: 0 for f in FIELDS}
@@ -57,6 +58,10 @@ def evaluate():
             gt_val = gt["fields"][field]["normalized_value"]
             ex_val = extracted["fields"][field]["normalized_value"]
             match = _values_match(field, ex_val, gt_val)
+            # Le générateur n'imprime la ligne d'arriérés que si elle est > 0 :
+            # « absent du document » est alors la lecture correcte de 0,00.
+            if field == "previous_unpaid" and gt_val == 0 and extracted["fields"][field]["status"] == "not_present":
+                match = True
 
             per_field_correct[field] += int(match)
             per_field_total[field] += 1
@@ -66,6 +71,8 @@ def evaluate():
 
             if not match:
                 invoice_details[field] = {"expected": gt_val, "got": ex_val}
+                # Une valeur absente est un refus prudent ; une valeur différente est une altération.
+                total_altered += int(ex_val is not None)
 
         status = "OK" if invoice_correct == len(FIELDS) else f"{invoice_correct}/{len(FIELDS)}"
         print(status)
@@ -82,7 +89,9 @@ def evaluate():
     print("=" * 50)
 
     overall_accuracy = (total_correct / total_fields * 100) if total_fields else 0
-    print(f"\nOverall accuracy: {total_correct}/{total_fields} ({overall_accuracy:.1f}%)\n")
+    print(f"\nOverall accuracy: {total_correct}/{total_fields} ({overall_accuracy:.1f}%)")
+    print(f"Altered values (wrong value returned): {total_altered}/{total_fields}")
+    print(f"Refused values (unreadable): {total_fields - total_correct - total_altered}/{total_fields}\n")
 
     print("Per-field accuracy:")
     for field in FIELDS:
