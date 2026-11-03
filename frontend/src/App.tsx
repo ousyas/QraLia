@@ -1,4 +1,4 @@
-import { FormEvent, KeyboardEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, KeyboardEvent, useEffect, useMemo, useRef, useState } from "react";
 import { checkHealth, createConversation, deleteInvoice, sendConversationMessage, uploadInvoice } from "./api";
 import { confidenceLabel, formatField, isReadable, withoutCitationIds } from "./format";
 import type { ConversationMessageResponse, FieldView, InvoiceResponse } from "./types";
@@ -39,7 +39,13 @@ export default function App() {
   const [busy, setBusy] = useState<"upload" | "question" | "delete" | null>(null);
   const [error, setError] = useState("");
 
+  const chatEnd = useRef<HTMLDivElement>(null);
+
   useEffect(() => { void checkHealth().then(setOnline); }, []);
+  // Sur mobile, la dernière réponse doit rester visible au-dessus du champ fixe.
+  useEffect(() => {
+    if (messages.length || pending) chatEnd.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, [messages.length, pending]);
 
   const fields = useMemo(
     () => new Map((invoice?.fields ?? []).map((field) => [field.name, field])),
@@ -103,7 +109,7 @@ export default function App() {
   const cash = fields.get("total_cash");
 
   return (
-    <main>
+    <main className={invoice ? "has-invoice" : undefined}>
       <header className="hero">
         <nav aria-label="Navigation principale">
           <a className="brand" href="#top" aria-label="Accueil QraLia"><span>Q</span>raLia</a>
@@ -186,6 +192,7 @@ export default function App() {
                 <div className="chat-message user-message"><p>{pending}</p></div>
                 <div className="chat-message assistant-message thinking" role="status"><p>QraLia cherche dans la facture et les sources officielles</p></div>
               </div>}
+              <div className="chat-end" ref={chatEnd} />
             </section>}
 
             <div className="suggestions" aria-label="Questions suggérées">
