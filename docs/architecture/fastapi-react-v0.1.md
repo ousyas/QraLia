@@ -18,7 +18,8 @@ suppression. Elle n'est pas encore une version publique de production.
   corpus officiel, les deux, ou s'abstient.
 - `DELETE /v1/invoices/{invoice_id}` détruit immédiatement la session.
 
-Les octets téléversés sont écrits dans un fichier temporaire isolé, lus par
+Les fichiers acceptés font au plus 25 Mo (`QRALIA_MAX_UPLOAD_MB`) ; l'interface
+compresse avant l'envoi les photos de plus de 4 Mo. Les octets téléversés sont écrits dans un fichier temporaire isolé, lus par
 l'OCR puis supprimés dans un bloc `finally`. Le magasin applicatif ne conserve
 que l'extraction structurée pendant 30 minutes et possède une limite de 25
 documents.

@@ -233,3 +233,23 @@ def test_upload_returns_page_preview_once_with_field_boxes(tmp_path):
     assert total["bbox"] == [600, 300, 700, 330]
     # L'image de la page n'est jamais conservée côté serveur.
     assert client.get(f"/v1/invoices/{upload['invoice_id']}").json()["previews"] == []
+
+
+def test_upload_limit_accepts_phone_photos_above_ten_megabytes(tmp_path):
+    from qralia.api import main as api_main
+
+    app = create_app(extractor=lambda path: _invoice(path.name), corpus_path=_corpus(tmp_path / "chunks.jsonl"), ocr_ready_override=True, ai_enabled_override=False)
+    client = TestClient(app)
+    header = b"\x89PNG\r\n\x1a\n"
+    twelve_mb = header + b"0" * (12 * 1024 * 1024)
+    accepted = client.post(
+        "/v1/invoices", data={"confirm_synthetic": "true"},
+        files={"file": ("photo.png", twelve_mb, "image/png")},
+    )
+    assert accepted.status_code == 201
+    too_big = client.post(
+        "/v1/invoices", data={"confirm_synthetic": "true"},
+        files={"file": ("photo.png", header + b"0" * api_main.MAX_UPLOAD_BYTES, "image/png")},
+    )
+    assert too_big.status_code == 413
+    assert f"{api_main.MAX_UPLOAD_MB} Mo" in too_big.json()["detail"]

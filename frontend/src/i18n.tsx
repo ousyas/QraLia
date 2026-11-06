@@ -34,7 +34,7 @@ export type Strings = {
   status: { checking: string; online: string; offline: string };
   guideButton: string;
   hero: { eyebrow: string; titleA: string; titleB: string; lead: string; ctaRead: string; ctaHow: string };
-  upload: { title: string; hint: string; choose: string; dropHere: string; dropHint: string; change: string; consent: string; read: string; badFormat: string };
+  upload: { title: string; hint: string; choose: string; dropHere: string; dropHint: string; change: string; consent: string; read: string; badFormat: string; tooBig: (mb: number) => string };
   reading: { title: (file: string) => string; steps: string[] };
   how: { title: string; items: Array<{ title: string; text: string }> };
   summary: {
@@ -97,10 +97,11 @@ const fr: Strings = {
     ctaRead: "Lire ma facture", ctaHow: "Comment ça marche ?",
   },
   upload: {
-    title: "Ajouter une facture", hint: "PDF, PNG ou JPEG — 10 Mo maximum", choose: "Choisir une facture",
+    title: "Ajouter une facture", hint: "PDF, PNG ou JPEG — 25 Mo maximum", choose: "Choisir une facture",
     dropHere: "Déposez la facture ici", dropHint: "Touchez ici, prenez une photo ou glissez votre fichier",
     change: "touchez pour changer", consent: "Cette facture est entièrement synthétique et ne contient aucune donnée personnelle réelle.",
     read: "Lire la facture", badFormat: "Format non accepté : choisissez un PDF, PNG ou JPEG.",
+    tooBig: (mb) => `Ce fichier est trop lourd (plus de ${mb} Mo). Pour un PDF, essayez d'exporter seulement la première page.`,
   },
   reading: {
     title: (file) => `QraLia lit « ${isolate(file)} »`,
@@ -179,10 +180,11 @@ const ar: Strings = {
     ctaRead: "اقرأ فاتورتي", ctaHow: "كيف يعمل؟",
   },
   upload: {
-    title: "أضف فاتورة", hint: "PDF أو PNG أو JPEG — 10 ميغابايت كحد أقصى", choose: "اختر فاتورة",
+    title: "أضف فاتورة", hint: "PDF أو PNG أو JPEG — 25 ميغابايت كحد أقصى", choose: "اختر فاتورة",
     dropHere: "ضع الفاتورة هنا", dropHint: "انقر هنا، أو التقط صورة، أو اسحب ملفك",
     change: "انقر للتغيير", consent: "هذه الفاتورة نموذجية بالكامل ولا تحتوي على أي معطيات شخصية حقيقية.",
     read: "اقرأ الفاتورة", badFormat: "صيغة غير مقبولة: اختر PDF أو PNG أو JPEG.",
+    tooBig: (mb) => `هذا الملف كبير جدا (أكثر من ${mb} ميغابايت). بالنسبة لملف PDF، جرّب تصدير الصفحة الأولى فقط.`,
   },
   reading: {
     title: (file) => `يقرأ QraLia «${isolate(file)}»`,
@@ -265,10 +267,11 @@ const darija: Strings = {
     ctaRead: "قرا ليا الفاتورة", ctaHow: "كيفاش خدامة؟",
   },
   upload: {
-    title: "زيد الفاتورة", hint: "PDF، PNG ولا JPEG — حتى لـ 10 ميغا", choose: "ختار الفاتورة",
+    title: "زيد الفاتورة", hint: "PDF، PNG ولا JPEG — حتى لـ 25 ميغا", choose: "ختار الفاتورة",
     dropHere: "حط الفاتورة هنا", dropHint: "كليكي هنا، صوّر ولا جر الملف ديالك",
     change: "كليكي باش تبدلها", consent: "هاد الفاتورة مثال مصنوع، ما فيها حتى معلومة شخصية حقيقية.",
     read: "قرا الفاتورة", badFormat: "هاد النوع ما مقبولش: ختار PDF، PNG ولا JPEG.",
+    tooBig: (mb) => `هاد الملف تقيل بزاف (كثر من ${mb} ميغا). إلا كان PDF، جرب تصيفط غير الصفحة الأولى.`,
   },
   reading: {
     title: (file) => `QraLia كتقرا «${isolate(file)}»`,

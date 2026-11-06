@@ -5,6 +5,7 @@ import ReadingProgress from "./components/ReadingProgress";
 import ScanDemo, { EXAMPLE_SCAN, type ScanView } from "./components/ScanDemo";
 import ShowOnInvoice, { type Spot } from "./components/ShowOnInvoice";
 import SpeakButton from "./components/SpeakButton";
+import { MAX_UPLOAD_BYTES, MAX_UPLOAD_MB, prepareUpload } from "./photo";
 import { checkHealth, createConversation, deleteInvoice, sendConversationMessage, uploadInvoice } from "./api";
 import { confidenceLabel, fieldLabel, formatDate, formatField, isReadable, withoutCitationIds } from "./format";
 import { DEFAULT_ANSWER_LANGUAGE, isRtl, saveUiLang, savedUiLang, spokenAmount, STRINGS, UI_LANGS, UiLang, type Strings } from "./i18n";
@@ -108,6 +109,8 @@ export default function App() {
   function pickFile(candidate: File | null | undefined) {
     if (!candidate) return;
     if (!ACCEPTED.test(candidate.name)) { setError(s.upload.badFormat); return; }
+    // Une photo trop lourde sera compressée ; un PDF, lui, ne peut pas l'être.
+    if (candidate.type === "application/pdf" && candidate.size > MAX_UPLOAD_BYTES) { setError(s.upload.tooBig(MAX_UPLOAD_MB)); return; }
     setError(""); setFile(candidate);
   }
 
@@ -125,7 +128,9 @@ export default function App() {
     if (!file || !confirmed) return;
     setBusy("upload"); setError(""); setMessages([]); setConversationId(null);
     try {
-      const uploaded = await uploadInvoice(file);
+      const prepared = await prepareUpload(file);
+      if (prepared.size > MAX_UPLOAD_BYTES) { setError(s.upload.tooBig(MAX_UPLOAD_MB)); return; }
+      const uploaded = await uploadInvoice(prepared);
       const conversation = await createConversation(uploaded.invoice_id, language);
       setInvoice(uploaded);
       setConversationId(conversation.conversation_id);

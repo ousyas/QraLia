@@ -35,7 +35,10 @@ DEFAULT_CORPUS = ROOT / "data/processed/onee-regler-facture-residentiel/chunks.j
 DEFAULT_TELECOM_CORPUS = ROOT / "data/processed/telecom/chunks.jsonl"
 ALLOWED_EXTENSIONS = {".pdf", ".png", ".jpg", ".jpeg"}
 ALLOWED_CONTENT_TYPES = {"application/pdf", "image/png", "image/jpeg"}
-MAX_UPLOAD_BYTES = 10 * 1024 * 1024
+# Les photos de téléphone dépassent souvent 10 Mo ; l'interface les compresse
+# avant l'envoi, mais un PDF scanné ou une photo brute doit aussi passer.
+MAX_UPLOAD_MB = int(os.getenv("QRALIA_MAX_UPLOAD_MB", "25"))
+MAX_UPLOAD_BYTES = MAX_UPLOAD_MB * 1024 * 1024
 LOGGER = logging.getLogger(__name__)
 
 
@@ -150,7 +153,7 @@ def create_app(
         content = await file.read(MAX_UPLOAD_BYTES + 1)
         await file.close()
         if len(content) > MAX_UPLOAD_BYTES:
-            raise HTTPException(status_code=413, detail="Le document dépasse la limite de 10 Mo.")
+            raise HTTPException(status_code=413, detail=f"Le document dépasse la limite de {MAX_UPLOAD_MB} Mo.")
         if not _looks_like_allowed_file(content, suffix):
             raise HTTPException(status_code=415, detail="Le contenu ne correspond pas au format annoncé.")
         temporary_path: Path | None = None
