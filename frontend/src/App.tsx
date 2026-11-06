@@ -194,7 +194,7 @@ export default function App() {
 
   return (
     <main className={invoice ? "has-invoice" : undefined}>
-      <header className="hero">
+      <header className="topbar">
         <nav aria-label="QraLia">
           <Logo />
           <div className="nav-actions">
@@ -211,8 +211,12 @@ export default function App() {
             </span>
           </div>
         </nav>
+      </header>
+
+      <section className="hero">
         <div className="hero-grid">
           <div className="hero-copy" id="top">
+            <p className="hero-pill"><span aria-hidden="true" />{s.hero.pill}</p>
             <h1>{s.hero.titleA} <em>{s.hero.titleB}</em></h1>
             <p>{s.hero.lead}</p>
             {!invoice && <div className="hero-actions">
@@ -224,7 +228,7 @@ export default function App() {
             <ScanDemo view={scanView(invoice, fields, s)} toPay={s.summary.toPay} before={s.summary.before} caption={invoice ? s.demoYours : s.demoCaption} />
           </div>
         </div>
-      </header>
+      </section>
 
       <section className="workspace" aria-live="polite">
         {!invoice && <>
