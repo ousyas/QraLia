@@ -1,9 +1,10 @@
 // Démonstration décorative : une facture fictive est « lue » en boucle et ses
 // informations clés en ressortent. Aucune donnée réelle, purement visuel.
-export default function ScanDemo() {
+export default function ScanDemo({ toPay, before, date, caption }: { toPay: string; before: string; date: string; caption: string }) {
   return (
-    <figure className="scan-demo" aria-label="Illustration : QraLia lit une facture et en extrait le montant et la date">
-      <div className="paper" aria-hidden="true">
+    <figure className="scan-demo" aria-hidden="true">
+      {/* La facture d'exemple est en français : elle reste de gauche à droite. */}
+      <div className="paper" dir="ltr">
         <div className="paper-head"><span className="paper-logo" /><span className="paper-title">Facture d'électricité</span><span className="paper-ar">فاتورة</span></div>
         <div className="paper-lines">
           <span className="line w60" /><span className="line w40" /><span className="line w70" />
@@ -18,9 +19,9 @@ export default function ScanDemo() {
         <div className="scan-beam" />
       </div>
       <div className="chip chip-provider" aria-hidden="true"><i>⚡</i> ONEE</div>
-      <div className="chip chip-amount" aria-hidden="true"><small>À payer</small>889,20 DH <b>✓</b></div>
-      <div className="chip chip-date" aria-hidden="true"><small>Avant le</small>27 août <b>✓</b></div>
-      <figcaption>Exemple fictif</figcaption>
+      <div className="chip chip-amount" aria-hidden="true"><small>{toPay}</small><bdi>889,20 DH</bdi> <b>✓</b></div>
+      <div className="chip chip-date" aria-hidden="true"><small>{before}</small>{date} <b>✓</b></div>
+      <figcaption>{caption}</figcaption>
     </figure>
   );
 }

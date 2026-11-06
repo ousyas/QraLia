@@ -1,21 +1,17 @@
 import { useEffect, useState } from "react";
+import type { Strings } from "../i18n";
 
 // L'API ne renvoie pas d'avancement : ces étapes décrivent le traitement réel,
 // mais leur rythme est indicatif. La dernière reste active jusqu'à la réponse.
-const STEPS = [
-  "Lecture du texte de la facture",
-  "Reconnaissance du fournisseur",
-  "Vérification des montants et des dates",
-  "Préparation du résumé",
-];
-
-export default function ReadingProgress({ fileName }: { fileName: string }) {
+export default function ReadingProgress({ fileName, s }: { fileName: string; s: Strings }) {
+  const steps = s.reading.steps;
+  const lastStep = steps.length - 1;
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    const timer = window.setInterval(() => setStep((current) => Math.min(current + 1, STEPS.length - 1)), 1700);
+    const timer = window.setInterval(() => setStep((current) => Math.min(current + 1, lastStep)), 1700);
     return () => window.clearInterval(timer);
-  }, []);
+  }, [lastStep]);
 
   return (
     <div className="reading" role="status" aria-live="polite">
@@ -25,9 +21,9 @@ export default function ReadingProgress({ fileName }: { fileName: string }) {
         <div className="scan-beam" />
       </div>
       <div className="reading-copy">
-        <strong>QraLia lit « {fileName} »</strong>
+        <strong>{s.reading.title(fileName)}</strong>
         <ol>
-          {STEPS.map((label, index) => <li key={label} className={index < step ? "done" : index === step ? "active" : ""}>{label}</li>)}
+          {steps.map((label, index) => <li key={label} className={index < step ? "done" : index === step ? "active" : ""}>{label}</li>)}
         </ol>
       </div>
     </div>
