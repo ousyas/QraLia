@@ -105,7 +105,30 @@ def _critical_parse_count(tokens: list[OcrToken]) -> int:
     return sum(getattr(parsed.fields, name).status == FieldStatus.EXTRACTED for name in CRITICAL_FIELDS)
 
 
-def _best_page_tokens(image, page: int) -> list[OcrToken]:
+@dataclass(frozen=True)
+class PagePreview:
+    """Page telle que l'OCR l'a lue : les bbox des champs sont dans ses coordonnées."""
+
+    page: int
+    width: int
+    height: int
+    data_url: str
+
+
+def _preview(image, page: int, max_side: int = 1100) -> PagePreview:
+    import base64
+    import io
+
+    width, height = image.size
+    thumbnail = image.convert("RGB")
+    thumbnail.thumbnail((max_side, max_side))
+    buffer = io.BytesIO()
+    thumbnail.save(buffer, format="JPEG", quality=72)
+    encoded = base64.b64encode(buffer.getvalue()).decode("ascii")
+    return PagePreview(page, width, height, f"data:image/jpeg;base64,{encoded}")
+
+
+def _best_page_tokens(image, page: int) -> tuple[list[OcrToken], object]:
     from PIL import ImageOps
 
     original = ImageOps.exif_transpose(image).convert("RGB")
@@ -116,21 +139,23 @@ def _best_page_tokens(image, page: int) -> list[OcrToken]:
         variants.append(preprocess_for_ocr(original))
     except (ImportError, ValueError):
         pass
-    upright = [_tokens_from_tesseract(variant, page) for variant in variants]
+    # Chaque candidat garde l'image lue : ses bbox n'ont de sens que sur elle.
+    upright = [(_tokens_from_tesseract(variant, page), variant) for variant in variants]
+    score = lambda candidate: (_critical_parse_count(candidate[0]), _candidate_quality(candidate[0]))
     # Une page droite et structurée ne nécessite pas six rotations de plus.
     # Le choix favorise d'abord les champs réellement parsables, puis la qualité OCR.
-    if max((_anchor_coverage(tokens) for tokens in upright), default=0.0) >= 0.4:
-        return max(upright, key=lambda tokens: (_critical_parse_count(tokens), _candidate_quality(tokens)), default=[])
+    if max((_anchor_coverage(tokens) for tokens, _ in upright), default=0.0) >= 0.4:
+        return max(upright, key=score, default=([], original))
     rotated = [
-        _tokens_from_tesseract(variant.rotate(angle, expand=True), page)
+        (_tokens_from_tesseract(turned, page), turned)
         for variant in variants
         for angle in (90, 180, 270)
+        for turned in (variant.rotate(angle, expand=True),)
     ]
-    candidates = [*upright, *rotated]
-    return max(candidates, key=lambda tokens: (_critical_parse_count(tokens), _candidate_quality(tokens)), default=[])
+    return max([*upright, *rotated], key=score, default=([], original))
 
 
-def _ocr_file(file_path: Path, page_limit: int) -> tuple[list[OcrToken], str | None]:
+def _ocr_file(file_path: Path, page_limit: int) -> tuple[list[OcrToken], str | None, list[PagePreview]]:
     import pytesseract
 
     _configure_tesseract(pytesseract)
@@ -150,12 +175,17 @@ def _ocr_file(file_path: Path, page_limit: int) -> tuple[list[OcrToken], str | N
         )
     else:
         raise ValueError(f"Unsupported invoice format: {file_path.suffix}")
-    tokens = [token for page, image in enumerate(images, 1) for token in _best_page_tokens(image, page)]
+    tokens: list[OcrToken] = []
+    previews: list[PagePreview] = []
+    for page, image in enumerate(images, 1):
+        page_tokens, read_image = _best_page_tokens(image, page)
+        tokens.extend(page_tokens)
+        previews.append(_preview(read_image, page))
     try:
         version = str(pytesseract.get_tesseract_version())
     except pytesseract.TesseractNotFoundError:
         version = None
-    return tokens, version
+    return tokens, version, previews
 
 
 def _find_label_ends(tokens: list[OcrToken], aliases: Iterable[str]) -> list[int]:
@@ -456,9 +486,14 @@ def parse_ocr_tokens(
     )
 
 
-def extract_invoice(file_path: Path, *, page_limit: int = 2) -> ExtractedInvoice:
+def extract_invoice_with_preview(file_path: Path, *, page_limit: int = 2) -> tuple[ExtractedInvoice, list[PagePreview]]:
+    """Extraction plus les pages lues, pour montrer à l'usager où sont les champs."""
     path = Path(file_path)
     digest = hashlib.sha256(path.read_bytes()).hexdigest()
-    tokens, version = _ocr_file(path, page_limit)
-    return parse_ocr_tokens(tokens, path.name, content_digest=digest, ocr_engine_version=version)
+    tokens, version, previews = _ocr_file(path, page_limit)
+    return parse_ocr_tokens(tokens, path.name, content_digest=digest, ocr_engine_version=version), previews
+
+
+def extract_invoice(file_path: Path, *, page_limit: int = 2) -> ExtractedInvoice:
+    return extract_invoice_with_preview(file_path, page_limit=page_limit)[0]
 

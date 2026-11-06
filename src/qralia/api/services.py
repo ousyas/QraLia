@@ -24,6 +24,7 @@ from qralia.api.models import (
     EvidenceView,
     FieldView,
     InvoiceResponse,
+    PagePreviewView,
     QuestionResponse,
     ValidationView,
 )
@@ -83,14 +84,16 @@ class InvoiceApplicationService:
         self.extractor = extractor
         self.store = store or InMemoryInvoiceStore()
 
-    def ingest(self, path: Path) -> InvoiceRecord:
-        invoice = self.extractor(path)
+    def ingest(self, path: Path) -> tuple[InvoiceRecord, list]:
+        result = self.extractor(path)
+        # L'extracteur peut renvoyer aussi les pages lues ; elles ne sont pas stockées.
+        invoice, previews = result if isinstance(result, tuple) else (result, [])
         validation = validate_invoice(invoice)
         evidence = build_invoice_evidence(invoice) if validation["valid"] else []
-        return self.store.add(invoice, validation, evidence)
+        return self.store.add(invoice, validation, evidence), list(previews)
 
     @staticmethod
-    def response(record: InvoiceRecord) -> InvoiceResponse:
+    def response(record: InvoiceRecord, previews: Sequence = ()) -> InvoiceResponse:
         fields = []
         for name, label in FIELD_LABELS.items():
             field = getattr(record.invoice.fields, name)
@@ -98,6 +101,7 @@ class InvoiceApplicationService:
                 name=name, label=label, value=field.normalized_value,
                 display_value=field.raw_value or ("" if field.normalized_value is None else str(field.normalized_value)),
                 status=field.status.value, confidence=field.confidence, page=field.provenance.page,
+                bbox=field.provenance.bbox,
             ))
         profile = PROVIDERS.get(record.invoice.provider_id)
         return InvoiceResponse(
@@ -110,6 +114,10 @@ class InvoiceApplicationService:
             document_kind=profile.document_kind if profile else None,
             fields=fields,
             validation=ValidationView.model_validate(record.validation),
+            previews=[
+                PagePreviewView(page=item.page, width=item.width, height=item.height, data_url=item.data_url)
+                for item in previews
+            ],
         )
 
 

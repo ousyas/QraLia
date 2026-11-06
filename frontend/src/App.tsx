@@ -1,7 +1,9 @@
 import { DragEvent, FormEvent, KeyboardEvent, useEffect, useMemo, useRef, useState } from "react";
 import Guide, { guideAlreadySeen } from "./components/Guide";
+import Countdown from "./components/Countdown";
 import ReadingProgress from "./components/ReadingProgress";
 import ScanDemo, { EXAMPLE_SCAN, type ScanView } from "./components/ScanDemo";
+import ShowOnInvoice, { type Spot } from "./components/ShowOnInvoice";
 import SpeakButton from "./components/SpeakButton";
 import { checkHealth, createConversation, deleteInvoice, sendConversationMessage, uploadInvoice } from "./api";
 import { confidenceLabel, fieldLabel, formatDate, formatField, isReadable, withoutCitationIds } from "./format";
@@ -168,6 +170,16 @@ export default function App() {
     finally { setBusy(null); }
   }
 
+  const total = fields.get("total_check");
+  const due = fields.get("due_date");
+  const preview = invoice?.previews?.find((item) => item.page === 1);
+  // Seules les valeurs sûres, situées sur la page affichée, sont montrées sur la facture.
+  const spots: Spot[] = [
+    [total, s.summary.toPay, "amount"] as const,
+    [due, s.summary.before, "date"] as const,
+  ].flatMap(([field, label, tone]) => sure(field) && field.bbox && field.page === 1
+    ? [{ key: field.name, label, tone, value: formatField(field, s), bbox: field.bbox }]
+    : []);
   const cash = fields.get("total_cash");
   const plan = fields.get("plan_name");
   const suggestions = s.chat.suggestions[invoice && TELECOM_PROVIDERS.has(invoice.provider_id) ? "telecom" : "utilities"];
@@ -256,12 +268,19 @@ export default function App() {
               <SummaryValue field={fields.get("total_check")} label={s.summary.toPay} missing={s.summary.amountMissing} s={s} />
               <SummaryValue field={fields.get("due_date")} label={s.summary.before} missing={s.summary.dateMissing} s={s} />
             </div>
+            {sure(due) && typeof due.value === "string" && <Countdown
+              dueIso={due.value} s={s}
+              provider={PROVIDER_SHORT[invoice.provider_id] ?? ""}
+              amount={sure(total) ? formatField(total, s) : null}
+            />}
             <SpeakButton className="speak-summary" text={spokenSummary(fields, uiLang, s)} label={s.listenSummary} stopLabel={s.stop} />
             {isReadable(plan) && <p className="summary-note">{s.summary.plan} : <strong>{formatField(plan, s)}</strong></p>}
             {isReadable(cash) && <p className="summary-note">{s.summary.cash} : <strong>{formatField(cash, s)}</strong></p>}
             {professional && <p className="summary-note warn">{s.summary.proNote}</p>}
             {unknownProvider && <p className="summary-note warn">{s.summary.unknownNote}</p>}
           </section>
+
+          {preview && <ShowOnInvoice preview={preview} spots={spots} title={s.show.title} hint={s.show.hint} fullPage={s.show.fullPage} />}
 
           <details className="details-card">
             <summary><span>{s.summary.details}</span><small>{s.summary.globalConfidence(Math.round(invoice.document_confidence * 100))}</small></summary>

@@ -23,6 +23,13 @@ l'OCR puis supprimés dans un bloc `finally`. Le magasin applicatif ne conserve
 que l'extraction structurée pendant 30 minutes et possède une limite de 25
 documents.
 
+La réponse de `POST /v1/invoices` contient aussi `previews` : une image JPEG
+réduite de chaque page telle que l'OCR l'a lue (après redressement ou
+rotation), et chaque champ porte sa `bbox` dans les pixels de cette image.
+L'interface s'en sert pour montrer à l'usager où se trouvent le montant et la
+date. Ces aperçus sont renvoyés une seule fois et ne sont jamais conservés :
+`GET /v1/invoices/{invoice_id}` renvoie une liste vide.
+
 ## Réponse aux questions
 
 Le chemin IA local est maintenant branché derrière le même contrat HTTP :

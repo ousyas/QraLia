@@ -385,3 +385,43 @@ footer p { margin: .4rem 0 0; font-size: .85rem; }
 @media (max-width: 900px) {
   [dir="rtl"] .hero::after { left: -105px; }
 }
+
+/* ===== Compte à rebours ===== */
+.countdown { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-top: 1rem; padding: .75rem 1rem; border-radius: 14px; }
+.countdown strong { font-size: 1.05rem; }
+.countdown-dot { width: .7rem; height: .7rem; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 18%, transparent); }
+.countdown.ok { background: var(--ok-bg); color: var(--ok); }
+.countdown.soon { background: var(--warn-bg); color: var(--warn); }
+.countdown.late { background: #fae5e1; color: #8a2f1f; }
+.remind { margin-inline-start: auto; border: 1px solid currentColor; border-radius: 999px; padding: .4rem .85rem; background: #fffaf3; color: inherit; font-size: .85rem; font-weight: 600; }
+.remind:hover { background: #fff; }
+
+/* ===== Montre-moi sur ma facture ===== */
+.show-card { margin-top: 1rem; padding: clamp(1.1rem, 3vw, 1.6rem); background: var(--card); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); animation: rise .45s .1s ease-out both; }
+.show-card h2 { margin: 0; font: 600 1.35rem/1.2 "Fraunces", serif; letter-spacing: -.02em; }
+.show-hint { margin: .3rem 0 1rem; color: var(--ink-soft); font-size: .92rem; }
+.loupes { display: grid; gap: .9rem; }
+.loupe { margin: 0; }
+.loupe figcaption { display: flex; align-items: baseline; gap: .6rem; margin-bottom: .4rem; font-size: .85rem; color: var(--ink-soft); }
+.loupe figcaption strong { color: var(--ink); font-size: 1rem; }
+.loupe-strip { position: relative; width: 100%; border-radius: 12px; background-repeat: no-repeat; background-color: #fff; border: 2px solid var(--gold-soft); overflow: hidden; }
+.loupe.date .loupe-strip { border-color: #9cc9b8; }
+.loupe-mark, .page-mark { position: absolute; border-radius: 8px; border: 3px solid var(--gold); background: rgba(242,194,122,.18); }
+.loupe.date .loupe-mark, .page-mark.date { border-color: var(--forest); background: rgba(31,107,90,.12); }
+.page-mark { border-width: 2px; background: transparent; }
+.page-mark.date { background: transparent; }
+.show-page { margin-top: 1rem; }
+.show-page summary { cursor: pointer; font-weight: 600; color: var(--forest); }
+.page-frame { position: relative; width: min(100%, 560px); margin: .9rem auto 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: #fff; }
+.page-frame img { display: block; width: 100%; height: 100%; }
+/* La pastille se place à côté du cadre pour ne jamais cacher le chiffre. */
+.page-mark i { position: absolute; top: 50%; transform: translateY(-50%); inset-inline-end: -1.9rem; display: grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--gold); color: #fff; font-style: normal; font-weight: 700; font-size: .8rem; }
+.page-mark.date i { background: var(--forest); }
+@media (prefers-reduced-motion: no-preference) {
+  .loupe-mark, .page-mark { animation: mark 1.6s .3s ease-out both; }
+}
+@keyframes mark { 0% { opacity: 0; transform: scale(1.25); } 40% { opacity: 1; transform: scale(1); } 60% { box-shadow: 0 0 0 8px rgba(216,149,74,.25); } 100% { box-shadow: 0 0 0 0 rgba(216,149,74,0); } }
+[dir="rtl"] .show-card h2 { font-family: "IBM Plex Sans Arabic", "DM Sans", sans-serif; font-weight: 700; letter-spacing: 0; }
+@media (max-width: 650px) {
+  .remind { margin-inline-start: 0; }
+}

@@ -28,7 +28,7 @@ from qralia.api.models import (
 )
 from qralia.api.services import ConversationService, InvoiceApplicationService, QuestionAnswerService
 from qralia.domain.extracted_invoice import ExtractedInvoice
-from qralia.ocr.extractor import extract_invoice
+from qralia.ocr.extractor import PagePreview, extract_invoice_with_preview
 
 ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_CORPUS = ROOT / "data/processed/onee-regler-facture-residentiel/chunks.jsonl"
@@ -60,7 +60,7 @@ def _tesseract_available() -> bool:
 
 def create_app(
     *,
-    extractor: Callable[[Path], ExtractedInvoice] = extract_invoice,
+    extractor: Callable[[Path], ExtractedInvoice | tuple[ExtractedInvoice, list[PagePreview]]] = extract_invoice_with_preview,
     corpus_path: Path | list[Path] | None = None,
     ocr_ready_override: bool | None = None,
     ai_enabled_override: bool | None = None,
@@ -158,13 +158,13 @@ def create_app(
             with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as temporary:
                 temporary.write(content)
                 temporary_path = Path(temporary.name)
-            record = await run_in_threadpool(invoices.ingest, temporary_path)
+            record, previews = await run_in_threadpool(invoices.ingest, temporary_path)
         except (RuntimeError, ValueError, OSError) as exc:
             raise HTTPException(status_code=422, detail=f"Extraction impossible : {exc}") from exc
         finally:
             if temporary_path is not None:
                 temporary_path.unlink(missing_ok=True)
-        return invoices.response(record)
+        return invoices.response(record, previews)
 
     @app.get("/v1/invoices/{invoice_id}", response_model=InvoiceResponse)
     def get_invoice(invoice_id: str) -> InvoiceResponse:

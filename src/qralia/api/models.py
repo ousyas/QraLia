@@ -28,6 +28,15 @@ class FieldView(BaseModel):
     status: str
     confidence: float
     page: int
+    # Coordonnées dans l'aperçu de la même page (pixels de l'image lue par l'OCR).
+    bbox: tuple[float, float, float, float] | None = None
+
+
+class PagePreviewView(BaseModel):
+    page: int
+    width: int
+    height: int
+    data_url: str
 
 
 class ValidationView(BaseModel):
@@ -51,6 +60,8 @@ class InvoiceResponse(BaseModel):
     document_kind: str | None = None
     fields: list[FieldView]
     validation: ValidationView
+    # Renvoyé seulement à l'envoi du fichier ; jamais conservé dans le magasin.
+    previews: list[PagePreviewView] = Field(default_factory=list)
 
 
 class QuestionRequest(BaseModel):

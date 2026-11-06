@@ -6,7 +6,10 @@ export type FieldView = {
   status: "extracted" | "derived" | "not_present" | "unreadable";
   confidence: number;
   page: number;
+  bbox?: [number, number, number, number] | null;
 };
+
+export type PagePreview = { page: number; width: number; height: number; data_url: string };
 
 export type InvoiceResponse = {
   invoice_id: string;
@@ -17,6 +20,7 @@ export type InvoiceResponse = {
   provider_name: string | null;
   document_kind: string | null;
   fields: FieldView[];
+  previews?: PagePreview[];
   validation: {
     valid: boolean;
     scope_supported: boolean;

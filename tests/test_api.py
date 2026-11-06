@@ -208,3 +208,28 @@ def test_conversation_rewrites_followup_then_reuses_existing_qa_pipeline(tmp_pat
     assert client.delete(f"/v1/invoices/{invoice_id}").status_code == 204
     assert client.get(f"/v1/conversations/{conversation_id}").status_code == 404
 
+
+
+def test_upload_returns_page_preview_once_with_field_boxes(tmp_path):
+    from qralia.ocr.extractor import OcrToken, PagePreview, parse_ocr_tokens
+
+    tokens = [
+        OcrToken("Total", 0.95, 1, (40, 300, 120, 330)), OcrToken("à", 0.95, 1, (130, 300, 145, 330)),
+        OcrToken("régler", 0.95, 1, (155, 300, 240, 330)), OcrToken("889,20", 0.95, 1, (600, 300, 700, 330)),
+    ]
+    invoice = parse_ocr_tokens(tokens, "synthetic.pdf")
+    preview = PagePreview(1, 2067, 2923, "data:image/jpeg;base64,AAAA")
+    app = create_app(
+        extractor=lambda path: (invoice, [preview]), corpus_path=_corpus(tmp_path / "chunks.jsonl"),
+        ocr_ready_override=True, ai_enabled_override=False,
+    )
+    client = TestClient(app)
+    upload = client.post(
+        "/v1/invoices", data={"confirm_synthetic": "true"},
+        files={"file": ("facture.pdf", b"%PDF-1.4 synthetic", "application/pdf")},
+    ).json()
+    assert upload["previews"] == [{"page": 1, "width": 2067, "height": 2923, "data_url": "data:image/jpeg;base64,AAAA"}]
+    total = next(field for field in upload["fields"] if field["name"] == "total_check")
+    assert total["bbox"] == [600, 300, 700, 330]
+    # L'image de la page n'est jamais conservée côté serveur.
+    assert client.get(f"/v1/invoices/{upload['invoice_id']}").json()["previews"] == []

@@ -59,6 +59,11 @@ export type Strings = {
   tariffs: Record<string, string>;
   currency: string;
   demoCaption: string;
+  show: { title: string; hint: string; fullPage: string };
+  countdown: {
+    left: (n: number) => string; tomorrow: string; today: string; late: (n: number) => string;
+    remind: string; reminderTitle: (provider: string, amount: string | null) => string; reminderNote: string;
+  };
   demoYours: string;
   kinds: { electricity: string; telecom: string };
 };
@@ -153,6 +158,13 @@ const fr: Strings = {
   tariffs: { BT: "Basse tension", BT_DOMESTIQUE: "Basse tension — usage domestique", MT_GENERAL: "Moyenne tension — usage général (professionnel)" },
   currency: "DH",
   demoCaption: "Exemple fictif",
+  show: { title: "Où c'est sur ma facture ?", hint: "QraLia a trouvé ces informations à cet endroit précis de votre facture.", fullPage: "Voir la page entière" },
+  countdown: {
+    left: (n) => `Il vous reste ${n} jours pour payer`, tomorrow: "À payer demain", today: "À payer aujourd'hui",
+    late: (n) => `Date limite dépassée depuis ${n} jour${n > 1 ? "s" : ""}`, remind: "Me le rappeler",
+    reminderTitle: (provider, amount) => `Payer la facture ${provider}${amount ? ` (${amount})` : ""}`,
+    reminderNote: "Rappel créé par QraLia. Vérifiez le montant sur votre facture.",
+  },
   demoYours: "Votre facture, lue par QraLia",
   kinds: { electricity: "Facture d'électricité", telecom: "Facture d'abonnement" },
 };
@@ -232,6 +244,13 @@ const ar: Strings = {
   tariffs: { BT: "الجهد المنخفض", BT_DOMESTIQUE: "الجهد المنخفض — استعمال منزلي", MT_GENERAL: "الجهد المتوسط — استعمال عام (مهني)" },
   currency: "درهم",
   demoCaption: "مثال وهمي",
+  show: { title: "أين توجد في فاتورتي؟", hint: "وجد QraLia هذه المعلومات في هذا المكان بالضبط من فاتورتك.", fullPage: "عرض الصفحة كاملة" },
+  countdown: {
+    left: (n) => `بقي لك ${n} يوما للأداء`, tomorrow: "آخر أجل غدا", today: "آخر أجل اليوم",
+    late: (n) => `تجاوزت آخر أجل منذ ${n} يوما`, remind: "ذكّرني",
+    reminderTitle: (provider, amount) => `أداء فاتورة ${provider}${amount ? ` (${amount})` : ""}`,
+    reminderNote: "تذكير من QraLia. تحقق من المبلغ في فاتورتك.",
+  },
   demoYours: "فاتورتك كما قرأها QraLia",
   kinds: { electricity: "فاتورة الكهرباء", telecom: "فاتورة الاشتراك" },
 };
@@ -311,6 +330,13 @@ const darija: Strings = {
   tariffs: { BT: "الضغط المنخفض", BT_DOMESTIQUE: "الضغط المنخفض — ديال الدار", MT_GENERAL: "الضغط المتوسط — ديال الشركات" },
   currency: "درهم",
   demoCaption: "مثال ماشي حقيقي",
+  show: { title: "فين كاينة فالفاتورة ديالي؟", hint: "QraLia لقات هاد المعلومات هنا بالضبط فالفاتورة ديالك.", fullPage: "شوف الصفحة كاملة" },
+  countdown: {
+    left: (n) => `باقي ليك ${n} يام باش تخلص`, tomorrow: "آخر أجل غدا", today: "آخر أجل اليوم",
+    late: (n) => `فات آخر أجل هادي ${n} يام`, remind: "فكرني",
+    reminderTitle: (provider, amount) => `خلّص الفاتورة ديال ${provider}${amount ? ` (${amount})` : ""}`,
+    reminderNote: "تفكير من QraLia. تأكد من المبلغ فالفاتورة ديالك.",
+  },
   demoYours: "الفاتورة ديالك كيفما قراتها QraLia",
   kinds: { electricity: "فاتورة الضو", telecom: "فاتورة الاشتراك" },
 };
