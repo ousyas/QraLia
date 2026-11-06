@@ -1,25 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Terracotta des murs, vert des zelliges, ocre et sable. */
+  /* Base neutre et claire ; la terracotta et l'ocre restent des accents,
+     le vert sert seulement aux états « sûr ». Les actions sont en encre. */
   --terra: #a84a29;
   --sun: #ffe2b8;
   --on-gold: #5a2a14;
   --ink: #2f2620;
-  --ink-soft: #75655a;
-  --forest: #1f6b5a;
-  --forest-2: #2a8270;
+  --ink-soft: #6f655d;
+  --forest: #1c1814;
+  --forest-2: #3a332c;
+  --zellige: #1f6b5a;
   --gold: #d8954a;
   --gold-soft: #f2c27a;
-  --paper: #f6ecdf;
-  --card: #fffaf3;
-  --line: #ecdcc8;
+  --paper: #faf8f5;
+  --card: #ffffff;
+  --line: rgba(47,38,32,.11);
   --ok: #2f7a4b;
   --ok-bg: #e5f3e8;
   --warn: #8a5a00;
   --warn-bg: #fff2d2;
-  --shadow: 0 1px 2px rgba(90,45,20,.04), 0 12px 32px rgba(90,45,20,.08);
-  --shadow-lg: 0 2px 4px rgba(90,45,20,.05), 0 28px 60px rgba(90,45,20,.14);
+  --shadow: 0 1px 2px rgba(28,24,20,.04);
+  --shadow-lg: 0 1px 2px rgba(28,24,20,.05), 0 12px 32px rgba(28,24,20,.06);
+  --content: 920px;
   font-family: "Geist", sans-serif; color: var(--ink); background: var(--paper);
   font-synthesis: none; -webkit-font-smoothing: antialiased;
 }
@@ -516,3 +519,63 @@ body { background: var(--paper); }
   .hero .cta, .hero .cta-ghost { flex: 1 1 0; padding: .75rem .6rem; font-size: .9rem; white-space: nowrap; }
   .scan-demo { width: min(185px, 100%); margin-top: .9rem; }
 }
+
+/* ===== Unification : une largeur, des traits fins, une couleur d'action ===== */
+.topbar nav { width: min(var(--content), calc(100% - 2.5rem)); }
+.hero { padding-left: max(1.25rem, calc((100vw - var(--content)) / 2)); padding-right: max(1.25rem, calc((100vw - var(--content)) / 2)); }
+.workspace { width: min(var(--content), calc(100% - 2.5rem)); }
+.upload-card, .chat-card, .summary-card, .details-card, .show-card, .how li { border-radius: 14px; border-color: var(--line); box-shadow: var(--shadow); }
+.summary-card { box-shadow: var(--shadow-lg); }
+.summary-card::before { height: 3px; background: linear-gradient(90deg, var(--terra), var(--gold)); }
+
+/* Étapes : numéro en petites capitales à chasse fixe, sans pastille dorée. */
+.step-heading { margin: 2.6rem 0 .9rem; gap: .8rem; align-items: baseline; }
+.step-heading > span { flex: none; width: auto; height: auto; display: inline; background: none; color: var(--terra); font: 500 .8rem/1 "Geist Mono", ui-monospace, monospace; letter-spacing: .02em; }
+.step-heading h2 { font-size: 1.35rem; letter-spacing: -.03em; }
+.step-heading p { font-size: .92rem; }
+
+/* Actions : encre partout, désactivé en gris clair. */
+.primary { background: var(--forest); border-radius: 10px; font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+.primary:hover:not(:disabled) { background: #000; }
+button.primary:disabled { opacity: 1; background: #ece8e3; color: #a1978e; box-shadow: none; }
+.dropzone { border: 1.5px dashed rgba(47,38,32,.22); border-radius: 12px; background: #fcfbf9; }
+.dropzone:hover { border-color: var(--terra); background: #fdf8f3; transform: none; }
+.upload-icon { width: 2.6rem; height: 2.6rem; font-size: 1.15rem; background: var(--forest); box-shadow: none; }
+.dropzone.has-file { border-color: rgba(47,122,75,.45); background: #f5faf6; }
+.suggestions button { border-color: var(--line); color: var(--ink); }
+.suggestions button:hover:not(:disabled) { background: #f6f2ed; border-color: rgba(47,38,32,.22); transform: none; }
+.speak { border-color: var(--line); color: var(--ink); }
+.details-card summary::after { background: #f3efea; color: var(--ink); }
+.assistant-message { background: #f6f3ef; }
+footer { border-top-color: var(--line); }
+footer strong { color: var(--ink); }
+.lang-switch button.on, .topbar .lang-switch button.on { background: var(--forest); }
+
+/* Les états « sûr » et la date gardent le vert zellige. */
+.loupe.date .loupe-strip { border-color: rgba(31,107,90,.4); }
+.loupe.date .loupe-mark, .page-mark.date { border-color: var(--zellige); }
+.page-mark.date i { background: var(--zellige); }
+.emblem-eye { fill: var(--zellige); }
+
+/* Comment ça marche : icônes dessinées, numéro discret. */
+.how { margin-top: 2.6rem; }
+.how h2 { font-size: 1.35rem; letter-spacing: -.03em; }
+.how li:hover { transform: none; border-color: rgba(47,38,32,.2); }
+.how-icon { width: 2.4rem; height: 2.4rem; border-radius: 10px; background: #f6f2ed; color: var(--terra); }
+.how-icon svg { width: 1.25rem; height: 1.25rem; }
+.how-step { top: 1.25rem; font: 500 .78rem/1 "Geist Mono", ui-monospace, monospace; color: #b3a89e; }
+
+/* Facture d'exemple : droite, encre et terracotta au lieu du bleu. */
+.paper { transform: none; border-radius: 12px; color: var(--ink); }
+.paper-logo { background: var(--terra); }
+.paper-title, .paper-ar { color: var(--ink); }
+.paper-box { border: 1px solid rgba(47,38,32,.25); }
+@media (prefers-reduced-motion: no-preference) { .paper { animation: float-straight 7s ease-in-out infinite; } }
+@keyframes float-straight { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+[dir="rtl"] .paper { transform: none; }
+.question-form { background: #fff; border-color: var(--line); }
+.question-form:focus-within { border-color: rgba(47,38,32,.35); box-shadow: 0 0 0 4px rgba(47,38,32,.06); }
+.language-row select { border-color: var(--line); }
+.sources a { color: var(--terra); }
+.show-page summary { color: var(--ink); }
+@media (max-width: 650px) { .has-invoice .question-form { background: rgba(255,255,255,.92); border-color: var(--line); box-shadow: 0 8px 30px rgba(28,24,20,.12); } }

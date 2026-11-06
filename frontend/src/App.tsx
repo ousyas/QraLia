@@ -14,7 +14,18 @@ import type { ConversationMessageResponse, FieldView, InvoiceResponse } from "./
 
 const TELECOM_PROVIDERS = new Set(["iam", "orange_ma", "inwi"]);
 const ACCEPTED = /\.(pdf|png|jpe?g)$/i;
-const HOW_ICONS = ["📄", "🔍", "💬"];
+// Icônes au trait (même épaisseur que la typographie) plutôt que des emojis,
+// qui changent d'aspect d'un téléphone à l'autre.
+const icon = (path: string) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d={path} />
+  </svg>
+);
+const HOW_ICONS = [
+  icon("M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M12 17v-6M9.5 13.5 12 11l2.5 2.5"),
+  icon("M10.5 4a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM20 20l-4.8-4.8M8 10.5h5M8 13h3"),
+  icon("M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12zM8.5 12h.01M12 12h.01M15.5 12h.01"),
+];
 const PROVIDER_SHORT: Record<string, string> = { onee: "ONEE", iam: "Maroc Telecom", orange_ma: "Orange", inwi: "inwi" };
 
 const sure = (field: FieldView | undefined): field is FieldView => isReadable(field) && field.confidence >= 0.7;
@@ -256,7 +267,7 @@ export default function App() {
             <ol>
               {s.how.items.map((item, index) => <li key={item.title}>
                 <span className="how-icon" aria-hidden="true">{HOW_ICONS[index]}</span>
-                <span className="how-step">{index + 1}</span>
+                <span className="how-step">{String(index + 1).padStart(2, "0")}</span>
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
               </li>)}
