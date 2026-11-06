@@ -1,7 +1,7 @@
 import { DragEvent, FormEvent, KeyboardEvent, useEffect, useMemo, useRef, useState } from "react";
 import Guide, { guideAlreadySeen } from "./components/Guide";
 import ReadingProgress from "./components/ReadingProgress";
-import ScanDemo from "./components/ScanDemo";
+import ScanDemo, { EXAMPLE_SCAN, type ScanView } from "./components/ScanDemo";
 import SpeakButton from "./components/SpeakButton";
 import { checkHealth, createConversation, deleteInvoice, sendConversationMessage, uploadInvoice } from "./api";
 import { confidenceLabel, fieldLabel, formatDate, formatField, isReadable, withoutCitationIds } from "./format";
@@ -11,6 +11,35 @@ import type { ConversationMessageResponse, FieldView, InvoiceResponse } from "./
 const TELECOM_PROVIDERS = new Set(["iam", "orange_ma", "inwi"]);
 const ACCEPTED = /\.(pdf|png|jpe?g)$/i;
 const HOW_ICONS = ["📄", "🔍", "💬"];
+const PROVIDER_SHORT: Record<string, string> = { onee: "ONEE", iam: "Maroc Telecom", orange_ma: "Orange", inwi: "inwi" };
+
+const sure = (field: FieldView | undefined): field is FieldView => isReadable(field) && field.confidence >= 0.7;
+const shortDate = (iso: string, s: Strings) => formatDate(iso, s).replace(/\s*\d{4}$/, "");
+
+/** Facture affichée dans l'en-tête : l'exemple, ou les valeurs lues sur la facture de l'utilisateur. */
+function scanView(invoice: InvoiceResponse | null, fields: Map<string, FieldView>, s: Strings): ScanView {
+  if (!invoice) return { ...EXAMPLE_SCAN, dateChip: shortDate("2026-08-27", s) };
+  // Comme dans le résumé, une valeur incertaine n'est jamais montrée.
+  const raw = (name: string) => {
+    const field = fields.get(name);
+    return sure(field) ? field.display_value || String(field.value) : "?";
+  };
+  const total = fields.get("total_check");
+  const due = fields.get("due_date");
+  const telecom = TELECOM_PROVIDERS.has(invoice.provider_id);
+  return {
+    kind: telecom ? "Facture d'abonnement" : "Facture d'électricité",
+    provider: PROVIDER_SHORT[invoice.provider_id] ?? "?",
+    icon: telecom ? "📶" : "⚡",
+    rows: [["Total HT", raw("amount_before_tax")], [telecom ? "TVA" : "Taxes", raw("taxes")]],
+    total: raw("total_check"),
+    due: raw("due_date"),
+    amountChip: sure(total) ? formatField(total, s) : s.summary.amountMissing,
+    dateChip: sure(due) && typeof due.value === "string" ? shortDate(due.value, s) : s.summary.dateMissing,
+    amountSure: sure(total),
+    dateSure: sure(due),
+  };
+}
 
 function SummaryValue({ field, label, missing, s }: { field: FieldView | undefined; label: string; missing: string; s: Strings }) {
   const readable = isReadable(field) && field.confidence >= 0.7;
@@ -170,9 +199,9 @@ export default function App() {
               <button className="cta-ghost" onClick={() => setGuideOpen(true)}>{s.hero.ctaHow}</button>
             </div>}
           </div>
-          {!invoice && <div className="hero-demo">
-            <ScanDemo toPay={s.summary.toPay} before={s.summary.before} date={formatDate("2026-08-27", s).replace(/\s*2026/, "")} caption={s.demoCaption} />
-          </div>}
+          <div className="hero-demo">
+            <ScanDemo view={scanView(invoice, fields, s)} toPay={s.summary.toPay} before={s.summary.before} caption={invoice ? s.demoYours : s.demoCaption} />
+          </div>
         </div>
       </header>
 

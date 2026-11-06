@@ -59,6 +59,7 @@ export type Strings = {
   tariffs: Record<string, string>;
   currency: string;
   demoCaption: string;
+  demoYours: string;
   kinds: { electricity: string; telecom: string };
 };
 
@@ -152,6 +153,7 @@ const fr: Strings = {
   tariffs: { BT: "Basse tension", BT_DOMESTIQUE: "Basse tension — usage domestique", MT_GENERAL: "Moyenne tension — usage général (professionnel)" },
   currency: "DH",
   demoCaption: "Exemple fictif",
+  demoYours: "Votre facture, lue par QraLia",
   kinds: { electricity: "Facture d'électricité", telecom: "Facture d'abonnement" },
 };
 
@@ -230,6 +232,7 @@ const ar: Strings = {
   tariffs: { BT: "الجهد المنخفض", BT_DOMESTIQUE: "الجهد المنخفض — استعمال منزلي", MT_GENERAL: "الجهد المتوسط — استعمال عام (مهني)" },
   currency: "درهم",
   demoCaption: "مثال وهمي",
+  demoYours: "فاتورتك كما قرأها QraLia",
   kinds: { electricity: "فاتورة الكهرباء", telecom: "فاتورة الاشتراك" },
 };
 
@@ -308,6 +311,7 @@ const darija: Strings = {
   tariffs: { BT: "الضغط المنخفض", BT_DOMESTIQUE: "الضغط المنخفض — ديال الدار", MT_GENERAL: "الضغط المتوسط — ديال الشركات" },
   currency: "درهم",
   demoCaption: "مثال ماشي حقيقي",
+  demoYours: "الفاتورة ديالك كيفما قراتها QraLia",
   kinds: { electricity: "فاتورة الضو", telecom: "فاتورة الاشتراك" },
 };
 
