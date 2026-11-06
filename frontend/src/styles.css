@@ -51,10 +51,6 @@ button:focus-visible, a:focus-visible, summary:focus-visible, .dropzone:focus-wi
 nav { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
 .brand { display: inline-flex; align-items: center; gap: .7rem; color: inherit; text-decoration: none; }
 .emblem { flex: none; filter: drop-shadow(0 6px 14px rgba(60,20,5,.28)); transition: transform .4s ease; }
-.brand:hover .emblem { transform: rotate(22.5deg); }
-.emblem-star rect { fill: var(--gold-soft); }
-.emblem-ring { fill: none; stroke: var(--terra); stroke-width: 3.2; stroke-linecap: round; }
-.emblem-eye { fill: var(--forest); }
 .brand-text { display: grid; line-height: 1; }
 .brand-name { font: 600 1.85rem/1 "Geist", sans-serif; letter-spacing: -.035em; }
 .brand-name em { font-style: normal; color: var(--sun); }
@@ -337,7 +333,6 @@ footer p { margin: .4rem 0 0; font-size: .85rem; }
 .art-paper i { display: block; height: .45rem; border-radius: 3px; background: #e7e1d3; }
 .art-paper i:nth-child(2) { width: 70%; } .art-paper i:nth-child(3) { width: 85%; background: var(--gold-soft); }
 .art-paper.small { width: 58px; padding: .6rem; transform: none; box-shadow: none; }
-.art-badge { position: absolute; right: -14px; bottom: -10px; display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: 50%; background: #88d09b; color: var(--forest); font-weight: 800; font-size: 1.2rem; box-shadow: 0 10px 20px rgba(0,0,0,.25); }
 .art-phone { display: grid; place-items: center; width: 86px; height: 140px; border-radius: 18px; border: 4px solid #164f43; background: #f4e8da; box-shadow: 0 18px 34px rgba(0,0,0,.35); }
 .art-arrow { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: 50%; background: var(--gold-soft); color: var(--forest); font-weight: 800; font-size: 1.3rem; }
 .art-summary { flex-direction: column; gap: .5rem; }
@@ -477,7 +472,6 @@ footer p { margin: .4rem 0 0; font-size: .85rem; }
 body { background: var(--paper); }
 .topbar { position: sticky; top: 0; z-index: 30; background: rgba(255,250,243,.78); backdrop-filter: saturate(180%) blur(14px); -webkit-backdrop-filter: saturate(180%) blur(14px); border-bottom: 1px solid var(--hair); }
 .topbar nav { width: min(1000px, calc(100% - 2.5rem)); height: 64px; margin: 0 auto; gap: 1rem; }
-.topbar .emblem { width: 34px; height: 34px; filter: none; }
 .topbar .brand { gap: .55rem; color: var(--ink-strong); }
 .topbar .brand-name { font: 600 1.2rem/1 "Geist", sans-serif; letter-spacing: -.03em; }
 .topbar .brand-name em { color: var(--terra); }
@@ -564,7 +558,6 @@ footer strong { color: var(--ink); }
 .loupe.date .loupe-strip { border-color: rgba(31,107,90,.4); }
 .loupe.date .loupe-mark, .page-mark.date { border-color: var(--zellige); }
 .page-mark.date i { background: var(--zellige); }
-.emblem-eye { fill: var(--zellige); }
 
 /* Comment ça marche : icônes dessinées, numéro discret. */
 .how { margin-top: 2.6rem; }
@@ -661,9 +654,6 @@ footer strong { color: var(--ink); }
 .topbar .lang-switch button.on, .lang-switch button.on { background: var(--teal); color: #fff; }
 .topbar .guide-button { background: var(--terra-soft); border-color: transparent; color: var(--terra-dark); }
 .topbar .guide-button:hover { background: #f2d3c5; }
-.emblem-star rect { fill: var(--saffron); }
-.emblem-ring { stroke: var(--terra); }
-.emblem-eye { fill: var(--teal); }
 
 .hero::after { opacity: .5; background:
   radial-gradient(closest-side at 35% 45%, rgba(233,169,59,.7), transparent),
@@ -736,7 +726,6 @@ button.primary:disabled { background: #EFE7DD; color: #A39689; }
 .guide .primary { background: var(--teal); }
 .ghost { color: var(--terra-dark); border-color: var(--line); }
 .tag.ok { background: var(--teal-soft); color: var(--teal-dark); }
-.art-badge { background: var(--saffron); color: var(--on-gold); }
 .art-arrow { background: var(--saffron); color: var(--on-gold); }
 .art-tile.dark { background: var(--terra); }
 .chip b { background: var(--teal-soft); color: var(--teal); }
@@ -746,3 +735,23 @@ button.primary:disabled { background: #EFE7DD; color: #A39689; }
 footer strong { color: var(--teal); }
 .delete { color: var(--terra-dark); }
 button:focus-visible, a:focus-visible, summary:focus-visible, .dropzone:focus-within { outline-color: rgba(15,94,89,.5); }
+
+/* ===== Logo « Tuile zellige » ===== */
+.emblem-tile { fill: var(--teal); }
+.emblem-star { fill: var(--saffron); transform-origin: 60px 60px; transition: transform .6s cubic-bezier(.3,1.4,.5,1); }
+.emblem-q { fill: none; stroke: #FBF6EF; stroke-width: 7; stroke-linecap: round; }
+.emblem-eye { fill: var(--terra); }
+.emblem { filter: drop-shadow(0 4px 10px rgba(15,94,89,.28)); }
+/* Au survol, seule l'étoile tourne d'un huitième de tour : la tuile reste stable. */
+.brand:hover .emblem-star { transform: rotate(45deg); }
+.topbar .emblem { width: 40px; height: 40px; }
+.topbar .brand { gap: .65rem; }
+.topbar .brand-name { font: 700 1.38rem/1 "Geist", sans-serif; letter-spacing: -.04em; color: var(--ink); }
+.topbar .brand-name em { color: var(--terra); }
+.topbar .brand-ar { margin-top: .22rem; font: 600 .72rem/1 "IBM Plex Sans Arabic", sans-serif; color: var(--teal); letter-spacing: .01em; }
+@media (max-width: 650px) {
+  .topbar .emblem { width: 36px; height: 36px; }
+  .topbar .brand-name { font-size: 1.22rem; }
+}
+.art-welcome .emblem { filter: drop-shadow(0 18px 30px rgba(0,0,0,.3)); }
+.art-welcome .emblem-tile { fill: var(--teal-dark); stroke: rgba(255,255,255,.45); stroke-width: 3; }

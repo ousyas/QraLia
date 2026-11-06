@@ -1,5 +1,6 @@
 import { KeyboardEvent, ReactNode, useEffect, useRef, useState } from "react";
 import type { Strings } from "../i18n";
+import { Emblem } from "./Logo";
 
 const STORAGE_KEY = "qralia.guide.seen";
 
@@ -13,7 +14,7 @@ function rememberGuideSeen() {
 
 // Les illustrations restent communes ; titres et textes viennent des traductions.
 const ART: ReactNode[] = [
-  <div className="art art-welcome"><span className="art-paper"><i /><i /><i /></span><span className="art-badge">✓</span></div>,
+  <div className="art art-welcome"><Emblem size={112} /></div>,
   <div className="art art-upload"><span className="art-phone"><span className="art-paper small"><i /><i /></span></span><span className="art-arrow">↑</span></div>,
   <div className="art art-summary"><span className="art-tile dark">889,20 DH</span><span className="art-tile">🔊</span></div>,
   <div className="art art-chat"><span className="bubble me">شحال خاصني نخلص؟</span><span className="bubble bot">889,20 DH · 27/08</span></div>,

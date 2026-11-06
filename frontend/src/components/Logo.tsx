@@ -1,15 +1,17 @@
-// Emblème : étoile zellige à huit branches, et au centre un « Q » qui se lit
-// aussi comme une loupe posée sur un œil — QraLia lit pour vous.
-export function Emblem({ size = 52 }: { size?: number }) {
+// Emblème « Tuile zellige » : un carreau bleu-vert portant l'étoile marocaine
+// à huit branches en safran ; au centre, un Q en forme de loupe, dont l'œil
+// terracotta rappelle que QraLia lit la facture pour vous.
+export function Emblem({ size = 40, className = "" }: { size?: number; className?: string }) {
   return (
-    <svg className="emblem" width={size} height={size} viewBox="0 0 48 48" aria-hidden="true">
+    <svg className={`emblem ${className}`} width={size} height={size} viewBox="0 0 120 120" aria-hidden="true">
+      <rect className="emblem-tile" x="4" y="4" width="112" height="112" rx="28" />
       <g className="emblem-star">
-        <rect x="9" y="9" width="30" height="30" rx="4" />
-        <rect x="9" y="9" width="30" height="30" rx="4" transform="rotate(45 24 24)" />
+        <rect x="30" y="30" width="60" height="60" rx="8" />
+        <rect x="30" y="30" width="60" height="60" rx="8" transform="rotate(45 60 60)" />
       </g>
-      <circle className="emblem-ring" cx="23" cy="23" r="8.6" />
-      <path className="emblem-ring" d="M29.2 29.2 35 35" />
-      <circle className="emblem-eye" cx="23" cy="23" r="3.1" />
+      <circle className="emblem-q" cx="57" cy="57" r="17" />
+      <path className="emblem-q" d="M68 68 82 82" />
+      <circle className="emblem-eye" cx="57" cy="57" r="5.5" />
     </svg>
   );
 }
