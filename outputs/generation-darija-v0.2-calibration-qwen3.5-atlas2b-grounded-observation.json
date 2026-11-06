@@ -1,0 +1,3763 @@
+{
+  "schema_version": "0.1.0",
+  "protocol": "gold_context_generation_then_deterministic_checks_then_llm_judge",
+  "configuration": {
+    "generator_model": "qwen3.5:4b",
+    "judge_model": null,
+    "temperature": 0,
+    "seed": 42,
+    "prompt_profile": "darija_few_shot",
+    "prompt_version": "0.3.0-exploratory",
+    "run_label": "calibration_atlas_prompt_v2_observation",
+    "atlas_rewriter_backend": "ollama",
+    "atlas_rewriter_model": "hf.co/tensorblock/MBZUAI-Paris_Atlas-Chat-2B-GGUF:latest",
+    "atlas_prompt_profile": "grounded_few_shot",
+    "atlas_observation_mode": true,
+    "rewrite_languages": [
+      "darija_arab",
+      "darija_latn"
+    ],
+    "selected_splits": [
+      "calibration"
+    ],
+    "case_count": 32,
+    "indexed_chunk_count": 39,
+    "contains_personal_data": false
+  },
+  "summary": {
+    "case_count": 32,
+    "deterministic_pass_rate": 0.65625,
+    "final_pass_rate": 0.65625,
+    "critical_fact_violation_count": 0,
+    "judge_mean_scores": null,
+    "generator_mean_latency_ms": 30294.27765312488,
+    "darija_rewriter_mean_latency_ms": 5999.859387499868,
+    "darija_rewrite_case_count": 32,
+    "darija_rewrite_fallback_count": 0,
+    "darija_rewrite_would_fallback_count": 8,
+    "darija_rewrite_unsafe_observation_count": 8,
+    "judge_mean_latency_ms": null,
+    "generator_prompt_tokens": 29839,
+    "generator_completion_tokens": 4949,
+    "judge_prompt_tokens": 0,
+    "judge_completion_tokens": 0,
+    "judge_error_count": 0
+  },
+  "breakdown": {
+    "by_split": {
+      "calibration": {
+        "case_count": 32,
+        "deterministic_pass_rate": 0.65625,
+        "final_pass_rate": 0.65625,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      }
+    },
+    "by_language": {
+      "darija_arab": {
+        "case_count": 16,
+        "deterministic_pass_rate": 0.75,
+        "final_pass_rate": 0.75,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      },
+      "darija_latn": {
+        "case_count": 16,
+        "deterministic_pass_rate": 0.5625,
+        "final_pass_rate": 0.5625,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      }
+    }
+  },
+  "cases": [
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-201",
+        "question": "Chkon khasni nkteb smiyto f chik dyal facture ONEE, w fin ndfe3o?",
+        "language": "darija_latn",
+        "provider_id": "onee",
+        "gold_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Le chèque peut être bancaire ou CCP.",
+          "Le chèque doit être à l'ordre de l'Office National de l'Électricité et de l'Eau Potable.",
+          "Le paiement se fait auprès d'une agence ONEE Branche Électricité."
+        ],
+        "forbidden_claims": [
+          "Le chèque doit être à l'ordre de Redal.",
+          "Le paiement se fait uniquement en ligne."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Variante de generation-001; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+      ],
+      "answer_before_rewrite": {
+        "answer": "Ma3ndich ma3loumat kafya f sources bach n2ekked lik",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ma3ndich ma3loumat kafya f sources bach n2ekked lik",
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "Ma3ndich ma3loumat kafya f sources bach n2ekked lik",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ma3ndich ma3loumat kafya f sources bach n2ekked lik",
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": false,
+        "reason": "abstention_or_no_claims",
+        "claims": []
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Décision d'abstention incorrecte."
+        ],
+        "cited_chunk_ids": []
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 19621.067299999595,
+        "darija_rewriter": 0.0017000002117129043,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 19557.7665,
+          "load_duration_ms": 8867.1947,
+          "prompt_tokens": 882,
+          "completion_tokens": 70,
+          "citation_renderer_changed_answer": false,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-202",
+        "question": "Bghit nkhlles ONEE b chik: chik bancaire wla CCP, w lfin nmchi bih?",
+        "language": "darija_latn",
+        "provider_id": "onee",
+        "gold_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Le chèque peut être bancaire ou CCP.",
+          "Le chèque doit être à l'ordre de l'Office National de l'Électricité et de l'Eau Potable.",
+          "Le paiement se fait auprès d'une agence ONEE Branche Électricité."
+        ],
+        "forbidden_claims": [
+          "Le chèque doit être à l'ordre de Redal.",
+          "Le paiement se fait uniquement en ligne."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Variante de generation-001; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+      ],
+      "answer_before_rewrite": {
+        "answer": "Paiement possible par chèque bancaire ou CCP à l'ordre de l'Office National de l'Électricité et de l'Eau Potable. [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque] Le paiement doit être effectué auprès de votre agence Branche Électricité. [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque]",
+        "claims": [
+          {
+            "text": "Paiement possible par chèque bancaire ou CCP à l'ordre de l'Office National de l'Électricité et de l'Eau Potable.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          },
+          {
+            "text": "Le paiement doit être effectué auprès de votre agence Branche Électricité.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "المنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمن [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque] الخلاص: Le paiement doit être effecté auprès de votre agence de l'électricité. [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque]",
+        "claims": [
+          {
+            "text": "المنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمن",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          },
+          {
+            "text": "الخلاص: Le paiement doit être effecté auprès de votre agence de l'électricité.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": true,
+            "unsafe_observation": true,
+            "reason": "candidate_quality_gate_failed",
+            "quality_issues": [
+              "excessive_repetition",
+              "excessive_arabic_script"
+            ],
+            "protected_values": [],
+            "raw_candidate": "المنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمنحانية:\nالمن"
+          },
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "الخلاص: Le paiement doit être effecté auprès de votre agence de l'électricité."
+          }
+        ],
+        "changed_claim_count": 2,
+        "fallback_count": 0,
+        "would_fallback_count": 1,
+        "unsafe_observation_count": 1
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Le texte produit utilise l'écriture arabe au lieu de l'écriture latine."
+        ],
+        "cited_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 20171.259899999313,
+        "darija_rewriter": 8992.760400000407,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 20167.8757,
+          "load_duration_ms": 3.9226,
+          "prompt_tokens": 883,
+          "completion_tokens": 203,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-203",
+        "question": "فسمية شكون خاصني نكتب الشيك ديال فاتورة ONEE، وفين نقدمو؟",
+        "language": "darija_arab",
+        "provider_id": "onee",
+        "gold_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Le chèque peut être bancaire ou CCP.",
+          "Le chèque doit être à l'ordre de l'Office National de l'Électricité et de l'Eau Potable.",
+          "Le paiement se fait auprès d'une agence ONEE Branche Électricité."
+        ],
+        "forbidden_claims": [
+          "Le chèque doit être à l'ordre de Redal.",
+          "Le paiement se fait uniquement en ligne."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Variante de generation-001; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+      ],
+      "answer_before_rewrite": {
+        "answer": "الشيكون بولون فالوكالة ديالك. [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque] الشيك يكون لـ ONEE. [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque]",
+        "claims": [
+          {
+            "text": "الشيكون بولون فالوكالة ديالك.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          },
+          {
+            "text": "الشيك يكون لـ ONEE.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "الشيكون فالوكالة ديالك. [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque] الشيك يكون لـ ONEE. [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque]",
+        "claims": [
+          {
+            "text": "الشيكون فالوكالة ديالك.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          },
+          {
+            "text": "الشيك يكون لـ ONEE.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "الشيكون فالوكالة ديالك."
+          },
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "الشيك يكون لـ ONEE."
+          }
+        ],
+        "changed_claim_count": 1,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 27666.93860000032,
+        "darija_rewriter": 6072.019499999442,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 27663.5799,
+          "load_duration_ms": 9627.0536,
+          "prompt_tokens": 869,
+          "completion_tokens": 154,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-204",
+        "question": "بغيت نخلّص ONEE بالشيك، واش يقدر يكون بنكي ولا CCP وفين نديه؟",
+        "language": "darija_arab",
+        "provider_id": "onee",
+        "gold_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Le chèque peut être bancaire ou CCP.",
+          "Le chèque doit être à l'ordre de l'Office National de l'Électricité et de l'Eau Potable.",
+          "Le paiement se fait auprès d'une agence ONEE Branche Électricité."
+        ],
+        "forbidden_claims": [
+          "Le chèque doit être à l'ordre de Redal.",
+          "Le paiement se fait uniquement en ligne."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Variante de generation-001; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+      ],
+      "answer_before_rewrite": {
+        "answer": "الشيك بنكي أو CCP [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque] تحتاج الذهاب فالوكالة ديالك [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque]",
+        "claims": [
+          {
+            "text": "الشيك بنكي أو CCP",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          },
+          {
+            "text": "تحتاج الذهاب فالوكالة ديالك",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "الشيك بنكي CCP [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque] خاصك الذهاب للوكالة ديالك. [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque]",
+        "claims": [
+          {
+            "text": "الشيك بنكي CCP",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          },
+          {
+            "text": "خاصك الذهاب للوكالة ديالك.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "الشيك بنكي CCP"
+          },
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "خاصك الذهاب للوكالة ديالك."
+          }
+        ],
+        "changed_claim_count": 2,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 28367.34620000061,
+        "darija_rewriter": 5772.891100000379,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 28342.8895,
+          "load_duration_ms": 9864.7638,
+          "prompt_tokens": 872,
+          "completion_tokens": 157,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-209",
+        "question": "Ila nhar lkhlass dyal ONEE ja f nhar 3otla, ach kaytra?",
+        "language": "darija_latn",
+        "provider_id": "onee",
+        "gold_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "إذا صادف تاريخ الأداء يوم عطلة يؤجل إلى يوم العمل الموالي."
+        ],
+        "forbidden_claims": [
+          "تلغى الفاتورة.",
+          "تضاف غرامة تلقائيا."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Variante de generation-003; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+      ],
+      "answer_before_rewrite": {
+        "answer": "Pour régler votre facture il faudra retenir la date qui sera maintenue à l'exception des mois ou elle coïncide avec un jour férié. Dans ce cas elle sera décalée vers le jour ouvrable suivant. [onee-regler-facture-residentiel-20260929t192825z--date-reglement]",
+        "claims": [
+          {
+            "text": "Pour régler votre facture il faudra retenir la date qui sera maintenue à l'exception des mois ou elle coïncide avec un jour férié. Dans ce cas elle sera décalée vers le jour ouvrable suivant.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "للبحث، خاصك تبع هاد القواعد:\n- النص الأصلي هو المصدر الوحيد للمعلومات.\n- حافظ على جميع المعاني، النفي، الشروط، والأفعال بلا زيادة ولا نقصان.\n- ما تخترع حتى سبب، نتيجة، اسم، رقم ولا إجراء.\n- خلي أسماء الشركات والخدمات والمختصرات التقنية كيف ما جاو إلا ما كانش عندها تعبير دارج واضح.\n- كل رمز بحال ZXQVAL0QXZ قيمة محمية: خاصو يبقى بنفس الحروف، مرة وحدة، وف [onee-regler-facture-residentiel-20260929t192825z--date-reglement]",
+        "claims": [
+          {
+            "text": "للبحث، خاصك تبع هاد القواعد:\n- النص الأصلي هو المصدر الوحيد للمعلومات.\n- حافظ على جميع المعاني، النفي، الشروط، والأفعال بلا زيادة ولا نقصان.\n- ما تخترع حتى سبب، نتيجة، اسم، رقم ولا إجراء.\n- خلي أسماء الشركات والخدمات والمختصرات التقنية كيف ما جاو إلا ما كانش عندها تعبير دارج واضح.\n- كل رمز بحال ZXQVAL0QXZ قيمة محمية: خاصو يبقى بنفس الحروف، مرة وحدة، وف",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": true,
+            "unsafe_observation": true,
+            "reason": "candidate_quality_gate_failed",
+            "quality_issues": [
+              "excessive_arabic_script"
+            ],
+            "protected_values": [],
+            "raw_candidate": "للبحث، خاصك تبع هاد القواعد:\n- النص الأصلي هو المصدر الوحيد للمعلومات.\n- حافظ على جميع المعاني، النفي، الشروط، والأفعال بلا زيادة ولا نقصان.\n- ما تخترع حتى سبب، نتيجة، اسم، رقم ولا إجراء.\n- خلي أسماء الشركات والخدمات والمختصرات التقنية كيف ما جاو إلا ما كانش عندها تعبير دارج واضح.\n- كل رمز بحال ZXQVAL0QXZ قيمة محمية: خاصو يبقى بنفس الحروف، مرة وحدة، وف"
+          }
+        ],
+        "changed_claim_count": 1,
+        "fallback_count": 0,
+        "would_fallback_count": 1,
+        "unsafe_observation_count": 1
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Le texte produit utilise l'écriture arabe au lieu de l'écriture latine."
+        ],
+        "cited_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 29246.56380000033,
+        "darija_rewriter": 6897.369799999979,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 29243.9647,
+          "load_duration_ms": 9626.6761,
+          "prompt_tokens": 920,
+          "completion_tokens": 162,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-210",
+        "question": "Date dyal paiement ONEE tsadfat m3a jour ferie, imta nkhlles?",
+        "language": "darija_latn",
+        "provider_id": "onee",
+        "gold_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "إذا صادف تاريخ الأداء يوم عطلة يؤجل إلى يوم العمل الموالي."
+        ],
+        "forbidden_claims": [
+          "تلغى الفاتورة.",
+          "تضاف غرامة تلقائيا."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Variante de generation-003; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+      ],
+      "answer_before_rewrite": {
+        "answer": "L'ya3la tkhelles f 3ndek 3ddel f 3dwa 7wara. [onee-regler-facture-residentiel-20260929t192825z--date-reglement]",
+        "claims": [
+          {
+            "text": "L'ya3la tkhelles f 3ndek 3ddel f 3dwa 7wara.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "L'ya3la tkhelles f 3ndek 3ddel f 3dwa 7wara. [onee-regler-facture-residentiel-20260929t192825z--date-reglement]",
+        "claims": [
+          {
+            "text": "L'ya3la tkhelles f 3ndek 3ddel f 3dwa 7wara.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "L'ya3la tkhelles f 3ndek 3ddel f 3dwa 7wara."
+          }
+        ],
+        "changed_claim_count": 0,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 29119.8215000004,
+        "darija_rewriter": 6244.041499999184,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 29116.6554,
+          "load_duration_ms": 11147.6172,
+          "prompt_tokens": 917,
+          "completion_tokens": 146,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-211",
+        "question": "إلا نهار الخلاص ديال ONEE جا فنهار عطلة، آش كيوقع؟",
+        "language": "darija_arab",
+        "provider_id": "onee",
+        "gold_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "إذا صادف تاريخ الأداء يوم عطلة يؤجل إلى يوم العمل الموالي."
+        ],
+        "forbidden_claims": [
+          "تلغى الفاتورة.",
+          "تضاف غرامة تلقائيا."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Variante de generation-003; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+      ],
+      "answer_before_rewrite": {
+        "answer": "نهار الخلاص جا فنهار عطلة يتحول لآخر نهار عمل [onee-regler-facture-residentiel-20260929t192825z--date-reglement] تقدر تخلّص الفاتورة إلا ما يكون النهار عطلة [onee-regler-facture-residentiel-20260929t192825z--date-reglement]",
+        "claims": [
+          {
+            "text": "نهار الخلاص جا فنهار عطلة يتحول لآخر نهار عمل",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+            ]
+          },
+          {
+            "text": "تقدر تخلّص الفاتورة إلا ما يكون النهار عطلة",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "نهار الخلاص جا فنهار عطلة يتحول لآخر نهار عمل [onee-regler-facture-residentiel-20260929t192825z--date-reglement] تقدر تخلّص الفاتورة إلا ما كان العطلة. [onee-regler-facture-residentiel-20260929t192825z--date-reglement]",
+        "claims": [
+          {
+            "text": "نهار الخلاص جا فنهار عطلة يتحول لآخر نهار عمل",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+            ]
+          },
+          {
+            "text": "تقدر تخلّص الفاتورة إلا ما كان العطلة.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "نهار الخلاص جا فنهار عطلة يتحول لآخر نهار عمل"
+          },
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "تقدر تخلّص الفاتورة إلا ما كان العطلة."
+          }
+        ],
+        "changed_claim_count": 1,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 77432.1904999997,
+        "darija_rewriter": 7035.405799999353,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 18116.1155,
+          "load_duration_ms": 3.7787,
+          "prompt_tokens": 939,
+          "completion_tokens": 177,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 2,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-212",
+        "question": "تاريخ أداء فاتورة ONEE صادف يوم عطلة، إمتى نخلّص؟",
+        "language": "darija_arab",
+        "provider_id": "onee",
+        "gold_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "إذا صادف تاريخ الأداء يوم عطلة يؤجل إلى يوم العمل الموالي."
+        ],
+        "forbidden_claims": [
+          "تلغى الفاتورة.",
+          "تضاف غرامة تلقائيا."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Variante de generation-003; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+      ],
+      "answer_before_rewrite": {
+        "answer": "تقدر تخلّص فاتورتك فاليوم اللي كاتظهر عليه، إلا كان عطلة فالنظام يخليها تروح لليوم التالي اللي هو عمل. [onee-regler-facture-residentiel-20260929t192825z--date-reglement]",
+        "claims": [
+          {
+            "text": "تقدر تخلّص فاتورتك فاليوم اللي كاتظهر عليه، إلا كان عطلة فالنظام يخليها تروح لليوم التالي اللي هو عمل.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "تقدر تخلّص فاتورتك فاليوم اللي كاتظهر عليه، إلا كان عطلة فالنظام يخليها تروح لليوم التالي اللي هو عمل. [onee-regler-facture-residentiel-20260929t192825z--date-reglement]",
+        "claims": [
+          {
+            "text": "تقدر تخلّص فاتورتك فاليوم اللي كاتظهر عليه، إلا كان عطلة فالنظام يخليها تروح لليوم التالي اللي هو عمل.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "تقدر تخلّص فاتورتك فاليوم اللي كاتظهر عليه، إلا كان عطلة فالنظام يخليها تروح لليوم التالي اللي هو عمل."
+          }
+        ],
+        "changed_claim_count": 0,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 27885.062800000014,
+        "darija_rewriter": 5751.665499999945,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 27880.8163,
+          "load_duration_ms": 9896.7023,
+          "prompt_tokens": 908,
+          "completion_tokens": 144,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-221",
+        "question": "N9der nkhlles Redal b Orange Money men téléphone?",
+        "language": "darija_latn",
+        "provider_id": "srm_rsk",
+        "gold_chunk_ids": [
+          "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Le règlement Redal par téléphone est disponible via Orange Money.",
+          "Le service est disponible 24h/24 et 7j/7."
+        ],
+        "forbidden_claims": [
+          "Orange Money n'est pas accepté par Redal."
+        ],
+        "critical_values": [
+          "Orange Money",
+          "24h/24",
+          "7j/7"
+        ],
+        "split": "calibration",
+        "notes": "Variante de generation-006; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "answer_before_rewrite": {
+        "answer": "Jiwar Mobil t9der n2ekked lik f Redal b Orange Money men téléphone 24h/24 et 7j/7. [redal-e-paiement-20260930t201158z--paiement-mobile-jiwar]",
+        "claims": [
+          {
+            "text": "Jiwar Mobil t9der n2ekked lik f Redal b Orange Money men téléphone 24h/24 et 7j/7.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "Jiwar Mobil t9der n2ekked lik f Redal b Orange Money men téléphone 24h/24 et 7j/7. [redal-e-paiement-20260930t201158z--paiement-mobile-jiwar]",
+        "claims": [
+          {
+            "text": "Jiwar Mobil t9der n2ekked lik f Redal b Orange Money men téléphone 24h/24 et 7j/7.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [
+              "Orange Money",
+              "24h/24",
+              "7j/7",
+              "24",
+              "7"
+            ],
+            "raw_candidate": "Jiwar Mobil t9der n2ekked lik f Redal b ZXQVAL0QXZ men téléphone ZXQVAL1QXZ et ZXQVAL2QXZ."
+          }
+        ],
+        "changed_claim_count": 0,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 28469.118799999706,
+        "darija_rewriter": 6441.02920000023,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 28442.8202,
+          "load_duration_ms": 10056.6609,
+          "prompt_tokens": 1013,
+          "completion_tokens": 121,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-222",
+        "question": "Service Orange Money dyal Redal kaykhdem 24h/24 w 7j/7?",
+        "language": "darija_latn",
+        "provider_id": "srm_rsk",
+        "gold_chunk_ids": [
+          "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Le règlement Redal par téléphone est disponible via Orange Money.",
+          "Le service est disponible 24h/24 et 7j/7."
+        ],
+        "forbidden_claims": [
+          "Orange Money n'est pas accepté par Redal."
+        ],
+        "critical_values": [
+          "Orange Money",
+          "24h/24",
+          "7j/7"
+        ],
+        "split": "calibration",
+        "notes": "Variante de generation-006; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "answer_before_rewrite": {
+        "answer": "Redal Mobile Money kaykhdem 24h/24 w 7j/7. [redal-e-paiement-20260930t201158z--paiement-mobile-jiwar]",
+        "claims": [
+          {
+            "text": "Redal Mobile Money kaykhdem 24h/24 w 7j/7.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "Red Mobile Money kaykhdem 24h/24 w 7j/7. [redal-e-paiement-20260930t201158z--paiement-mobile-jiwar]",
+        "claims": [
+          {
+            "text": "Red Mobile Money kaykhdem 24h/24 w 7j/7.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [
+              "24h/24",
+              "7j/7",
+              "24",
+              "7"
+            ],
+            "raw_candidate": "Red Mobile Money kaykhdem ZXQVAL0QXZ w ZXQVAL1QXZ."
+          }
+        ],
+        "changed_claim_count": 1,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Valeur critique absente ou modifiée : 'Orange Money'"
+        ],
+        "cited_chunk_ids": [
+          "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 30133.221199999753,
+        "darija_rewriter": 5302.802299999712,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 30129.7945,
+          "load_duration_ms": 10476.0195,
+          "prompt_tokens": 1024,
+          "completion_tokens": 147,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-223",
+        "question": "نقدر نخلّص Redal بـ Orange Money من التليفون؟",
+        "language": "darija_arab",
+        "provider_id": "srm_rsk",
+        "gold_chunk_ids": [
+          "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Le règlement Redal par téléphone est disponible via Orange Money.",
+          "Le service est disponible 24h/24 et 7j/7."
+        ],
+        "forbidden_claims": [
+          "Orange Money n'est pas accepté par Redal."
+        ],
+        "critical_values": [
+          "Orange Money",
+          "24h/24",
+          "7j/7"
+        ],
+        "split": "calibration",
+        "notes": "Variante de generation-006; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "answer_before_rewrite": {
+        "answer": "خدمة E-paiement تسمح بالربط مع Orange Money. [redal-e-paiement-20260930t201158z--paiement-mobile-jiwar] الخدمة متوفرة 24 ساعة على مدار اليوم والأسبوع. [redal-e-paiement-20260930t201158z--paiement-mobile-jiwar]",
+        "claims": [
+          {
+            "text": "خدمة E-paiement تسمح بالربط مع Orange Money.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+            ]
+          },
+          {
+            "text": "الخدمة متوفرة 24 ساعة على مدار اليوم والأسبوع.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "خدمة E-paiement. [redal-e-paiement-20260930t201158z--paiement-mobile-jiwar] الخدمة متوفرة 24 ساعة على مدار اليوم والأسبوع. [redal-e-paiement-20260930t201158z--paiement-mobile-jiwar]",
+        "claims": [
+          {
+            "text": "خدمة E-paiement.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+            ]
+          },
+          {
+            "text": "الخدمة متوفرة 24 ساعة على مدار اليوم والأسبوع.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": true,
+            "unsafe_observation": true,
+            "reason": "protected_value_missing_or_duplicated",
+            "protected_values": [
+              "Orange Money"
+            ],
+            "raw_candidate": "خدمة E-paiement."
+          },
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [
+              "24"
+            ],
+            "raw_candidate": "الخدمة متوفرة ZXQVAL0QXZ ساعة على مدار اليوم والأسبوع."
+          }
+        ],
+        "changed_claim_count": 1,
+        "fallback_count": 0,
+        "would_fallback_count": 1,
+        "unsafe_observation_count": 1
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Valeur critique absente ou modifiée : 'Orange Money'",
+          "Valeur critique absente ou modifiée : '24h/24'",
+          "Valeur critique absente ou modifiée : '7j/7'"
+        ],
+        "cited_chunk_ids": [
+          "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 29662.120699999832,
+        "darija_rewriter": 6568.167200000062,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 29659.776,
+          "load_duration_ms": 9896.0913,
+          "prompt_tokens": 1007,
+          "completion_tokens": 158,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-224",
+        "question": "واش خدمة Orange Money ديال Redal خدامة 24h/24 و7j/7؟",
+        "language": "darija_arab",
+        "provider_id": "srm_rsk",
+        "gold_chunk_ids": [
+          "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Le règlement Redal par téléphone est disponible via Orange Money.",
+          "Le service est disponible 24h/24 et 7j/7."
+        ],
+        "forbidden_claims": [
+          "Orange Money n'est pas accepté par Redal."
+        ],
+        "critical_values": [
+          "Orange Money",
+          "24h/24",
+          "7j/7"
+        ],
+        "split": "calibration",
+        "notes": "Variante de generation-006; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "answer_before_rewrite": {
+        "answer": "خدمة Orange Money متوفرة كترتيب الفواتير 24/7 [redal-e-paiement-20260930t201158z--paiement-mobile-jiwar]",
+        "claims": [
+          {
+            "text": "خدمة Orange Money متوفرة كترتيب الفواتير 24/7",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "خدمة Orange Money متوفرة كترتيب الفواتير 24/7 [redal-e-paiement-20260930t201158z--paiement-mobile-jiwar]",
+        "claims": [
+          {
+            "text": "خدمة Orange Money متوفرة كترتيب الفواتير 24/7",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [
+              "Orange Money",
+              "24",
+              "7"
+            ],
+            "raw_candidate": "خدمة ZXQVAL0QXZ متوفرة كترتيب الفواتير ZXQVAL1QXZ/ZXQVAL2QXZ"
+          }
+        ],
+        "changed_claim_count": 0,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Valeur critique absente ou modifiée : '24h/24'",
+          "Valeur critique absente ou modifiée : '7j/7'"
+        ],
+        "cited_chunk_ids": [
+          "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 28369.226699999672,
+        "darija_rewriter": 5546.982800000478,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 28341.5173,
+          "load_duration_ms": 9877.0771,
+          "prompt_tokens": 1014,
+          "completion_tokens": 142,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-229",
+        "question": "Facture Redal katji kol chher? W ach katjme3 fiha?",
+        "language": "darija_latn",
+        "provider_id": "srm_rsk",
+        "gold_chunk_ids": [
+          "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "فاتورة Redal شهرية.",
+          "تجمع الماء والكهرباء والتطهير السائل."
+        ],
+        "forbidden_claims": [
+          "الفاتورة تصدر مرة في السنة.",
+          "الفاتورة تخص الكهرباء فقط."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Variante de generation-008; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+      ],
+      "answer_before_rewrite": {
+        "answer": "Redal katji kol chher. [redal-questions-frequentes-20260930t201159z--facturation-mensuelle] Ach katjme3 l'chouf, l'khol wa l'assainissement liquide. [redal-questions-frequentes-20260930t201159z--facturation-mensuelle]",
+        "claims": [
+          {
+            "text": "Redal katji kol chher.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+            ]
+          },
+          {
+            "text": "Ach katjme3 l'chouf, l'khol wa l'assainissement liquide.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "Redal katji kol chher. [redal-questions-frequentes-20260930t201159z--facturation-mensuelle] Reformulation: Ach katjme3 l'chouf, l'khol wa l'assainissement liquide. [redal-questions-frequentes-20260930t201159z--facturation-mensuelle]",
+        "claims": [
+          {
+            "text": "Redal katji kol chher.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+            ]
+          },
+          {
+            "text": "Reformulation: Ach katjme3 l'chouf, l'khol wa l'assainissement liquide.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "Redal katji kol chher."
+          },
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "Reformulation: Ach katjme3 l'chouf, l'khol wa l'assainissement liquide."
+          }
+        ],
+        "changed_claim_count": 1,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 38926.04310000024,
+        "darija_rewriter": 6616.632899999786,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 38922.7671,
+          "load_duration_ms": 9898.9482,
+          "prompt_tokens": 1017,
+          "completion_tokens": 243,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-230",
+        "question": "Redal katseft facture chheriya dyal chno: lma, do wla tathir?",
+        "language": "darija_latn",
+        "provider_id": "srm_rsk",
+        "gold_chunk_ids": [
+          "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "فاتورة Redal شهرية.",
+          "تجمع الماء والكهرباء والتطهير السائل."
+        ],
+        "forbidden_claims": [
+          "الفاتورة تصدر مرة في السنة.",
+          "الفاتورة تخص الكهرباء فقط."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Variante de generation-008; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+      ],
+      "answer_before_rewrite": {
+        "answer": "La facture mensuelle regroupe tous les services fournis par Redal : eau, électricité et assainissement liquide. [redal-questions-frequentes-20260930t201159z--facturation-mensuelle]",
+        "claims": [
+          {
+            "text": "La facture mensuelle regroupe tous les services fournis par Redal : eau, électricité et assainissement liquide.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "La facture mensuelle regroupe tous les services fournis par Redal : eau, électricité et assainissement. [redal-questions-frequentes-20260930t201159z--facturation-mensuelle]",
+        "claims": [
+          {
+            "text": "La facture mensuelle regroupe tous les services fournis par Redal : eau, électricité et assainissement.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "La facture mensuelle regroupe tous les services fournis par Redal : eau, électricité et assainissement."
+          }
+        ],
+        "changed_claim_count": 1,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 31017.805800000133,
+        "darija_rewriter": 5374.374500000158,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 31014.7218,
+          "load_duration_ms": 9928.4171,
+          "prompt_tokens": 1022,
+          "completion_tokens": 167,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-231",
+        "question": "واش فاتورة Redal كتجي كل شهر، وشنو كتجمع فيها؟",
+        "language": "darija_arab",
+        "provider_id": "srm_rsk",
+        "gold_chunk_ids": [
+          "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "فاتورة Redal شهرية.",
+          "تجمع الماء والكهرباء والتطهير السائل."
+        ],
+        "forbidden_claims": [
+          "الفاتورة تصدر مرة في السنة.",
+          "الفاتورة تخص الكهرباء فقط."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Variante de generation-008; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+      ],
+      "answer_before_rewrite": {
+        "answer": "فاتورتك ديالك كتهوي كل شهر وتجمع فيه الخدمات اللي تخدمها من Redal. [redal-questions-frequentes-20260930t201159z--facturation-mensuelle] الفاتورة ديالك كتجمع فيها المياه والكهرباء والصرف الصحي السائل. [redal-questions-frequentes-20260930t201159z--facturation-mensuelle]",
+        "claims": [
+          {
+            "text": "فاتورتك ديالك كتهوي كل شهر وتجمع فيه الخدمات اللي تخدمها من Redal.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+            ]
+          },
+          {
+            "text": "الفاتورة ديالك كتجمع فيها المياه والكهرباء والصرف الصحي السائل.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "فاتورتك ديالك كتهوي كل شهر وتجمع فيه الخدمات اللي تخدمها من Redal. [redal-questions-frequentes-20260930t201159z--facturation-mensuelle] الفاتورة ديالك كتجمع فيها الما، الكهربا، الصرف الصحي السائل. [redal-questions-frequentes-20260930t201159z--facturation-mensuelle]",
+        "claims": [
+          {
+            "text": "فاتورتك ديالك كتهوي كل شهر وتجمع فيه الخدمات اللي تخدمها من Redal.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+            ]
+          },
+          {
+            "text": "الفاتورة ديالك كتجمع فيها الما، الكهربا، الصرف الصحي السائل.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "فاتورتك ديالك كتهوي كل شهر وتجمع فيه الخدمات اللي تخدمها من Redal."
+          },
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "الفاتورة ديالك كتجمع فيها الما، الكهربا، الصرف الصحي السائل."
+          }
+        ],
+        "changed_claim_count": 1,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 37390.4093000001,
+        "darija_rewriter": 6914.4399999995585,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 37386.3613,
+          "load_duration_ms": 10191.6133,
+          "prompt_tokens": 1007,
+          "completion_tokens": 225,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-232",
+        "question": "فاتورة Redal الشهرية فيها الما والضو والتطهير كاملين؟",
+        "language": "darija_arab",
+        "provider_id": "srm_rsk",
+        "gold_chunk_ids": [
+          "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "فاتورة Redal شهرية.",
+          "تجمع الماء والكهرباء والتطهير السائل."
+        ],
+        "forbidden_claims": [
+          "الفاتورة تصدر مرة في السنة.",
+          "الفاتورة تخص الكهرباء فقط."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Variante de generation-008; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+      ],
+      "answer_before_rewrite": {
+        "answer": "فاتورتك ديالك تجمع كل الخدمات اللي بيقدمها Redal: ماء، كهرباء وتطهير. [redal-questions-frequentes-20260930t201159z--facturation-mensuelle]",
+        "claims": [
+          {
+            "text": "فاتورتك ديالك تجمع كل الخدمات اللي بيقدمها Redal: ماء، كهرباء وتطهير.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "فاتورتك ديالك تجمع كل الخدمات اللي بيقدمها Redal: ماء، كهرباء وتطهير. [redal-questions-frequentes-20260930t201159z--facturation-mensuelle]",
+        "claims": [
+          {
+            "text": "فاتورتك ديالك تجمع كل الخدمات اللي بيقدمها Redal: ماء، كهرباء وتطهير.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "فاتورتك ديالك تجمع كل الخدمات اللي بيقدمها Redal: ماء، كهرباء وتطهير."
+          }
+        ],
+        "changed_claim_count": 0,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 29350.512600000002,
+        "darija_rewriter": 5489.548999999897,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 29347.5527,
+          "load_duration_ms": 10128.7682,
+          "prompt_tokens": 1006,
+          "completion_tokens": 148,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-237",
+        "question": "Ch7al 3ndi men nhar bach n3tared 3la prélèvement IAM 3nd banque?",
+        "language": "darija_latn",
+        "provider_id": "iam",
+        "gold_chunk_ids": [
+          "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "La contestation auprès de la banque doit être faite par écrit dans les 7 jours suivant le débit.",
+          "Après ce délai le montant prélevé ne peut pas être restitué par cette procédure, mais une contestation motivée peut être adressée à IAM."
+        ],
+        "forbidden_claims": [
+          "Le délai est de 30 jours.",
+          "La contestation annule toujours l'obligation de paiement."
+        ],
+        "critical_values": [
+          "7"
+        ],
+        "split": "calibration",
+        "notes": "Variante de generation-010; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "answer_before_rewrite": {
+        "answer": "Il faut signer un modèle de mandat dans l'agence commerciale. [telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation] Tu as 7 jours après le débit pour faire opposition par écrit à ta banque. [telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation]",
+        "claims": [
+          {
+            "text": "Il faut signer un modèle de mandat dans l'agence commerciale.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+            ]
+          },
+          {
+            "text": "Tu as 7 jours après le débit pour faire opposition par écrit à ta banque.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "Ilk l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab [telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation] Tu as 7 jours après le débit pour faire opposition par écrit à ta banque. [telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation]",
+        "claims": [
+          {
+            "text": "Ilk l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+            ]
+          },
+          {
+            "text": "Tu as 7 jours après le débit pour faire opposition par écrit à ta banque.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": true,
+            "unsafe_observation": true,
+            "reason": "candidate_quality_gate_failed",
+            "quality_issues": [
+              "excessive_repetition"
+            ],
+            "protected_values": [],
+            "raw_candidate": "Ilk l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab l3ab"
+          },
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [
+              "7"
+            ],
+            "raw_candidate": "Tu as ZXQVAL0QXZ jours après le débit pour faire opposition par écrit à ta banque."
+          }
+        ],
+        "changed_claim_count": 1,
+        "fallback_count": 0,
+        "would_fallback_count": 1,
+        "unsafe_observation_count": 1
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 32600.590299999567,
+        "darija_rewriter": 9248.326099999758,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 32596.6734,
+          "load_duration_ms": 10147.8829,
+          "prompt_tokens": 1032,
+          "completion_tokens": 177,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-238",
+        "question": "Banque 9t3at lia montant IAM, f achmen délai n9der ncontestih?",
+        "language": "darija_latn",
+        "provider_id": "iam",
+        "gold_chunk_ids": [
+          "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "La contestation auprès de la banque doit être faite par écrit dans les 7 jours suivant le débit.",
+          "Après ce délai le montant prélevé ne peut pas être restitué par cette procédure, mais une contestation motivée peut être adressée à IAM."
+        ],
+        "forbidden_claims": [
+          "Le délai est de 30 jours.",
+          "La contestation annule toujours l'obligation de paiement."
+        ],
+        "critical_values": [
+          "7"
+        ],
+        "split": "calibration",
+        "notes": "Variante de generation-010; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "answer_before_rewrite": {
+        "answer": "Ma 3ndich ma3loumat kafya f sources bach n2ekked lik.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ma3loumat kaydina m9tla f passages dyal IAM, wa lachouf li la date dyal contestation 7 jours dyal debit, wa li opposition dyal client 3ndek tkoun 3ndek ma3loumat bach n2ekked lik.",
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "Ma 3ndich ma3loumat kafya f sources bach n2ekked lik.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ma3loumat kaydina m9tla f passages dyal IAM, wa lachouf li la date dyal contestation 7 jours dyal debit, wa li opposition dyal client 3ndek tkoun 3ndek ma3loumat bach n2ekked lik.",
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": false,
+        "reason": "abstention_or_no_claims",
+        "claims": []
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Décision d'abstention incorrecte.",
+          "Valeur critique absente ou modifiée : '7'"
+        ],
+        "cited_chunk_ids": []
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 29850.521299999855,
+        "darija_rewriter": 0.002099999619531445,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 29846.6812,
+          "load_duration_ms": 11699.1005,
+          "prompt_tokens": 1028,
+          "completion_tokens": 115,
+          "citation_renderer_changed_answer": false,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-239",
+        "question": "شحال عندي من نهار باش نعترض على اقتطاع IAM عند البنك؟",
+        "language": "darija_arab",
+        "provider_id": "iam",
+        "gold_chunk_ids": [
+          "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "La contestation auprès de la banque doit être faite par écrit dans les 7 jours suivant le débit.",
+          "Après ce délai le montant prélevé ne peut pas être restitué par cette procédure, mais une contestation motivée peut être adressée à IAM."
+        ],
+        "forbidden_claims": [
+          "Le délai est de 30 jours.",
+          "La contestation annule toujours l'obligation de paiement."
+        ],
+        "critical_values": [
+          "7"
+        ],
+        "split": "calibration",
+        "notes": "Variante de generation-010; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "answer_before_rewrite": {
+        "answer": "تقدر نعترض على الاقتطاع عند البنك خلال 7 نهار من تاريخ الفاتورة، عن طريق كتابة رسالة رسمية. [telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation]",
+        "claims": [
+          {
+            "text": "تقدر نعترض على الاقتطاع عند البنك خلال 7 نهار من تاريخ الفاتورة، عن طريق كتابة رسالة رسمية.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "تقدر ترفض الاقتطاع عند البنك خلال 7 نهار من تاريخ الفاتورة، عن طريق كتابة رسالة رسمية. [telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation]",
+        "claims": [
+          {
+            "text": "تقدر ترفض الاقتطاع عند البنك خلال 7 نهار من تاريخ الفاتورة، عن طريق كتابة رسالة رسمية.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [
+              "7"
+            ],
+            "raw_candidate": "تقدر ترفض الاقتطاع عند البنك خلال ZXQVAL0QXZ نهار من تاريخ الفاتورة، عن طريق كتابة رسالة رسمية."
+          }
+        ],
+        "changed_claim_count": 1,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 19719.224499999655,
+        "darija_rewriter": 7070.104899999933,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 19700.5771,
+          "load_duration_ms": 5.5361,
+          "prompt_tokens": 1015,
+          "completion_tokens": 127,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-240",
+        "question": "البنك اقتاطع ليا مبلغ IAM، فاش من أجل نقدر نحتج عليه؟",
+        "language": "darija_arab",
+        "provider_id": "iam",
+        "gold_chunk_ids": [
+          "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "La contestation auprès de la banque doit être faite par écrit dans les 7 jours suivant le débit.",
+          "Après ce délai le montant prélevé ne peut pas être restitué par cette procédure, mais une contestation motivée peut être adressée à IAM."
+        ],
+        "forbidden_claims": [
+          "Le délai est de 30 jours.",
+          "La contestation annule toujours l'obligation de paiement."
+        ],
+        "critical_values": [
+          "7"
+        ],
+        "split": "calibration",
+        "notes": "Variante de generation-010; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "answer_before_rewrite": {
+        "answer": "الاعتراض المكتوب ممكن يكون فـ 7 أيام من تاريخ السحب. [telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation] بعد الموعد، تقدر تكتب اعتراض مبرر لـ IAM. [telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation]",
+        "claims": [
+          {
+            "text": "الاعتراض المكتوب ممكن يكون فـ 7 أيام من تاريخ السحب.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+            ]
+          },
+          {
+            "text": "بعد الموعد، تقدر تكتب اعتراض مبرر لـ IAM.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "الاعتراض المكتوب ممكن يكون فـ 7 أيام من تاريخ السحب. [telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation] بعد الموعد، تقدر تكتب اعتراض مبرر لـ IAM. [telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation]",
+        "claims": [
+          {
+            "text": "الاعتراض المكتوب ممكن يكون فـ 7 أيام من تاريخ السحب.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+            ]
+          },
+          {
+            "text": "بعد الموعد، تقدر تكتب اعتراض مبرر لـ IAM.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [
+              "7"
+            ],
+            "raw_candidate": "الاعتراض المكتوب ممكن يكون فـ ZXQVAL0QXZ أيام من تاريخ السحب."
+          },
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "بعد الموعد، تقدر تكتب اعتراض مبرر لـ IAM."
+          }
+        ],
+        "changed_claim_count": 0,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 36926.09670000002,
+        "darija_rewriter": 8171.656900000016,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 36921.4243,
+          "load_duration_ms": 11972.0066,
+          "prompt_tokens": 1019,
+          "completion_tokens": 176,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-245",
+        "question": "Kifach nkhlles facture Orange b recharge, w fin n3ayet bach n2ekked?",
+        "language": "darija_latn",
+        "provider_id": "orange_ma",
+        "gold_chunk_ids": [
+          "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "يجب تعبئة رصيد بقيمة تساوي أو تفوق قيمة الفاتورة.",
+          "يجب الاتصال بالرقم 5555 لتأكيد العملية."
+        ],
+        "forbidden_claims": [
+          "يكفي شحن أي مبلغ أقل من الفاتورة.",
+          "رقم التأكيد هو 3333."
+        ],
+        "critical_values": [
+          "5555"
+        ],
+        "split": "calibration",
+        "notes": "Variante de generation-012; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+      ],
+      "answer_before_rewrite": {
+        "answer": "Nkhlles b recharge d'montant équivalent ou plus f la facture, 3ndek t9der t'appelles le 5555 bach tkhallas. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge]",
+        "claims": [
+          {
+            "text": "Nkhlles b recharge d'montant équivalent ou plus f la facture, 3ndek t9der t'appelles le 5555 bach tkhallas.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "نخل b recharge d'montant équivalent ولا plus f la facture, 3ndek t9der t'appelles le 5555 bach tkhallas. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge]",
+        "claims": [
+          {
+            "text": "نخل b recharge d'montant équivalent ولا plus f la facture, 3ndek t9der t'appelles le 5555 bach tkhallas.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [
+              "5555"
+            ],
+            "raw_candidate": "نخل b recharge d'montant équivalent ولا plus f la facture, 3ndek t9der t'appelles le ZXQVAL0QXZ bach tkhallas."
+          }
+        ],
+        "changed_claim_count": 1,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 28614.004699999896,
+        "darija_rewriter": 6075.014999999439,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 28611.2729,
+          "load_duration_ms": 11433.9385,
+          "prompt_tokens": 878,
+          "completion_tokens": 133,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-246",
+        "question": "Bghit nkhlles Orange b recharge, ch7al n3emmer w achmen numéro n3ayet lih?",
+        "language": "darija_latn",
+        "provider_id": "orange_ma",
+        "gold_chunk_ids": [
+          "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "يجب تعبئة رصيد بقيمة تساوي أو تفوق قيمة الفاتورة.",
+          "يجب الاتصال بالرقم 5555 لتأكيد العملية."
+        ],
+        "forbidden_claims": [
+          "يكفي شحن أي مبلغ أقل من الفاتورة.",
+          "رقم التأكيد هو 3333."
+        ],
+        "critical_values": [
+          "5555"
+        ],
+        "split": "calibration",
+        "notes": "Variante de generation-012; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+      ],
+      "answer_before_rewrite": {
+        "answer": "N3emmer 5555, ch7al n3ayt li 3eqwib ma3la dyal facture dyalk. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge] Recharge dyal Orange, tkhelles f 5555. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge]",
+        "claims": [
+          {
+            "text": "N3emmer 5555, ch7al n3ayt li 3eqwib ma3la dyal facture dyalk.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          },
+          {
+            "text": "Recharge dyal Orange, tkhelles f 5555.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "نعمم 5555, شال ن3ayt li 3eqwib ma3la dyal facture dyalk. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge] Recharge dyal Orange, tkhelles f 5555. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge]",
+        "claims": [
+          {
+            "text": "نعمم 5555, شال ن3ayt li 3eqwib ma3la dyal facture dyalk.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          },
+          {
+            "text": "Recharge dyal Orange, tkhelles f 5555.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [
+              "5555"
+            ],
+            "raw_candidate": "نعمم ZXQVAL0QXZ, شال ن3ayt li 3eqwib ma3la dyal facture dyalk."
+          },
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [
+              "5555"
+            ],
+            "raw_candidate": "Recharge dyal Orange, tkhelles f ZXQVAL0QXZ."
+          }
+        ],
+        "changed_claim_count": 1,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 32429.231099999924,
+        "darija_rewriter": 7270.122100000663,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 32426.2225,
+          "load_duration_ms": 10405.462,
+          "prompt_tokens": 882,
+          "completion_tokens": 183,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-247",
+        "question": "كيفاش نخلّص فاتورة Orange بالشارج، وفين نعيط باش نأكد؟",
+        "language": "darija_arab",
+        "provider_id": "orange_ma",
+        "gold_chunk_ids": [
+          "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "يجب تعبئة رصيد بقيمة تساوي أو تفوق قيمة الفاتورة.",
+          "يجب الاتصال بالرقم 5555 لتأكيد العملية."
+        ],
+        "forbidden_claims": [
+          "يكفي شحن أي مبلغ أقل من الفاتورة.",
+          "رقم التأكيد هو 3333."
+        ],
+        "critical_values": [
+          "5555"
+        ],
+        "split": "calibration",
+        "notes": "Variante de generation-012; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+      ],
+      "answer_before_rewrite": {
+        "answer": "تقدر تخلّص فاتورة Orange بالشارج عن طريق عمل ريجي بمبلغ مساوي أو أكبر من قيمة الفاتورة. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge] نعايط باش نأكد على الرقم 5555. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge]",
+        "claims": [
+          {
+            "text": "تقدر تخلّص فاتورة Orange بالشارج عن طريق عمل ريجي بمبلغ مساوي أو أكبر من قيمة الفاتورة.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          },
+          {
+            "text": "نعايط باش نأكد على الرقم 5555.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "تقدر تخلّص فاتورة Orange بالشارج عن طريق عمل ريجي بمبلغ مساوي أو أكبر من قيمة الفاتورة. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge] خاصك تبع هاد القواعد:\n- النص الأصلي هو المصدر الوحيد للمعلومات.\n- حافظ على جميع المعاني، النفي، الشروط، والأفعال بلا زيادة ولا نقصان.\n- ما تخترع حتى سبب، نتيجة، اسم، رقم ولا إجراء.\n- خلي أسماء الشركات والخدمات والمختصرات التقنية كيف ما جاو إلا ما كانش عندها تعبير دارج واضح.\n- كل رمز بحال 5555 قيمة محمية: خاصو يبقى بنفس الحروف، مرة وحدة، وفنفس المعنى [telecom-orange-payer-facture-20261001t082112z--paiement-recharge]",
+        "claims": [
+          {
+            "text": "تقدر تخلّص فاتورة Orange بالشارج عن طريق عمل ريجي بمبلغ مساوي أو أكبر من قيمة الفاتورة.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          },
+          {
+            "text": "خاصك تبع هاد القواعد:\n- النص الأصلي هو المصدر الوحيد للمعلومات.\n- حافظ على جميع المعاني، النفي، الشروط، والأفعال بلا زيادة ولا نقصان.\n- ما تخترع حتى سبب، نتيجة، اسم، رقم ولا إجراء.\n- خلي أسماء الشركات والخدمات والمختصرات التقنية كيف ما جاو إلا ما كانش عندها تعبير دارج واضح.\n- كل رمز بحال 5555 قيمة محمية: خاصو يبقى بنفس الحروف، مرة وحدة، وفنفس المعنى",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "تقدر تخلّص فاتورة Orange بالشارج عن طريق عمل ريجي بمبلغ مساوي أو أكبر من قيمة الفاتورة."
+          },
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": true,
+            "unsafe_observation": true,
+            "reason": "candidate_quality_gate_failed",
+            "quality_issues": [
+              "candidate_too_long"
+            ],
+            "protected_values": [
+              "5555"
+            ],
+            "raw_candidate": "خاصك تبع هاد القواعد:\n- النص الأصلي هو المصدر الوحيد للمعلومات.\n- حافظ على جميع المعاني، النفي، الشروط، والأفعال بلا زيادة ولا نقصان.\n- ما تخترع حتى سبب، نتيجة، اسم، رقم ولا إجراء.\n- خلي أسماء الشركات والخدمات والمختصرات التقنية كيف ما جاو إلا ما كانش عندها تعبير دارج واضح.\n- كل رمز بحال ZXQVAL0QXZ قيمة محمية: خاصو يبقى بنفس الحروف، مرة وحدة، وفنفس المعنى"
+          }
+        ],
+        "changed_claim_count": 1,
+        "fallback_count": 0,
+        "would_fallback_count": 1,
+        "unsafe_observation_count": 1
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 34511.44209999984,
+        "darija_rewriter": 9241.64380000002,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 34491.7718,
+          "load_duration_ms": 10230.9229,
+          "prompt_tokens": 868,
+          "completion_tokens": 205,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-248",
+        "question": "بغيت نخلّص Orange بالتعبئة، شحال نعمّر وشنو هو الرقم اللي نعيط ليه؟",
+        "language": "darija_arab",
+        "provider_id": "orange_ma",
+        "gold_chunk_ids": [
+          "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "يجب تعبئة رصيد بقيمة تساوي أو تفوق قيمة الفاتورة.",
+          "يجب الاتصال بالرقم 5555 لتأكيد العملية."
+        ],
+        "forbidden_claims": [
+          "يكفي شحن أي مبلغ أقل من الفاتورة.",
+          "رقم التأكيد هو 3333."
+        ],
+        "critical_values": [
+          "5555"
+        ],
+        "split": "calibration",
+        "notes": "Variante de generation-012; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+      ],
+      "answer_before_rewrite": {
+        "answer": "تقدر تخلّص Orange بالتعبئة. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge] بعد ما تخلّص، لازم تعيط الرقم 5555 باش تأكد من العملية. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge]",
+        "claims": [
+          {
+            "text": "تقدر تخلّص Orange بالتعبئة.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          },
+          {
+            "text": "بعد ما تخلّص، لازم تعيط الرقم 5555 باش تأكد من العملية.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "تقدر تخلّص Orange. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge] بعد ما تخلّص، لازم تعيط 5555 باش تأكد من العملية. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge]",
+        "claims": [
+          {
+            "text": "تقدر تخلّص Orange.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          },
+          {
+            "text": "بعد ما تخلّص، لازم تعيط 5555 باش تأكد من العملية.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "تقدر تخلّص Orange."
+          },
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [
+              "5555"
+            ],
+            "raw_candidate": "بعد ما تخلّص، لازم تعيط ZXQVAL0QXZ باش تأكد من العملية."
+          }
+        ],
+        "changed_claim_count": 2,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 30020.849599999565,
+        "darija_rewriter": 6547.211899999638,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 30017.281,
+          "load_duration_ms": 10144.4945,
+          "prompt_tokens": 874,
+          "completion_tokens": 161,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-249",
+        "question": "Fach kat7ell w katsed wakalat inwi bach nkhlles facture?",
+        "language": "darija_latn",
+        "provider_id": "inwi",
+        "gold_chunk_ids": [
+          "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Les agences inwi sont ouvertes du lundi au samedi de 9h à 20h."
+        ],
+        "forbidden_claims": [
+          "Les agences sont ouvertes le dimanche.",
+          "Les agences ferment à 17h."
+        ],
+        "critical_values": [
+          "9h",
+          "20h"
+        ],
+        "split": "calibration",
+        "notes": "Variante de generation-013; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+      ],
+      "answer_before_rewrite": {
+        "answer": "Inwi t3ndi agencies bach tkhelles facture. [telecom-inwi-payer-facture-20261001t082113z--paiement-agence] Agencies Inwi 3ndek f7al l9had w s7ad m3a 9h bch 20h. [telecom-inwi-payer-facture-20261001t082113z--paiement-agence]",
+        "claims": [
+          {
+            "text": "Inwi t3ndi agencies bach tkhelles facture.",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+            ]
+          },
+          {
+            "text": "Agencies Inwi 3ndek f7al l9had w s7ad m3a 9h bch 20h.",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "Inwi t3ndi agencies bach tkhelles facture. [telecom-inwi-payer-facture-20261001t082113z--paiement-agence] Agencies Inwi 3ndek f7al l9had w s7ad m3a 9h bch 20h. [telecom-inwi-payer-facture-20261001t082113z--paiement-agence]",
+        "claims": [
+          {
+            "text": "Inwi t3ndi agencies bach tkhelles facture.",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+            ]
+          },
+          {
+            "text": "Agencies Inwi 3ndek f7al l9had w s7ad m3a 9h bch 20h.",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "Inwi t3ndi agencies bach tkhelles facture."
+          },
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": true,
+            "unsafe_observation": true,
+            "reason": "protected_value_missing_or_duplicated",
+            "protected_values": [
+              "20h",
+              "9h"
+            ],
+            "raw_candidate": "Agencies Inwi 3ndek f7al lZXQVAL1QXZad w s7ad m3a ZXQVAL1QXZ bch ZXQVAL0QXZ."
+          }
+        ],
+        "changed_claim_count": 0,
+        "fallback_count": 0,
+        "would_fallback_count": 1,
+        "unsafe_observation_count": 1
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 31648.536499999864,
+        "darija_rewriter": 6978.131500000018,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 31624.8222,
+          "load_duration_ms": 10432.8457,
+          "prompt_tokens": 850,
+          "completion_tokens": 175,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-250",
+        "question": "Mn ltnin lsebt, chno homa swaye3 lkhedma dyal agences inwi?",
+        "language": "darija_latn",
+        "provider_id": "inwi",
+        "gold_chunk_ids": [
+          "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Les agences inwi sont ouvertes du lundi au samedi de 9h à 20h."
+        ],
+        "forbidden_claims": [
+          "Les agences sont ouvertes le dimanche.",
+          "Les agences ferment à 17h."
+        ],
+        "critical_values": [
+          "9h",
+          "20h"
+        ],
+        "split": "calibration",
+        "notes": "Variante de generation-013; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+      ],
+      "answer_before_rewrite": {
+        "answer": "Nos agences sont ouvertes du lundi au samedi de 9h à 20h00 [telecom-inwi-payer-facture-20261001t082113z--paiement-agence]",
+        "claims": [
+          {
+            "text": "Nos agences sont ouvertes du lundi au samedi de 9h à 20h00",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "الفرق بين النسخة الأصلية والنسخة المصححة:\n\nالنسخة الأصلية: \"Nos agences sont ouvertes du lundi au samedi de 9:00 à 17:00.\"\nالنسخة المصححة: \"Nos agences sont ouvertes du lundi au samedi de 9:00 à 17:00.\"\n\nالنسخة المصححة: \"Nos agences sont ouvertes du lundi au samedi de 9:00 à 17:00. [telecom-inwi-payer-facture-20261001t082113z--paiement-agence]",
+        "claims": [
+          {
+            "text": "الفرق بين النسخة الأصلية والنسخة المصححة:\n\nالنسخة الأصلية: \"Nos agences sont ouvertes du lundi au samedi de 9:00 à 17:00.\"\nالنسخة المصححة: \"Nos agences sont ouvertes du lundi au samedi de 9:00 à 17:00.\"\n\nالنسخة المصححة: \"Nos agences sont ouvertes du lundi au samedi de 9:00 à 17:00.",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": true,
+            "unsafe_observation": true,
+            "reason": "protected_value_missing_or_duplicated",
+            "protected_values": [
+              "20h",
+              "9h"
+            ],
+            "raw_candidate": "الفرق بين النسخة الأصلية والنسخة المصححة:\n\nالنسخة الأصلية: \"Nos agences sont ouvertes du lundi au samedi de 9:00 à 17:00.\"\nالنسخة المصححة: \"Nos agences sont ouvertes du lundi au samedi de 9:00 à 17:00.\"\n\nالنسخة المصححة: \"Nos agences sont ouvertes du lundi au samedi de 9:00 à 17:00."
+          }
+        ],
+        "changed_claim_count": 1,
+        "fallback_count": 0,
+        "would_fallback_count": 1,
+        "unsafe_observation_count": 1
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Valeur critique absente ou modifiée : '9h'",
+          "Valeur critique absente ou modifiée : '20h'"
+        ],
+        "cited_chunk_ids": [
+          "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 27098.25109999929,
+        "darija_rewriter": 6913.96899999927,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 27093.2546,
+          "load_duration_ms": 9913.8123,
+          "prompt_tokens": 859,
+          "completion_tokens": 136,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-251",
+        "question": "فاش كتحل وكتسد وكالات inwi باش نخلّص الفاتورة؟",
+        "language": "darija_arab",
+        "provider_id": "inwi",
+        "gold_chunk_ids": [
+          "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Les agences inwi sont ouvertes du lundi au samedi de 9h à 20h."
+        ],
+        "forbidden_claims": [
+          "Les agences sont ouvertes le dimanche.",
+          "Les agences ferment à 17h."
+        ],
+        "critical_values": [
+          "9h",
+          "20h"
+        ],
+        "split": "calibration",
+        "notes": "Variante de generation-013; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+      ],
+      "answer_before_rewrite": {
+        "answer": "الوكالات مفتوحة من الاثنين إلى السبت من الساعة 9 صباحاً حتى 8 مساءً. [telecom-inwi-payer-facture-20261001t082113z--paiement-agence]",
+        "claims": [
+          {
+            "text": "الوكالات مفتوحة من الاثنين إلى السبت من الساعة 9 صباحاً حتى 8 مساءً.",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "الوكالات مفتوحة من الاثنين حتى السبت من الساعة 9 صباحاً حتى 8 مساءً. [telecom-inwi-payer-facture-20261001t082113z--paiement-agence]",
+        "claims": [
+          {
+            "text": "الوكالات مفتوحة من الاثنين حتى السبت من الساعة 9 صباحاً حتى 8 مساءً.",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [
+              "8",
+              "9"
+            ],
+            "raw_candidate": "الوكالات مفتوحة من الاثنين حتى السبت من الساعة ZXQVAL1QXZ صباحاً حتى ZXQVAL0QXZ مساءً."
+          }
+        ],
+        "changed_claim_count": 1,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Valeur critique absente ou modifiée : '9h'",
+          "Valeur critique absente ou modifiée : '20h'"
+        ],
+        "cited_chunk_ids": [
+          "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 24509.785499999452,
+        "darija_rewriter": 5949.964999999793,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 24505.1376,
+          "load_duration_ms": 10320.6537,
+          "prompt_tokens": 845,
+          "completion_tokens": 105,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-252",
+        "question": "من الاثنين للسبت، شنو هما سوايع الخدمة ديال وكالات inwi؟",
+        "language": "darija_arab",
+        "provider_id": "inwi",
+        "gold_chunk_ids": [
+          "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Les agences inwi sont ouvertes du lundi au samedi de 9h à 20h."
+        ],
+        "forbidden_claims": [
+          "Les agences sont ouvertes le dimanche.",
+          "Les agences ferment à 17h."
+        ],
+        "critical_values": [
+          "9h",
+          "20h"
+        ],
+        "split": "calibration",
+        "notes": "Variante de generation-013; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+      ],
+      "answer_before_rewrite": {
+        "answer": "الوكالات مفتوحة من الاثنين إلى السبت من 9h إلى 20h00 [telecom-inwi-payer-facture-20261001t082113z--paiement-agence]",
+        "claims": [
+          {
+            "text": "الوكالات مفتوحة من الاثنين إلى السبت من 9h إلى 20h00",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "الوكالات مفتوحة من الاثنين إلى السبت من 8:00 حتى 20:00. [telecom-inwi-payer-facture-20261001t082113z--paiement-agence]",
+        "claims": [
+          {
+            "text": "الوكالات مفتوحة من الاثنين إلى السبت من 8:00 حتى 20:00.",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": true,
+            "unsafe_observation": true,
+            "reason": "protected_value_missing_or_duplicated",
+            "protected_values": [
+              "20h",
+              "9h"
+            ],
+            "raw_candidate": "الوكالات مفتوحة من الاثنين إلى السبت من 8:00 حتى 20:00."
+          }
+        ],
+        "changed_claim_count": 1,
+        "fallback_count": 0,
+        "would_fallback_count": 1,
+        "unsafe_observation_count": 1
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Valeur critique absente ou modifiée : '9h'",
+          "Valeur critique absente ou modifiée : '20h'"
+        ],
+        "cited_chunk_ids": [
+          "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 28700.7765999997,
+        "darija_rewriter": 5678.398099999868,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 28696.4144,
+          "load_duration_ms": 9913.5722,
+          "prompt_tokens": 843,
+          "completion_tokens": 153,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-257",
+        "question": "9bel ma nemchi l ANRT, fin khasni nsift chikaya dyal facture telecom?",
+        "language": "darija_latn",
+        "provider_id": "anrt",
+        "gold_chunk_ids": [
+          "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "يجب أولا توجيه الشكوى مباشرة إلى الوكالة التجارية لمتعهد الاتصالات أو إرسالها برسالة مضمونة.",
+          "ينبغي الاستعلام عن الأجل وشروط قبول الشكوى."
+        ],
+        "forbidden_claims": [
+          "يجب البدء مباشرة بشكوى لدى ANRT دون الاتصال بالمتعهد."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Variante de generation-015; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+      ],
+      "answer_before_rewrite": {
+        "answer": "N2ekhed shakwa mawqfiya l'agence dyal ANRT. [telecom-anrt-reclamations-20261001t082114z--reclamation-operateur] N2ekhed shakwa mawqfiya b'risala damouna. [telecom-anrt-reclamations-20261001t082114z--reclamation-operateur]",
+        "claims": [
+          {
+            "text": "N2ekhed shakwa mawqfiya l'agence dyal ANRT.",
+            "citations": [
+              "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+            ]
+          },
+          {
+            "text": "N2ekhed shakwa mawqfiya b'risala damouna.",
+            "citations": [
+              "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "N2ekhed shakwa mawqfiya l'agence dyal ANRT. [telecom-anrt-reclamations-20261001t082114z--reclamation-operateur] N2ekhed shakwa mawqfiya b'risala damouna. [telecom-anrt-reclamations-20261001t082114z--reclamation-operateur]",
+        "claims": [
+          {
+            "text": "N2ekhed shakwa mawqfiya l'agence dyal ANRT.",
+            "citations": [
+              "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+            ]
+          },
+          {
+            "text": "N2ekhed shakwa mawqfiya b'risala damouna.",
+            "citations": [
+              "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "N2ekhed shakwa mawqfiya l'agence dyal ANRT."
+          },
+          {
+            "changed": false,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "N2ekhed shakwa mawqfiya b'risala damouna."
+          }
+        ],
+        "changed_claim_count": 0,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 33331.12960000017,
+        "darija_rewriter": 6792.824899999687,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 33327.5113,
+          "load_duration_ms": 9955.8185,
+          "prompt_tokens": 888,
+          "completion_tokens": 192,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-258",
+        "question": "Bghit nechteki 3la facture telecom: lmen ntwjeh lwl w kifach nsift reclamation?",
+        "language": "darija_latn",
+        "provider_id": "anrt",
+        "gold_chunk_ids": [
+          "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "يجب أولا توجيه الشكوى مباشرة إلى الوكالة التجارية لمتعهد الاتصالات أو إرسالها برسالة مضمونة.",
+          "ينبغي الاستعلام عن الأجل وشروط قبول الشكوى."
+        ],
+        "forbidden_claims": [
+          "يجب البدء مباشرة بشكوى لدى ANRT دون الاتصال بالمتعهد."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Variante de generation-015; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+      ],
+      "answer_before_rewrite": {
+        "answer": "Ma3ndich ma3loumat kafya f sources bach n2ekked lik.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ma 3ndich ma3loumat kafya f sources bach n2ekked lik",
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "Ma3ndich ma3loumat kafya f sources bach n2ekked lik.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ma 3ndich ma3loumat kafya f sources bach n2ekked lik",
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": false,
+        "reason": "abstention_or_no_claims",
+        "claims": []
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Décision d'abstention incorrecte."
+        ],
+        "cited_chunk_ids": []
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 21019.143900000017,
+        "darija_rewriter": 0.0021999994714860804,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 20995.9653,
+          "load_duration_ms": 9925.7313,
+          "prompt_tokens": 894,
+          "completion_tokens": 71,
+          "citation_renderer_changed_answer": false,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-259",
+        "question": "قبل ما نمشي لـ ANRT، فين خاصني نصيفط شكاية ديال فاتورة الاتصالات؟",
+        "language": "darija_arab",
+        "provider_id": "anrt",
+        "gold_chunk_ids": [
+          "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "يجب أولا توجيه الشكوى مباشرة إلى الوكالة التجارية لمتعهد الاتصالات أو إرسالها برسالة مضمونة.",
+          "ينبغي الاستعلام عن الأجل وشروط قبول الشكوى."
+        ],
+        "forbidden_claims": [
+          "يجب البدء مباشرة بشكوى لدى ANRT دون الاتصال بالمتعهد."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Variante de generation-015; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+      ],
+      "answer_before_rewrite": {
+        "answer": "خاصك نرسل الشكاية فالوكالة التجارية لمتعهد المواصلات أو عبر رسالة مضمونة. [telecom-anrt-reclamations-20261001t082114z--reclamation-operateur]",
+        "claims": [
+          {
+            "text": "خاصك نرسل الشكاية فالوكالة التجارية لمتعهد المواصلات أو عبر رسالة مضمونة.",
+            "citations": [
+              "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "خاصك تبع الشكاية فالوكالة التجارية. [telecom-anrt-reclamations-20261001t082114z--reclamation-operateur]",
+        "claims": [
+          {
+            "text": "خاصك تبع الشكاية فالوكالة التجارية.",
+            "citations": [
+              "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "خاصك تبع الشكاية فالوكالة التجارية."
+          }
+        ],
+        "changed_claim_count": 1,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 15731.920600000194,
+        "darija_rewriter": 5577.572899999723,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 15727.8433,
+          "load_duration_ms": 4.9017,
+          "prompt_tokens": 882,
+          "completion_tokens": 118,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-260",
+        "question": "بغيت نشتكي على فاتورة الاتصالات، لمن نتوجه اللول وكيفاش نصيفط الشكاية؟",
+        "language": "darija_arab",
+        "provider_id": "anrt",
+        "gold_chunk_ids": [
+          "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "يجب أولا توجيه الشكوى مباشرة إلى الوكالة التجارية لمتعهد الاتصالات أو إرسالها برسالة مضمونة.",
+          "ينبغي الاستعلام عن الأجل وشروط قبول الشكوى."
+        ],
+        "forbidden_claims": [
+          "يجب البدء مباشرة بشكوى لدى ANRT دون الاتصال بالمتعهد."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Variante de generation-015; question candidate à relire humainement avant de considérer le benchmark comme gelé."
+      },
+      "context_chunk_ids": [
+        "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+      ],
+      "answer_before_rewrite": {
+        "answer": "يجب توجيه الشكوى مباشرة للوكالة التجارية لمتعهد المواصلات أو إرسالها عبر رسالة مضمونة. [telecom-anrt-reclamations-20261001t082114z--reclamation-operateur]",
+        "claims": [
+          {
+            "text": "يجب توجيه الشكوى مباشرة للوكالة التجارية لمتعهد المواصلات أو إرسالها عبر رسالة مضمونة.",
+            "citations": [
+              "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "خاصك توجيه الشكوى مباشرة للوكالة التجارية لمتعهد المواصلات. [telecom-anrt-reclamations-20261001t082114z--reclamation-operateur]",
+        "claims": [
+          {
+            "text": "خاصك توجيه الشكوى مباشرة للوكالة التجارية لمتعهد المواصلات.",
+            "citations": [
+              "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": true,
+        "reason": null,
+        "claims": [
+          {
+            "changed": true,
+            "fallback": false,
+            "would_fallback": false,
+            "unsafe_observation": true,
+            "reason": null,
+            "quality_issues": [],
+            "protected_values": [],
+            "raw_candidate": "خاصك توجيه الشكوى مباشرة للوكالة التجارية لمتعهد المواصلات."
+          }
+        ],
+        "changed_claim_count": 1,
+        "fallback_count": 0,
+        "would_fallback_count": 0,
+        "unsafe_observation_count": 0
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 29876.671999999417,
+        "darija_rewriter": 5460.420800000065,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 29873.4219,
+          "load_duration_ms": 10203.0167,
+          "prompt_tokens": 882,
+          "completion_tokens": 158,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    }
+  ]
+}

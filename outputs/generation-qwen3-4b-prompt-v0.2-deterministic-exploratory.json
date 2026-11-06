@@ -1,0 +1,1283 @@
+{
+  "schema_version": "0.1.0",
+  "protocol": "gold_context_generation_then_deterministic_checks_then_llm_judge",
+  "configuration": {
+    "generator_model": "qwen3:4b-instruct-2507-q4_K_M",
+    "judge_model": null,
+    "temperature": 0,
+    "seed": 42,
+    "prompt_version": "0.2.0",
+    "run_label": "post_hoc_exploratory_after_test_inspection",
+    "case_count": 16,
+    "indexed_chunk_count": 39,
+    "contains_personal_data": false
+  },
+  "summary": {
+    "case_count": 16,
+    "deterministic_pass_rate": 0.5625,
+    "final_pass_rate": 0.5625,
+    "critical_fact_violation_count": 0,
+    "judge_mean_scores": null,
+    "generator_mean_latency_ms": 25908.884281248902,
+    "judge_mean_latency_ms": null,
+    "generator_prompt_tokens": 13673,
+    "generator_completion_tokens": 4236,
+    "judge_prompt_tokens": 0,
+    "judge_completion_tokens": 0,
+    "judge_error_count": 0
+  },
+  "breakdown": {
+    "by_split": {
+      "calibration": {
+        "case_count": 8,
+        "deterministic_pass_rate": 0.625,
+        "final_pass_rate": 0.625,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      },
+      "test": {
+        "case_count": 8,
+        "deterministic_pass_rate": 0.5,
+        "final_pass_rate": 0.5,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      }
+    },
+    "by_language": {
+      "ar": {
+        "case_count": 4,
+        "deterministic_pass_rate": 0.5,
+        "final_pass_rate": 0.5,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      },
+      "darija_arab": {
+        "case_count": 4,
+        "deterministic_pass_rate": 0.75,
+        "final_pass_rate": 0.75,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      },
+      "darija_latn": {
+        "case_count": 4,
+        "deterministic_pass_rate": 0.25,
+        "final_pass_rate": 0.25,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      },
+      "fr": {
+        "case_count": 4,
+        "deterministic_pass_rate": 0.75,
+        "final_pass_rate": 0.75,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      }
+    }
+  },
+  "cases": [
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-001",
+        "question": "Comment puis-je payer ma facture ONEE par chèque ?",
+        "language": "fr",
+        "provider_id": "onee",
+        "gold_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Le chèque peut être bancaire ou CCP.",
+          "Le chèque doit être à l'ordre de l'Office National de l'Électricité et de l'Eau Potable.",
+          "Le paiement se fait auprès d'une agence ONEE Branche Électricité."
+        ],
+        "forbidden_claims": [
+          "Le chèque doit être à l'ordre de Redal.",
+          "Le paiement se fait uniquement en ligne."
+        ],
+        "critical_values": [],
+        "split": "calibration"
+      },
+      "context_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+      ],
+      "answer": {
+        "answer": "Payer par chèque (bancaire ou CCP) à l'ordre de L'Office National de l'Electricité et de l'Eau Potable [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque] À l'ordre de L'Office National de l'Electricité et de l'Eau Potable [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque] Auprès de votre agence Branche Electricité [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque]",
+        "claims": [
+          {
+            "text": "Payer par chèque (bancaire ou CCP) à l'ordre de L'Office National de l'Electricité et de l'Eau Potable",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          },
+          {
+            "text": "À l'ordre de L'Office National de l'Electricité et de l'Eau Potable",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          },
+          {
+            "text": "Auprès de votre agence Branche Electricité",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "fr"
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 21348.351199994795,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3:4b-instruct-2507-q4_K_M",
+          "total_duration_ms": 21282.8851,
+          "load_duration_ms": 4.2698,
+          "prompt_tokens": 748,
+          "completion_tokens": 318,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-002",
+        "question": "Fin n9der nkhelles factora ONEE b cash?",
+        "language": "darija_latn",
+        "provider_id": "onee",
+        "gold_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-especes"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Le paiement en espèces est possible dans une agence.",
+          "Le paiement en espèces est possible dans un Point d'Encaissement Externe PEE."
+        ],
+        "forbidden_claims": [
+          "Le paiement en espèces est impossible."
+        ],
+        "critical_values": [
+          "PEE"
+        ],
+        "split": "test"
+      },
+      "context_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-especes"
+      ],
+      "answer": {
+        "answer": "ONEE permet le paiement en espèces auprès de son Agence ou au niveau des Points d'Encaissement Externes PEE. [onee-regler-facture-residentiel-20260929t192825z--paiement-especes]",
+        "claims": [
+          {
+            "text": "ONEE permet le paiement en espèces auprès de son Agence ou au niveau des Points d'Encaissement Externes PEE.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-especes"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-especes"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 17449.743999983184,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3:4b-instruct-2507-q4_K_M",
+          "total_duration_ms": 17445.7846,
+          "load_duration_ms": 3.806,
+          "prompt_tokens": 740,
+          "completion_tokens": 141,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-003",
+        "question": "ماذا يحدث إذا صادف تاريخ أداء فاتورة المكتب الوطني يوم عطلة؟",
+        "language": "ar",
+        "provider_id": "onee",
+        "gold_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "إذا صادف تاريخ الأداء يوم عطلة يؤجل إلى يوم العمل الموالي."
+        ],
+        "forbidden_claims": [
+          "تلغى الفاتورة.",
+          "تضاف غرامة تلقائيا."
+        ],
+        "critical_values": [],
+        "split": "calibration"
+      },
+      "context_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+      ],
+      "answer": {
+        "answer": "",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "لا يوجد معلومات في الملف عن أداء فاتورة المكتب الوطني خلال عطلة أو تأثيرها على أيام العطلات.",
+        "language": "ar"
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Décision d'abstention incorrecte."
+        ],
+        "cited_chunk_ids": []
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 12482.535299961455,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3:4b-instruct-2507-q4_K_M",
+          "total_duration_ms": 12463.392,
+          "load_duration_ms": 3.746,
+          "prompt_tokens": 812,
+          "completion_tokens": 60,
+          "citation_renderer_changed_answer": false,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-004",
+        "question": "واش نقدر نخلي تسبيق عند ONEE باش يخلصو منو الفواتير؟",
+        "language": "darija_arab",
+        "provider_id": "onee",
+        "gold_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "يمكن إيداع مبلغ يختاره الزبون في وكالة ONEE.",
+          "تقتطع مبالغ الفواتير من الرصيد المودع.",
+          "يخبر الزبون عندما يصبح الرصيد أقل من متوسط استهلاكه الشهري."
+        ],
+        "forbidden_claims": [
+          "مبلغ التسبيق محدد إجباريا من طرف ONEE."
+        ],
+        "critical_values": [
+          "ONEE"
+        ],
+        "split": "test"
+      },
+      "context_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+      ],
+      "answer": {
+        "answer": "يمكنك وضع مبلغ من اختيارك كأول دفعة عند أوني، وستُستخلص المبالغ من فواتيرك تلقائيًا، وستُبلغ عن كل فاتورة بقيمة الباقي بعد ذلك. [onee-regler-facture-residentiel-20260929t192825z--paiement-acompte]",
+        "claims": [
+          {
+            "text": "يمكنك وضع مبلغ من اختيارك كأول دفعة عند أوني، وستُستخلص المبالغ من فواتيرك تلقائيًا، وستُبلغ عن كل فاتورة بقيمة الباقي بعد ذلك.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Valeur critique absente ou modifiée : 'ONEE'"
+        ],
+        "cited_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 18607.27510007564,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3:4b-instruct-2507-q4_K_M",
+          "total_duration_ms": 18603.6018,
+          "load_duration_ms": 3.7199,
+          "prompt_tokens": 801,
+          "completion_tokens": 157,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-005",
+        "question": "Que faut-il pour payer une facture Redal sur Redal.ma et que reçoit-on après le paiement ?",
+        "language": "fr",
+        "provider_id": "srm_rsk",
+        "gold_chunk_ids": [
+          "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Il faut être titulaire d'une carte bancaire.",
+          "Le service Redal.ma est disponible 24h/24 et 7j/7.",
+          "Un reçu peut être imprimé et une confirmation est envoyée par mail."
+        ],
+        "forbidden_claims": [
+          "Le service est disponible uniquement aux heures d'agence.",
+          "Une carte Orange est obligatoire."
+        ],
+        "critical_values": [
+          "24h/24",
+          "7j/7"
+        ],
+        "split": "test"
+      },
+      "context_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte"
+      ],
+      "answer": {
+        "answer": "Il faut une carte bancaire pour payer une facture Redal sur Redal.ma. [redal-e-paiement-20260930t201158z--paiement-en-ligne-carte] Après le paiement, on reçoit un reçu de paiement imprimable et une confirmation de règlement par mail. [redal-e-paiement-20260930t201158z--paiement-en-ligne-carte]",
+        "claims": [
+          {
+            "text": "Il faut une carte bancaire pour payer une facture Redal sur Redal.ma.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte"
+            ]
+          },
+          {
+            "text": "Après le paiement, on reçoit un reçu de paiement imprimable et une confirmation de règlement par mail.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "fr"
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Valeur critique absente ou modifiée : '24h/24'",
+          "Valeur critique absente ou modifiée : '7j/7'"
+        ],
+        "cited_chunk_ids": [
+          "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 22521.565799950622,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3:4b-instruct-2507-q4_K_M",
+          "total_duration_ms": 22517.8361,
+          "load_duration_ms": 4.2788,
+          "prompt_tokens": 888,
+          "completion_tokens": 236,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-006",
+        "question": "Wash n9der nkhelles Redal b Orange Money men telephone?",
+        "language": "darija_latn",
+        "provider_id": "srm_rsk",
+        "gold_chunk_ids": [
+          "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Le règlement Redal par téléphone est disponible via Orange Money.",
+          "Le service est disponible 24h/24 et 7j/7."
+        ],
+        "forbidden_claims": [
+          "Orange Money n'est pas accepté par Redal."
+        ],
+        "critical_values": [
+          "Orange Money",
+          "24h/24",
+          "7j/7"
+        ],
+        "split": "calibration"
+      },
+      "context_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "answer": {
+        "answer": "",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "Aucun passage ne mentionne explicitement la possibilité de payer par téléphone pour 'Redal' ou 'Orange Money' via un téléphone portable dans le contexte de 'Wash n9der nkhelles'.",
+        "language": "darija_latn"
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Décision d'abstention incorrecte.",
+          "Valeur critique absente ou modifiée : 'Orange Money'",
+          "Valeur critique absente ou modifiée : '24h/24'",
+          "Valeur critique absente ou modifiée : '7j/7'"
+        ],
+        "cited_chunk_ids": []
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 7498.210899997503,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3:4b-instruct-2507-q4_K_M",
+          "total_duration_ms": 7494.8218,
+          "load_duration_ms": 5.487,
+          "prompt_tokens": 913,
+          "completion_tokens": 85,
+          "citation_renderer_changed_answer": false,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-007",
+        "question": "إذا تعذر على موظف ريدال الوصول إلى العداد، كيف أرسل القراءة؟",
+        "language": "ar",
+        "provider_id": "srm_rsk",
+        "gold_chunk_ids": [
+          "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "يترك الموظف إشعار مرور وبطاقة للقراءة الذاتية.",
+          "تسجل أرقام العداد السوداء على خلفية بيضاء أو البيضاء على خلفية سوداء وتاريخ القراءة.",
+          "يمكن الإرسال عبر فضاء الزبون أو الوكالة أو هاتف Allo Redal."
+        ],
+        "forbidden_claims": [
+          "يجب تغيير العداد مباشرة."
+        ],
+        "critical_values": [
+          "05 37 20 20 80",
+          "8h",
+          "20h"
+        ],
+        "split": "test"
+      },
+      "context_chunk_ids": [
+        "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve"
+      ],
+      "answer": {
+        "answer": "",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "Erreur de génération structurée.",
+        "language": "ar"
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Décision d'abstention incorrecte.",
+          "Valeur critique absente ou modifiée : '05 37 20 20 80'",
+          "Valeur critique absente ou modifiée : '8h'",
+          "Valeur critique absente ou modifiée : '20h'"
+        ],
+        "cited_chunk_ids": []
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 77474.07009999733,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3:4b-instruct-2507-q4_K_M",
+          "total_duration_ms": 37923.7429,
+          "load_duration_ms": 4.3149,
+          "prompt_tokens": 1066,
+          "completion_tokens": 500,
+          "citation_renderer_changed_answer": false,
+          "generation_attempts": 2,
+          "generation_error": "Deux sorties JSON invalides ou tronquées."
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-008",
+        "question": "واش فاتورة Redal كتجي كل شهر وشنو كتجمع؟",
+        "language": "darija_arab",
+        "provider_id": "srm_rsk",
+        "gold_chunk_ids": [
+          "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "فاتورة Redal شهرية.",
+          "تجمع الماء والكهرباء والتطهير السائل."
+        ],
+        "forbidden_claims": [
+          "الفاتورة تصدر مرة في السنة.",
+          "الفاتورة تخص الكهرباء فقط."
+        ],
+        "critical_values": [],
+        "split": "calibration"
+      },
+      "context_chunk_ids": [
+        "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+      ],
+      "answer": {
+        "answer": "فاتورة Redal تجي كل شهر وتكتجمع من خدمات الماء والكهرباء والتنقية السائلة. [redal-questions-frequentes-20260930t201159z--facturation-mensuelle] فاتورة Redal تجمع كل الخدمات المقدمة من قبل Redal. [redal-questions-frequentes-20260930t201159z--facturation-mensuelle] الفاتورة تُحسب بناءً على قياسات مُعدة كل شهر على مدى أيام محددة. [redal-questions-frequentes-20260930t201159z--facturation-mensuelle] في حالة تغير في الاستهلاك، يتم إجراء تحقق إضافي لضمان دقة القياسات. [redal-questions-frequentes-20260930t201159z--facturation-mensuelle]",
+        "claims": [
+          {
+            "text": "فاتورة Redal تجي كل شهر وتكتجمع من خدمات الماء والكهرباء والتنقية السائلة.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+            ]
+          },
+          {
+            "text": "فاتورة Redal تجمع كل الخدمات المقدمة من قبل Redal.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+            ]
+          },
+          {
+            "text": "الفاتورة تُحسب بناءً على قياسات مُعدة كل شهر على مدى أيام محددة.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+            ]
+          },
+          {
+            "text": "في حالة تغير في الاستهلاك، يتم إجراء تحقق إضافي لضمان دقة القياسات.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": "",
+        "language": "darija_arab"
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 28716.427200008184,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3:4b-instruct-2507-q4_K_M",
+          "total_duration_ms": 28711.8492,
+          "load_duration_ms": 4.4085,
+          "prompt_tokens": 932,
+          "completion_tokens": 365,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-009",
+        "question": "Je n'ai pas reçu ma facture IAM. Puis-je attendre avant de payer ?",
+        "language": "fr",
+        "provider_id": "iam",
+        "gold_chunk_ids": [
+          "telecom-iam-mobile-postpaid-20261001t082840z--exigibilite-non-reception"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "La non-réception de la facture ne justifie pas un retard ou un refus de paiement.",
+          "Le montant est exigible à la date limite indiquée.",
+          "Une copie électronique est disponible gratuitement dans l'espace Client Selfcare."
+        ],
+        "forbidden_claims": [
+          "La facture n'est due qu'après sa réception papier."
+        ],
+        "critical_values": [],
+        "split": "test"
+      },
+      "context_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--exigibilite-non-reception"
+      ],
+      "answer": {
+        "answer": "Le montant facturé devient exigible de plein droit à la date limite y fixée. [telecom-iam-mobile-postpaid-20261001t082840z--exigibilite-non-reception] Le Client ne peut en aucun cas se soustraire à cette obligation et invoquer à cet effet, le défaut de réception de la facture pour justifier un retard ou un refus de paiement de l’échéance correspondante. [telecom-iam-mobile-postpaid-20261001t082840z--exigibilite-non-reception] Une copie électronique des factures demeure disponible et sans frais depuis l’espace Client Selfcare. [telecom-iam-mobile-postpaid-20261001t082840z--exigibilite-non-reception] Le Client pourra obtenir auprès de l’agence commerciale, un duplicata de facture, au titre de la dernière échéance mise en recouvrement, en contrepartie des frais correspondants fixés dans le Catalogue. [telecom-iam-mobile-postpaid-20261001t082840z--exigibilite-non-reception]",
+        "claims": [
+          {
+            "text": "Le montant facturé devient exigible de plein droit à la date limite y fixée.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--exigibilite-non-reception"
+            ]
+          },
+          {
+            "text": "Le Client ne peut en aucun cas se soustraire à cette obligation et invoquer à cet effet, le défaut de réception de la facture pour justifier un retard ou un refus de paiement de l’échéance correspondante.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--exigibilite-non-reception"
+            ]
+          },
+          {
+            "text": "Une copie électronique des factures demeure disponible et sans frais depuis l’espace Client Selfcare.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--exigibilite-non-reception"
+            ]
+          },
+          {
+            "text": "Le Client pourra obtenir auprès de l’agence commerciale, un duplicata de facture, au titre de la dernière échéance mise en recouvrement, en contrepartie des frais correspondants fixés dans le Catalogue.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--exigibilite-non-reception"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": "",
+        "language": "fr"
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-iam-mobile-postpaid-20261001t082840z--exigibilite-non-reception"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 34396.14279998932,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3:4b-instruct-2507-q4_K_M",
+          "total_duration_ms": 34392.0524,
+          "load_duration_ms": 3.7717,
+          "prompt_tokens": 950,
+          "completion_tokens": 433,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-010",
+        "question": "Ch7al 3ndi bach n3ترض 3la prélèvement IAM?",
+        "language": "darija_latn",
+        "provider_id": "iam",
+        "gold_chunk_ids": [
+          "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "La contestation auprès de la banque doit être faite par écrit dans les 7 jours suivant le débit.",
+          "Après ce délai le montant prélevé ne peut pas être restitué par cette procédure, mais une contestation motivée peut être adressée à IAM."
+        ],
+        "forbidden_claims": [
+          "Le délai est de 30 jours.",
+          "La contestation annule toujours l'obligation de paiement."
+        ],
+        "critical_values": [
+          "7"
+        ],
+        "split": "calibration"
+      },
+      "context_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "answer": {
+        "answer": "Le Client pourra adresser une contestation motivée à IAM. [telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation] Toute contestation parvenue à sa banque dans le délai précité donnera lieu à la restitution du montant prélevé. [telecom-iam-mobile-postpaid-202610-01t082840z--prelevement-contestation] Au-delà, le montant prélevé ne peut être restitué. [telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation] L’annulation de tout montant prélevé par la banque suite à l’opposition du Client est faite sans préjudice de l’obligation de paiement et des conséquences qui en découleraient au cas où l’opposition s’avèrerait non fondée. [telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation]",
+        "claims": [
+          {
+            "text": "Le Client pourra adresser une contestation motivée à IAM.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+            ]
+          },
+          {
+            "text": "Toute contestation parvenue à sa banque dans le délai précité donnera lieu à la restitution du montant prélevé.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-202610-01t082840z--prelevement-contestation"
+            ]
+          },
+          {
+            "text": "Au-delà, le montant prélevé ne peut être restitué.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+            ]
+          },
+          {
+            "text": "L’annulation de tout montant prélevé par la banque suite à l’opposition du Client est faite sans préjudice de l’obligation de paiement et des conséquences qui en découleraient au cas où l’opposition s’avèrerait non fondée.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": "",
+        "language": "darija_latn"
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Citations hors contexte : ['telecom-iam-mobile-postpaid-202610-01t082840z--prelevement-contestation']",
+          "Valeur critique absente ou modifiée : '7'"
+        ],
+        "cited_chunk_ids": [
+          "telecom-iam-mobile-postpaid-202610-01t082840z--prelevement-contestation",
+          "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 30971.37489996385,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3:4b-instruct-2507-q4_K_M",
+          "total_duration_ms": 30966.9779,
+          "load_duration_ms": 5.5457,
+          "prompt_tokens": 949,
+          "completion_tokens": 389,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-011",
+        "question": "ما هي المهلة بعد تعليق خدمة اتصالات المغرب بسبب عدم الأداء؟",
+        "language": "ar",
+        "provider_id": "iam",
+        "gold_chunk_ids": [
+          "telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "بعد تعليق الخدمة لدى الزبون 10 أيام لتسوية وضعيته.",
+          "إعادة الخدمة تتطلب أداء المبالغ المستحقة أو تسوية الوضعية التعاقدية."
+        ],
+        "forbidden_claims": [
+          "تعاد الخدمة تلقائيا دون أداء.",
+          "المهلة 30 يوما."
+        ],
+        "critical_values": [
+          "10"
+        ],
+        "split": "test"
+      },
+      "context_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement"
+      ],
+      "answer": {
+        "answer": "العميل يُمنح مهلة 10 أيام من تاريخ تعليق الخدمة لتسديد المبالغ المستحقة. [telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement] إذا لم يُسدَد المبلغ خلال هذه المهلة، يمكن لـ IAM إنهاء العقد وفقًا للشروط المذكورة في الفصل 17. [telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement] يُعاد تفعيل الخدمة بعد سداد المبالغ المستحقة أو تسوية الحالة التعاقدية وفقًا للشروط المذكورة في الفصل 18. [telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement] الإيقاف يُعتبر حالة توقف مؤقت لا يُعَدّ مسؤولية لـ IAM ولا يُحَسَّب في الفاتورة. [telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement]",
+        "claims": [
+          {
+            "text": "العميل يُمنح مهلة 10 أيام من تاريخ تعليق الخدمة لتسديد المبالغ المستحقة.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement"
+            ]
+          },
+          {
+            "text": "إذا لم يُسدَد المبلغ خلال هذه المهلة، يمكن لـ IAM إنهاء العقد وفقًا للشروط المذكورة في الفصل 17.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement"
+            ]
+          },
+          {
+            "text": "يُعاد تفعيل الخدمة بعد سداد المبالغ المستحقة أو تسوية الحالة التعاقدية وفقًا للشروط المذكورة في الفصل 18.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement"
+            ]
+          },
+          {
+            "text": "الإيقاف يُعتبر حالة توقف مؤقت لا يُعَدّ مسؤولية لـ IAM ولا يُحَسَّب في الفاتورة.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": "",
+        "language": "ar"
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 37536.018099985085,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3:4b-instruct-2507-q4_K_M",
+          "total_duration_ms": 37532.038,
+          "load_duration_ms": 4.9597,
+          "prompt_tokens": 1167,
+          "completion_tokens": 427,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-012",
+        "question": "كيفاش نخلص فاتورة Orange بالشارج؟",
+        "language": "darija_arab",
+        "provider_id": "orange_ma",
+        "gold_chunk_ids": [
+          "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "يجب تعبئة رصيد بقيمة تساوي أو تفوق قيمة الفاتورة.",
+          "يجب الاتصال بالرقم 5555 لتأكيد العملية."
+        ],
+        "forbidden_claims": [
+          "يكفي شحن أي مبلغ أقل من الفاتورة.",
+          "رقم التأكيد هو 3333."
+        ],
+        "critical_values": [
+          "5555"
+        ],
+        "split": "calibration"
+      },
+      "context_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+      ],
+      "answer": {
+        "answer": "يجب أن يكون الشارج مساوٍ أو أكبر من قيمة الفاتورة. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge] يجب الاتصال بـ 5555 بعد الشارج لتأكيد التحويل. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge] الدفع من خلال الشارج متوفر فقط للعملاء المُسجلين في Orange. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge] القيمة المطلوبة للشارج يجب أن تكون مساوية أو أكبر من قيمة الفاتورة. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge]",
+        "claims": [
+          {
+            "text": "يجب أن يكون الشارج مساوٍ أو أكبر من قيمة الفاتورة.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          },
+          {
+            "text": "يجب الاتصال بـ 5555 بعد الشارج لتأكيد التحويل.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          },
+          {
+            "text": "الدفع من خلال الشارج متوفر فقط للعملاء المُسجلين في Orange.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          },
+          {
+            "text": "القيمة المطلوبة للشارج يجب أن تكون مساوية أو أكبر من قيمة الفاتورة.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 24505.36270008888,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3:4b-instruct-2507-q4_K_M",
+          "total_duration_ms": 24500.8935,
+          "load_duration_ms": 4.8109,
+          "prompt_tokens": 758,
+          "completion_tokens": 326,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-013",
+        "question": "Quels sont les horaires des agences inwi pour payer une facture ?",
+        "language": "fr",
+        "provider_id": "inwi",
+        "gold_chunk_ids": [
+          "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Les agences inwi sont ouvertes du lundi au samedi de 9h à 20h."
+        ],
+        "forbidden_claims": [
+          "Les agences sont ouvertes le dimanche.",
+          "Les agences ferment à 17h."
+        ],
+        "critical_values": [
+          "9h",
+          "20h"
+        ],
+        "split": "calibration"
+      },
+      "context_chunk_ids": [
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+      ],
+      "answer": {
+        "answer": "Les agences inwi sont ouvertes du lundi au samedi de 9h à 20h00. [telecom-inwi-payer-facture-20261001t082113z--paiement-agence]",
+        "claims": [
+          {
+            "text": "Les agences inwi sont ouvertes du lundi au samedi de 9h à 20h00.",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "fr"
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-inwi-payer-facture-20261001t082113z--paiement-agence"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 15233.870700001717,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3:4b-instruct-2507-q4_K_M",
+          "total_duration_ms": 15229.3002,
+          "load_duration_ms": 4.5044,
+          "prompt_tokens": 728,
+          "completion_tokens": 149,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-014",
+        "question": "Kifach nkhelles factora b inwi money?",
+        "language": "darija_latn",
+        "provider_id": "inwi",
+        "gold_chunk_ids": [
+          "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Choisir la catégorie Télécom puis le facturier inwi.",
+          "Saisir et confirmer le numéro mobile inwi.",
+          "Valider avec le code secret.",
+          "Le paiement est immédiat."
+        ],
+        "forbidden_claims": [
+          "Il faut communiquer son code secret à un agent."
+        ],
+        "critical_values": [
+          "inwi"
+        ],
+        "split": "test"
+      },
+      "context_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+      ],
+      "answer": {
+        "answer": "Factora b inwi money ta7t 3alil 3a7a: kate7a 'Télécom' [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money] Factora b inwi money ta7t 3alil 3a7a: kate7a 'inwi' [telecom-inwi-money-factures-20261000t082113z--paiement-inwi-money] Factora b inwi money ta7t 3alil 3a7a: kate7a n7er mobile inwi [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money] Factora b inwi money ta7t 3alil 3a7a: validez avec votre code secret [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money]",
+        "claims": [
+          {
+            "text": "Factora b inwi money ta7t 3alil 3a7a: kate7a 'Télécom'",
+            "citations": [
+              "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+            ]
+          },
+          {
+            "text": "Factora b inwi money ta7t 3alil 3a7a: kate7a 'inwi'",
+            "citations": [
+              "telecom-inwi-money-factures-20261000t082113z--paiement-inwi-money"
+            ]
+          },
+          {
+            "text": "Factora b inwi money ta7t 3alil 3a7a: kate7a n7er mobile inwi",
+            "citations": [
+              "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+            ]
+          },
+          {
+            "text": "Factora b inwi money ta7t 3alil 3a7a: validez avec votre code secret",
+            "citations": [
+              "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Citations hors contexte : ['telecom-inwi-money-factures-20261000t082113z--paiement-inwi-money']"
+        ],
+        "cited_chunk_ids": [
+          "telecom-inwi-money-factures-20261000t082113z--paiement-inwi-money",
+          "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 33675.02080008853,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3:4b-instruct-2507-q4_K_M",
+          "total_duration_ms": 33657.2309,
+          "load_duration_ms": 3.7313,
+          "prompt_tokens": 771,
+          "completion_tokens": 443,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-015",
+        "question": "لمن أرسل شكوى حول فاتورة الاتصالات قبل اللجوء إلى الوكالة الوطنية لتقنين المواصلات؟",
+        "language": "ar",
+        "provider_id": "anrt",
+        "gold_chunk_ids": [
+          "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "يجب أولا توجيه الشكوى مباشرة إلى الوكالة التجارية لمتعهد الاتصالات أو إرسالها برسالة مضمونة.",
+          "ينبغي الاستعلام عن الأجل وشروط قبول الشكوى."
+        ],
+        "forbidden_claims": [
+          "يجب البدء مباشرة بشكوى لدى ANRT دون الاتصال بالمتعهد."
+        ],
+        "critical_values": [],
+        "split": "calibration"
+      },
+      "context_chunk_ids": [
+        "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+      ],
+      "answer": {
+        "answer": "يجب أن يوجه المستهلك شكوى مباشرة للوكالة التجارية لمتعهد الاتصالات أو يرسلها عبر رسالة مضمونة. [telecom-anrt-reclamations-20261001t082114z--reclamation-operateur]",
+        "claims": [
+          {
+            "text": "يجب أن يوجه المستهلك شكوى مباشرة للوكالة التجارية لمتعهد الاتصالات أو يرسلها عبر رسالة مضمونة.",
+            "citations": [
+              "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": "",
+        "language": "ar"
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-anrt-reclamations-20261001t082114z--reclamation-operateur"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 19578.63989996258,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3:4b-instruct-2507-q4_K_M",
+          "total_duration_ms": 19574.784,
+          "load_duration_ms": 4.3277,
+          "prompt_tokens": 784,
+          "completion_tokens": 123,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-016",
+        "question": "واش نقدر نخلص فاتورة SRM-FM فوكالة Redal؟",
+        "language": "darija_arab",
+        "provider_id": "srm_fm",
+        "gold_chunk_ids": [],
+        "should_abstain": true,
+        "required_facts": [],
+        "forbidden_claims": [
+          "يمكن أداء فاتورة SRM-FM في وكالة Redal.",
+          "تطبق قواعد Redal على SRM-FM."
+        ],
+        "critical_values": [],
+        "split": "test",
+        "notes": "Hard negative fournisseur : aucun contexte SRM-FM approuvé."
+      },
+      "context_chunk_ids": [],
+      "answer": {
+        "answer": "",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "لا توجد مصادر مُعتمدة تُذكر في السجل المُقدم للاستجابة عن سلوك أو إجراءات متعلقة بدفع فاتورة SRM-FM إلى وكالة Redal.",
+        "language": "darija_arab"
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": []
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 12547.53899993375,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3:4b-instruct-2507-q4_K_M",
+          "total_duration_ms": 12543.8817,
+          "load_duration_ms": 4.3618,
+          "prompt_tokens": 666,
+          "completion_tokens": 84,
+          "citation_renderer_changed_answer": false,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    }
+  ]
+}

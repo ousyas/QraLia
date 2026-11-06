@@ -1,0 +1,570 @@
+{
+  "schema_version": "0.1.0",
+  "configuration": {
+    "policy": "conservative_default_3",
+    "single_min_score": 0.995,
+    "single_second_max_ratio": 0.12,
+    "double_min_score": 0.9,
+    "double_third_max_ratio": 0.1,
+    "selection_does_not_use_test_labels": true,
+    "evaluation_is_exploratory_because_test_was_previously_inspected": true
+  },
+  "selected_count_distribution": {
+    "1": 1,
+    "2": 2,
+    "3": 37
+  },
+  "mean_selected_chunks": 2.9,
+  "positive_gold_case_recall": 0.9090909090909091,
+  "cases": [
+    {
+      "case_id": "sftq-v04-0096",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+        "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-virement"
+      ],
+      "gold_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0097",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+        "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+      ],
+      "gold_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0098",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+        "onee-regler-facture-residentiel-20260929t192825z--date-reglement"
+      ],
+      "gold_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0099",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+      ],
+      "gold_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0100",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+        "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-especes"
+      ],
+      "gold_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0156",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+        "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+        "redal-e-paiement-20260930t201158z--paiement-ebanking"
+      ],
+      "gold_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "should_abstain": false,
+      "gold_available": false
+    },
+    {
+      "case_id": "sftq-v04-0157",
+      "selected_count": 2,
+      "selected_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-ebanking",
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "gold_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0158",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar",
+        "redal-e-paiement-20260930t201158z--paiement-gab"
+      ],
+      "gold_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0159",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar",
+        "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+        "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte"
+      ],
+      "gold_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0160",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+        "redal-questions-frequentes-20260930t201159z--lecture-facture",
+        "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+      ],
+      "gold_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "should_abstain": false,
+      "gold_available": false
+    },
+    {
+      "case_id": "sftq-v04-0256",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation",
+        "telecom-iam-mobile-postpaid-20261001t082840z--resiliation-client",
+        "telecom-iam-mobile-postpaid-20261001t082840z--exigibilite-non-reception"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0257",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation",
+        "telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement",
+        "telecom-iam-mobile-postpaid-20261001t082840z--resiliation-client"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0258",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation",
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation",
+        "telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation",
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0259",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation",
+        "telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement",
+        "telecom-iam-mobile-postpaid-20261001t082840z--resiliation-client"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0260",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--facturation-mensuelle",
+        "telecom-iam-mobile-postpaid-20261001t082840z--penalites-retard",
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0276",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation",
+        "telecom-iam-mobile-postpaid-20261001t082840z--resiliation-client",
+        "telecom-iam-mobile-postpaid-20261001t082840z--facturation-mensuelle"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0277",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--resiliation-client",
+        "telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement",
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0278",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--facturation-mensuelle",
+        "telecom-iam-mobile-postpaid-20261001t082840z--penalites-retard",
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0279",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--resiliation-client",
+        "telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement",
+        "telecom-iam-mobile-postpaid-20261001t082840z--penalites-retard"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "should_abstain": false,
+      "gold_available": false
+    },
+    {
+      "case_id": "sftq-v04-0280",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--facturation-mensuelle",
+        "telecom-iam-mobile-postpaid-20261001t082840z--penalites-retard",
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "should_abstain": true,
+      "gold_available": false
+    },
+    {
+      "case_id": "sftq-v04-0316",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--paiement-recharge",
+        "telecom-orange-payer-facture-20261001t082112z--delai-paiement",
+        "telecom-orange-payer-facture-20261001t082112z--paiement-tassbik"
+      ],
+      "gold_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0317",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--delai-paiement",
+        "telecom-orange-payer-facture-20261001t082112z--paiement-prelevement",
+        "telecom-orange-payer-facture-20261001t082112z--paiement-tassbik"
+      ],
+      "gold_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0318",
+      "selected_count": 1,
+      "selected_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+      ],
+      "gold_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--delai-paiement",
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0319",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture",
+        "telecom-orange-payer-facture-20261001t082112z--delai-paiement",
+        "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+      ],
+      "gold_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0320",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture",
+        "telecom-orange-payer-facture-20261001t082112z--paiement-orange-money",
+        "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+      ],
+      "gold_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+      ],
+      "should_abstain": true,
+      "gold_available": false
+    },
+    {
+      "case_id": "sftq-v04-0396",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--paiement-recharge",
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture",
+        "telecom-orange-payer-facture-20261001t082112z--paiement-agence"
+      ],
+      "gold_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0397",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--paiement-prelevement",
+        "telecom-orange-payer-facture-20261001t082112z--paiement-recharge",
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+      ],
+      "gold_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0398",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture",
+        "telecom-orange-payer-facture-20261001t082112z--paiement-recharge",
+        "telecom-orange-payer-facture-20261001t082112z--paiement-agence"
+      ],
+      "gold_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0399",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture",
+        "telecom-orange-payer-facture-20261001t082112z--paiement-agents",
+        "telecom-orange-payer-facture-20261001t082112z--paiement-espace-client-carte"
+      ],
+      "gold_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0400",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture",
+        "telecom-orange-payer-facture-20261001t082112z--paiement-prelevement",
+        "telecom-orange-payer-facture-20261001t082112z--paiement-agence"
+      ],
+      "gold_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0476",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money",
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-ebanking",
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-prelevement"
+      ],
+      "gold_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0477",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money",
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-ebanking",
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-agents"
+      ],
+      "gold_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0478",
+      "selected_count": 2,
+      "selected_chunk_ids": [
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-prelevement",
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+      ],
+      "gold_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money",
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-prelevement"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0479",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money",
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-ebanking",
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-agents"
+      ],
+      "gold_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0480",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money",
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-my-inwi",
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-prelevement"
+      ],
+      "gold_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+      ],
+      "should_abstain": false,
+      "gold_available": true
+    },
+    {
+      "case_id": "sftq-v04-0616",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+        "redal-questions-frequentes-20260930t201159z--date-limite-suspension",
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "gold_chunk_ids": [],
+      "should_abstain": true,
+      "gold_available": null
+    },
+    {
+      "case_id": "sftq-v04-0617",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "redal-questions-frequentes-20260930t201159z--lecture-facture",
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar",
+        "redal-e-paiement-20260930t201158z--paiement-prelevement"
+      ],
+      "gold_chunk_ids": [],
+      "should_abstain": true,
+      "gold_available": null
+    },
+    {
+      "case_id": "sftq-v04-0618",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+        "redal-e-paiement-20260930t201158z--paiement-ebanking",
+        "redal-questions-frequentes-20260930t201159z--date-limite-suspension"
+      ],
+      "gold_chunk_ids": [],
+      "should_abstain": true,
+      "gold_available": null
+    },
+    {
+      "case_id": "sftq-v04-0619",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "redal-questions-frequentes-20260930t201159z--date-limite-suspension",
+        "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+        "redal-e-paiement-20260930t201158z--paiement-ebanking"
+      ],
+      "gold_chunk_ids": [],
+      "should_abstain": true,
+      "gold_available": null
+    },
+    {
+      "case_id": "sftq-v04-0620",
+      "selected_count": 3,
+      "selected_chunk_ids": [
+        "redal-questions-frequentes-20260930t201159z--lecture-facture",
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar",
+        "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve"
+      ],
+      "gold_chunk_ids": [],
+      "should_abstain": true,
+      "gold_available": null
+    }
+  ]
+}

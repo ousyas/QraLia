@@ -1,0 +1,682 @@
+{
+  "schema_version": "0.1.0",
+  "protocol": {
+    "baseline_context": "4 passages construits: gold + distracteurs",
+    "adaptive_context": "Qwen3-Reranker-0.6B; 1 à 3 passages",
+    "threshold_calibration": "validation darija_arab uniquement; aucun label test"
+  },
+  "metrics": {
+    "core_deterministic_pass_rate": {
+      "baseline": 0.775,
+      "adaptive": 0.725,
+      "delta": -0.050000000000000044
+    },
+    "strict_grounded_pass_rate": {
+      "baseline": 0.45,
+      "adaptive": 0.375,
+      "delta": -0.07500000000000001
+    },
+    "abstention_accuracy": {
+      "baseline": 0.85,
+      "adaptive": 0.85,
+      "delta": 0.0
+    },
+    "false_abstention_count": {
+      "baseline": 1,
+      "adaptive": 2,
+      "delta": 1
+    },
+    "unsafe_answer_count": {
+      "baseline": 5,
+      "adaptive": 4,
+      "delta": -1
+    },
+    "gold_citation_precision": {
+      "baseline": 0.7323232323232324,
+      "adaptive": 0.5909090909090909,
+      "delta": -0.14141414141414144
+    },
+    "gold_citation_recall": {
+      "baseline": 0.8181818181818182,
+      "adaptive": 0.6363636363636364,
+      "delta": -0.18181818181818188
+    },
+    "distractor_citation_case_count": {
+      "baseline": 15,
+      "adaptive": 16,
+      "delta": 1
+    },
+    "critical_value_recall": {
+      "baseline": 0.8484848484848485,
+      "adaptive": 0.7575757575757576,
+      "delta": -0.09090909090909094
+    },
+    "mean_latency_seconds": {
+      "baseline": 26.890540897500976,
+      "adaptive": 21.41113013249851,
+      "delta": -5.479410765002466
+    },
+    "mean_prompt_tokens": {
+      "baseline": 1292.425,
+      "adaptive": 1116.175,
+      "delta": -176.25
+    }
+  },
+  "selection": {
+    "distribution": {
+      "1": 1,
+      "2": 2,
+      "3": 37
+    },
+    "mean_selected_chunks": 2.9,
+    "positive_gold_recall": 0.9090909090909091,
+    "positive_cases": 33,
+    "positive_cases_without_any_gold": 3
+  },
+  "strict_changes": {
+    "improved": 2,
+    "regressed": 5,
+    "unchanged": 33
+  },
+  "cases": [
+    {
+      "case_id": "sftq-v04-0096",
+      "intent_id": "onee_advance",
+      "question": "نقدر نخلي تسبيق على فواتير المكتب الجاية؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": true,
+      "adaptive_strict_pass": true,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0097",
+      "intent_id": "onee_advance",
+      "question": "واش كاين شي سيستيم باش نخلص الكونصوماسيون ديالي ديال الضو مع لافونس؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": false,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": [
+        "citation_outside_context"
+      ]
+    },
+    {
+      "case_id": "sftq-v04-0098",
+      "intent_id": "onee_advance",
+      "question": "كنبغي نكون مرتاح و ما نتفاجأش بلي فاكتوغ ديال الضو كل شهر. واش كاين شي حل باش نخلي شي بارا د الفلوس و يبقاو يقطعو منها لي مونطون ديال لي فاكتوغ؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": true,
+      "adaptive_strict_pass": true,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0099",
+      "intent_id": "onee_advance",
+      "question": "واش نقدر نخلص الكونصوماسيون ديالي ديال شهور الجايين مع لافونس؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0100",
+      "intent_id": "onee_advance",
+      "question": "سلام، بغيت نسول واش ممكن ندفع شي صوم د الفلوس أفون باش تغطي لي فاكتوغ ديال الضو لي جايين. مرسي.",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0156",
+      "intent_id": "redal_mobile_wallet",
+      "question": "بأشمن تطبيق فالتلفون نقدر نخلص Redal؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": false,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0157",
+      "intent_id": "redal_mobile_wallet",
+      "question": "بأي تطبيق نقدر نسدد فواتير Redal من خلال الهاتف؟",
+      "expected_abstention": false,
+      "selected_count": 2,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": [
+        "critical_value_missing"
+      ]
+    },
+    {
+      "case_id": "sftq-v04-0158",
+      "intent_id": "redal_mobile_wallet",
+      "question": "أنا خارج الدار و ما عنديش الوقت باش نمشي نخلص. واش كاين شي طريقة باش نخلص فاتورة Redal من التيليفون؟ و أشمن تطبيقات كاينين؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": true,
+      "adaptive_strict_pass": false,
+      "strict_change": "regressed",
+      "adaptive_errors": [
+        "critical_value_missing"
+      ]
+    },
+    {
+      "case_id": "sftq-v04-0159",
+      "intent_id": "redal_mobile_wallet",
+      "question": "كيفاش نقدر نخلص الفاتورة ديالي غير من التيليفون؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": [
+        "critical_value_missing"
+      ]
+    },
+    {
+      "case_id": "sftq-v04-0160",
+      "intent_id": "redal_mobile_wallet",
+      "question": "سلام، واش كاين شي تطبيق فالتيليفون باش نخلص Redal؟ عافاك بغيت نعرف.",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": false,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": false,
+      "baseline_strict_pass": true,
+      "adaptive_strict_pass": false,
+      "strict_change": "regressed",
+      "adaptive_errors": [
+        "citation_outside_context",
+        "critical_value_missing"
+      ]
+    },
+    {
+      "case_id": "sftq-v04-0256",
+      "intent_id": "iam_billing_error",
+      "question": "إلا تأكدو بلي IAM حسبات ليا مبلغ غالط شنو كيديرو؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": true,
+      "adaptive_strict_pass": true,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0257",
+      "intent_id": "iam_billing_error",
+      "question": "شنو كيديرو IAM إلا بان ليهم بلي كاين غلط ف الحساب و طلبو زيادة ف المبلغ؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": true,
+      "adaptive_strict_pass": true,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0258",
+      "intent_id": "iam_billing_error",
+      "question": "شنو كدير IAM إلا كان غلط فالفاتورة وشنو هو المهل باش نديرو معارضة على الاقتطاع البنكي؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": [
+        "critical_value_missing"
+      ]
+    },
+    {
+      "case_id": "sftq-v04-0259",
+      "intent_id": "iam_billing_error",
+      "question": "إلا الفاتورة ديالي فيها غلط و حسبو ليا مبلغ ماشي هو هاداك، كيفاش كيقادو هاد الوضعية؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": true,
+      "adaptive_strict_pass": true,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0260",
+      "intent_id": "iam_billing_error",
+      "question": "عافاك، إلا تخلصت كثر من داكشي لي خاص ف الفاتورة، واش كايردو ليا الفلوس ولا كاين شي حل آخر؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": true,
+      "adaptive_strict_pass": true,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0276",
+      "intent_id": "iam_debit_dispute",
+      "question": "IAM قطعات ليا الفلوس من الكونط شحال عندي باش نعترض بالكتابة؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": true,
+      "adaptive_strict_pass": true,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0277",
+      "intent_id": "iam_debit_dispute",
+      "question": "إلى اتصالات المغرب خداو ليا الفلوس من الكونط، شحال كيكون عندي الوقت باش نوقف داكشي؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": [
+        "critical_value_missing"
+      ]
+    },
+    {
+      "case_id": "sftq-v04-0278",
+      "intent_id": "iam_debit_dispute",
+      "question": "البارح، اتصالات المغرب دارولي واحد الاقتطاع ف الكونط بانكير ديالي و ما فهمتش علاش. أنا باغي نلغيه، واش كاين شي أجل محدد باش ندير هاد المعارضة؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": false,
+      "baseline_strict_pass": true,
+      "adaptive_strict_pass": false,
+      "strict_change": "regressed",
+      "adaptive_errors": [
+        "claims_structure",
+        "critical_value_missing"
+      ]
+    },
+    {
+      "case_id": "sftq-v04-0279",
+      "intent_id": "iam_debit_dispute",
+      "question": "واش كاين شي وقت محدد باش نوقف شي اقتطاع بنكي ما عجبنيش؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": false,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": true,
+      "adaptive_strict_pass": false,
+      "strict_change": "regressed",
+      "adaptive_errors": [
+        "critical_value_missing"
+      ]
+    },
+    {
+      "case_id": "sftq-v04-0280",
+      "intent_id": "iam_debit_dispute",
+      "question": "سلام خويا، اتصالات المغرب قطعات ليا الفلوس و ما عرفتش علاش. شحال عندي الوقت باش نرجعهم؟",
+      "expected_abstention": true,
+      "selected_count": 3,
+      "gold_available_after_reranking": false,
+      "baseline_core_pass": false,
+      "adaptive_core_pass": false,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": [
+        "abstention_decision"
+      ]
+    },
+    {
+      "case_id": "sftq-v04-0316",
+      "intent_id": "orange_payment_delay",
+      "question": "شحال من نهار على الأقل عندي باش نخلص فاتورة Orange؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": true,
+      "adaptive_strict_pass": true,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0317",
+      "intent_id": "orange_payment_delay",
+      "question": "شحال ديال الوقت عندي باش نخلص داكشي لي عليا ل Orange؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": true,
+      "adaptive_strict_pass": true,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0318",
+      "intent_id": "orange_payment_delay",
+      "question": "شحال مينيموم ديال الوقت باش نخلصو فاتورة Orange وكيفاش نكونسولطيو الفاتيرات فـ espace client مع ميساج SMS؟",
+      "expected_abstention": false,
+      "selected_count": 1,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": true,
+      "adaptive_strict_pass": false,
+      "strict_change": "regressed",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0319",
+      "intent_id": "orange_payment_delay",
+      "question": "بغيت نعرف شحال الأجل ديال خلاص لا فاكتورة.",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": true,
+      "adaptive_strict_pass": true,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0320",
+      "intent_id": "orange_payment_delay",
+      "question": "سلام، فين هوما لي ديلي باش نخلص فاكتورة Orange؟",
+      "expected_abstention": true,
+      "selected_count": 3,
+      "gold_available_after_reranking": false,
+      "baseline_core_pass": false,
+      "adaptive_core_pass": false,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": [
+        "abstention_decision"
+      ]
+    },
+    {
+      "case_id": "sftq-v04-0396",
+      "intent_id": "orange_invoice_download",
+      "question": "فين نشوف ونحمّل فواتير Orange؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0397",
+      "intent_id": "orange_invoice_download",
+      "question": "كيفاش نقدر نشوف وناخد ليفاكتور ديالي ديال Orange؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": false,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": [
+        "abstention_decision"
+      ]
+    },
+    {
+      "case_id": "sftq-v04-0398",
+      "intent_id": "orange_invoice_download",
+      "question": "خاصني لافاكتور ديال Orange باش ندفع شي وراق، أو ما عنديش ديك ديال الورق. فين نقدر نتيليشارجها من الإنترنت؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": true,
+      "strict_change": "improved",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0399",
+      "intent_id": "orange_invoice_download",
+      "question": "باغي نتيليشارجي ليفاكتور ديال التيليفون، فين نلقاهم؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": false,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": [
+        "abstention_decision"
+      ]
+    },
+    {
+      "case_id": "sftq-v04-0400",
+      "intent_id": "orange_invoice_download",
+      "question": "سلام، فين نتيليشارجي ليفاكتور ديال Orange؟ شي بلاصة فالسيت؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": false,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0476",
+      "intent_id": "inwi_money_steps",
+      "question": "كيفاش نخلص الفاتورة بـ inwi money خطوة بخطوة؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": true,
+      "adaptive_strict_pass": true,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0477",
+      "intent_id": "inwi_money_steps",
+      "question": "بغيت نعرف الطريقة باش نسوي هاد المستحقات ديال الاتصالات عبر الهاتف المحمول",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0478",
+      "intent_id": "inwi_money_steps",
+      "question": "كيفاش نخلص بـ inwi money خطوة بخطوة، وكيفاش نفعل الاقتطاع البنكي التلقائي؟",
+      "expected_abstention": false,
+      "selected_count": 2,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": false,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": true,
+      "strict_change": "improved",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0479",
+      "intent_id": "inwi_money_steps",
+      "question": "شنو هما الخطوات لي خاصني ندير فالتطبيق ديال الكونط باش ندوز هاد الخلاص بلا مشاكل؟",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": true,
+      "adaptive_strict_pass": true,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0480",
+      "intent_id": "inwi_money_steps",
+      "question": "عافاك قول لي شنو ندير بالخطوات باش ندوز هاد الخلاص دغيا",
+      "expected_abstention": false,
+      "selected_count": 3,
+      "gold_available_after_reranking": true,
+      "baseline_core_pass": false,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0616",
+      "intent_id": "redal_outage_missing",
+      "question": "عندي عطب Redal شحال كياخدو باش يرجع الضو؟",
+      "expected_abstention": true,
+      "selected_count": 3,
+      "gold_available_after_reranking": null,
+      "baseline_core_pass": false,
+      "adaptive_core_pass": false,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": [
+        "abstention_decision"
+      ]
+    },
+    {
+      "case_id": "sftq-v04-0617",
+      "intent_id": "redal_outage_missing",
+      "question": "منين كيطرا شي عطب في شبكة المزود، شحال خصهم ديال الوقت باش يعاودوا يطلقوا الضو؟",
+      "expected_abstention": true,
+      "selected_count": 3,
+      "gold_available_after_reranking": null,
+      "baseline_core_pass": true,
+      "adaptive_core_pass": true,
+      "baseline_strict_pass": true,
+      "adaptive_strict_pass": true,
+      "strict_change": "unchanged",
+      "adaptive_errors": []
+    },
+    {
+      "case_id": "sftq-v04-0618",
+      "intent_id": "redal_outage_missing",
+      "question": "السلام خويا، دخلت للدار لقيتها مظلمة ومكاينش الضو نهائياً فالحي كامل بسبب مشكل تقني، بغيت نعرف عافاك شحال خصنا نتسناو باش يرجع الوضع عادي.",
+      "expected_abstention": true,
+      "selected_count": 3,
+      "gold_available_after_reranking": null,
+      "baseline_core_pass": false,
+      "adaptive_core_pass": false,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": [
+        "abstention_decision",
+        "citation_outside_context"
+      ]
+    },
+    {
+      "case_id": "sftq-v04-0619",
+      "intent_id": "redal_outage_missing",
+      "question": "الضو مشا لينا كاملين فالزنقة هادي ساعة، شحال ديال الوقت عاد يرجع عافاك؟",
+      "expected_abstention": true,
+      "selected_count": 3,
+      "gold_available_after_reranking": null,
+      "baseline_core_pass": false,
+      "adaptive_core_pass": false,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": [
+        "claims_structure",
+        "citation_missing_from_answer"
+      ]
+    },
+    {
+      "case_id": "sftq-v04-0620",
+      "intent_id": "redal_outage_missing",
+      "question": "سلام srm_rsk، عwtani عندنا الضو مقطوع فالدرب، شحال ديال الوقت عاد يرجوه لينا؟",
+      "expected_abstention": true,
+      "selected_count": 3,
+      "gold_available_after_reranking": null,
+      "baseline_core_pass": false,
+      "adaptive_core_pass": false,
+      "baseline_strict_pass": false,
+      "adaptive_strict_pass": false,
+      "strict_change": "unchanged",
+      "adaptive_errors": [
+        "claims_structure",
+        "citation_missing_from_answer"
+      ]
+    }
+  ]
+}

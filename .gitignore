@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.pytest-*/
+.ci-pytest-tmp/
+.tmp-pytest-*/
 .mypy_cache/
 .ruff_cache/
 .venv/
@@ -12,6 +15,7 @@ __pycache__/
 .env
 .env.*
 !.env.example
+Api_Key_*.txt
 
 # Editors and operating systems
 .idea/
@@ -28,3 +32,24 @@ artifacts/
 
 # Never version user documents
 data/user_documents/
+
+# Runtime uploads and generated reports/models
+/uploads/
+/output/
+/outputs/
+/tmp/
+/*.pdf
+/qralia_sft*.zip
+*.gguf
+*.safetensors
+
+# React/Vite
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/*.tsbuildinfo
+frontend/vite.config.js
+frontend/vite.config.d.ts
+
+# Factures réelles : jamais dans Git
+data/real/

@@ -1,0 +1,612 @@
+{
+  "schema_version": "0.1.0",
+  "protocol": "gold_context_generation_then_deterministic_checks_then_llm_judge",
+  "configuration": {
+    "generator_model": "qwen3.5:4b",
+    "replay_generation_report": null,
+    "judge_model": null,
+    "temperature": 0,
+    "seed": 42,
+    "prompt_profile": "darija_few_shot",
+    "prompt_version": "0.3.0-exploratory",
+    "run_label": "calibration_hard_negatives_atlas_observation",
+    "atlas_rewriter_backend": "ollama",
+    "atlas_rewriter_model": "hf.co/tensorblock/MBZUAI-Paris_Atlas-Chat-2B-GGUF:latest",
+    "atlas_prompt_profile": "grounded_few_shot",
+    "atlas_observation_mode": true,
+    "rewrite_languages": [
+      "darija_arab",
+      "darija_latn"
+    ],
+    "selected_splits": [],
+    "selected_case_ids": [
+      "generation-265",
+      "generation-266",
+      "generation-267",
+      "generation-268",
+      "generation-269",
+      "generation-270",
+      "generation-271",
+      "generation-272"
+    ],
+    "case_count": 8,
+    "indexed_chunk_count": 39,
+    "contains_personal_data": false
+  },
+  "summary": {
+    "case_count": 8,
+    "deterministic_pass_rate": 1.0,
+    "final_pass_rate": 1.0,
+    "critical_fact_violation_count": 0,
+    "judge_mean_scores": null,
+    "generator_mean_latency_ms": 10292.750387500064,
+    "darija_rewriter_mean_latency_ms": 0.0019999995402031345,
+    "darija_rewrite_case_count": 8,
+    "darija_rewrite_fallback_count": 0,
+    "darija_rewrite_would_fallback_count": 0,
+    "darija_rewrite_unsafe_observation_count": 0,
+    "judge_mean_latency_ms": null,
+    "generator_prompt_tokens": 6212,
+    "generator_completion_tokens": 564,
+    "judge_prompt_tokens": 0,
+    "judge_completion_tokens": 0,
+    "judge_error_count": 0
+  },
+  "breakdown": {
+    "by_split": {
+      "calibration": {
+        "case_count": 8,
+        "deterministic_pass_rate": 1.0,
+        "final_pass_rate": 1.0,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      }
+    },
+    "by_language": {
+      "darija_arab": {
+        "case_count": 4,
+        "deterministic_pass_rate": 1.0,
+        "final_pass_rate": 1.0,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      },
+      "darija_latn": {
+        "case_count": 4,
+        "deterministic_pass_rate": 1.0,
+        "final_pass_rate": 1.0,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      }
+    }
+  },
+  "cases": [
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-265",
+        "question": "Ch7al bddabt pénalité ila t2ekhert 5 iyam 3la facture ONEE?",
+        "language": "darija_latn",
+        "provider_id": "onee",
+        "gold_chunk_ids": [],
+        "should_abstain": true,
+        "required_facts": [],
+        "forbidden_claims": [
+          "Le corpus précise le montant exact d'une pénalité de retard ONEE."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Hard negative darija candidat à relire humainement."
+      },
+      "context_chunk_ids": [],
+      "answer_before_rewrite": {
+        "answer": "Ma 3ndich ma3loumat kafya f sources bach n2ekked lik.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ma3loumat dakhla l'API onee lafwa3a, m9tadch bddabt pénalité ila t2ekhert 5 iyam 3la facture ONEE.",
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "Ma 3ndich ma3loumat kafya f sources bach n2ekked lik.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ma3loumat dakhla l'API onee lafwa3a, m9tadch bddabt pénalité ila t2ekhert 5 iyam 3la facture ONEE.",
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": false,
+        "reason": "abstention_or_no_claims",
+        "claims": []
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": []
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 22405.462400000033,
+        "darija_rewriter": 0.0018000009731622413,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 22345.5575,
+          "load_duration_ms": 9870.7305,
+          "prompt_tokens": 786,
+          "completion_tokens": 97,
+          "citation_renderer_changed_answer": false,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-266",
+        "question": "ONEE ch7al katzid 3la facture ila khllest mn b3d délai?",
+        "language": "darija_latn",
+        "provider_id": "onee",
+        "gold_chunk_ids": [],
+        "should_abstain": true,
+        "required_facts": [],
+        "forbidden_claims": [
+          "Le corpus précise le montant exact d'une pénalité de retard ONEE."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Hard negative darija candidat à relire humainement."
+      },
+      "context_chunk_ids": [],
+      "answer_before_rewrite": {
+        "answer": "ma 3ndich ma3loumat kafya f sources bach n2ekked lik",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ma 3ndich ma3loumat kafya f sources bach n2ekked lik",
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "ma 3ndich ma3loumat kafya f sources bach n2ekked lik",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ma 3ndich ma3loumat kafya f sources bach n2ekked lik",
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": false,
+        "reason": "abstention_or_no_claims",
+        "claims": []
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": []
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 8608.714399999371,
+        "darija_rewriter": 0.0018999999156221747,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 8605.0071,
+          "load_duration_ms": 3.7933,
+          "prompt_tokens": 784,
+          "completion_tokens": 72,
+          "citation_renderer_changed_answer": false,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-267",
+        "question": "شحال بالضبط الغرامة إلا تأخرت 5 أيام على فاتورة ONEE؟",
+        "language": "darija_arab",
+        "provider_id": "onee",
+        "gold_chunk_ids": [],
+        "should_abstain": true,
+        "required_facts": [],
+        "forbidden_claims": [
+          "Le corpus précise le montant exact d'une pénalité de retard ONEE."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Hard negative darija candidat à relire humainement."
+      },
+      "context_chunk_ids": [],
+      "answer_before_rewrite": {
+        "answer": "ما عنديش معلومات كافية فالمصادر باش نؤكد ليك شحال بالضبط الغرامة.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ما عنديش معلومات كافية فالمصادر باش نأكد ليك",
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "ما عنديش معلومات كافية فالمصادر باش نؤكد ليك شحال بالضبط الغرامة.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ما عنديش معلومات كافية فالمصادر باش نأكد ليك",
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": false,
+        "reason": "abstention_or_no_claims",
+        "claims": []
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": []
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 11396.086200000354,
+        "darija_rewriter": 0.0021999985619913787,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 11392.4156,
+          "load_duration_ms": 4.6222,
+          "prompt_tokens": 771,
+          "completion_tokens": 79,
+          "citation_renderer_changed_answer": false,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-268",
+        "question": "ONEE شحال كتزيد على الفاتورة إلا خلّصت من بعد الأجل؟",
+        "language": "darija_arab",
+        "provider_id": "onee",
+        "gold_chunk_ids": [],
+        "should_abstain": true,
+        "required_facts": [],
+        "forbidden_claims": [
+          "Le corpus précise le montant exact d'une pénalité de retard ONEE."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Hard negative darija candidat à relire humainement."
+      },
+      "context_chunk_ids": [],
+      "answer_before_rewrite": {
+        "answer": "ما عنديش معلومات كافية فالمصادر باش نؤكد ليك.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ما عنديش معلومات كافية فالمصادر باش نؤكد ليك",
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "ما عنديش معلومات كافية فالمصادر باش نؤكد ليك.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ما عنديش معلومات كافية فالمصادر باش نؤكد ليك",
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": false,
+        "reason": "abstention_or_no_claims",
+        "claims": []
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": []
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 7562.066599999525,
+        "darija_rewriter": 0.0015999994502635673,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 7558.805,
+          "load_duration_ms": 4.1278,
+          "prompt_tokens": 772,
+          "completion_tokens": 58,
+          "citation_renderer_changed_answer": false,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-269",
+        "question": "Redal ch7al katakhod bach trje3 do mn b3d panne?",
+        "language": "darija_latn",
+        "provider_id": "redal",
+        "gold_chunk_ids": [],
+        "should_abstain": true,
+        "required_facts": [],
+        "forbidden_claims": [
+          "Le corpus donne un délai garanti de rétablissement après une panne Redal."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Hard negative darija candidat à relire humainement."
+      },
+      "context_chunk_ids": [],
+      "answer_before_rewrite": {
+        "answer": "Ma 3ndich ma3loumat kafya f sources bach n2ekked lik.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ma3niwch ma3na",
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "Ma 3ndich ma3loumat kafya f sources bach n2ekked lik.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ma3niwch ma3na",
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": false,
+        "reason": "abstention_or_no_claims",
+        "claims": []
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": []
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 7813.354199999594,
+        "darija_rewriter": 0.0017999991541728377,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 7809.8519,
+          "load_duration_ms": 3.3155,
+          "prompt_tokens": 780,
+          "completion_tokens": 61,
+          "citation_renderer_changed_answer": false,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-270",
+        "question": "Kayna chi garantie belli Redal trje3 lkahraba f sa3tin?",
+        "language": "darija_latn",
+        "provider_id": "redal",
+        "gold_chunk_ids": [],
+        "should_abstain": true,
+        "required_facts": [],
+        "forbidden_claims": [
+          "Le corpus donne un délai garanti de rétablissement après une panne Redal."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Hard negative darija candidat à relire humainement."
+      },
+      "context_chunk_ids": [],
+      "answer_before_rewrite": {
+        "answer": "Ma 3ndich ma3loumat kafya f sources bach n2ekked lik.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ma 3ndich ma3loumat kafya f sources bach n2ekked lik",
+        "language": "darija_latn"
+      },
+      "answer": {
+        "answer": "Ma 3ndich ma3loumat kafya f sources bach n2ekked lik.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ma 3ndich ma3loumat kafya f sources bach n2ekked lik",
+        "language": "darija_latn"
+      },
+      "darija_rewrite": {
+        "applied": false,
+        "reason": "abstention_or_no_claims",
+        "claims": []
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": []
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 8631.83250000111,
+        "darija_rewriter": 0.002099999619531445,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 8628.083,
+          "load_duration_ms": 5.639,
+          "prompt_tokens": 779,
+          "completion_tokens": 72,
+          "citation_renderer_changed_answer": false,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-271",
+        "question": "Redal شحال كتاخد باش ترجع الضو من بعد العطب؟",
+        "language": "darija_arab",
+        "provider_id": "redal",
+        "gold_chunk_ids": [],
+        "should_abstain": true,
+        "required_facts": [],
+        "forbidden_claims": [
+          "Le corpus donne un délai garanti de rétablissement après une panne Redal."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Hard negative darija candidat à relire humainement."
+      },
+      "context_chunk_ids": [],
+      "answer_before_rewrite": {
+        "answer": "ما عنديش معلومات كافية فالمصادر باش نأكد ليك.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ما عنديش معلومات كافية فالمصادر باش نؤكد",
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "ما عنديش معلومات كافية فالمصادر باش نأكد ليك.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ما عنديش معلومات كافية فالمصادر باش نؤكد",
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": false,
+        "reason": "abstention_or_no_claims",
+        "claims": []
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": []
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 7423.95039999974,
+        "darija_rewriter": 0.0024000000848900527,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 7420.5125,
+          "load_duration_ms": 3.8317,
+          "prompt_tokens": 769,
+          "completion_tokens": 55,
+          "citation_renderer_changed_answer": false,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-272",
+        "question": "واش كاينة شي ضمانة باللي Redal ترجع الكهربا فساعتين؟",
+        "language": "darija_arab",
+        "provider_id": "redal",
+        "gold_chunk_ids": [],
+        "should_abstain": true,
+        "required_facts": [],
+        "forbidden_claims": [
+          "Le corpus donne un délai garanti de rétablissement après une panne Redal."
+        ],
+        "critical_values": [],
+        "split": "calibration",
+        "notes": "Hard negative darija candidat à relire humainement."
+      },
+      "context_chunk_ids": [],
+      "answer_before_rewrite": {
+        "answer": "ما عنديش معلومات كافية فالمصادر باش نأكد ليك.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ما كايوجدش أي مصدر أو نص يشرح الضمانات أو وقت استرجاع الكهرباء من Redal.",
+        "language": "darija_arab"
+      },
+      "answer": {
+        "answer": "ما عنديش معلومات كافية فالمصادر باش نأكد ليك.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ما كايوجدش أي مصدر أو نص يشرح الضمانات أو وقت استرجاع الكهرباء من Redal.",
+        "language": "darija_arab"
+      },
+      "darija_rewrite": {
+        "applied": false,
+        "reason": "abstention_or_no_claims",
+        "claims": []
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": []
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 8500.536400000783,
+        "darija_rewriter": 0.0021999985619913787,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 8496.7327,
+          "load_duration_ms": 4.2857,
+          "prompt_tokens": 771,
+          "completion_tokens": 70,
+          "citation_renderer_changed_answer": false,
+          "generation_attempts": 1,
+          "generation_error": null,
+          "prompt_profile": "darija_few_shot",
+          "prompt_version": "0.3.0-exploratory"
+        },
+        "judge": null
+      }
+    }
+  ]
+}

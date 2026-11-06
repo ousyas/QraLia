@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qralia.local/schemas/generation_evaluation_case.schema.json",
+  "title": "QraLia generation evaluation case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "case_id",
+    "question",
+    "language",
+    "provider_id",
+    "gold_chunk_ids",
+    "should_abstain",
+    "required_facts",
+    "forbidden_claims",
+    "critical_values",
+    "split"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "case_id": {"type": "string", "pattern": "^generation-[0-9]{3}$"},
+    "question": {"type": "string", "minLength": 1},
+    "language": {
+      "type": "string",
+      "enum": ["fr", "ar", "darija_latn", "darija_arab"]
+    },
+    "provider_id": {"type": "string", "minLength": 1},
+    "gold_chunk_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "should_abstain": {"type": "boolean"},
+    "required_facts": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "forbidden_claims": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "critical_values": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "split": {"type": "string", "enum": ["calibration", "test"]},
+    "notes": {"type": "string"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"should_abstain": {"const": true}}},
+      "then": {
+        "properties": {
+          "gold_chunk_ids": {"maxItems": 0},
+          "required_facts": {"maxItems": 0},
+          "critical_values": {"maxItems": 0}
+        }
+      },
+      "else": {
+        "properties": {
+          "gold_chunk_ids": {"minItems": 1},
+          "required_facts": {"minItems": 1}
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,3006 @@
+{
+  "schema_version": "0.1.0",
+  "protocol": "sft_v0.4_frozen_test_deterministic_audit",
+  "configuration": {
+    "predictions": "artifacts\\evaluation\\qwen35-4b-conservative-reranked-darija-arab-to-msa-v03.json",
+    "case_count": 40,
+    "answer_language": "ar",
+    "use_rendered_answer": true,
+    "test_used_for_tuning": false
+  },
+  "summary": {
+    "case_count": 40,
+    "strict_json_rate": 1.0,
+    "schema_valid_rate": 1.0,
+    "valid_output_core_pass_rate": 0.725,
+    "valid_output_strict_grounded_pass_rate": 0.375,
+    "valid_output_abstention_accuracy": 0.85,
+    "core_deterministic_pass_rate": 0.725,
+    "strict_grounded_pass_rate": 0.375,
+    "abstention_accuracy": 0.85,
+    "false_abstention_count": 2,
+    "unsafe_answer_count": 4,
+    "gold_citation_precision": 0.5909090909090909,
+    "gold_citation_recall": 0.6363636363636364,
+    "distractor_citation_case_count": 16,
+    "critical_value_recall": 0.7575757575757576,
+    "mean_claim_count": 1.575,
+    "mean_latency_seconds": 21.41113013249851,
+    "median_latency_seconds": 19.594324949997826,
+    "p95_latency_seconds": 33.186012099991785,
+    "mean_prompt_tokens": 1116.175,
+    "mean_completion_tokens": 202.825,
+    "near_generation_limit_count": 0,
+    "truncated_invalid_output_count": 0
+  },
+  "error_counts": {
+    "citation_outside_context": 3,
+    "critical_value_missing": 8,
+    "claims_structure": 3,
+    "abstention_decision": 6,
+    "citation_missing_from_answer": 2
+  },
+  "breakdown": {
+    "by_language": {
+      "darija_arab": {
+        "case_count": 40,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.725,
+        "valid_output_strict_grounded_pass_rate": 0.375,
+        "valid_output_abstention_accuracy": 0.85,
+        "core_deterministic_pass_rate": 0.725,
+        "strict_grounded_pass_rate": 0.375,
+        "abstention_accuracy": 0.85,
+        "false_abstention_count": 2,
+        "unsafe_answer_count": 4,
+        "gold_citation_precision": 0.5909090909090909,
+        "gold_citation_recall": 0.6363636363636364,
+        "distractor_citation_case_count": 16,
+        "critical_value_recall": 0.7575757575757576,
+        "mean_claim_count": 1.575,
+        "mean_latency_seconds": 21.41113013249851,
+        "median_latency_seconds": 19.594324949997826,
+        "p95_latency_seconds": 33.186012099991785,
+        "mean_prompt_tokens": 1116.175,
+        "mean_completion_tokens": 202.825,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      }
+    },
+    "by_intent": {
+      "iam_billing_error": {
+        "case_count": 5,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 1.0,
+        "valid_output_strict_grounded_pass_rate": 0.8,
+        "valid_output_abstention_accuracy": 1.0,
+        "core_deterministic_pass_rate": 1.0,
+        "strict_grounded_pass_rate": 0.8,
+        "abstention_accuracy": 1.0,
+        "false_abstention_count": 0,
+        "unsafe_answer_count": 0,
+        "gold_citation_precision": 1.0,
+        "gold_citation_recall": 0.9,
+        "distractor_citation_case_count": 0,
+        "critical_value_recall": 0.8,
+        "mean_claim_count": 1.0,
+        "mean_latency_seconds": 18.584181460004764,
+        "median_latency_seconds": 19.201786199992057,
+        "p95_latency_seconds": 20.39839970000321,
+        "mean_prompt_tokens": 1316.8,
+        "mean_completion_tokens": 160.8,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      },
+      "iam_debit_dispute": {
+        "case_count": 5,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.6,
+        "valid_output_strict_grounded_pass_rate": 0.2,
+        "valid_output_abstention_accuracy": 0.8,
+        "core_deterministic_pass_rate": 0.6,
+        "strict_grounded_pass_rate": 0.2,
+        "abstention_accuracy": 0.8,
+        "false_abstention_count": 0,
+        "unsafe_answer_count": 1,
+        "gold_citation_precision": 0.25,
+        "gold_citation_recall": 0.25,
+        "distractor_citation_case_count": 4,
+        "critical_value_recall": 0.25,
+        "mean_claim_count": 1.4,
+        "mean_latency_seconds": 21.489401500002714,
+        "median_latency_seconds": 19.582701100007398,
+        "p95_latency_seconds": 30.226722899999004,
+        "mean_prompt_tokens": 1337.0,
+        "mean_completion_tokens": 186.2,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      },
+      "inwi_money_steps": {
+        "case_count": 5,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 1.0,
+        "valid_output_strict_grounded_pass_rate": 0.6,
+        "valid_output_abstention_accuracy": 1.0,
+        "core_deterministic_pass_rate": 1.0,
+        "strict_grounded_pass_rate": 0.6,
+        "abstention_accuracy": 1.0,
+        "false_abstention_count": 0,
+        "unsafe_answer_count": 0,
+        "gold_citation_precision": 0.7333333333333333,
+        "gold_citation_recall": 1.0,
+        "distractor_citation_case_count": 2,
+        "critical_value_recall": 1.0,
+        "mean_claim_count": 3.0,
+        "mean_latency_seconds": 29.50943316000048,
+        "median_latency_seconds": 28.968885399983265,
+        "p95_latency_seconds": 36.499477800010936,
+        "mean_prompt_tokens": 898.0,
+        "mean_completion_tokens": 305.6,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      },
+      "onee_advance": {
+        "case_count": 5,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.8,
+        "valid_output_strict_grounded_pass_rate": 0.4,
+        "valid_output_abstention_accuracy": 1.0,
+        "core_deterministic_pass_rate": 0.8,
+        "strict_grounded_pass_rate": 0.4,
+        "abstention_accuracy": 1.0,
+        "false_abstention_count": 0,
+        "unsafe_answer_count": 0,
+        "gold_citation_precision": 0.5666666666666667,
+        "gold_citation_recall": 0.8,
+        "distractor_citation_case_count": 2,
+        "critical_value_recall": 1.0,
+        "mean_claim_count": 2.0,
+        "mean_latency_seconds": 25.317328440007987,
+        "median_latency_seconds": 24.60801120000542,
+        "p95_latency_seconds": 31.03639980001026,
+        "mean_prompt_tokens": 1024.2,
+        "mean_completion_tokens": 238.2,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      },
+      "orange_invoice_download": {
+        "case_count": 5,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.6,
+        "valid_output_strict_grounded_pass_rate": 0.2,
+        "valid_output_abstention_accuracy": 0.6,
+        "core_deterministic_pass_rate": 0.6,
+        "strict_grounded_pass_rate": 0.2,
+        "abstention_accuracy": 0.6,
+        "false_abstention_count": 2,
+        "unsafe_answer_count": 0,
+        "gold_citation_precision": 0.2,
+        "gold_citation_recall": 0.2,
+        "distractor_citation_case_count": 2,
+        "critical_value_recall": 1.0,
+        "mean_claim_count": 1.0,
+        "mean_latency_seconds": 16.631760879996,
+        "median_latency_seconds": 14.30219039999065,
+        "p95_latency_seconds": 24.47146270002122,
+        "mean_prompt_tokens": 928.6,
+        "mean_completion_tokens": 168.6,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      },
+      "orange_payment_delay": {
+        "case_count": 5,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.8,
+        "valid_output_strict_grounded_pass_rate": 0.6,
+        "valid_output_abstention_accuracy": 0.8,
+        "core_deterministic_pass_rate": 0.8,
+        "strict_grounded_pass_rate": 0.6,
+        "abstention_accuracy": 0.8,
+        "false_abstention_count": 0,
+        "unsafe_answer_count": 1,
+        "gold_citation_precision": 1.0,
+        "gold_citation_recall": 0.875,
+        "distractor_citation_case_count": 1,
+        "critical_value_recall": 1.0,
+        "mean_claim_count": 1.0,
+        "mean_latency_seconds": 14.175400879990775,
+        "median_latency_seconds": 13.983188699989114,
+        "p95_latency_seconds": 16.396037899976363,
+        "mean_prompt_tokens": 875.0,
+        "mean_completion_tokens": 144.2,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      },
+      "redal_mobile_wallet": {
+        "case_count": 5,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.8,
+        "valid_output_strict_grounded_pass_rate": 0.0,
+        "valid_output_abstention_accuracy": 1.0,
+        "core_deterministic_pass_rate": 0.8,
+        "strict_grounded_pass_rate": 0.0,
+        "abstention_accuracy": 1.0,
+        "false_abstention_count": 0,
+        "unsafe_answer_count": 0,
+        "gold_citation_precision": 0.4,
+        "gold_citation_recall": 0.4,
+        "distractor_citation_case_count": 2,
+        "critical_value_recall": 0.2,
+        "mean_claim_count": 2.2,
+        "mean_latency_seconds": 27.034401859989156,
+        "median_latency_seconds": 26.57348570000613,
+        "p95_latency_seconds": 33.623120099975495,
+        "mean_prompt_tokens": 1284.2,
+        "mean_completion_tokens": 260.2,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      },
+      "redal_outage_missing": {
+        "case_count": 5,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.2,
+        "valid_output_strict_grounded_pass_rate": 0.2,
+        "valid_output_abstention_accuracy": 0.6,
+        "core_deterministic_pass_rate": 0.2,
+        "strict_grounded_pass_rate": 0.2,
+        "abstention_accuracy": 0.6,
+        "false_abstention_count": 0,
+        "unsafe_answer_count": 2,
+        "gold_citation_precision": null,
+        "gold_citation_recall": null,
+        "distractor_citation_case_count": 3,
+        "critical_value_recall": null,
+        "mean_claim_count": 1.0,
+        "mean_latency_seconds": 18.547132879996205,
+        "median_latency_seconds": 18.891754399985075,
+        "p95_latency_seconds": 24.77809580002213,
+        "mean_prompt_tokens": 1265.6,
+        "mean_completion_tokens": 158.8,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      }
+    },
+    "by_formulation_kind": {
+      "contextual_long": {
+        "case_count": 8,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.75,
+        "valid_output_strict_grounded_pass_rate": 0.375,
+        "valid_output_abstention_accuracy": 0.875,
+        "core_deterministic_pass_rate": 0.75,
+        "strict_grounded_pass_rate": 0.375,
+        "abstention_accuracy": 0.875,
+        "false_abstention_count": 0,
+        "unsafe_answer_count": 1,
+        "gold_citation_precision": 0.8571428571428571,
+        "gold_citation_recall": 0.7142857142857143,
+        "distractor_citation_case_count": 1,
+        "critical_value_recall": 0.5714285714285714,
+        "mean_claim_count": 1.875,
+        "mean_latency_seconds": 23.045369637504336,
+        "median_latency_seconds": 22.434931200012215,
+        "p95_latency_seconds": 36.499477800010936,
+        "mean_prompt_tokens": 1125.875,
+        "mean_completion_tokens": 222.375,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      },
+      "direct": {
+        "case_count": 8,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.875,
+        "valid_output_strict_grounded_pass_rate": 0.625,
+        "valid_output_abstention_accuracy": 0.875,
+        "core_deterministic_pass_rate": 0.875,
+        "strict_grounded_pass_rate": 0.625,
+        "abstention_accuracy": 0.875,
+        "false_abstention_count": 0,
+        "unsafe_answer_count": 1,
+        "gold_citation_precision": 0.7142857142857143,
+        "gold_citation_recall": 0.7142857142857143,
+        "distractor_citation_case_count": 3,
+        "critical_value_recall": 1.0,
+        "mean_claim_count": 1.75,
+        "mean_latency_seconds": 23.700381750000815,
+        "median_latency_seconds": 22.997718750004424,
+        "p95_latency_seconds": 33.186012099991785,
+        "mean_prompt_tokens": 1103.875,
+        "mean_completion_tokens": 213.125,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      },
+      "indirect": {
+        "case_count": 8,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.75,
+        "valid_output_strict_grounded_pass_rate": 0.375,
+        "valid_output_abstention_accuracy": 0.875,
+        "core_deterministic_pass_rate": 0.75,
+        "strict_grounded_pass_rate": 0.375,
+        "abstention_accuracy": 0.875,
+        "false_abstention_count": 1,
+        "unsafe_answer_count": 0,
+        "gold_citation_precision": 0.47619047619047616,
+        "gold_citation_recall": 0.5714285714285714,
+        "distractor_citation_case_count": 2,
+        "critical_value_recall": 0.7142857142857143,
+        "mean_claim_count": 1.375,
+        "mean_latency_seconds": 20.294827224999608,
+        "median_latency_seconds": 21.14011510000273,
+        "p95_latency_seconds": 30.428887200017925,
+        "mean_prompt_tokens": 1117.625,
+        "mean_completion_tokens": 194.75,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      },
+      "informal_typed": {
+        "case_count": 8,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.5,
+        "valid_output_strict_grounded_pass_rate": 0.125,
+        "valid_output_abstention_accuracy": 0.75,
+        "core_deterministic_pass_rate": 0.5,
+        "strict_grounded_pass_rate": 0.125,
+        "abstention_accuracy": 0.75,
+        "false_abstention_count": 0,
+        "unsafe_answer_count": 2,
+        "gold_citation_precision": 0.36666666666666664,
+        "gold_citation_recall": 0.6,
+        "distractor_citation_case_count": 6,
+        "critical_value_recall": 0.8,
+        "mean_claim_count": 1.375,
+        "mean_latency_seconds": 18.398447362491424,
+        "median_latency_seconds": 17.00521989999106,
+        "p95_latency_seconds": 28.968885399983265,
+        "mean_prompt_tokens": 1099.75,
+        "mean_completion_tokens": 174.625,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      },
+      "provider_implicit": {
+        "case_count": 8,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.75,
+        "valid_output_strict_grounded_pass_rate": 0.375,
+        "valid_output_abstention_accuracy": 0.875,
+        "core_deterministic_pass_rate": 0.75,
+        "strict_grounded_pass_rate": 0.375,
+        "abstention_accuracy": 0.875,
+        "false_abstention_count": 1,
+        "unsafe_answer_count": 0,
+        "gold_citation_precision": 0.47619047619047616,
+        "gold_citation_recall": 0.5714285714285714,
+        "distractor_citation_case_count": 4,
+        "critical_value_recall": 0.7142857142857143,
+        "mean_claim_count": 1.5,
+        "mean_latency_seconds": 21.61662468749637,
+        "median_latency_seconds": 20.28220540001348,
+        "p95_latency_seconds": 33.623120099975495,
+        "mean_prompt_tokens": 1133.75,
+        "mean_completion_tokens": 209.25,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      }
+    },
+    "by_retrieval_outcome": {
+      "hit": {
+        "case_count": 33,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.8484848484848485,
+        "valid_output_strict_grounded_pass_rate": 0.42424242424242425,
+        "valid_output_abstention_accuracy": 0.9393939393939394,
+        "core_deterministic_pass_rate": 0.8484848484848485,
+        "strict_grounded_pass_rate": 0.42424242424242425,
+        "abstention_accuracy": 0.9393939393939394,
+        "false_abstention_count": 2,
+        "unsafe_answer_count": 0,
+        "gold_citation_precision": 0.5909090909090909,
+        "gold_citation_recall": 0.6363636363636364,
+        "distractor_citation_case_count": 11,
+        "critical_value_recall": 0.7575757575757576,
+        "mean_claim_count": 1.696969696969697,
+        "mean_latency_seconds": 22.11986159090884,
+        "median_latency_seconds": 21.21734169998672,
+        "p95_latency_seconds": 33.186012099991785,
+        "mean_prompt_tokens": 1099.4242424242425,
+        "mean_completion_tokens": 211.96969696969697,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      },
+      "miss": {
+        "case_count": 2,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.0,
+        "valid_output_strict_grounded_pass_rate": 0.0,
+        "valid_output_abstention_accuracy": 0.0,
+        "core_deterministic_pass_rate": 0.0,
+        "strict_grounded_pass_rate": 0.0,
+        "abstention_accuracy": 0.0,
+        "false_abstention_count": 0,
+        "unsafe_answer_count": 2,
+        "gold_citation_precision": null,
+        "gold_citation_recall": null,
+        "distractor_citation_case_count": 2,
+        "critical_value_recall": null,
+        "mean_claim_count": 1.0,
+        "mean_latency_seconds": 16.87705419998383,
+        "median_latency_seconds": 16.87705419998383,
+        "p95_latency_seconds": 17.3580704999913,
+        "mean_prompt_tokens": 1019.0,
+        "mean_completion_tokens": 162.0,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      },
+      "not_in_corpus": {
+        "case_count": 5,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.2,
+        "valid_output_strict_grounded_pass_rate": 0.2,
+        "valid_output_abstention_accuracy": 0.6,
+        "core_deterministic_pass_rate": 0.2,
+        "strict_grounded_pass_rate": 0.2,
+        "abstention_accuracy": 0.6,
+        "false_abstention_count": 0,
+        "unsafe_answer_count": 2,
+        "gold_citation_precision": null,
+        "gold_citation_recall": null,
+        "distractor_citation_case_count": 3,
+        "critical_value_recall": null,
+        "mean_claim_count": 1.0,
+        "mean_latency_seconds": 18.547132879996205,
+        "median_latency_seconds": 18.891754399985075,
+        "p95_latency_seconds": 24.77809580002213,
+        "mean_prompt_tokens": 1265.6,
+        "mean_completion_tokens": 158.8,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      }
+    },
+    "by_provider": {
+      "iam": {
+        "case_count": 10,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.8,
+        "valid_output_strict_grounded_pass_rate": 0.5,
+        "valid_output_abstention_accuracy": 0.9,
+        "core_deterministic_pass_rate": 0.8,
+        "strict_grounded_pass_rate": 0.5,
+        "abstention_accuracy": 0.9,
+        "false_abstention_count": 0,
+        "unsafe_answer_count": 1,
+        "gold_citation_precision": 0.6666666666666666,
+        "gold_citation_recall": 0.6111111111111112,
+        "distractor_citation_case_count": 4,
+        "critical_value_recall": 0.5555555555555556,
+        "mean_claim_count": 1.2,
+        "mean_latency_seconds": 20.03679148000374,
+        "median_latency_seconds": 19.25634495000122,
+        "p95_latency_seconds": 30.226722899999004,
+        "mean_prompt_tokens": 1326.9,
+        "mean_completion_tokens": 173.5,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      },
+      "inwi": {
+        "case_count": 5,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 1.0,
+        "valid_output_strict_grounded_pass_rate": 0.6,
+        "valid_output_abstention_accuracy": 1.0,
+        "core_deterministic_pass_rate": 1.0,
+        "strict_grounded_pass_rate": 0.6,
+        "abstention_accuracy": 1.0,
+        "false_abstention_count": 0,
+        "unsafe_answer_count": 0,
+        "gold_citation_precision": 0.7333333333333333,
+        "gold_citation_recall": 1.0,
+        "distractor_citation_case_count": 2,
+        "critical_value_recall": 1.0,
+        "mean_claim_count": 3.0,
+        "mean_latency_seconds": 29.50943316000048,
+        "median_latency_seconds": 28.968885399983265,
+        "p95_latency_seconds": 36.499477800010936,
+        "mean_prompt_tokens": 898.0,
+        "mean_completion_tokens": 305.6,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      },
+      "onee": {
+        "case_count": 5,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.8,
+        "valid_output_strict_grounded_pass_rate": 0.4,
+        "valid_output_abstention_accuracy": 1.0,
+        "core_deterministic_pass_rate": 0.8,
+        "strict_grounded_pass_rate": 0.4,
+        "abstention_accuracy": 1.0,
+        "false_abstention_count": 0,
+        "unsafe_answer_count": 0,
+        "gold_citation_precision": 0.5666666666666667,
+        "gold_citation_recall": 0.8,
+        "distractor_citation_case_count": 2,
+        "critical_value_recall": 1.0,
+        "mean_claim_count": 2.0,
+        "mean_latency_seconds": 25.317328440007987,
+        "median_latency_seconds": 24.60801120000542,
+        "p95_latency_seconds": 31.03639980001026,
+        "mean_prompt_tokens": 1024.2,
+        "mean_completion_tokens": 238.2,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      },
+      "orange_ma": {
+        "case_count": 10,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.7,
+        "valid_output_strict_grounded_pass_rate": 0.4,
+        "valid_output_abstention_accuracy": 0.7,
+        "core_deterministic_pass_rate": 0.7,
+        "strict_grounded_pass_rate": 0.4,
+        "abstention_accuracy": 0.7,
+        "false_abstention_count": 2,
+        "unsafe_answer_count": 1,
+        "gold_citation_precision": 0.5555555555555556,
+        "gold_citation_recall": 0.5,
+        "distractor_citation_case_count": 3,
+        "critical_value_recall": 1.0,
+        "mean_claim_count": 1.0,
+        "mean_latency_seconds": 15.403580879993388,
+        "median_latency_seconds": 14.099017549990094,
+        "p95_latency_seconds": 24.47146270002122,
+        "mean_prompt_tokens": 901.8,
+        "mean_completion_tokens": 156.4,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      },
+      "srm_rsk": {
+        "case_count": 10,
+        "strict_json_rate": 1.0,
+        "schema_valid_rate": 1.0,
+        "valid_output_core_pass_rate": 0.5,
+        "valid_output_strict_grounded_pass_rate": 0.1,
+        "valid_output_abstention_accuracy": 0.8,
+        "core_deterministic_pass_rate": 0.5,
+        "strict_grounded_pass_rate": 0.1,
+        "abstention_accuracy": 0.8,
+        "false_abstention_count": 0,
+        "unsafe_answer_count": 2,
+        "gold_citation_precision": 0.4,
+        "gold_citation_recall": 0.4,
+        "distractor_citation_case_count": 5,
+        "critical_value_recall": 0.2,
+        "mean_claim_count": 1.6,
+        "mean_latency_seconds": 22.790767369992682,
+        "median_latency_seconds": 22.192022300005192,
+        "p95_latency_seconds": 33.623120099975495,
+        "mean_prompt_tokens": 1274.9,
+        "mean_completion_tokens": 209.5,
+        "near_generation_limit_count": 0,
+        "truncated_invalid_output_count": 0
+      }
+    }
+  },
+  "baseline_comparison": null,
+  "cases": [
+    {
+      "case_id": "sftq-v04-0096",
+      "intent_id": "onee_advance",
+      "semantic_family_id": "advance_payment",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "onee",
+      "formulation_kind": "direct",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "نقدر نخلي تسبيق على فواتير المكتب الجاية؟",
+      "raw_output": "{\"answer\":\"بإتفاق acompte، ممكن تدي المبلغ اللي تختاره في الوكالة ONEE Branche Electricité، وكميات الفواتير ستتم خصم مباشرة، وتحصل الباقي من provision كل فاتورة. [onee-regler-facture-residentiel-20260929t192825z--paiement-acompte]\",\"claims\":[{\"text\":\"بإتفاق acompte، ممكن تدي المبلغ اللي تختاره في الوكالة ONEE Branche Electricité، وكميات الفواتير ستتم خصم مباشرة، وتحصل الباقي من provision كل فاتورة.\",\"citations\":[\"onee-regler-facture-residentiel-20260929t192825z--paiement-acompte\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "بإتفاق acompte، ممكن تدي المبلغ اللي تختاره في الوكالة ONEE Branche Electricité، وكميات الفواتير ستتم خصم مباشرة، وتحصل الباقي من provision كل فاتورة. [onee-regler-facture-residentiel-20260929t192825z--paiement-acompte]",
+        "claims": [
+          {
+            "text": "بإتفاق acompte، ممكن تدي المبلغ اللي تختاره في الوكالة ONEE Branche Electricité، وكميات الفواتير ستتم خصم مباشرة، وتحصل الباقي من provision كل فاتورة.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+      ],
+      "gold_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+      ],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": false,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": true,
+      "prompt_tokens": 1099,
+      "completion_tokens": 166,
+      "latency_seconds": 30.648401400016155
+    },
+    {
+      "case_id": "sftq-v04-0097",
+      "intent_id": "onee_advance",
+      "semantic_family_id": "advance_payment",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "onee",
+      "formulation_kind": "indirect",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "واش كاين شي سيستيم باش نخلص الكونصوماسيون ديالي ديال الضو مع لافونس؟",
+      "raw_output": "{\"answer\":\"نستعمل نظام الـ acompte باش نخلص الكونصوماسيون، ونقدر نديو المبلغ ديالي فوكالة ONEE. [par acompte vous pouvez déposer le montant de votre choix auprès de votre agence ONEE] نخليو التاريخ اللي كاين فالفاتورة باش نديو الفاتورة. [une date de règlement est attribuée à chaque client, et figurera sur sa facture. Ainsi Pour régler votre facture il faudra retenir cette date.]\",\"claims\":[{\"text\":\"نستعمل نظام الـ acompte باش نخلص الكونصوماسيون، ونقدر نديو المبلغ ديالي فوكالة ONEE.\",\"citations\":[\"par acompte vous pouvez déposer le montant de votre choix auprès de votre agence ONEE\"]},{\"text\":\"نخليو التاريخ اللي كاين فالفاتورة باش نديو الفاتورة.\",\"citations\":[\"une date de règlement est attribuée à chaque client, et figurera sur sa facture. Ainsi Pour régler votre facture il faudra retenir cette date.\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "نستعمل نظام الـ acompte باش نخلص الكونصوماسيون، ونقدر نديو المبلغ ديالي فوكالة ONEE. [par acompte vous pouvez déposer le montant de votre choix auprès de votre agence ONEE] نخليو التاريخ اللي كاين فالفاتورة باش نديو الفاتورة. [une date de règlement est attribuée à chaque client, et figurera sur sa facture. Ainsi Pour régler votre facture il faudra retenir cette date.]",
+        "claims": [
+          {
+            "text": "نستعمل نظام الـ acompte باش نخلص الكونصوماسيون، ونقدر نديو المبلغ ديالي فوكالة ONEE.",
+            "citations": [
+              "par acompte vous pouvez déposer le montant de votre choix auprès de votre agence ONEE"
+            ]
+          },
+          {
+            "text": "نخليو التاريخ اللي كاين فالفاتورة باش نديو الفاتورة.",
+            "citations": [
+              "une date de règlement est attribuée à chaque client, et figurera sur sa facture. Ainsi Pour régler votre facture il faudra retenir cette date."
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "par acompte vous pouvez déposer le montant de votre choix auprès de votre agence ONEE",
+        "une date de règlement est attribuée à chaque client, et figurera sur sa facture. Ainsi Pour régler votre facture il faudra retenir cette date."
+      ],
+      "gold_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+      ],
+      "gold_citation_precision": 0.0,
+      "gold_citation_recall": 0.0,
+      "cites_distractor": false,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 2,
+      "errors": [
+        "citation_outside_context"
+      ],
+      "core_deterministic_pass": false,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 1018,
+      "completion_tokens": 249,
+      "latency_seconds": 23.078444000013405
+    },
+    {
+      "case_id": "sftq-v04-0098",
+      "intent_id": "onee_advance",
+      "semantic_family_id": "advance_payment",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "onee",
+      "formulation_kind": "contextual_long",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "كنبغي نكون مرتاح و ما نتفاجأش بلي فاكتوغ ديال الضو كل شهر. واش كاين شي حل باش نخلي شي بارا د الفلوس و يبقاو يقطعو منها لي مونطون ديال لي فاكتوغ؟",
+      "raw_output": "{\"answer\":\"باستعمال الأكمب، تودع المبلغ الذي تختاره في فرع ONEE الكهرباء، وتتم خصم مبالغ الفواتير مباشرة من رصيدك. [onee-regler-facture-residentiel-20260929t192825z--paiement-acompte] تستلم رصيد الأكمب المتبقي مع كل فاتورة، وتُخبرك النظام فوراً إذا قل الرصيد عن متوسط استهلاكك الشهري. [onee-regler-facture-residentiel-20260929t192825z--paiement-acompte]\",\"claims\":[{\"text\":\"باستعمال الأكمب، تودع المبلغ الذي تختاره في فرع ONEE الكهرباء، وتتم خصم مبالغ الفواتير مباشرة من رصيدك.\",\"citations\":[\"onee-regler-facture-residentiel-20260929t192825z--paiement-acompte\"]},{\"text\":\"تستلم رصيد الأكمب المتبقي مع كل فاتورة، وتُخبرك النظام فوراً إذا قل الرصيد عن متوسط استهلاكك الشهري.\",\"citations\":[\"onee-regler-facture-residentiel-20260929t192825z--paiement-acompte\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "باستعمال الأكمب، تودع المبلغ الذي تختاره في فرع ONEE الكهرباء، وتتم خصم مبالغ الفواتير مباشرة من رصيدك. [onee-regler-facture-residentiel-20260929t192825z--paiement-acompte] تستلم رصيد الأكمب المتبقي مع كل فاتورة، وتُخبرك النظام فوراً إذا قل الرصيد عن متوسط استهلاكك الشهري. [onee-regler-facture-residentiel-20260929t192825z--paiement-acompte]",
+        "claims": [
+          {
+            "text": "باستعمال الأكمب، تودع المبلغ الذي تختاره في فرع ONEE الكهرباء، وتتم خصم مبالغ الفواتير مباشرة من رصيدك.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+            ]
+          },
+          {
+            "text": "تستلم رصيد الأكمب المتبقي مع كل فاتورة، وتُخبرك النظام فوراً إذا قل الرصيد عن متوسط استهلاكك الشهري.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+      ],
+      "gold_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+      ],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": false,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 2,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": true,
+      "prompt_tokens": 1032,
+      "completion_tokens": 258,
+      "latency_seconds": 24.60801120000542
+    },
+    {
+      "case_id": "sftq-v04-0099",
+      "intent_id": "onee_advance",
+      "semantic_family_id": "advance_payment",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "onee",
+      "formulation_kind": "provider_implicit",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "واش نقدر نخلص الكونصوماسيون ديالي ديال شهور الجايين مع لافونس؟",
+      "raw_output": "{\"answer\":\"يمكنك دفع المبلغ عبر تحويل بنكي (بنكي أو CCP) إلى حساب L'Office National de l'Electricité et de l'Eau Potable. [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque] يمكنك الدفع نقداً في فرع الوكالة أو عبر نقاط الدفع الخارجية PEE. [onee-regler-facture-residentiel-20260929t192825z--paiement-especes] يمكنك دفع المبلغ عبر الـ acompte في فرع ONEE، وسيتم خصم مبالغ الفواتير مباشرة من رصيدك. [onee-regler-facture-residentiel-20260929t192825z--paiement-acompte]\",\"claims\":[{\"text\":\"يمكنك دفع المبلغ عبر تحويل بنكي (بنكي أو CCP) إلى حساب L'Office National de l'Electricité et de l'Eau Potable.\",\"citations\":[\"onee-regler-facture-residentiel-20260929t192825z--paiement-cheque\"]},{\"text\":\"يمكنك الدفع نقداً في فرع الوكالة أو عبر نقاط الدفع الخارجية PEE.\",\"citations\":[\"onee-regler-facture-residentiel-20260929t192825z--paiement-especes\"]},{\"text\":\"يمكنك دفع المبلغ عبر الـ acompte في فرع ONEE، وسيتم خصم مبالغ الفواتير مباشرة من رصيدك.\",\"citations\":[\"onee-regler-facture-residentiel-20260929t192825z--paiement-acompte\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "يمكنك دفع المبلغ عبر تحويل بنكي (بنكي أو CCP) إلى حساب L'Office National de l'Electricité et de l'Eau Potable. [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque] يمكنك الدفع نقداً في فرع الوكالة أو عبر نقاط الدفع الخارجية PEE. [onee-regler-facture-residentiel-20260929t192825z--paiement-especes] يمكنك دفع المبلغ عبر الـ acompte في فرع ONEE، وسيتم خصم مبالغ الفواتير مباشرة من رصيدك. [onee-regler-facture-residentiel-20260929t192825z--paiement-acompte]",
+        "claims": [
+          {
+            "text": "يمكنك دفع المبلغ عبر تحويل بنكي (بنكي أو CCP) إلى حساب L'Office National de l'Electricité et de l'Eau Potable.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          },
+          {
+            "text": "يمكنك الدفع نقداً في فرع الوكالة أو عبر نقاط الدفع الخارجية PEE.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-especes"
+            ]
+          },
+          {
+            "text": "يمكنك دفع المبلغ عبر الـ acompte في فرع ONEE، وسيتم خصم مبالغ الفواتير مباشرة من رصيدك.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-especes"
+      ],
+      "gold_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+      ],
+      "gold_citation_precision": 0.3333333333333333,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": true,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 3,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 960,
+      "completion_tokens": 340,
+      "latency_seconds": 31.03639980001026
+    },
+    {
+      "case_id": "sftq-v04-0100",
+      "intent_id": "onee_advance",
+      "semantic_family_id": "advance_payment",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "onee",
+      "formulation_kind": "informal_typed",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "سلام، بغيت نسول واش ممكن ندفع شي صوم د الفلوس أفون باش تغطي لي فاكتوغ ديال الضو لي جايين. مرسي.",
+      "raw_output": "{\"answer\":\"يمكنك إيداع مبلغ اختيارك في فرع ONEE كهرباء، وسيتم خصم مبالغ الفواتير مباشرة. [onee-regler-facture-residentiel-20260929t192825z--paiement-acompte] يمكنك الدفع نقداً في الفرع أو نقاط التحويل الخارجية PEE. [onee-regler-facture-residentiel-20260929t192825z--paiement-especes]\",\"claims\":[{\"text\":\"يمكنك إيداع مبلغ اختيارك في فرع ONEE كهرباء، وسيتم خصم مبالغ الفواتير مباشرة.\",\"citations\":[\"onee-regler-facture-residentiel-20260929t192825z--paiement-acompte\"]},{\"text\":\"يمكنك الدفع نقداً في الفرع أو نقاط التحويل الخارجية PEE.\",\"citations\":[\"onee-regler-facture-residentiel-20260929t192825z--paiement-especes\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "يمكنك إيداع مبلغ اختيارك في فرع ONEE كهرباء، وسيتم خصم مبالغ الفواتير مباشرة. [onee-regler-facture-residentiel-20260929t192825z--paiement-acompte] يمكنك الدفع نقداً في الفرع أو نقاط التحويل الخارجية PEE. [onee-regler-facture-residentiel-20260929t192825z--paiement-especes]",
+        "claims": [
+          {
+            "text": "يمكنك إيداع مبلغ اختيارك في فرع ONEE كهرباء، وسيتم خصم مبالغ الفواتير مباشرة.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+            ]
+          },
+          {
+            "text": "يمكنك الدفع نقداً في الفرع أو نقاط التحويل الخارجية PEE.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-especes"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-especes"
+      ],
+      "gold_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte"
+      ],
+      "gold_citation_precision": 0.5,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": true,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 2,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 1012,
+      "completion_tokens": 178,
+      "latency_seconds": 17.215385799994692
+    },
+    {
+      "case_id": "sftq-v04-0156",
+      "intent_id": "redal_mobile_wallet",
+      "semantic_family_id": "mobile_wallet_payment",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "srm_rsk",
+      "formulation_kind": "direct",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "بأشمن تطبيق فالتلفون نقدر نخلص Redal؟",
+      "raw_output": "{\"answer\":\"الدفع عبر 'E-Banking' يسمح لك بدفع فواتيرك من منزلك بأمان وفي أي وقت. [redal-e-paiement-20260930t201158z--paiement-en-ligne-carte] تطبيق Redal.ma متاح 24/7، ويمكنك الدفع من خلال مساحتك الخاصة أو النقر مباشرة على رابط 'دفع فاتورتك'. [redal-e-paiement-20260930t201158z--paiement-en-ligne-carte] يجب أن تكون صاحب بطاقة بنكية لتتمكن من الدفع. [redal-e-paiement-20260930t201158z--paiement-en-ligne-carte]\",\"claims\":[{\"text\":\"الدفع عبر 'E-Banking' يسمح لك بدفع فواتيرك من منزلك بأمان وفي أي وقت.\",\"citations\":[\"redal-e-paiement-20260930t201158z--paiement-en-ligne-carte\"]},{\"text\":\"تطبيق Redal.ma متاح 24/7، ويمكنك الدفع من خلال مساحتك الخاصة أو النقر مباشرة على رابط 'دفع فاتورتك'.\",\"citations\":[\"redal-e-paiement-20260930t201158z--paiement-en-ligne-carte\"]},{\"text\":\"يجب أن تكون صاحب بطاقة بنكية لتتمكن من الدفع.\",\"citations\":[\"redal-e-paiement-20260930t201158z--paiement-en-ligne-carte\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "الدفع عبر 'E-Banking' يسمح لك بدفع فواتيرك من منزلك بأمان وفي أي وقت. [redal-e-paiement-20260930t201158z--paiement-en-ligne-carte] تطبيق Redal.ma متاح 24/7، ويمكنك الدفع من خلال مساحتك الخاصة أو النقر مباشرة على رابط 'دفع فاتورتك'. [redal-e-paiement-20260930t201158z--paiement-en-ligne-carte] يجب أن تكون صاحب بطاقة بنكية لتتمكن من الدفع. [redal-e-paiement-20260930t201158z--paiement-en-ligne-carte]",
+        "claims": [
+          {
+            "text": "الدفع عبر 'E-Banking' يسمح لك بدفع فواتيرك من منزلك بأمان وفي أي وقت.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte"
+            ]
+          },
+          {
+            "text": "تطبيق Redal.ma متاح 24/7، ويمكنك الدفع من خلال مساحتك الخاصة أو النقر مباشرة على رابط 'دفع فاتورتك'.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte"
+            ]
+          },
+          {
+            "text": "يجب أن تكون صاحب بطاقة بنكية لتتمكن من الدفع.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte"
+      ],
+      "gold_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "gold_citation_precision": 0.0,
+      "gold_citation_recall": 0.0,
+      "cites_distractor": true,
+      "critical_values": [
+        "24"
+      ],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 3,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 1272,
+      "completion_tokens": 325,
+      "latency_seconds": 33.186012099991785
+    },
+    {
+      "case_id": "sftq-v04-0157",
+      "intent_id": "redal_mobile_wallet",
+      "semantic_family_id": "mobile_wallet_payment",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "srm_rsk",
+      "formulation_kind": "indirect",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "بأي تطبيق نقدر نسدد فواتير Redal من خلال الهاتف؟",
+      "raw_output": "{\"answer\":\"خدمة Jiwar Mobil تسمح بدفع الفواتير عبر الهاتف المحمول على مدار الساعة طوال أيام الأسبوع. [redal-e-paiement-20260930t201158z--paiement-mobile-jiwar] تطبيق Jiwar Mobil متاح لعملاء بنك البريد المغربي (Barid Bank) وبنك الشعبية (Banque Populaire) وبنك CIH وبنك Attijariwafa وبنك BMCE وبنك CFG وOrange وCash plus وUmnia Bank ومجموعة Maymouna. [redal-e-paiement-20260930t201158z--paiement-mobile-jiwar]\",\"claims\":[{\"text\":\"خدمة Jiwar Mobil تسمح بدفع الفواتير عبر الهاتف المحمول على مدار الساعة طوال أيام الأسبوع.\",\"citations\":[\"redal-e-paiement-20260930t201158z--paiement-mobile-jiwar\"]},{\"text\":\"تطبيق Jiwar Mobil متاح لعملاء بنك البريد المغربي (Barid Bank) وبنك الشعبية (Banque Populaire) وبنك CIH وبنك Attijariwafa وبنك BMCE وبنك CFG وOrange وCash plus وUmnia Bank ومجموعة Maymouna.\",\"citations\":[\"redal-e-paiement-20260930t201158z--paiement-mobile-jiwar\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "خدمة Jiwar Mobil تسمح بدفع الفواتير عبر الهاتف المحمول على مدار الساعة طوال أيام الأسبوع. [redal-e-paiement-20260930t201158z--paiement-mobile-jiwar] تطبيق Jiwar Mobil متاح لعملاء بنك البريد المغربي (Barid Bank) وبنك الشعبية (Banque Populaire) وبنك CIH وبنك Attijariwafa وبنك BMCE وبنك CFG وOrange وCash plus وUmnia Bank ومجموعة Maymouna. [redal-e-paiement-20260930t201158z--paiement-mobile-jiwar]",
+        "claims": [
+          {
+            "text": "خدمة Jiwar Mobil تسمح بدفع الفواتير عبر الهاتف المحمول على مدار الساعة طوال أيام الأسبوع.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+            ]
+          },
+          {
+            "text": "تطبيق Jiwar Mobil متاح لعملاء بنك البريد المغربي (Barid Bank) وبنك الشعبية (Banque Populaire) وبنك CIH وبنك Attijariwafa وبنك BMCE وبنك CFG وOrange وCash plus وUmnia Bank ومجموعة Maymouna.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "gold_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": false,
+      "critical_values": [
+        "24"
+      ],
+      "critical_values_complete": false,
+      "invented_numeric_values": [],
+      "claim_count": 2,
+      "errors": [
+        "critical_value_missing"
+      ],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 1064,
+      "completion_tokens": 260,
+      "latency_seconds": 24.994337399984943
+    },
+    {
+      "case_id": "sftq-v04-0158",
+      "intent_id": "redal_mobile_wallet",
+      "semantic_family_id": "mobile_wallet_payment",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "srm_rsk",
+      "formulation_kind": "contextual_long",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "أنا خارج الدار و ما عنديش الوقت باش نمشي نخلص. واش كاين شي طريقة باش نخلص فاتورة Redal من التيليفون؟ و أشمن تطبيقات كاينين؟",
+      "raw_output": "{\"answer\":\"خدمة E-paiement تسمح بدفع الفواتير عبر الهاتف المحمول على مدار الساعة طوال أيام الأسبوع. [redal-e-paiement-20260930t201158z--paiement-mobile-jiwar] تطبيق Jiwar Mobil متاح للعملاء الذين يملكون حسابات في بنوك محددة مثل Barid Bank, Banque Populaire, Attijariwafa bank, و غيرها. [redal-e-paiement-20260930t201158z--paiement-mobile-jiwar]\",\"claims\":[{\"text\":\"خدمة E-paiement تسمح بدفع الفواتير عبر الهاتف المحمول على مدار الساعة طوال أيام الأسبوع.\",\"citations\":[\"redal-e-paiement-20260930t201158z--paiement-mobile-jiwar\"]},{\"text\":\"تطبيق Jiwar Mobil متاح للعملاء الذين يملكون حسابات في بنوك محددة مثل Barid Bank, Banque Populaire, Attijariwafa bank, و غيرها.\",\"citations\":[\"redal-e-paiement-20260930t201158z--paiement-mobile-jiwar\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "خدمة E-paiement تسمح بدفع الفواتير عبر الهاتف المحمول على مدار الساعة طوال أيام الأسبوع. [redal-e-paiement-20260930t201158z--paiement-mobile-jiwar] تطبيق Jiwar Mobil متاح للعملاء الذين يملكون حسابات في بنوك محددة مثل Barid Bank, Banque Populaire, Attijariwafa bank, و غيرها. [redal-e-paiement-20260930t201158z--paiement-mobile-jiwar]",
+        "claims": [
+          {
+            "text": "خدمة E-paiement تسمح بدفع الفواتير عبر الهاتف المحمول على مدار الساعة طوال أيام الأسبوع.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+            ]
+          },
+          {
+            "text": "تطبيق Jiwar Mobil متاح للعملاء الذين يملكون حسابات في بنوك محددة مثل Barid Bank, Banque Populaire, Attijariwafa bank, و غيرها.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "gold_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": false,
+      "critical_values": [
+        "24"
+      ],
+      "critical_values_complete": false,
+      "invented_numeric_values": [],
+      "claim_count": 2,
+      "errors": [
+        "critical_value_missing"
+      ],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 1372,
+      "completion_tokens": 243,
+      "latency_seconds": 26.57348570000613
+    },
+    {
+      "case_id": "sftq-v04-0159",
+      "intent_id": "redal_mobile_wallet",
+      "semantic_family_id": "mobile_wallet_payment",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "srm_rsk",
+      "formulation_kind": "provider_implicit",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "كيفاش نقدر نخلص الفاتورة ديالي غير من التيليفون؟",
+      "raw_output": "{\"answer\":\"يُعدّ الدفع عبر 'E-Banking' وسيلة تدفع让你 يمكنها تسوية فواتيرك من منزلك بأمان وفي أي وقت. [redal-e-paiement-20260930t201158z--paiement-en-ligne-carte] تقدم Redal منصات مختلفة، منها Redal.ma الذي يتيح لك استعراض ودفع فواتيرك إما عبر مساحتك الخاصة للعملاء أو بالنقر مباشرة على رابط 'سدد فاتورتك'. [redal-e-paiement-20260930t201158z--paiement-en-ligne-carte] لكي تقوم بذلك، يجب أن تكون صاحب بطاقة بنكية. [redal-e-paiement-20260930t201158z--paiement-en-ligne-carte]\",\"claims\":[{\"text\":\"يُعدّ الدفع عبر 'E-Banking' وسيلة تدفع让你 يمكنها تسوية فواتيرك من منزلك بأمان وفي أي وقت.\",\"citations\":[\"redal-e-paiement-20260930t201158z--paiement-en-ligne-carte\"]},{\"text\":\"تقدم Redal منصات مختلفة، منها Redal.ma الذي يتيح لك استعراض ودفع فواتيرك إما عبر مساحتك الخاصة للعملاء أو بالنقر مباشرة على رابط 'سدد فاتورتك'.\",\"citations\":[\"redal-e-paiement-20260930t201158z--paiement-en-ligne-carte\"]},{\"text\":\"لكي تقوم بذلك، يجب أن تكون صاحب بطاقة بنكية.\",\"citations\":[\"redal-e-paiement-20260930t201158z--paiement-en-ligne-carte\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "يُعدّ الدفع عبر 'E-Banking' وسيلة تدفع让你 يمكنها تسوية فواتيرك من منزلك بأمان وفي أي وقت. [redal-e-paiement-20260930t201158z--paiement-en-ligne-carte] تقدم Redal منصات مختلفة، منها Redal.ma الذي يتيح لك استعراض ودفع فواتيرك إما عبر مساحتك الخاصة للعملاء أو بالنقر مباشرة على رابط 'سدد فاتورتك'. [redal-e-paiement-20260930t201158z--paiement-en-ligne-carte] لكي تقوم بذلك، يجب أن تكون صاحب بطاقة بنكية. [redal-e-paiement-20260930t201158z--paiement-en-ligne-carte]",
+        "claims": [
+          {
+            "text": "يُعدّ الدفع عبر 'E-Banking' وسيلة تدفع让你 يمكنها تسوية فواتيرك من منزلك بأمان وفي أي وقت.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte"
+            ]
+          },
+          {
+            "text": "تقدم Redal منصات مختلفة، منها Redal.ma الذي يتيح لك استعراض ودفع فواتيرك إما عبر مساحتك الخاصة للعملاء أو بالنقر مباشرة على رابط 'سدد فاتورتك'.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte"
+            ]
+          },
+          {
+            "text": "لكي تقوم بذلك، يجب أن تكون صاحب بطاقة بنكية.",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte"
+      ],
+      "gold_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "gold_citation_precision": 0.0,
+      "gold_citation_recall": 0.0,
+      "cites_distractor": true,
+      "critical_values": [
+        "24"
+      ],
+      "critical_values_complete": false,
+      "invented_numeric_values": [],
+      "claim_count": 3,
+      "errors": [
+        "critical_value_missing"
+      ],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 1330,
+      "completion_tokens": 332,
+      "latency_seconds": 33.623120099975495
+    },
+    {
+      "case_id": "sftq-v04-0160",
+      "intent_id": "redal_mobile_wallet",
+      "semantic_family_id": "mobile_wallet_payment",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "srm_rsk",
+      "formulation_kind": "informal_typed",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "سلام، واش كاين شي تطبيق فالتيليفون باش نخلص Redal؟ عافاك بغيت نعرف.",
+      "raw_output": "{\"answer\":\"يمكنك قراءة العداد بنفسك باستخدام بطاقة خاصة تتركها لك خدمة Redal. [Le releveur vous laisse un avis de passage et une carte d'auto-relevé, vous permettant de relever vous-même votre compteur.]\",\"claims\":[{\"text\":\"يمكنك قراءة العداد بنفسك باستخدام بطاقة خاصة تتركها لك خدمة Redal.\",\"citations\":[\"Le releveur vous laisse un avis de passage et une carte d'auto-relevé, vous permettant de relever vous-même votre compteur.\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "يمكنك قراءة العداد بنفسك باستخدام بطاقة خاصة تتركها لك خدمة Redal. [Le releveur vous laisse un avis de passage et une carte d'auto-relevé, vous permettant de relever vous-même votre compteur.]",
+        "claims": [
+          {
+            "text": "يمكنك قراءة العداد بنفسك باستخدام بطاقة خاصة تتركها لك خدمة Redal.",
+            "citations": [
+              "Le releveur vous laisse un avis de passage et une carte d'auto-relevé, vous permettant de relever vous-même votre compteur."
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "Le releveur vous laisse un avis de passage et une carte d'auto-relevé, vous permettant de relever vous-même votre compteur."
+      ],
+      "gold_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar"
+      ],
+      "gold_citation_precision": 0.0,
+      "gold_citation_recall": 0.0,
+      "cites_distractor": false,
+      "critical_values": [
+        "24"
+      ],
+      "critical_values_complete": false,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [
+        "citation_outside_context",
+        "critical_value_missing"
+      ],
+      "core_deterministic_pass": false,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 1383,
+      "completion_tokens": 141,
+      "latency_seconds": 16.79505399998743
+    },
+    {
+      "case_id": "sftq-v04-0256",
+      "intent_id": "iam_billing_error",
+      "semantic_family_id": "confirmed_billing_error",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "iam",
+      "formulation_kind": "direct",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "إلا تأكدو بلي IAM حسبات ليا مبلغ غالط شنو كيديرو؟",
+      "raw_output": "{\"answer\":\"في حالة وجود خطأ في الفاتورة أو تحصيل مبالغ زائدة مؤكد، سيقوم IAM بإلغاء الرسوم المحصلة بالخطأ عند طلب العميل وبعد التحقق. [telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation]\",\"claims\":[{\"text\":\"في حالة وجود خطأ في الفاتورة أو تحصيل مبالغ زائدة مؤكد، سيقوم IAM بإلغاء الرسوم المحصلة بالخطأ عند طلب العميل وبعد التحقق.\",\"citations\":[\"telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "في حالة وجود خطأ في الفاتورة أو تحصيل مبالغ زائدة مؤكد، سيقوم IAM بإلغاء الرسوم المحصلة بالخطأ عند طلب العميل وبعد التحقق. [telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation]",
+        "claims": [
+          {
+            "text": "في حالة وجود خطأ في الفاتورة أو تحصيل مبالغ زائدة مؤكد، سيقوم IAM بإلغاء الرسوم المحصلة بالخطأ عند طلب العميل وبعد التحقق.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+      ],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": false,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": true,
+      "prompt_tokens": 1195,
+      "completion_tokens": 161,
+      "latency_seconds": 17.463811599998735
+    },
+    {
+      "case_id": "sftq-v04-0257",
+      "intent_id": "iam_billing_error",
+      "semantic_family_id": "confirmed_billing_error",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "iam",
+      "formulation_kind": "indirect",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "شنو كيديرو IAM إلا بان ليهم بلي كاين غلط ف الحساب و طلبو زيادة ف المبلغ؟",
+      "raw_output": "{\"answer\":\"في حالة وجود خطأ في الفوترة أو فوترة زائدة مؤكدة، سيقوم IAM بإلغاء الرسوم المحصلة بالخطأ عند طلب العميل وبعد التحقق. [telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation]\",\"claims\":[{\"text\":\"في حالة وجود خطأ في الفوترة أو فوترة زائدة مؤكدة، سيقوم IAM بإلغاء الرسوم المحصلة بالخطأ عند طلب العميل وبعد التحقق.\",\"citations\":[\"telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "في حالة وجود خطأ في الفوترة أو فوترة زائدة مؤكدة، سيقوم IAM بإلغاء الرسوم المحصلة بالخطأ عند طلب العميل وبعد التحقق. [telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation]",
+        "claims": [
+          {
+            "text": "في حالة وجود خطأ في الفوترة أو فوترة زائدة مؤكدة، سيقوم IAM بإلغاء الرسوم المحصلة بالخطأ عند طلب العميل وبعد التحقق.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+      ],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": false,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": true,
+      "prompt_tokens": 1390,
+      "completion_tokens": 164,
+      "latency_seconds": 19.201786199992057
+    },
+    {
+      "case_id": "sftq-v04-0258",
+      "intent_id": "iam_billing_error",
+      "semantic_family_id": "confirmed_billing_error",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "iam",
+      "formulation_kind": "contextual_long",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "شنو كدير IAM إلا كان غلط فالفاتورة وشنو هو المهل باش نديرو معارضة على الاقتطاع البنكي؟",
+      "raw_output": "{\"answer\":\"في حالة وجود خطأ في الفاتورة أو تحصيل مبالغ زائدة مؤكد، يقوم IAM بإلغاء الرسوم المحصلة خطأً بناءً على طلب العميل وبعد التحقق. [telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation]\",\"claims\":[{\"text\":\"في حالة وجود خطأ في الفاتورة أو تحصيل مبالغ زائدة مؤكد، يقوم IAM بإلغاء الرسوم المحصلة خطأً بناءً على طلب العميل وبعد التحقق.\",\"citations\":[\"telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "في حالة وجود خطأ في الفاتورة أو تحصيل مبالغ زائدة مؤكد، يقوم IAM بإلغاء الرسوم المحصلة خطأً بناءً على طلب العميل وبعد التحقق. [telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation]",
+        "claims": [
+          {
+            "text": "في حالة وجود خطأ في الفاتورة أو تحصيل مبالغ زائدة مؤكد، يقوم IAM بإلغاء الرسوم المحصلة خطأً بناءً على طلب العميل وبعد التحقق.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation",
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 0.5,
+      "cites_distractor": false,
+      "critical_values": [
+        "7"
+      ],
+      "critical_values_complete": false,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [
+        "critical_value_missing"
+      ],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 1470,
+      "completion_tokens": 170,
+      "latency_seconds": 20.39839970000321
+    },
+    {
+      "case_id": "sftq-v04-0259",
+      "intent_id": "iam_billing_error",
+      "semantic_family_id": "confirmed_billing_error",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "iam",
+      "formulation_kind": "provider_implicit",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "إلا الفاتورة ديالي فيها غلط و حسبو ليا مبلغ ماشي هو هاداك، كيفاش كيقادو هاد الوضعية؟",
+      "raw_output": "{\"answer\":\"في حالة وجود خطأ في الفوترة أو تهرب الفوترة المثبتة، سيقوم IAM بإلغاء الرسوم المحصلة بالخطأ عند طلب العميل وبعد التحقق. [telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation]\",\"claims\":[{\"text\":\"في حالة وجود خطأ في الفوترة أو تهرب الفوترة المثبتة، سيقوم IAM بإلغاء الرسوم المحصلة بالخطأ عند طلب العميل وبعد التحقق.\",\"citations\":[\"telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "في حالة وجود خطأ في الفوترة أو تهرب الفوترة المثبتة، سيقوم IAM بإلغاء الرسوم المحصلة بالخطأ عند طلب العميل وبعد التحقق. [telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation]",
+        "claims": [
+          {
+            "text": "في حالة وجود خطأ في الفوترة أو تهرب الفوترة المثبتة، سيقوم IAM بإلغاء الرسوم المحصلة بالخطأ عند طلب العميل وبعد التحقق.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+      ],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": false,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": true,
+      "prompt_tokens": 1399,
+      "completion_tokens": 162,
+      "latency_seconds": 19.310903700010385
+    },
+    {
+      "case_id": "sftq-v04-0260",
+      "intent_id": "iam_billing_error",
+      "semantic_family_id": "confirmed_billing_error",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "iam",
+      "formulation_kind": "informal_typed",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "عافاك، إلا تخلصت كثر من داكشي لي خاص ف الفاتورة، واش كايردو ليا الفلوس ولا كاين شي حل آخر؟",
+      "raw_output": "{\"answer\":\"IAM يملحق على طلب العميل بعد التأكد، إلغاء الرسوم التي تم تحصيلها بالخطأ. [telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation]\",\"claims\":[{\"text\":\"IAM يملحق على طلب العميل بعد التأكد، إلغاء الرسوم التي تم تحصيلها بالخطأ.\",\"citations\":[\"telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "IAM يملحق على طلب العميل بعد التأكد، إلغاء الرسوم التي تم تحصيلها بالخطأ. [telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation]",
+        "claims": [
+          {
+            "text": "IAM يملحق على طلب العميل بعد التأكد، إلغاء الرسوم التي تم تحصيلها بالخطأ.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+      ],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": false,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": true,
+      "prompt_tokens": 1130,
+      "completion_tokens": 147,
+      "latency_seconds": 16.54600610001944
+    },
+    {
+      "case_id": "sftq-v04-0276",
+      "intent_id": "iam_debit_dispute",
+      "semantic_family_id": "bank_debit_dispute",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "iam",
+      "formulation_kind": "direct",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "IAM قطعات ليا الفلوس من الكونط شحال عندي باش نعترض بالكتابة؟",
+      "raw_output": "{\"answer\":\"في حالة اعتراض سحب، يمكن للعميل في غضون 7 أيام التالية لتاريخ خصم حسابيه، تقديم اعتراض مكتوب على بنكه. [telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation]\",\"claims\":[{\"text\":\"في حالة اعتراض سحب، يمكن للعميل في غضون 7 أيام التالية لتاريخ خصم حسابيه، تقديم اعتراض مكتوب على بنكه.\",\"citations\":[\"telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "في حالة اعتراض سحب، يمكن للعميل في غضون 7 أيام التالية لتاريخ خصم حسابيه، تقديم اعتراض مكتوب على بنكه. [telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation]",
+        "claims": [
+          {
+            "text": "في حالة اعتراض سحب، يمكن للعميل في غضون 7 أيام التالية لتاريخ خصم حسابيه، تقديم اعتراض مكتوب على بنكه.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": false,
+      "critical_values": [
+        "7"
+      ],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": true,
+      "prompt_tokens": 1309,
+      "completion_tokens": 166,
+      "latency_seconds": 19.582701100007398
+    },
+    {
+      "case_id": "sftq-v04-0277",
+      "intent_id": "iam_debit_dispute",
+      "semantic_family_id": "bank_debit_dispute",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "iam",
+      "formulation_kind": "indirect",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "إلى اتصالات المغرب خداو ليا الفلوس من الكونط، شحال كيكون عندي الوقت باش نوقف داكشي؟",
+      "raw_output": "{\"answer\":\"العميل يمكن أن يلغي العقد في أي وقت، بشرط إخطار IAM برسالة توصية مسجلة لمدة ثلاثين يوماً. [telecom-iam-mobile-postpaid-20261001t082840z--resiliation-client] في حالة إيقاف الخدمة، يتعين على العميل دفع جميع المبالغ المستحقة فوراً، ولا يمكن إعادة تفعيل الخدمة إلا بعد سداد هذه المبالغ خلال فترة زمنية محددة. [telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement]\",\"claims\":[{\"text\":\"العميل يمكن أن يلغي العقد في أي وقت، بشرط إخطار IAM برسالة توصية مسجلة لمدة ثلاثين يوماً.\",\"citations\":[\"telecom-iam-mobile-postpaid-20261001t082840z--resiliation-client\"]},{\"text\":\"في حالة إيقاف الخدمة، يتعين على العميل دفع جميع المبالغ المستحقة فوراً، ولا يمكن إعادة تفعيل الخدمة إلا بعد سداد هذه المبالغ خلال فترة زمنية محددة.\",\"citations\":[\"telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "العميل يمكن أن يلغي العقد في أي وقت، بشرط إخطار IAM برسالة توصية مسجلة لمدة ثلاثين يوماً. [telecom-iam-mobile-postpaid-20261001t082840z--resiliation-client] في حالة إيقاف الخدمة، يتعين على العميل دفع جميع المبالغ المستحقة فوراً، ولا يمكن إعادة تفعيل الخدمة إلا بعد سداد هذه المبالغ خلال فترة زمنية محددة. [telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement]",
+        "claims": [
+          {
+            "text": "العميل يمكن أن يلغي العقد في أي وقت، بشرط إخطار IAM برسالة توصية مسجلة لمدة ثلاثين يوماً.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--resiliation-client"
+            ]
+          },
+          {
+            "text": "في حالة إيقاف الخدمة، يتعين على العميل دفع جميع المبالغ المستحقة فوراً، ولا يمكن إعادة تفعيل الخدمة إلا بعد سداد هذه المبالغ خلال فترة زمنية محددة.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--resiliation-client",
+        "telecom-iam-mobile-postpaid-20261001t082840z--suspension-retablissement"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "gold_citation_precision": 0.0,
+      "gold_citation_recall": 0.0,
+      "cites_distractor": true,
+      "critical_values": [
+        "7"
+      ],
+      "critical_values_complete": false,
+      "invented_numeric_values": [],
+      "claim_count": 2,
+      "errors": [
+        "critical_value_missing"
+      ],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 1544,
+      "completion_tokens": 264,
+      "latency_seconds": 30.226722899999004
+    },
+    {
+      "case_id": "sftq-v04-0278",
+      "intent_id": "iam_debit_dispute",
+      "semantic_family_id": "bank_debit_dispute",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "iam",
+      "formulation_kind": "contextual_long",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "البارح، اتصالات المغرب دارولي واحد الاقتطاع ف الكونط بانكير ديالي و ما فهمتش علاش. أنا باغي نلغيه، واش كاين شي أجل محدد باش ندير هاد المعارضة؟",
+      "raw_output": "{\"answer\":\"يتم خصم رسوم الاشتراك عند تفعيل الخدمة. [telecom-iam-mobile-postpaid-20261001t082840z--facturation-mensuelle] يمكن للعميل إلغاء الاشتراك دون قيود زمنية محددة.\",\"claims\":[{\"text\":\"يتم خصم رسوم الاشتراك عند تفعيل الخدمة.\",\"citations\":[\"telecom-iam-mobile-postpaid-20261001t082840z--facturation-mensuelle\"]},{\"text\":\"يمكن للعميل إلغاء الاشتراك دون قيود زمنية محددة.\",\"citations\":[]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "يتم خصم رسوم الاشتراك عند تفعيل الخدمة. [telecom-iam-mobile-postpaid-20261001t082840z--facturation-mensuelle] يمكن للعميل إلغاء الاشتراك دون قيود زمنية محددة.",
+        "claims": [
+          {
+            "text": "يتم خصم رسوم الاشتراك عند تفعيل الخدمة.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--facturation-mensuelle"
+            ]
+          },
+          {
+            "text": "يمكن للعميل إلغاء الاشتراك دون قيود زمنية محددة.",
+            "citations": []
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": false,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--facturation-mensuelle"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "gold_citation_precision": 0.0,
+      "gold_citation_recall": 0.0,
+      "cites_distractor": true,
+      "critical_values": [
+        "7"
+      ],
+      "critical_values_complete": false,
+      "invented_numeric_values": [],
+      "claim_count": 2,
+      "errors": [
+        "claims_structure",
+        "critical_value_missing"
+      ],
+      "core_deterministic_pass": false,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 1291,
+      "completion_tokens": 169,
+      "latency_seconds": 19.02600589999929
+    },
+    {
+      "case_id": "sftq-v04-0279",
+      "intent_id": "iam_debit_dispute",
+      "semantic_family_id": "bank_debit_dispute",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "iam",
+      "formulation_kind": "provider_implicit",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "واش كاين شي وقت محدد باش نوقف شي اقتطاع بنكي ما عجبنيش؟",
+      "raw_output": "{\"answer\":\"إذا لم يتم دفع الفاتورة كاملة أو جزئياً في التاريخ المحدد لها، يحق لشركة IAM فرض غرامات تأخير شهرية على المبالغ المتأخرة. [telecom-iam-mobile-postpaid-20261001t082840z--penalites-retard]\",\"claims\":[{\"text\":\"إذا لم يتم دفع الفاتورة كاملة أو جزئياً في التاريخ المحدد لها، يحق لشركة IAM فرض غرامات تأخير شهرية على المبالغ المتأخرة.\",\"citations\":[\"telecom-iam-mobile-postpaid-20261001t082840z--penalites-retard\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "إذا لم يتم دفع الفاتورة كاملة أو جزئياً في التاريخ المحدد لها، يحق لشركة IAM فرض غرامات تأخير شهرية على المبالغ المتأخرة. [telecom-iam-mobile-postpaid-20261001t082840z--penalites-retard]",
+        "claims": [
+          {
+            "text": "إذا لم يتم دفع الفاتورة كاملة أو جزئياً في التاريخ المحدد لها، يحق لشركة IAM فرض غرامات تأخير شهرية على المبالغ المتأخرة.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--penalites-retard"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--penalites-retard"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "gold_citation_precision": 0.0,
+      "gold_citation_recall": 0.0,
+      "cites_distractor": true,
+      "critical_values": [
+        "7"
+      ],
+      "critical_values_complete": false,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [
+        "critical_value_missing"
+      ],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 1417,
+      "completion_tokens": 175,
+      "latency_seconds": 21.253507100016577
+    },
+    {
+      "case_id": "sftq-v04-0280",
+      "intent_id": "iam_debit_dispute",
+      "semantic_family_id": "bank_debit_dispute",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "iam",
+      "formulation_kind": "informal_typed",
+      "retrieval_outcome": "miss",
+      "expected_abstention": true,
+      "question": "سلام خويا، اتصالات المغرب قطعات ليا الفلوس و ما عرفتش علاش. شحال عندي الوقت باش نرجعهم؟",
+      "raw_output": "{\"answer\":\"IAM مكلوب على حسابكم غرامات إذا ما دفعتم الفاتورة في الموعد المحدد. [telecom-iam-mobile-postpaid-20261001t082840z--penalites-retard]\",\"claims\":[{\"text\":\"IAM مكلوب على حسابكم غرامات إذا ما دفعتم الفاتورة في الموعد المحدد.\",\"citations\":[\"telecom-iam-mobile-postpaid-20261001t082840z--penalites-retard\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "IAM مكلوب على حسابكم غرامات إذا ما دفعتم الفاتورة في الموعد المحدد. [telecom-iam-mobile-postpaid-20261001t082840z--penalites-retard]",
+        "claims": [
+          {
+            "text": "IAM مكلوب على حسابكم غرامات إذا ما دفعتم الفاتورة في الموعد المحدد.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--penalites-retard"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": false,
+      "false_abstention": false,
+      "unsafe_answer": true,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--penalites-retard"
+      ],
+      "gold_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--prelevement-contestation"
+      ],
+      "gold_citation_precision": 0.0,
+      "gold_citation_recall": 0.0,
+      "cites_distractor": true,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [
+        "abstention_decision"
+      ],
+      "core_deterministic_pass": false,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 1124,
+      "completion_tokens": 157,
+      "latency_seconds": 17.3580704999913
+    },
+    {
+      "case_id": "sftq-v04-0316",
+      "intent_id": "orange_payment_delay",
+      "semantic_family_id": "minimum_payment_period",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "orange_ma",
+      "formulation_kind": "direct",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "شحال من نهار على الأقل عندي باش نخلص فاتورة Orange؟",
+      "raw_output": "{\"answer\":\"تستطيع دفع الفاتورة خلال فترة زمنية لا تقل عن 10 أيام. [telecom-orange-payer-facture-20261001t082112z--delai-paiement]\",\"claims\":[{\"text\":\"تستطيع دفع الفاتورة خلال فترة زمنية لا تقل عن 10 أيام.\",\"citations\":[\"telecom-orange-payer-facture-20261001t082112z--delai-paiement\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "تستطيع دفع الفاتورة خلال فترة زمنية لا تقل عن 10 أيام. [telecom-orange-payer-facture-20261001t082112z--delai-paiement]",
+        "claims": [
+          {
+            "text": "تستطيع دفع الفاتورة خلال فترة زمنية لا تقل عن 10 أيام.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+      ],
+      "gold_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+      ],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": false,
+      "critical_values": [
+        "10"
+      ],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": true,
+      "prompt_tokens": 894,
+      "completion_tokens": 140,
+      "latency_seconds": 14.214846399991075
+    },
+    {
+      "case_id": "sftq-v04-0317",
+      "intent_id": "orange_payment_delay",
+      "semantic_family_id": "minimum_payment_period",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "orange_ma",
+      "formulation_kind": "indirect",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "شحال ديال الوقت عندي باش نخلص داكشي لي عليا ل Orange؟",
+      "raw_output": "{\"answer\":\"ديالكم 10 يوين باش تخلص الفاتورة. [telecom-orange-payer-facture-20261001t082112z--delai-paiement]\",\"claims\":[{\"text\":\"ديالكم 10 يوين باش تخلص الفاتورة.\",\"citations\":[\"telecom-orange-payer-facture-20261001t082112z--delai-paiement\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "ديالكم 10 يوين باش تخلص الفاتورة. [telecom-orange-payer-facture-20261001t082112z--delai-paiement]",
+        "claims": [
+          {
+            "text": "ديالكم 10 يوين باش تخلص الفاتورة.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+      ],
+      "gold_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+      ],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": false,
+      "critical_values": [
+        "10"
+      ],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": true,
+      "prompt_tokens": 904,
+      "completion_tokens": 123,
+      "latency_seconds": 12.388571699993918
+    },
+    {
+      "case_id": "sftq-v04-0318",
+      "intent_id": "orange_payment_delay",
+      "semantic_family_id": "minimum_payment_period",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "orange_ma",
+      "formulation_kind": "contextual_long",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "شحال مينيموم ديال الوقت باش نخلصو فاتورة Orange وكيفاش نكونسولطيو الفاتيرات فـ espace client مع ميساج SMS؟",
+      "raw_output": "{\"answer\":\"يمكنك استلام إشعار عبر رسالة نصية عند توفر فاتورتك. [telecom-orange-consulter-facture-20261001t082113z--consulter-facture]\",\"claims\":[{\"text\":\"يمكنك استلام إشعار عبر رسالة نصية عند توفر فاتورتك.\",\"citations\":[\"telecom-orange-consulter-facture-20261001t082113z--consulter-facture\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "يمكنك استلام إشعار عبر رسالة نصية عند توفر فاتورتك. [telecom-orange-consulter-facture-20261001t082113z--consulter-facture]",
+        "claims": [
+          {
+            "text": "يمكنك استلام إشعار عبر رسالة نصية عند توفر فاتورتك.",
+            "citations": [
+              "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+      ],
+      "gold_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture",
+        "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+      ],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 0.5,
+      "cites_distractor": false,
+      "critical_values": [
+        "10"
+      ],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 747,
+      "completion_tokens": 151,
+      "latency_seconds": 13.894359700003406
+    },
+    {
+      "case_id": "sftq-v04-0319",
+      "intent_id": "orange_payment_delay",
+      "semantic_family_id": "minimum_payment_period",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "orange_ma",
+      "formulation_kind": "provider_implicit",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "بغيت نعرف شحال الأجل ديال خلاص لا فاكتورة.",
+      "raw_output": "{\"answer\":\"يوجد حد أدنى قدره 10 أيام لتسديد فاتورتك. [telecom-orange-payer-facture-20261001t082112z--delai-paiement]\",\"claims\":[{\"text\":\"يوجد حد أدنى قدره 10 أيام لتسديد فاتورتك.\",\"citations\":[\"telecom-orange-payer-facture-20261001t082112z--delai-paiement\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "يوجد حد أدنى قدره 10 أيام لتسديد فاتورتك. [telecom-orange-payer-facture-20261001t082112z--delai-paiement]",
+        "claims": [
+          {
+            "text": "يوجد حد أدنى قدره 10 أيام لتسديد فاتورتك.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+      ],
+      "gold_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+      ],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": false,
+      "critical_values": [
+        "10"
+      ],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": true,
+      "prompt_tokens": 916,
+      "completion_tokens": 140,
+      "latency_seconds": 13.983188699989114
+    },
+    {
+      "case_id": "sftq-v04-0320",
+      "intent_id": "orange_payment_delay",
+      "semantic_family_id": "minimum_payment_period",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "orange_ma",
+      "formulation_kind": "informal_typed",
+      "retrieval_outcome": "miss",
+      "expected_abstention": true,
+      "question": "سلام، فين هوما لي ديلي باش نخلص فاكتورة Orange؟",
+      "raw_output": "{\"answer\":\"يمكنك مراجعة فاتورتك من خلال مساحتك الخاصة على موقع أونج أو عبر رسالة نصية تودعك بتوفر الفاتورة. [telecom-orange-consulter-facture-20261001t082113z--consulter-facture]\",\"claims\":[{\"text\":\"يمكنك مراجعة فاتورتك من خلال مساحتك الخاصة على موقع أونج أو عبر رسالة نصية تودعك بتوفر الفاتورة.\",\"citations\":[\"telecom-orange-consulter-facture-20261001t082113z--consulter-facture\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "يمكنك مراجعة فاتورتك من خلال مساحتك الخاصة على موقع أونج أو عبر رسالة نصية تودعك بتوفر الفاتورة. [telecom-orange-consulter-facture-20261001t082113z--consulter-facture]",
+        "claims": [
+          {
+            "text": "يمكنك مراجعة فاتورتك من خلال مساحتك الخاصة على موقع أونج أو عبر رسالة نصية تودعك بتوفر الفاتورة.",
+            "citations": [
+              "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": false,
+      "false_abstention": false,
+      "unsafe_answer": true,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+      ],
+      "gold_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+      ],
+      "gold_citation_precision": 0.0,
+      "gold_citation_recall": 0.0,
+      "cites_distractor": true,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [
+        "abstention_decision"
+      ],
+      "core_deterministic_pass": false,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 914,
+      "completion_tokens": 167,
+      "latency_seconds": 16.396037899976363
+    },
+    {
+      "case_id": "sftq-v04-0396",
+      "intent_id": "orange_invoice_download",
+      "semantic_family_id": "invoice_download",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "orange_ma",
+      "formulation_kind": "direct",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "فين نشوف ونحمّل فواتير Orange؟",
+      "raw_output": "{\"answer\":\"توجد أكثر من 400 وكالة في المغرب لخدمة العملاء. [telecom-orange-payer-facture-20261001t082112z--paiement-agence] يمكنك إعادة شحن رصيدك ثم الاتصال بـ 5555 للتأكد من العملية. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge]\",\"claims\":[{\"text\":\"توجد أكثر من 400 وكالة في المغرب لخدمة العملاء.\",\"citations\":[\"telecom-orange-payer-facture-20261001t082112z--paiement-agence\"]},{\"text\":\"يمكنك إعادة شحن رصيدك ثم الاتصال بـ 5555 للتأكد من العملية.\",\"citations\":[\"telecom-orange-payer-facture-20261001t082112z--paiement-recharge\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "توجد أكثر من 400 وكالة في المغرب لخدمة العملاء. [telecom-orange-payer-facture-20261001t082112z--paiement-agence] يمكنك إعادة شحن رصيدك ثم الاتصال بـ 5555 للتأكد من العملية. [telecom-orange-payer-facture-20261001t082112z--paiement-recharge]",
+        "claims": [
+          {
+            "text": "توجد أكثر من 400 وكالة في المغرب لخدمة العملاء.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-agence"
+            ]
+          },
+          {
+            "text": "يمكنك إعادة شحن رصيدك ثم الاتصال بـ 5555 للتأكد من العملية.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--paiement-agence",
+        "telecom-orange-payer-facture-20261001t082112z--paiement-recharge"
+      ],
+      "gold_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+      ],
+      "gold_citation_precision": 0.0,
+      "gold_citation_recall": 0.0,
+      "cites_distractor": true,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 2,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 909,
+      "completion_tokens": 222,
+      "latency_seconds": 21.21734169998672
+    },
+    {
+      "case_id": "sftq-v04-0397",
+      "intent_id": "orange_invoice_download",
+      "semantic_family_id": "invoice_download",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "orange_ma",
+      "formulation_kind": "indirect",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "كيفاش نقدر نشوف وناخد ليفاكتور ديالي ديال Orange؟",
+      "raw_output": "{\"answer\":\"لا يوجد دليل في المصادر على كيفية الحصول على فاتورة أو كاشيلك الخاصة بـ Orange.\",\"claims\":[],\"abstain\":true,\"abstention_reason\":\"المصادر المتاحة تتحدث فقط عن طرق الدفع (البنكي، التحويل، إعادة الشحن) وفتح حساب جديد، ولا تذكر كيفية استخراج فاتورة أو كاشيلك الحالية.\",\"language\":\"ar\"}",
+      "answer": {
+        "answer": "لا يوجد دليل في المصادر على كيفية الحصول على فاتورة أو كاشيلك الخاصة بـ Orange.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "المصادر المتاحة تتحدث فقط عن طرق الدفع (البنكي، التحويل، إعادة الشحن) وفتح حساب جديد، ولا تذكر كيفية استخراج فاتورة أو كاشيلك الحالية.",
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": false,
+      "false_abstention": true,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [],
+      "gold_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+      ],
+      "gold_citation_precision": 0.0,
+      "gold_citation_recall": 0.0,
+      "cites_distractor": false,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 0,
+      "errors": [
+        "abstention_decision"
+      ],
+      "core_deterministic_pass": false,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 945,
+      "completion_tokens": 101,
+      "latency_seconds": 10.713739900005748
+    },
+    {
+      "case_id": "sftq-v04-0398",
+      "intent_id": "orange_invoice_download",
+      "semantic_family_id": "invoice_download",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "orange_ma",
+      "formulation_kind": "contextual_long",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "خاصني لافاكتور ديال Orange باش ندفع شي وراق، أو ما عنديش ديك ديال الورق. فين نقدر نتيليشارجها من الإنترنت؟",
+      "raw_output": "{\"answer\":\"يمكنك تصفح وتحميل فواتيرك من خلال مساحة العميل الخاصة بـ Orange. [telecom-orange-consulter-facture-20261001t082113z--consulter-facture] سيتم إرسال رسالة نصية على هاتفك لتذكيرك بتوفر فاتورتك. [telecom-orange-consulter-facture-20261001t082113z--consulter-facture]\",\"claims\":[{\"text\":\"يمكنك تصفح وتحميل فواتيرك من خلال مساحة العميل الخاصة بـ Orange.\",\"citations\":[\"telecom-orange-consulter-facture-20261001t082113z--consulter-facture\"]},{\"text\":\"سيتم إرسال رسالة نصية على هاتفك لتذكيرك بتوفر فاتورتك.\",\"citations\":[\"telecom-orange-consulter-facture-20261001t082113z--consulter-facture\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "يمكنك تصفح وتحميل فواتيرك من خلال مساحة العميل الخاصة بـ Orange. [telecom-orange-consulter-facture-20261001t082113z--consulter-facture] سيتم إرسال رسالة نصية على هاتفك لتذكيرك بتوفر فاتورتك. [telecom-orange-consulter-facture-20261001t082113z--consulter-facture]",
+        "claims": [
+          {
+            "text": "يمكنك تصفح وتحميل فواتيرك من خلال مساحة العميل الخاصة بـ Orange.",
+            "citations": [
+              "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+            ]
+          },
+          {
+            "text": "سيتم إرسال رسالة نصية على هاتفك لتذكيرك بتوفر فاتورتك.",
+            "citations": [
+              "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+      ],
+      "gold_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+      ],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": false,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 2,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": true,
+      "prompt_tokens": 938,
+      "completion_tokens": 254,
+      "latency_seconds": 24.47146270002122
+    },
+    {
+      "case_id": "sftq-v04-0399",
+      "intent_id": "orange_invoice_download",
+      "semantic_family_id": "invoice_download",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "orange_ma",
+      "formulation_kind": "provider_implicit",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "باغي نتيليشارجي ليفاكتور ديال التيليفون، فين نلقاهم؟",
+      "raw_output": "{\"answer\":\"ماكناش ف passages ديالكم معلومات عن ليفاكتور ديال التيليفون، فالنصو موجودين فقط كيفاش تطلع الفاتورة وكيفاش تدفعها.\",\"claims\":[],\"abstain\":true,\"abstention_reason\":\"ماكناش في أحد passages المرفقة معلومات عن ليفاكتور ديال التيليفون، فالنصو موجودين فقط كيفاش تطلع الفاتورة وكيفاش تدفعها.\",\"language\":\"ar\"}",
+      "answer": {
+        "answer": "ماكناش ف passages ديالكم معلومات عن ليفاكتور ديال التيليفون، فالنصو موجودين فقط كيفاش تطلع الفاتورة وكيفاش تدفعها.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ماكناش في أحد passages المرفقة معلومات عن ليفاكتور ديال التيليفون، فالنصو موجودين فقط كيفاش تطلع الفاتورة وكيفاش تدفعها.",
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": false,
+      "false_abstention": true,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [],
+      "gold_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+      ],
+      "gold_citation_precision": 0.0,
+      "gold_citation_recall": 0.0,
+      "cites_distractor": false,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 0,
+      "errors": [
+        "abstention_decision"
+      ],
+      "core_deterministic_pass": false,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 924,
+      "completion_tokens": 123,
+      "latency_seconds": 12.454069699975662
+    },
+    {
+      "case_id": "sftq-v04-0400",
+      "intent_id": "orange_invoice_download",
+      "semantic_family_id": "invoice_download",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "orange_ma",
+      "formulation_kind": "informal_typed",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "سلام، فين نتيليشارجي ليفاكتور ديال Orange؟ شي بلاصة فالسيت؟",
+      "raw_output": "{\"answer\":\"أكتر من 400 وكالة Orange فمالوك لتي تخدمك. [telecom-orange-payer-facture-20261001t082112z--paiement-agence]\",\"claims\":[{\"text\":\"أكتر من 400 وكالة Orange فمالوك لتي تخدمك.\",\"citations\":[\"telecom-orange-payer-facture-20261001t082112z--paiement-agence\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "أكتر من 400 وكالة Orange فمالوك لتي تخدمك. [telecom-orange-payer-facture-20261001t082112z--paiement-agence]",
+        "claims": [
+          {
+            "text": "أكتر من 400 وكالة Orange فمالوك لتي تخدمك.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-agence"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--paiement-agence"
+      ],
+      "gold_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+      ],
+      "gold_citation_precision": 0.0,
+      "gold_citation_recall": 0.0,
+      "cites_distractor": true,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 927,
+      "completion_tokens": 143,
+      "latency_seconds": 14.30219039999065
+    },
+    {
+      "case_id": "sftq-v04-0476",
+      "intent_id": "inwi_money_steps",
+      "semantic_family_id": "wallet_payment_steps",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "inwi",
+      "formulation_kind": "direct",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "كيفاش نخلص الفاتورة بـ inwi money خطوة بخطوة؟",
+      "raw_output": "{\"answer\":\"اختر فئة الدفع «تيليكوم». [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money] أدخل الرقم الجوال لإنوي وتأكد منه. [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money] تأكد بأكود السري. [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money]\",\"claims\":[{\"text\":\"اختر فئة الدفع «تيليكوم».\",\"citations\":[\"telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money\"]},{\"text\":\"أدخل الرقم الجوال لإنوي وتأكد منه.\",\"citations\":[\"telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money\"]},{\"text\":\"تأكد بأكود السري.\",\"citations\":[\"telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "اختر فئة الدفع «تيليكوم». [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money] أدخل الرقم الجوال لإنوي وتأكد منه. [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money] تأكد بأكود السري. [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money]",
+        "claims": [
+          {
+            "text": "اختر فئة الدفع «تيليكوم».",
+            "citations": [
+              "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+            ]
+          },
+          {
+            "text": "أدخل الرقم الجوال لإنوي وتأكد منه.",
+            "citations": [
+              "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+            ]
+          },
+          {
+            "text": "تأكد بأكود السري.",
+            "citations": [
+              "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+      ],
+      "gold_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+      ],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": false,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 3,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": true,
+      "prompt_tokens": 904,
+      "completion_tokens": 290,
+      "latency_seconds": 28.511843899992527
+    },
+    {
+      "case_id": "sftq-v04-0477",
+      "intent_id": "inwi_money_steps",
+      "semantic_family_id": "wallet_payment_steps",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "inwi",
+      "formulation_kind": "indirect",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "بغيت نعرف الطريقة باش نسوي هاد المستحقات ديال الاتصالات عبر الهاتف المحمول",
+      "raw_output": "{\"answer\":\"تسديد الفاتورة عبر مساحة العميل في البنك. [telecom-inwi-payer-facture-20261001t082113z--paiement-ebanking] تسديد الفاتورة عبر وكالات Wafacash و Tasshilates. [telecom-inwi-payer-facture-20261001t082113z--paiement-agents] تسديد الفاتورة عبر خدمة inwi money. [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money]\",\"claims\":[{\"text\":\"تسديد الفاتورة عبر مساحة العميل في البنك.\",\"citations\":[\"telecom-inwi-payer-facture-20261001t082113z--paiement-ebanking\"]},{\"text\":\"تسديد الفاتورة عبر وكالات Wafacash و Tasshilates.\",\"citations\":[\"telecom-inwi-payer-facture-20261001t082113z--paiement-agents\"]},{\"text\":\"تسديد الفاتورة عبر خدمة inwi money.\",\"citations\":[\"telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "تسديد الفاتورة عبر مساحة العميل في البنك. [telecom-inwi-payer-facture-20261001t082113z--paiement-ebanking] تسديد الفاتورة عبر وكالات Wafacash و Tasshilates. [telecom-inwi-payer-facture-20261001t082113z--paiement-agents] تسديد الفاتورة عبر خدمة inwi money. [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money]",
+        "claims": [
+          {
+            "text": "تسديد الفاتورة عبر مساحة العميل في البنك.",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-ebanking"
+            ]
+          },
+          {
+            "text": "تسديد الفاتورة عبر وكالات Wafacash و Tasshilates.",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-agents"
+            ]
+          },
+          {
+            "text": "تسديد الفاتورة عبر خدمة inwi money.",
+            "citations": [
+              "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money",
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-agents",
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-ebanking"
+      ],
+      "gold_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+      ],
+      "gold_citation_precision": 0.3333333333333333,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": true,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 3,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 915,
+      "completion_tokens": 305,
+      "latency_seconds": 30.428887200017925
+    },
+    {
+      "case_id": "sftq-v04-0478",
+      "intent_id": "inwi_money_steps",
+      "semantic_family_id": "wallet_payment_steps",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "inwi",
+      "formulation_kind": "contextual_long",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "كيفاش نخلص بـ inwi money خطوة بخطوة، وكيفاش نفعل الاقتطاع البنكي التلقائي؟",
+      "raw_output": "{\"answer\":\"اختر عملية الإيداع البنكية الآمنة. [telecom-inwi-payer-facture-20261001t082113z--paiement-prelevement] أدخل فئة الدفع «تيليكوم»، وادخل الفاتورة «inwi». [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money] أدخل رقم الهاتف في inwi وتأكد منه. [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money] تأكد بالرمز السري الخاص بك. [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money]\",\"claims\":[{\"text\":\"اختر عملية الإيداع البنكية الآمنة.\",\"citations\":[\"telecom-inwi-payer-facture-20261001t082113z--paiement-prelevement\"]},{\"text\":\"أدخل فئة الدفع «تيليكوم»، وادخل الفاتورة «inwi».\",\"citations\":[\"telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money\"]},{\"text\":\"أدخل رقم الهاتف في inwi وتأكد منه.\",\"citations\":[\"telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money\"]},{\"text\":\"تأكد بالرمز السري الخاص بك.\",\"citations\":[\"telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "اختر عملية الإيداع البنكية الآمنة. [telecom-inwi-payer-facture-20261001t082113z--paiement-prelevement] أدخل فئة الدفع «تيليكوم»، وادخل الفاتورة «inwi». [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money] أدخل رقم الهاتف في inwi وتأكد منه. [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money] تأكد بالرمز السري الخاص بك. [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money]",
+        "claims": [
+          {
+            "text": "اختر عملية الإيداع البنكية الآمنة.",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-prelevement"
+            ]
+          },
+          {
+            "text": "أدخل فئة الدفع «تيليكوم»، وادخل الفاتورة «inwi».",
+            "citations": [
+              "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+            ]
+          },
+          {
+            "text": "أدخل رقم الهاتف في inwi وتأكد منه.",
+            "citations": [
+              "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+            ]
+          },
+          {
+            "text": "تأكد بالرمز السري الخاص بك.",
+            "citations": [
+              "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money",
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-prelevement"
+      ],
+      "gold_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money",
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-prelevement"
+      ],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": false,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 4,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": true,
+      "prompt_tokens": 830,
+      "completion_tokens": 386,
+      "latency_seconds": 36.499477800010936
+    },
+    {
+      "case_id": "sftq-v04-0479",
+      "intent_id": "inwi_money_steps",
+      "semantic_family_id": "wallet_payment_steps",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "inwi",
+      "formulation_kind": "provider_implicit",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "شنو هما الخطوات لي خاصني ندير فالتطبيق ديال الكونط باش ندوز هاد الخلاص بلا مشاكل؟",
+      "raw_output": "{\"answer\":\"تدخل في التطبيق على فئة الدفع «Télécom»، ثم تكتب الرقم الجوال الخاص بك من شركة inwi. [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money] بعد ما تكتب الرقم، تأكد منه ثم أدخل الكود السري الخاص بك للتأكيد. [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money]\",\"claims\":[{\"text\":\"تدخل في التطبيق على فئة الدفع «Télécom»، ثم تكتب الرقم الجوال الخاص بك من شركة inwi.\",\"citations\":[\"telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money\"]},{\"text\":\"بعد ما تكتب الرقم، تأكد منه ثم أدخل الكود السري الخاص بك للتأكيد.\",\"citations\":[\"telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "تدخل في التطبيق على فئة الدفع «Télécom»، ثم تكتب الرقم الجوال الخاص بك من شركة inwi. [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money] بعد ما تكتب الرقم، تأكد منه ثم أدخل الكود السري الخاص بك للتأكيد. [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money]",
+        "claims": [
+          {
+            "text": "تدخل في التطبيق على فئة الدفع «Télécom»، ثم تكتب الرقم الجوال الخاص بك من شركة inwi.",
+            "citations": [
+              "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+            ]
+          },
+          {
+            "text": "بعد ما تكتب الرقم، تأكد منه ثم أدخل الكود السري الخاص بك للتأكيد.",
+            "citations": [
+              "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+      ],
+      "gold_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+      ],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": false,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 2,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": true,
+      "prompt_tokens": 922,
+      "completion_tokens": 245,
+      "latency_seconds": 23.13807149999775
+    },
+    {
+      "case_id": "sftq-v04-0480",
+      "intent_id": "inwi_money_steps",
+      "semantic_family_id": "wallet_payment_steps",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "inwi",
+      "formulation_kind": "informal_typed",
+      "retrieval_outcome": "hit",
+      "expected_abstention": false,
+      "question": "عافاك قول لي شنو ندير بالخطوات باش ندوز هاد الخلاص دغيا",
+      "raw_output": "{\"answer\":\"تفضل الدفع فوراً عن طريق إدخال فئة الدفع «تيليكوم» والمصروفية «inwi» ورقم الهاتف وتأكيد الكود السري. [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money] يمكنك الحصول على جيجابايت مجاني لمدة 7 أيام عند الدفع عبر تطبيق My inwi. [telecom-inwi-payer-facture-20261001t082113z--paiement-my-inwi] يمكنك اختيار الإجراء البنكي التلقائي الآمن. [telecom-inwi-payer-facture-20261001t082113z--paiement-prelevement]\",\"claims\":[{\"text\":\"تفضل الدفع فوراً عن طريق إدخال فئة الدفع «تيليكوم» والمصروفية «inwi» ورقم الهاتف وتأكيد الكود السري.\",\"citations\":[\"telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money\"]},{\"text\":\"يمكنك الحصول على جيجابايت مجاني لمدة 7 أيام عند الدفع عبر تطبيق My inwi.\",\"citations\":[\"telecom-inwi-payer-facture-20261001t082113z--paiement-my-inwi\"]},{\"text\":\"يمكنك اختيار الإجراء البنكي التلقائي الآمن.\",\"citations\":[\"telecom-inwi-payer-facture-20261001t082113z--paiement-prelevement\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "تفضل الدفع فوراً عن طريق إدخال فئة الدفع «تيليكوم» والمصروفية «inwi» ورقم الهاتف وتأكيد الكود السري. [telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money] يمكنك الحصول على جيجابايت مجاني لمدة 7 أيام عند الدفع عبر تطبيق My inwi. [telecom-inwi-payer-facture-20261001t082113z--paiement-my-inwi] يمكنك اختيار الإجراء البنكي التلقائي الآمن. [telecom-inwi-payer-facture-20261001t082113z--paiement-prelevement]",
+        "claims": [
+          {
+            "text": "تفضل الدفع فوراً عن طريق إدخال فئة الدفع «تيليكوم» والمصروفية «inwi» ورقم الهاتف وتأكيد الكود السري.",
+            "citations": [
+              "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+            ]
+          },
+          {
+            "text": "يمكنك الحصول على جيجابايت مجاني لمدة 7 أيام عند الدفع عبر تطبيق My inwi.",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-my-inwi"
+            ]
+          },
+          {
+            "text": "يمكنك اختيار الإجراء البنكي التلقائي الآمن.",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-prelevement"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money",
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-my-inwi",
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-prelevement"
+      ],
+      "gold_chunk_ids": [
+        "telecom-inwi-money-factures-20261001t082113z--paiement-inwi-money"
+      ],
+      "gold_citation_precision": 0.3333333333333333,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": true,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 3,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 919,
+      "completion_tokens": 302,
+      "latency_seconds": 28.968885399983265
+    },
+    {
+      "case_id": "sftq-v04-0616",
+      "intent_id": "redal_outage_missing",
+      "semantic_family_id": "missing_service_level",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "srm_rsk",
+      "formulation_kind": "direct",
+      "retrieval_outcome": "not_in_corpus",
+      "expected_abstention": true,
+      "question": "عندي عطب Redal شحال كياخدو باش يرجع الضو؟",
+      "raw_output": "{\"answer\":\"الحدود ديال الفاتورة (date limite de paiement) هي اللي تحدد عداكم الضو يرجع. [redal-questions-frequentes-20260930t201159z--date-limite-suspension] بعد ما تخطو الحدود ديال الفاتورة، الضو يتوقف. [redal-questions-frequentes-20260930t201159z--date-limite-suspension]\",\"claims\":[{\"text\":\"الحدود ديال الفاتورة (date limite de paiement) هي اللي تحدد عداكم الضو يرجع.\",\"citations\":[\"redal-questions-frequentes-20260930t201159z--date-limite-suspension\"]},{\"text\":\"بعد ما تخطو الحدود ديال الفاتورة، الضو يتوقف.\",\"citations\":[\"redal-questions-frequentes-20260930t201159z--date-limite-suspension\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "الحدود ديال الفاتورة (date limite de paiement) هي اللي تحدد عداكم الضو يرجع. [redal-questions-frequentes-20260930t201159z--date-limite-suspension] بعد ما تخطو الحدود ديال الفاتورة، الضو يتوقف. [redal-questions-frequentes-20260930t201159z--date-limite-suspension]",
+        "claims": [
+          {
+            "text": "الحدود ديال الفاتورة (date limite de paiement) هي اللي تحدد عداكم الضو يرجع.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--date-limite-suspension"
+            ]
+          },
+          {
+            "text": "بعد ما تخطو الحدود ديال الفاتورة، الضو يتوقف.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--date-limite-suspension"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": false,
+      "false_abstention": false,
+      "unsafe_answer": true,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "redal-questions-frequentes-20260930t201159z--date-limite-suspension"
+      ],
+      "gold_chunk_ids": [],
+      "gold_citation_precision": 0.0,
+      "gold_citation_recall": 0.0,
+      "cites_distractor": true,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 2,
+      "errors": [
+        "abstention_decision"
+      ],
+      "core_deterministic_pass": false,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 1249,
+      "completion_tokens": 235,
+      "latency_seconds": 24.77809580002213
+    },
+    {
+      "case_id": "sftq-v04-0617",
+      "intent_id": "redal_outage_missing",
+      "semantic_family_id": "missing_service_level",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "srm_rsk",
+      "formulation_kind": "indirect",
+      "retrieval_outcome": "not_in_corpus",
+      "expected_abstention": true,
+      "question": "منين كيطرا شي عطب في شبكة المزود، شحال خصهم ديال الوقت باش يعاودوا يطلقوا الضو؟",
+      "raw_output": "{\"answer\":\"ما فاشو في المراجع ديالنا عن وقت تعويض الخدمة أو حل المشاكل التقنية.\",\"claims\":[],\"abstain\":true,\"abstention_reason\":\"المستندات المتاحة تشرح كيف تقرا الفاتورة ووسائل الدفع، لكن ما فيهاش معلومات عن مدة إصلاح الأعطال في الشبكة.\",\"language\":\"ar\"}",
+      "answer": {
+        "answer": "ما فاشو في المراجع ديالنا عن وقت تعويض الخدمة أو حل المشاكل التقنية.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "المستندات المتاحة تشرح كيف تقرا الفاتورة ووسائل الدفع، لكن ما فيهاش معلومات عن مدة إصلاح الأعطال في الشبكة.",
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [],
+      "gold_chunk_ids": [],
+      "gold_citation_precision": 1.0,
+      "gold_citation_recall": 1.0,
+      "cites_distractor": false,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 0,
+      "errors": [],
+      "core_deterministic_pass": true,
+      "strict_grounded_pass": true,
+      "prompt_tokens": 1161,
+      "completion_tokens": 92,
+      "latency_seconds": 11.326128499989863
+    },
+    {
+      "case_id": "sftq-v04-0618",
+      "intent_id": "redal_outage_missing",
+      "semantic_family_id": "missing_service_level",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "srm_rsk",
+      "formulation_kind": "contextual_long",
+      "retrieval_outcome": "not_in_corpus",
+      "expected_abstention": true,
+      "question": "السلام خويا، دخلت للدار لقيتها مظلمة ومكاينش الضو نهائياً فالحي كامل بسبب مشكل تقني، بغيت نعرف عافاك شحال خصنا نتسناو باش يرجع الوضع عادي.",
+      "raw_output": "{\"answer\":\"مشكلة تقنية تمنع عودة الإضاءة في المنزل. [السلام خويا، دخلت للدار لقيتها مظلمة ومكاينش الضو نهائياً فالحي كامل بسبب مشكل تقني]\",\"claims\":[{\"text\":\"مشكلة تقنية تمنع عودة الإضاءة في المنزل.\",\"citations\":[\"السلام خويا، دخلت للدار لقيتها مظلمة ومكاينش الضو نهائياً فالحي كامل بسبب مشكل تقني\"]}],\"abstain\":false,\"abstention_reason\":null,\"language\":\"ar\"}",
+      "answer": {
+        "answer": "مشكلة تقنية تمنع عودة الإضاءة في المنزل. [السلام خويا، دخلت للدار لقيتها مظلمة ومكاينش الضو نهائياً فالحي كامل بسبب مشكل تقني]",
+        "claims": [
+          {
+            "text": "مشكلة تقنية تمنع عودة الإضاءة في المنزل.",
+            "citations": [
+              "السلام خويا، دخلت للدار لقيتها مظلمة ومكاينش الضو نهائياً فالحي كامل بسبب مشكل تقني"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": false,
+      "false_abstention": false,
+      "unsafe_answer": true,
+      "claims_well_formed": true,
+      "visible_citations_complete": true,
+      "cited_chunk_ids": [
+        "السلام خويا، دخلت للدار لقيتها مظلمة ومكاينش الضو نهائياً فالحي كامل بسبب مشكل تقني"
+      ],
+      "gold_chunk_ids": [],
+      "gold_citation_precision": 0.0,
+      "gold_citation_recall": 0.0,
+      "cites_distractor": false,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [
+        "abstention_decision",
+        "citation_outside_context"
+      ],
+      "core_deterministic_pass": false,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 1327,
+      "completion_tokens": 148,
+      "latency_seconds": 18.891754399985075
+    },
+    {
+      "case_id": "sftq-v04-0619",
+      "intent_id": "redal_outage_missing",
+      "semantic_family_id": "missing_service_level",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "srm_rsk",
+      "formulation_kind": "provider_implicit",
+      "retrieval_outcome": "not_in_corpus",
+      "expected_abstention": true,
+      "question": "الضو مشا لينا كاملين فالزنقة هادي ساعة، شحال ديال الوقت عاد يرجع عافاك؟",
+      "raw_output": "{\"answer\":\"الوقت عاد يرجع عافاك هو ما يحددش فهاد النص، بس الفاتورة ديالكم تكون كل شهر.\",\"claims\":[{\"text\":\"الفاتورة ديالكم تكون كل شهر.\",\"citations\":[\"redal-questions-frequentes-20260930t201159z--facturation-mensuelle\"]}],\"abstain\":true,\"abstention_reason\":\"ماش فهاد المعلومات ما كتكتبش وقت عود الجيب عافاك.\",\"language\":\"ar\"}",
+      "answer": {
+        "answer": "الوقت عاد يرجع عافاك هو ما يحددش فهاد النص، بس الفاتورة ديالكم تكون كل شهر.",
+        "claims": [
+          {
+            "text": "الفاتورة ديالكم تكون كل شهر.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+            ]
+          }
+        ],
+        "abstain": true,
+        "abstention_reason": "ماش فهاد المعلومات ما كتكتبش وقت عود الجيب عافاك.",
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": false,
+      "visible_citations_complete": false,
+      "cited_chunk_ids": [
+        "redal-questions-frequentes-20260930t201159z--facturation-mensuelle"
+      ],
+      "gold_chunk_ids": [],
+      "gold_citation_precision": 0.0,
+      "gold_citation_recall": 0.0,
+      "cites_distractor": true,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [
+        "claims_structure",
+        "citation_missing_from_answer"
+      ],
+      "core_deterministic_pass": false,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 1202,
+      "completion_tokens": 157,
+      "latency_seconds": 18.13373689999571
+    },
+    {
+      "case_id": "sftq-v04-0620",
+      "intent_id": "redal_outage_missing",
+      "semantic_family_id": "missing_service_level",
+      "language": "darija_arab",
+      "answer_language": "ar",
+      "provider_id": "srm_rsk",
+      "formulation_kind": "informal_typed",
+      "retrieval_outcome": "not_in_corpus",
+      "expected_abstention": true,
+      "question": "سلام srm_rsk، عwtani عندنا الضو مقطوع فالدرب، شحال ديال الوقت عاد يرجوه لينا؟",
+      "raw_output": "{\"answer\":\"الضو مقطوع فالدرب، والوقت عاد يرجوه لينا ما شغولش فالحجيجات ديالنا.\",\"claims\":[{\"text\":\"لا يوجد معلومات في الوثائق عن وقت عودة القارئ بعد قطع الاتصال.\",\"citations\":[\"redal-questions-frequentes-20260930t201159z--lecture-facture\"]}],\"abstain\":true,\"abstention_reason\":\"لا توجد وثائق تحتوي على معلومات دقيقة عن وقت عودة القارئ بعد قطع الاتصال.\",\"language\":\"ar\"}",
+      "answer": {
+        "answer": "الضو مقطوع فالدرب، والوقت عاد يرجوه لينا ما شغولش فالحجيجات ديالنا.",
+        "claims": [
+          {
+            "text": "لا يوجد معلومات في الوثائق عن وقت عودة القارئ بعد قطع الاتصال.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--lecture-facture"
+            ]
+          }
+        ],
+        "abstain": true,
+        "abstention_reason": "لا توجد وثائق تحتوي على معلومات دقيقة عن وقت عودة القارئ بعد قطع الاتصال.",
+        "language": "ar"
+      },
+      "strict_json_valid": true,
+      "schema_valid": true,
+      "language_correct": true,
+      "writing_script_correct": true,
+      "abstention_correct": true,
+      "false_abstention": false,
+      "unsafe_answer": false,
+      "claims_well_formed": false,
+      "visible_citations_complete": false,
+      "cited_chunk_ids": [
+        "redal-questions-frequentes-20260930t201159z--lecture-facture"
+      ],
+      "gold_chunk_ids": [],
+      "gold_citation_precision": 0.0,
+      "gold_citation_recall": 0.0,
+      "cites_distractor": true,
+      "critical_values": [],
+      "critical_values_complete": true,
+      "invented_numeric_values": [],
+      "claim_count": 1,
+      "errors": [
+        "claims_structure",
+        "citation_missing_from_answer"
+      ],
+      "core_deterministic_pass": false,
+      "strict_grounded_pass": false,
+      "prompt_tokens": 1389,
+      "completion_tokens": 162,
+      "latency_seconds": 19.605948799988255
+    }
+  ]
+}

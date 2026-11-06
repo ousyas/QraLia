@@ -1,0 +1,20 @@
+{"case_id":"chat-fr-001","language":"fr","history":[],"question":"Comment payer une facture ONEE par chèque ?","expected_action":"standalone","required_concepts":["payer","chèque"]}
+{"case_id":"chat-fr-002","language":"fr","history":["Puis-je payer cette facture par chèque ?"],"question":"Et où le déposer ?","expected_action":"rewrite","required_concepts":["où","chèque","ONEE"]}
+{"case_id":"chat-fr-003","language":"fr","history":["Comment puis-je payer cette facture ?"],"question":"Et par virement ?","expected_action":"rewrite","required_concepts":["virement","ONEE"]}
+{"case_id":"chat-fr-004","language":"fr","history":["Quel est le montant de cette facture ?"],"question":"Et avant quelle date ?","expected_action":"rewrite","required_concepts":["date","facture"]}
+{"case_id":"chat-fr-005","language":"fr","history":["Je parle du chèque et du prélèvement."],"question":"Et ça ?","expected_action":"clarify","required_concepts":[]}
+{"case_id":"chat-ar-001","language":"ar","history":[],"question":"كيف يمكنني أداء فاتورة المكتب الوطني بالشيك؟","expected_action":"standalone","required_concepts":["أداء","الشيك"]}
+{"case_id":"chat-ar-002","language":"ar","history":["هل يمكنني أداء هذه الفاتورة بالشيك؟"],"question":"وأين أقدمه؟","expected_action":"rewrite","required_concepts":["أين","الشيك","ONEE"]}
+{"case_id":"chat-ar-003","language":"ar","history":["كيف يمكنني أداء هذه الفاتورة؟"],"question":"وماذا عن التحويل؟","expected_action":"rewrite","required_concepts":["التحويل","ONEE"]}
+{"case_id":"chat-ar-004","language":"ar","history":["ما مبلغ هذه الفاتورة؟"],"question":"وما تاريخ آخر أجل؟","expected_action":"rewrite","required_concepts":["أجل","الفاتورة"]}
+{"case_id":"chat-ar-005","language":"ar","history":["تحدثنا عن الشيك والتحويل."],"question":"وماذا عنه؟","expected_action":"clarify","required_concepts":[]}
+{"case_id":"chat-da-001","language":"darija_arab","history":[],"question":"واش نقدر نخلص فاتورة ONEE بالشيك؟","expected_action":"standalone","required_concepts":["نخلص","الشيك"]}
+{"case_id":"chat-da-002","language":"darija_arab","history":["واش نقدر نخلص هاد الفاتورة بالشيك؟"],"question":"وفين نقدمو؟","expected_action":"rewrite","required_concepts":["فين","الشيك","ONEE"]}
+{"case_id":"chat-da-003","language":"darija_arab","history":["كيفاش نقدر نخلص هاد الفاتورة؟"],"question":"وبالتحويل؟","expected_action":"rewrite","required_concepts":["التحويل","ONEE"]}
+{"case_id":"chat-da-004","language":"darija_arab","history":["شحال خاصني نخلص؟"],"question":"وشنو آخر نهار؟","expected_action":"rewrite","required_concepts":["آخر","الفاتورة"]}
+{"case_id":"chat-da-005","language":"darija_arab","history":["هضرنا على الشيك والاقتطاع."],"question":"وداكشي؟","expected_action":"clarify","required_concepts":[]}
+{"case_id":"chat-dl-001","language":"darija_latn","history":[],"question":"Wach n9der nkhlles facture ONEE b chik?","expected_action":"standalone","required_concepts":["nkhlles","chik"]}
+{"case_id":"chat-dl-002","language":"darija_latn","history":["Wach n9der nkhlles had factora b chik?"],"question":"Fin n3tih?","expected_action":"rewrite","required_concepts":["Fin","chik","ONEE"]}
+{"case_id":"chat-dl-003","language":"darija_latn","history":["Kifach n9der nkhlles had facture?"],"question":"W b virman?","expected_action":"rewrite","required_concepts":["virman","ONEE"]}
+{"case_id":"chat-dl-004","language":"darija_latn","history":["Ch7al khasni nkhlles?"],"question":"W fo9ach?","expected_action":"rewrite","required_concepts":["Fo9ach","facture"]}
+{"case_id":"chat-dl-005","language":"darija_latn","history":["Hdrna 3la chik w prélèvement."],"question":"W hadak?","expected_action":"clarify","required_concepts":[]}

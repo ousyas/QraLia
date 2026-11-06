@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qralia.local/schemas/sft_question_v0.3.schema.json",
+  "title": "QraLia SFT question candidate v0.3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "case_id", "intent_id", "semantic_family_id", "source_chunk_id", "context_chunk_ids", "language", "domain", "provider_id", "channel", "register", "question", "split", "should_abstain", "answerable_in_given_context", "answerable_in_corpus", "review_status"],
+  "properties": {
+    "schema_version": {"const": "0.3.0"},
+    "case_id": {"type": "string", "pattern": "^sftq-v03-[0-9]{4}$"},
+    "intent_id": {"type": "string", "minLength": 1},
+    "semantic_family_id": {"type": "string", "minLength": 1},
+    "source_chunk_id": {"type": ["string", "null"]},
+    "context_chunk_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1, "uniqueItems": true},
+    "language": {"enum": ["fr", "ar", "darija_latn", "darija_arab"]},
+    "domain": {"type": "string", "minLength": 1},
+    "provider_id": {"type": "string", "minLength": 1},
+    "channel": {"const": "typed"},
+    "register": {"enum": ["standard", "informal"]},
+    "question": {"type": "string", "minLength": 3},
+    "split": {"enum": ["train", "validation", "test"]},
+    "should_abstain": {"type": "boolean"},
+    "answerable_in_given_context": {"type": "boolean"},
+    "answerable_in_corpus": {"type": "boolean"},
+    "review_status": {"const": "candidate_human_review"}
+  },
+  "allOf": [
+    {"if": {"properties": {"should_abstain": {"const": true}}}, "then": {"properties": {"source_chunk_id": {"type": "null"}, "answerable_in_given_context": {"const": false}}}},
+    {"if": {"properties": {"should_abstain": {"const": false}}}, "then": {"properties": {"source_chunk_id": {"type": "string"}, "answerable_in_given_context": {"const": true}, "answerable_in_corpus": {"const": true}}}}
+  ]
+}

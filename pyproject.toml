@@ -9,16 +9,65 @@ description = "Pipeline pédagogique QraLia pour normaliser et découper des sou
 requires-python = ">=3.11"
 dependencies = [
     "jsonschema>=4.23,<5",
+    "pydantic>=2,<3",
 ]
 
 [project.optional-dependencies]
 dev = [
+    "httpx>=0.27,<1",
     "pytest>=8,<9",
+    # Les tests télécom génèrent des factures synthétiques (groupe synthetic).
+    "arabic-reshaper>=3,<4",
+    "fpdf2>=2.7,<3",
+    "python-bidi>=0.4,<1",
+]
+api = [
+    "fastapi>=0.115,<1",
+    "python-multipart>=0.0.20,<1",
+    "uvicorn[standard]>=0.34,<1",
+]
+invoice = [
+    "numpy>=2,<3",
+    "opencv-python-headless>=4.10,<5",
+    "pdf2image>=1.17,<2",
+    "pillow>=10,<12",
+    "pytesseract>=0.3,<1",
+]
+synthetic = [
+    "arabic-reshaper>=3,<4",
+    "fpdf2>=2.7,<3",
+    "python-bidi>=0.4,<1",
+]
+semantic = [
+    "langchain-core>=1.2,<2",
+    "numpy>=2,<3",
+    "sentence-transformers>=5,<6",
+]
+generation = [
+    "google-genai>=1,<2",
+    "pydantic>=2,<3",
+    "python-dotenv>=1,<2",
+]
+atlas = [
+    "torch>=2.5,<3",
+    "transformers>=5,<6",
 ]
 
 [project.scripts]
 qralia-build-onee-corpus = "qralia.rag.onee_corpus:main"
 qralia-evaluate-bm25 = "qralia.rag.bm25_evaluation:main"
+qralia-acquire-source = "qralia.rag.acquire_public_source:main"
+qralia-build-redal-corpus = "qralia.rag.redal_corpus:main"
+qralia-evaluate-semantic = "qralia.rag.semantic_evaluation:main"
+qralia-evaluate-hybrid = "qralia.rag.hybrid_evaluation:main"
+qralia-evaluate-reranker = "qralia.rag.reranker_evaluation:main"
+qralia-evaluate-generation = "qralia.rag.generation_evaluation:main"
+qralia-evaluate-question-decomposition = "qralia.rag.question_decomposition:main"
+qralia-evaluate-question-fusion = "qralia.rag.question_fusion:main"
+qralia-evaluate-question-routing = "qralia.rag.question_routing:main"
+qralia-evaluate-evidence-routing = "qralia.rag.evidence_router:main"
+qralia-evaluate-conversation = "qralia.rag.conversation_evaluation:main"
+qralia-api = "qralia.api.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

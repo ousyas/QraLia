@@ -1,0 +1,93 @@
+{
+  "schema_version": "0.1.0",
+  "registry_id": "telecom-billing-morocco",
+  "verified_on": "2026-10-01",
+  "download_authorized": true,
+  "notes": "Liste blanche initiale de sources officielles consacrées aux factures télécom. Les pages commerciales sans règle vérifiable restent exclues.",
+  "sources": [
+    {
+      "source_id": "telecom-iam-mobile-postpaid",
+      "title": "Conditions générales de vente Téléphonie Mobile Postpayée",
+      "publisher": "Maroc Telecom",
+      "url": "https://www.iam.ma/fr/web/iam-portal/conditions-generales-de-vente-t%C3%A9l%C3%A9phonie-mobile-postpay%C3%A9e",
+      "language": ["fr"],
+      "audience": ["residential"],
+      "topics": ["billing", "late_payment", "suspension", "complaint", "termination"],
+      "access_status": "degraded",
+      "scope_status": "in_primary_scope",
+      "observed": "Page officielle accessible dans un navigateur mais protégée par Cloudflare contre l'acquisition automatisée ; sept passages contractuels ont été archivés comme texte rendu.",
+      "ingestion_decision": "approved",
+      "risk_level": "high"
+    },
+    {
+      "source_id": "telecom-orange-payer-facture",
+      "title": "Comment payer ma facture ?",
+      "publisher": "Orange Maroc",
+      "url": "https://www.orange.ma/Assistance/Factures-et-paiements/Comment-payer-ma-facture",
+      "language": ["fr"],
+      "audience": ["residential"],
+      "topics": ["payment_channels", "payment_deadline"],
+      "access_status": "verified",
+      "scope_status": "in_primary_scope",
+      "observed": "Page officielle acquise directement ; huit canaux et le délai minimal sont présents dans le HTML.",
+      "ingestion_decision": "approved",
+      "risk_level": "medium"
+    },
+    {
+      "source_id": "telecom-orange-consulter-facture",
+      "title": "Consulter votre facture",
+      "publisher": "Orange Maroc",
+      "url": "https://www.orange.ma/Assistance/Factures-et-paiements/Consulter-votre-facture",
+      "language": ["fr"],
+      "audience": ["residential"],
+      "topics": ["invoice_access", "payment_deadline"],
+      "access_status": "verified",
+      "scope_status": "in_primary_scope",
+      "observed": "Page officielle acquise directement ; consultation, téléchargement, notification SMS et délai sont présents.",
+      "ingestion_decision": "approved",
+      "risk_level": "medium"
+    },
+    {
+      "source_id": "telecom-inwi-payer-facture",
+      "title": "Payer sa facture",
+      "publisher": "inwi",
+      "url": "https://inwi.ma/fr/payerfacture",
+      "language": ["fr"],
+      "audience": ["residential"],
+      "topics": ["payment_channels", "direct_debit"],
+      "access_status": "verified",
+      "scope_status": "in_primary_scope",
+      "observed": "Page officielle acquise directement ; application, agences, banque, prélèvement et agents partenaires sont présents.",
+      "ingestion_decision": "approved",
+      "risk_level": "medium"
+    },
+    {
+      "source_id": "telecom-inwi-money-factures",
+      "title": "Payer vos factures",
+      "publisher": "inwi money",
+      "url": "https://inwimoney.ma/fr/payer-vos-factures",
+      "language": ["fr"],
+      "audience": ["residential"],
+      "topics": ["mobile_wallet", "payment_procedure"],
+      "access_status": "verified",
+      "scope_status": "in_primary_scope",
+      "observed": "Page officielle acquise directement ; procédure de paiement d'une facture inwi par portefeuille mobile.",
+      "ingestion_decision": "approved",
+      "risk_level": "medium"
+    },
+    {
+      "source_id": "telecom-anrt-reclamations",
+      "title": "Réclamations",
+      "publisher": "ANRT",
+      "url": "https://www.anrt.ma/ar/infos-pratiques/ce-que-vous-devez-savoir/reclamations",
+      "language": ["ar"],
+      "audience": ["residential"],
+      "topics": ["complaint", "regulatory_recourse"],
+      "access_status": "verified",
+      "scope_status": "in_primary_scope",
+      "observed": "Page officielle du régulateur acquise en arabe ; recours initial auprès de l'opérateur puis recours externe après épuisement.",
+      "ingestion_decision": "approved",
+      "risk_level": "high"
+    }
+  ]
+}

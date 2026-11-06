@@ -11,13 +11,16 @@
     "language",
     "category",
     "audience",
+    "distributor_id",
+    "service_zone_id",
     "relevant_section_ids",
     "should_abstain",
     "split"
   ],
   "properties": {
-    "schema_version": {"const": "0.1.0"},
+    "schema_version": {"const": "0.2.0"},
     "case_id": {"type": "string", "pattern": "^retrieval-[0-9]{3}$"},
+    "pair_id": {"type": "string", "pattern": "^script-pair-[0-9]{3}$"},
     "question": {"type": "string", "minLength": 1},
     "language": {"enum": ["fr", "ar", "darija_latn", "darija_arab"]},
     "category": {
@@ -31,6 +34,8 @@
       ]
     },
     "audience": {"enum": ["residential", "professional", "local_authority", "unknown"]},
+    "distributor_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]+$"},
+    "service_zone_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]+$"},
     "relevant_section_ids": {
       "type": "array",
       "uniqueItems": true,

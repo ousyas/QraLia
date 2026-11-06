@@ -1,0 +1,315 @@
+"""Cas d'usage indépendants de FastAPI pour faciliter les tests et le futur CLI."""
+
+from __future__ import annotations
+
+import re
+import unicodedata
+import logging
+from pathlib import Path
+from typing import Callable, Sequence
+
+from qralia.api.conversation import (
+    ConversationRecord,
+    ConversationResolver,
+    InMemoryConversationStore,
+    ResolutionResult,
+    new_turn,
+)
+from qralia.api.models import (
+    CitationView,
+    ConversationMessageResponse,
+    ConversationResolutionView,
+    ConversationResponse,
+    ConversationTurnView,
+    EvidenceView,
+    FieldView,
+    InvoiceResponse,
+    PagePreviewView,
+    QuestionResponse,
+    ValidationView,
+)
+from qralia.api.store import InMemoryInvoiceStore, InvoiceRecord
+from qralia.domain.extracted_invoice import ExtractedInvoice
+from qralia.domain.invoice_evidence import FIELD_LABELS, build_invoice_evidence
+from qralia.domain.providers import PROVIDERS, rag_context
+from qralia.rag.bm25_evaluation import BM25Index, load_jsonl
+from qralia.validation.validator import validate_invoice
+
+
+LOGGER = logging.getLogger(__name__)
+
+
+FIELD_ALIASES = {
+    "total_check": ("montant", "total a payer", "combien dois je payer", "combien je dois payer", "شحال خاصني نخلص", "المبلغ", "مجموع"),
+    "total_cash": ("en especes", "en liquide", "cash", "بالكاش", "نقدا"),
+    "due_date": ("date limite", "date d echeance", "quand dois je payer", "fou9ach nkhlles", "fo9ach nkhlles", "آخر اجل", "تاريخ الاستحقاق"),
+    "invoice_date": ("date de facture", "تاريخ الفاتورة"),
+    "invoice_number": ("numero de facture", "num facture", "رقم الفاتورة", "نمرة الفاتورة"),
+    "contract_number": ("numero de contrat", "num contrat", "رقم العقد", "نمرة الكونطرا"),
+    "tariff": ("tarif", "تعريفة", "الطاريف"),
+    "amount_before_tax": ("hors taxes", "montant ht", "بلا ضريبة"),
+    "taxes": ("taxes", "tva", "الضريبة", "الضرائب"),
+    "previous_unpaid": ("impaye precedent", "arrieres", "solde precedent", "متأخرات"),
+    "plan_name": ("mon offre", "mon forfait", "quelle offre", "quel forfait", "العرض", "الباقة"),
+    "line_number": ("numero de ligne", "رقم الخط"),
+    "out_of_plan_amount": ("hors forfait", "خارج الباقة"),
+}
+
+RAG_MARKERS = (
+    "comment payer", "ou payer", "moyen de paiement", "par cheque", "par virement", "prelevement",
+    "deposer le cheque", "remettre le cheque", "agence", "jour ferie", "acompte",
+    "fin nkhlles", "kifach nkhlles", "n9dem chik", "chik", "virman", "3otla",
+    "كيفاش نخلص", "فين نخلص", "نقدم الشيك", "اقدم الشيك", "بالشيك", "تحويل بنكي", "وكالة", "عطلة",
+)
+
+
+def _fold(text: str) -> str:
+    value = unicodedata.normalize("NFKD", text.casefold())
+    value = "".join(char for char in value if not unicodedata.combining(char))
+    return re.sub(r"[^\w\u0600-\u06ff]+", " ", value).strip()
+
+
+def record_provider(record: InvoiceRecord) -> str:
+    """Nom court du fournisseur utilisé par le résolveur conversationnel."""
+    return {"orange_ma": "orange"}.get(record.invoice.provider_id, record.invoice.provider_id)
+
+
+class InvoiceApplicationService:
+    def __init__(
+        self,
+        *,
+        extractor: Callable[[Path], ExtractedInvoice],
+        store: InMemoryInvoiceStore | None = None,
+    ) -> None:
+        self.extractor = extractor
+        self.store = store or InMemoryInvoiceStore()
+
+    def ingest(self, path: Path) -> tuple[InvoiceRecord, list]:
+        result = self.extractor(path)
+        # L'extracteur peut renvoyer aussi les pages lues ; elles ne sont pas stockées.
+        invoice, previews = result if isinstance(result, tuple) else (result, [])
+        validation = validate_invoice(invoice)
+        evidence = build_invoice_evidence(invoice) if validation["valid"] else []
+        return self.store.add(invoice, validation, evidence), list(previews)
+
+    @staticmethod
+    def response(record: InvoiceRecord, previews: Sequence = ()) -> InvoiceResponse:
+        fields = []
+        for name, label in FIELD_LABELS.items():
+            field = getattr(record.invoice.fields, name)
+            fields.append(FieldView(
+                name=name, label=label, value=field.normalized_value,
+                display_value=field.raw_value or ("" if field.normalized_value is None else str(field.normalized_value)),
+                status=field.status.value, confidence=field.confidence, page=field.provenance.page,
+                bbox=field.provenance.bbox,
+            ))
+        profile = PROVIDERS.get(record.invoice.provider_id)
+        return InvoiceResponse(
+            invoice_id=record.public_id,
+            created_at=record.created_at,
+            expires_at=record.expires_at,
+            document_confidence=record.invoice.document_confidence,
+            provider_id=record.invoice.provider_id,
+            provider_name=profile.display_name if profile else None,
+            document_kind=profile.document_kind if profile else None,
+            fields=fields,
+            validation=ValidationView.model_validate(record.validation),
+            previews=[
+                PagePreviewView(page=item.page, width=item.width, height=item.height, data_url=item.data_url)
+                for item in previews
+            ],
+        )
+
+
+class QuestionAnswerService:
+    """Baseline sûre : faits exacts de facture + extraits officiels cités."""
+
+    def __init__(self, corpus_path: Path | Sequence[Path] | None, *, ai_enabled: bool = True) -> None:
+        # Le premier corpus (ONEE) conditionne la disponibilité ; les suivants
+        # (télécom) sont ajoutés s'ils ont été construits localement.
+        paths = [corpus_path] if isinstance(corpus_path, Path) else list(corpus_path or [])
+        self.corpus_path = paths[0] if paths else None
+        self.chunks: list[dict] = []
+        self.by_id: dict[str, dict] = {}
+        self.index: BM25Index | None = None
+        self.ai_enabled = ai_enabled
+        self.ai_pipeline = None
+        if self.corpus_path and self.corpus_path.exists():
+            self.chunks = [
+                item for path in paths if path.exists() for item in load_jsonl(path)
+                if item["metadata"]["validity_status"] == "active"
+            ]
+            if self.chunks:
+                self.index = BM25Index(self.chunks, normalization="darija_lexicon")
+                self.by_id = {item["chunk_id"]: item for item in self.chunks}
+        if self.ai_enabled and self.chunks:
+            from qralia.api.ai_pipeline import IntegratedAnswerPipeline
+
+            self.ai_pipeline = IntegratedAnswerPipeline(self.chunks)
+
+    @property
+    def ready(self) -> bool:
+        return self.index is not None
+
+    def _invoice_matches(self, question: str, record: InvoiceRecord):
+        folded = _fold(question)
+        return [
+            item for item in record.evidence
+            if any(_fold(alias) in folded for alias in FIELD_ALIASES.get(item.field, ()))
+        ]
+
+    def _rag_matches(self, question: str, provider_id: str) -> list[dict]:
+        context = rag_context(provider_id)
+        if not self.index or context is None or not any(_fold(marker) in _fold(question) for marker in RAG_MARKERS):
+            return []
+        ranked = self.index.search(
+            question, audience=context["audience"], distributor_id=context["provider_id"],
+            service_zone_id=context["service_zone_id"], domain=context["domain"],
+            service_type=context["service_type"], top_k=3,
+        )
+        # La présence d'un marqueur métier explicite est le garde-fou de cette
+        # baseline. Un seuil BM25 absolu serait instable lorsque la taille du
+        # corpus change, car l'IDF dépend du nombre total de chunks.
+        return ranked
+
+    def _deterministic_answer(self, question: str, language: str, record: InvoiceRecord) -> QuestionResponse:
+        invoice = self._invoice_matches(question, record)
+        rag = self._rag_matches(question, record.invoice.provider_id) if record.validation.get("scope_supported", False) else []
+        route = "both" if invoice and rag else "invoice" if invoice else "official_rag" if rag else "unknown"
+        evidence = [
+            EvidenceView(source="invoice", evidence_id=item.evidence_id, label=FIELD_LABELS[item.field],
+                         value=item.value, confidence=item.confidence)
+            for item in invoice
+        ]
+        citations: list[CitationView] = []
+        answer_parts = [item.text for item in invoice]
+        for item in rag[:1]:
+            chunk = self.by_id[item["chunk_id"]]
+            answer_parts.append(chunk["text"])
+            evidence.append(EvidenceView(
+                source="official_corpus", evidence_id=chunk["chunk_id"],
+                label=chunk["metadata"]["title"], confidence=item["score"] / (item["score"] + 1.0),
+            ))
+            citations.append(CitationView(
+                chunk_id=chunk["chunk_id"], title=chunk["metadata"]["title"],
+                url=chunk["metadata"]["canonical_url"],
+            ))
+        abstained = route == "unknown"
+        warnings = ["Réponse extractive déterministe : génération LLM désactivée dans cette première API."]
+        if not record.validation.get("scope_supported", False):
+            warnings.append("Document professionnel hors du périmètre résidentiel : les règles RAG sont désactivées.")
+        if language not in {"auto", "fr"}:
+            warnings.append("La traduction multilingue n'est pas encore activée ; les preuves sont rendues en français.")
+        answer = " ".join(answer_parts) if answer_parts else "Je ne dispose pas de preuves suffisantes pour répondre sans deviner."
+        scores = [item.confidence for item in evidence]
+        return QuestionResponse(
+            answer=answer, route=route, language="fr", abstained=abstained,
+            confidence=min(scores) if scores else 0.0, evidence=evidence,
+            citations=citations, warnings=warnings,
+        )
+
+    def answer(self, question: str, language: str, record: InvoiceRecord) -> QuestionResponse:
+        if self.ai_pipeline is not None:
+            try:
+                return self.ai_pipeline.answer(question, language, record)
+            except Exception:
+                # Le contenu de la facture n'est jamais journalisé.
+                LOGGER.exception("Le pipeline IA local a échoué ; fallback déterministe.")
+                fallback = self._deterministic_answer(question, language, record)
+                fallback.warnings.append(
+                    "Pipeline RAG/LLM indisponible : réponse déterministe de secours utilisée."
+                )
+                return fallback
+        return self._deterministic_answer(question, language, record)
+
+
+class ConversationService:
+    """Ajoute une mémoire courte sans transformer l'historique en preuve."""
+
+    def __init__(
+        self,
+        questions: QuestionAnswerService,
+        *,
+        store: InMemoryConversationStore | None = None,
+        resolver: ConversationResolver | None = None,
+    ) -> None:
+        self.questions = questions
+        self.store = store or InMemoryConversationStore()
+        self.resolver = resolver or ConversationResolver(use_llm=questions.ai_enabled)
+
+    @staticmethod
+    def response(record: ConversationRecord) -> ConversationResponse:
+        return ConversationResponse(
+            conversation_id=record.public_id,
+            invoice_id=record.invoice_id,
+            preferred_language=record.preferred_language,
+            created_at=record.created_at,
+            updated_at=record.updated_at,
+            expires_at=record.expires_at,
+            turns=[
+                ConversationTurnView(
+                    message_id=turn.message_id,
+                    role=turn.role,
+                    text=turn.raw_text,
+                    language=turn.language,
+                    created_at=turn.created_at,
+                    standalone_question=turn.standalone_question,
+                    route=turn.route,
+                    evidence_ids=list(turn.evidence_ids),
+                )
+                for turn in record.turns
+            ],
+        )
+
+    @staticmethod
+    def _resolution_view(result: ResolutionResult) -> ConversationResolutionView:
+        return ConversationResolutionView.model_validate(result.model_dump())
+
+    def message(
+        self,
+        conversation: ConversationRecord,
+        invoice: InvoiceRecord,
+        message: str,
+        language: str,
+    ) -> ConversationMessageResponse:
+        requested_language = language if language != "auto" else conversation.preferred_language
+        resolution = self.resolver.resolve(
+            message,
+            conversation.turns,
+            requested_language=requested_language,
+            provider=record_provider(invoice),
+        )
+        user_turn = new_turn(
+            "user", message, resolution.language,
+            standalone_question=resolution.standalone_question,
+        )
+        current = self.store.append(conversation.public_id, user_turn)
+
+        if resolution.action == "clarify":
+            clarification = resolution.clarification_question or "Pouvez-vous préciser votre question ?"
+            assistant_turn = new_turn("assistant", clarification, resolution.language, route="unknown")
+            self.store.append(current.public_id, assistant_turn)
+            return ConversationMessageResponse(
+                conversation_id=current.public_id,
+                user_message_id=user_turn.message_id,
+                assistant_message_id=assistant_turn.message_id,
+                resolution=self._resolution_view(resolution),
+                clarification_question=clarification,
+            )
+
+        standalone = resolution.standalone_question or message
+        answer = self.questions.answer(standalone, resolution.language, invoice)
+        evidence_ids = tuple(item.evidence_id for item in answer.evidence)
+        assistant_turn = new_turn(
+            "assistant", answer.answer, answer.language,
+            route=answer.route, evidence_ids=evidence_ids,
+        )
+        self.store.append(current.public_id, assistant_turn)
+        return ConversationMessageResponse(
+            conversation_id=current.public_id,
+            user_message_id=user_turn.message_id,
+            assistant_message_id=assistant_turn.message_id,
+            resolution=self._resolution_view(resolution),
+            answer=answer,
+        )
+

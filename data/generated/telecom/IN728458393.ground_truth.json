@@ -1,0 +1,122 @@
+{
+  "schema_version": "0.2.0",
+  "invoice_id": "IN728458393",
+  "provider_id": "inwi",
+  "extraction": {
+    "method": "synthetic_generation",
+    "timestamp": "2026-11-03"
+  },
+  "fields": {
+    "invoice_number": {
+      "raw_value": "IN728458393",
+      "normalized_value": "IN728458393",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "contract_number": {
+      "raw_value": "651597186",
+      "normalized_value": "651597186",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "line_number": {
+      "raw_value": "06 ** ** 75 37",
+      "normalized_value": "06****7537",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "plan_name": {
+      "raw_value": "Forfait Mobile 15 Go",
+      "normalized_value": "Forfait Mobile 15 Go",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "invoice_date": {
+      "raw_value": "05.11.2026",
+      "normalized_value": "2026-11-05",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "due_date": {
+      "raw_value": "23.11.2026",
+      "normalized_value": "2026-11-23",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "out_of_plan_amount": {
+      "raw_value": "0,00",
+      "normalized_value": 0.0,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "amount_before_tax": {
+      "raw_value": "59,00",
+      "normalized_value": 59.0,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "taxes": {
+      "raw_value": "11,80",
+      "normalized_value": 11.8,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "previous_unpaid": {
+      "raw_value": "0,00",
+      "normalized_value": 0.0,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "total_check": {
+      "raw_value": "70,80",
+      "normalized_value": 70.8,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    }
+  },
+  "document_confidence": 1.0
+}

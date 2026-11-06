@@ -1,0 +1,64 @@
+{
+  "schema_version": "0.4.0",
+  "status": "human_reviewed",
+  "paraphrase_models": [
+    "gemini-2.5-flash",
+    "gemini-3.5-flash-lite"
+  ],
+  "counts": {
+    "questions": 620,
+    "intents": 31,
+    "train": 360,
+    "validation": 100,
+    "test": 160,
+    "review_groups": 124
+  },
+  "language_counts": {
+    "ar": 155,
+    "darija_arab": 155,
+    "darija_latn": 155,
+    "fr": 155
+  },
+  "split_intent_counts": {
+    "train": 18,
+    "validation": 5,
+    "test": 8
+  },
+  "abstention_count": 152,
+  "abstention_rate": 0.24516129032258063,
+  "retrieval_miss_count": 32,
+  "retrieval_miss_rate": 0.05161290322580645,
+  "multi_chunk_count": 64,
+  "multi_chunk_rate": 0.1032258064516129,
+  "long_context_count": 124,
+  "implicit_provider_count": 124,
+  "context_size_counts": {
+    "4": 620
+  },
+  "files": {
+    "questions": {
+      "path": "sft_questions.v0.4.jsonl",
+      "sha256": "6ffcd022720f7ee2358a7c907c8ce8837624be9d5de1069b01aca691b88cda98"
+    },
+    "review": {
+      "path": "sft_questions.v0.4.review.jsonl",
+      "sha256": "3309ecdb24812797ed1aed4ebdd29d74c9227a49aa687916a7daa948874e3660"
+    },
+    "paraphrase_cache": {
+      "path": "sft_question_paraphrases.v0.4.jsonl",
+      "sha256": "4b6bd606a019719f1b7c47574398b1875c3f2ba64c68337fc20b69d173007354"
+    },
+    "multichunk_cache": {
+      "path": "sft_question_multichunk.v0.4.jsonl",
+      "sha256": "486610f49e4d4b4c3f7714205ccb1deb00919a114d3cb2c273b4d24e5c31f5e9"
+    }
+  },
+  "human_review": {
+    "reviewers": [
+      "Meryeme",
+      "Oussama"
+    ],
+    "reviewed_at": "2026-10-02T18:47:25.326336+00:00",
+    "accepted_review_groups": 124
+  }
+}

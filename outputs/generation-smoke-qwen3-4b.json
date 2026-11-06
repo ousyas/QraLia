@@ -1,0 +1,113 @@
+{
+  "schema_version": "0.1.0",
+  "protocol": "gold_context_generation_then_deterministic_checks_then_llm_judge",
+  "configuration": {
+    "generator_model": "qwen3:4b-instruct-2507-q4_K_M",
+    "judge_model": null,
+    "temperature": 0,
+    "seed": 42,
+    "case_count": 1,
+    "indexed_chunk_count": 39,
+    "contains_personal_data": false
+  },
+  "summary": {
+    "case_count": 1,
+    "deterministic_pass_rate": 1.0,
+    "final_pass_rate": 1.0,
+    "critical_fact_violation_count": 0,
+    "judge_mean_scores": null,
+    "generator_mean_latency_ms": 10854.466099990532,
+    "judge_mean_latency_ms": null,
+    "generator_prompt_tokens": 632,
+    "generator_completion_tokens": 177,
+    "judge_prompt_tokens": 0,
+    "judge_completion_tokens": 0
+  },
+  "breakdown": {
+    "by_split": {
+      "calibration": {
+        "case_count": 1,
+        "deterministic_pass_rate": 1.0,
+        "final_pass_rate": 1.0,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      }
+    },
+    "by_language": {
+      "fr": {
+        "case_count": 1,
+        "deterministic_pass_rate": 1.0,
+        "final_pass_rate": 1.0,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      }
+    }
+  },
+  "cases": [
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-001",
+        "question": "Comment puis-je payer ma facture ONEE par chèque ?",
+        "language": "fr",
+        "provider_id": "onee",
+        "gold_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Le chèque peut être bancaire ou CCP.",
+          "Le chèque doit être à l'ordre de l'Office National de l'Électricité et de l'Eau Potable.",
+          "Le paiement se fait auprès d'une agence ONEE Branche Électricité."
+        ],
+        "forbidden_claims": [
+          "Le chèque doit être à l'ordre de Redal.",
+          "Le paiement se fait uniquement en ligne."
+        ],
+        "critical_values": [],
+        "split": "calibration"
+      },
+      "context_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+      ],
+      "answer": {
+        "answer": "Vous pouvez payer votre facture ONEE par chèque (bancaire ou CCP) à l'ordre de L'Office National de l'Electricité et de l'Eau Potable, auprès de votre agence Branche Electricité. [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque]",
+        "claims": [
+          {
+            "text": "Vous pouvez payer votre facture ONEE par chèque (bancaire ou CCP) à l'ordre de L'Office National de l'Electricité et de l'Eau Potable, auprès de votre agence Branche Electricité.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "fr"
+      },
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+        ]
+      },
+      "judge": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 10854.466099990532,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3:4b-instruct-2507-q4_K_M",
+          "total_duration_ms": 10794.0182,
+          "load_duration_ms": 5.2348,
+          "prompt_tokens": 632,
+          "completion_tokens": 177,
+          "citation_renderer_changed_answer": true
+        },
+        "judge": null
+      }
+    }
+  ]
+}

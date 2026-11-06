@@ -1,0 +1,122 @@
+{
+  "schema_version": "0.2.0",
+  "invoice_id": "M561704103",
+  "provider_id": "iam",
+  "extraction": {
+    "method": "synthetic_generation",
+    "timestamp": "2026-11-03"
+  },
+  "fields": {
+    "invoice_number": {
+      "raw_value": "M561704103",
+      "normalized_value": "M561704103",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "contract_number": {
+      "raw_value": "861350912",
+      "normalized_value": "861350912",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "line_number": {
+      "raw_value": "06 ** ** 82 47",
+      "normalized_value": "06****8247",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "plan_name": {
+      "raw_value": "Forfait Illimité Appels",
+      "normalized_value": "Forfait Illimité Appels",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "invoice_date": {
+      "raw_value": "03.02.2026",
+      "normalized_value": "2026-02-03",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "due_date": {
+      "raw_value": "19.02.2026",
+      "normalized_value": "2026-02-19",
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "out_of_plan_amount": {
+      "raw_value": "0,00",
+      "normalized_value": 0.0,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "amount_before_tax": {
+      "raw_value": "149,00",
+      "normalized_value": 149.0,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "taxes": {
+      "raw_value": "29,80",
+      "normalized_value": 29.8,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "previous_unpaid": {
+      "raw_value": "0,00",
+      "normalized_value": 0.0,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    },
+    "total_check": {
+      "raw_value": "178,80",
+      "normalized_value": 178.8,
+      "confidence": 1.0,
+      "provenance": {
+        "page": 1,
+        "bbox": null,
+        "method": "generated"
+      }
+    }
+  },
+  "document_confidence": 1.0
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": "0.4.0",
+  "status": "human_reviewed",
+  "base_model": "Qwen/Qwen3.5-4B",
+  "target_models": [
+    "gemini-3.5-flash-lite"
+  ],
+  "counts": {
+    "train": 360,
+    "validation": 100,
+    "test": 160,
+    "review_groups": 168
+  },
+  "train_abstention_count": 100,
+  "validation_abstention_count": 24,
+  "test_policy": "Le test ne contient aucune réponse assistant et n'est jamais passé à swift sft.",
+  "files": {
+    "train": {
+      "path": "train.jsonl",
+      "sha256": "e601e539d79361ce533cd07787a5d5301ac0dccc29ab65b3952436b1f21516a5"
+    },
+    "validation": {
+      "path": "validation.jsonl",
+      "sha256": "22299f3b23f0e1547f04d7ca5e5348364b25359a09c91698a4ec6d10493a7ad4"
+    },
+    "test_cases": {
+      "path": "test_cases.jsonl",
+      "sha256": "3119e893425caf0a08fbf849db83fbb1ca437a195292db2c9565f9e06587ef8a"
+    },
+    "test_prompts": {
+      "path": "test_prompts.jsonl",
+      "sha256": "e9c0b5401caddf2981bdc860198a5210c0ce0ebca89aae6a392e83fe31b62a9d"
+    },
+    "review_queue": {
+      "path": "review_queue.jsonl",
+      "sha256": "fb2ed23337977aac47f22a54bc2f74b2cf0e06cb98488b8dc0727e7a00338b8c"
+    }
+  },
+  "question_bank_manifest_sha256": "45a4ddeacf44eb52d9b164e2787979b48601864e2aa660630ae957554b164f51",
+  "human_review": {
+    "reviewers": [
+      "Meryeme",
+      "Oussama"
+    ],
+    "reviewed_at": "2026-10-02T18:47:25.326336+00:00",
+    "accepted_question_groups": 124,
+    "accepted_answer_groups": 168,
+    "scope": "Toutes les formulations et toutes les réponses candidates."
+  }
+}

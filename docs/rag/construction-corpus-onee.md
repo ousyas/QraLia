@@ -44,16 +44,22 @@ reste de la page, puis exige un titre, une introduction et exactement quatre
 moyens de paiement dans l'ordre attendu. Une structure différente provoque une
 erreur et demande une revue humaine.
 
-Le document produit contient la provenance, l'empreinte SHA-256, la
-classification résidentielle et cinq sections. Il est validé avec
-`schemas/normalized_document.schema.json`.
+Le document produit contient la provenance, l'empreinte SHA-256, le fournisseur
+concerné (`provider_id: onee`), le service (`electricity`), la classification
+résidentielle et cinq sections. L'éditeur de la source et le fournisseur sont
+deux notions séparées : une source publiée
+par le CMI peut, par exemple, décrire une règle applicable à la RADEEF. Le
+document est validé avec `schemas/normalized_document.schema.json`.
 
 ## Étape 2 : création des chunks
 
 Une section normalisée devient un chunk autonome. Chaque chunk recopie le texte
 sans reformulation et ajoute les métadonnées nécessaires aux filtres, citations
-et audits. Chaque chunk est validé avec
-`schemas/retrieval_chunk.schema.json`, puis écrit sur une ligne du fichier JSONL.
+et audits, dont `domain`, `provider_id`, `service_type`, `service_zone_id` et
+`source_role`. La récupération doit obligatoirement filtrer le fournisseur, la zone et l'audience
+avant de calculer les scores. Chaque chunk est
+validé avec `schemas/retrieval_chunk.schema.json`, puis écrit sur une ligne du
+fichier JSONL.
 
 ## Revue humaine obligatoire
 

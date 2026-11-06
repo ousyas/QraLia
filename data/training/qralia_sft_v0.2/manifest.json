@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.2.0",
+  "status": "rejected_split_leakage",
+  "rejection_reason": "Intentions, chunks et quasi-paraphrases traversent les splits; ne pas entraîner.",
+  "base_model": "Qwen/Qwen3.5-4B",
+  "prompt_profile": "darija_few_shot",
+  "seed": 42,
+  "counts": {
+    "questions": 496,
+    "train": 280,
+    "validation": 72,
+    "test": 144,
+    "review_groups": 72
+  },
+  "language_counts": {
+    "ar": 124,
+    "darija_arab": 124,
+    "darija_latn": 124,
+    "fr": 124
+  },
+  "style_counts": {
+    "alias_or_implicit": 72,
+    "asr": 72,
+    "contextual": 72,
+    "edge_or_numeric": 32,
+    "indirect": 72,
+    "lexical_gap": 32,
+    "natural": 72,
+    "whatsapp": 72
+  },
+  "split_counts": {
+    "test": 144,
+    "train": 280,
+    "validation": 72
+  },
+  "abstention_counts_by_split": {
+    "train": 120,
+    "validation": 40,
+    "test": 80
+  },
+  "provider_implicit_count": 185,
+  "test_policy": "Dataset rejeté après audit; remplacé par la banque v0.3 groupée par intent.",
+  "files": {
+    "questions": {
+      "path": "questions.jsonl",
+      "sha256": "3a56d5746352dac23e8b5e60554f07c981d1dabf7d13a28a855b8173918ea957"
+    },
+    "train": {
+      "path": "train.jsonl",
+      "sha256": "796d769b0fc93b2d4bfeea5064125c523bdbbe3a4e71f1bf9e69dada805c2e36"
+    },
+    "validation": {
+      "path": "validation.jsonl",
+      "sha256": "5c9124d85267aa2fc22155771d447a8bd8b87f2755922087298087797dbf6100"
+    },
+    "test_cases": {
+      "path": "test_cases.jsonl",
+      "sha256": "72ef38bdfdd938adba0252407b62af9d0b9ccb269ca504bb0f20e374ff7cf903"
+    },
+    "test_prompts": {
+      "path": "test_prompts.jsonl",
+      "sha256": "89e65f092180ca066de4f7b408b9f9ff09de19f040ae3ed90f1e91bb3e366ccb"
+    },
+    "review_queue": {
+      "path": "review_queue.jsonl",
+      "sha256": "63d5b358346e2acec7fc95442380a6240688404b2b4c33443db871024a2800ff"
+    }
+  }
+}

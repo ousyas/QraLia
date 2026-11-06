@@ -1,0 +1,3434 @@
+{
+  "schema_version": "0.1.0",
+  "configuration": {
+    "algorithm": "BM25Okapi",
+    "k1": 1.5,
+    "b": 0.75,
+    "normalization": "darija_lexicon",
+    "routes": [
+      "onee::onee_be_national",
+      "srm_rsk::rabat_sale_ex_redal"
+    ],
+    "top_k": 5,
+    "indexed_chunk_count": 14,
+    "indexed_fields": [
+      "metadata.heading_path",
+      "text"
+    ],
+    "tokenization": "Unicode tokens, casefold, accent folding and curated Darija-Latin aliases"
+  },
+  "calibration": {
+    "case_count": 24,
+    "selected_threshold": 4.450629958675644,
+    "abstention_metrics": {
+      "case_count": 24,
+      "threshold": 4.450629958675644,
+      "true_positive": 5,
+      "false_positive": 0,
+      "true_negative": 8,
+      "false_negative": 11,
+      "answer_recall": 0.3125,
+      "abstention_recall": 1.0,
+      "accuracy": 0.5416666666666666,
+      "balanced_accuracy": 0.65625
+    }
+  },
+  "test": {
+    "case_count": 24,
+    "ranking_metrics": {
+      "positive_case_count": 16,
+      "recall_at_1": 0.75,
+      "recall_at_3": 0.875,
+      "recall_at_5": 0.9375,
+      "binary_recall_at_1": 0.75,
+      "binary_recall_at_3": 0.875,
+      "binary_recall_at_5": 0.9375,
+      "mrr": 0.8145833333333333
+    },
+    "abstention_metrics": {
+      "case_count": 24,
+      "threshold": 4.450629958675644,
+      "true_positive": 2,
+      "false_positive": 0,
+      "true_negative": 8,
+      "false_negative": 14,
+      "answer_recall": 0.125,
+      "abstention_recall": 1.0,
+      "accuracy": 0.4166666666666667,
+      "balanced_accuracy": 0.5625
+    },
+    "ranking_by_language": {
+      "darija_arab": {
+        "positive_case_count": 8,
+        "recall_at_1": 0.625,
+        "recall_at_3": 0.75,
+        "recall_at_5": 0.875,
+        "binary_recall_at_1": 0.625,
+        "binary_recall_at_3": 0.75,
+        "binary_recall_at_5": 0.875,
+        "mrr": 0.7125
+      },
+      "darija_latn": {
+        "positive_case_count": 8,
+        "recall_at_1": 0.875,
+        "recall_at_3": 1.0,
+        "recall_at_5": 1.0,
+        "binary_recall_at_1": 0.875,
+        "binary_recall_at_3": 1.0,
+        "binary_recall_at_5": 1.0,
+        "mrr": 0.9166666666666666
+      }
+    },
+    "ranking_by_category": {
+      "hard_negative": {
+        "positive_case_count": 0,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "binary_recall_at_1": 0.0,
+        "binary_recall_at_3": 0.0,
+        "binary_recall_at_5": 0.0,
+        "mrr": 0.0
+      },
+      "multilingual": {
+        "positive_case_count": 16,
+        "recall_at_1": 0.75,
+        "recall_at_3": 0.875,
+        "recall_at_5": 0.9375,
+        "binary_recall_at_1": 0.75,
+        "binary_recall_at_3": 0.875,
+        "binary_recall_at_5": 0.9375,
+        "mrr": 0.8145833333333333
+      }
+    }
+  },
+  "cases": [
+    {
+      "case_id": "retrieval-189",
+      "question": "Fach khasni nkhlles factora dyal ONEE?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "date-reglement"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.9446320750668606,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.7403803380412874,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.6815909329287422,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 0.5381639205791947,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 0.4976679547871993,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.9446320750668606,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.3333333333333333,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-190",
+      "question": "فاش خاصني نخلص الفاتورة ديال ONEE؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "date-reglement"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.9446320750668606,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.7403803380412874,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.6815909329287422,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 0.5381639205791947,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 0.4976679547871993,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.9446320750668606,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.3333333333333333,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-191",
+      "question": "N9der nkhlles factora dyal ONEE b chik?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-cheque"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 4.6216051574734935,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.9446320750668606,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.7403803380412874,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.6815909329287422,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 0.5381639205791947,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 4.6216051574734935,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-192",
+      "question": "نقدر نخلص الفاتورة ديال ONEE بالشيك؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-cheque"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 4.6216051574734935,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.9446320750668606,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.7403803380412874,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.6815909329287422,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 0.5381639205791947,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 4.6216051574734935,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-193",
+      "question": "Kifach nkhlles factora dyal ONEE b virman bancaire?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-virement"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 7.903572713442364,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.7403803380412874,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 2.1775692019328945,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.6815909329287422,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 0.5381639205791947,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 7.903572713442364,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-194",
+      "question": "كيفاش نخلص الفاتورة ديال ONEE بفيرمان بنكي؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-virement"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.9446320750668606,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.7403803380412874,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.6815909329287422,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 0.5381639205791947,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 0.4976679547871993,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.9446320750668606,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-195",
+      "question": "N9der n7et tasbi9 3la fwatir dyal ONEE?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-acompte"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 5.074885025191055,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.3826465401992607,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 5.074885025191055,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-196",
+      "question": "نقدر نحط تسبيق على فواتير ديال ONEE؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-acompte"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.3826465401992607,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.160164111233336,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.3826465401992607,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.5,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-197",
+      "question": "N9der nkhlles factora Redal men site dyal banka?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-ebanking"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 2.8313055783915604,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 2.1508545930444702,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 1.432247109767842,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.4005502448082672,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.3360931288886329,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 2.8313055783915604,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-198",
+      "question": "نقدر نخلص فاتورة Redal من السيت ديال البنك؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-ebanking"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.087217615882428,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.8968649260090928,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.8512020207915677,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 0.8312990454475649,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.6985268054069586,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.087217615882428,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.25,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-199",
+      "question": "Kayn paiement b telephone lfactora Redal?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-mobile-jiwar"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 2.0518146184654906,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar",
+          "section_id": "paiement-mobile-jiwar",
+          "score": 1.9972916624025492,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 1.996195888040766,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 1.8147762613442482,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 1.6809367347523558,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 2.0518146184654906,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.5,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-200",
+      "question": "كاين الأداء بالتليفون لفاتورة Redal؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-mobile-jiwar"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.087217615882428,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.8968649260090928,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.8512020207915677,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 0.8312990454475649,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.6985268054069586,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.087217615882428,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-201",
+      "question": "Kayn chi tariqa bach factora Redal tkhlles bohdha kol chher?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-prelevement"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 1.432247109767842,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.4005502448082672,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.3360931288886329,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 1.1451633956194185,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.8512020207915677,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.432247109767842,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-202",
+      "question": "كاينة شي طريقة باش فاتورة Redal تخلص بوحدها كل شهر؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-prelevement"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.087217615882428,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.8968649260090928,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.8512020207915677,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 0.8312990454475649,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.6985268054069586,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.087217615882428,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-203",
+      "question": "Ila l'agent ma l9anich, kifach nsift l'index dyal compteur?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "releve-et-auto-releve"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 5.383421126213927,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 4.4524319361012665,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 2.07299292858088,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.8531877822475095,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-prelevement",
+          "section_id": "paiement-prelevement",
+          "score": 0.7562918898747546,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 5.383421126213927,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-204",
+      "question": "إلا العون ما لقانيش، كيفاش نصيفط مؤشر العداد؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "releve-et-auto-releve"
+      ],
+      "ranking": [],
+      "top_score": 0.0,
+      "has_candidates": false,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-205",
+      "question": "N9der nkhlles ONEE b carte bancaire f application?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "calibration",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 4.279654759877794,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.160164111233336,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 1.6799012471456953,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 4.279654759877794,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-206",
+      "question": "نقدر نخلص ONEE بالكارت البنكية فالأبليكاسيون؟",
+      "language": "darija_arab",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "calibration",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.3826465401992607,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.160164111233336,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.3826465401992607,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-207",
+      "question": "N9der n9ssem factora ONEE 3la chhor?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "calibration",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.9446320750668606,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.7403803380412874,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.6815909329287422,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 0.5381639205791947,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 0.4976679547871993,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.9446320750668606,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-208",
+      "question": "نقدر نقسم فاتورة ONEE على الشهور؟",
+      "language": "darija_arab",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "calibration",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.3826465401992607,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.160164111233336,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.3826465401992607,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-209",
+      "question": "N9der nkhlles Redal cash f l'agence?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar",
+          "section_id": "paiement-mobile-jiwar",
+          "score": 3.033229698421475,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 1.8553061052402318,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.5861815456883634,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 1.551714587654468,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 1.5060202807840641,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 3.033229698421475,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-210",
+      "question": "نقدر نخلص Redal بالكاش فالوكالة؟",
+      "language": "darija_arab",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-mobile-jiwar",
+          "section_id": "paiement-mobile-jiwar",
+          "score": 3.033229698421475,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.087217615882428,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.8968649260090928,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.8512020207915677,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 0.8312990454475649,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 3.033229698421475,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-211",
+      "question": "Ch7al taman dyal kilowatt 3nd Redal?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.087217615882428,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.8968649260090928,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.8512020207915677,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 0.8312990454475649,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.6985268054069586,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.087217615882428,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-212",
+      "question": "شحال ثمن الكيلواط عند Redal؟",
+      "language": "darija_arab",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "calibration",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.087217615882428,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.8968649260090928,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.8512020207915677,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 0.8312990454475649,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.6985268054069586,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.087217615882428,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-213",
+      "question": "Fin n9der nkhlles factora ONEE b cash?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-especes"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 3.9100541090726604,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.9446320750668606,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.7403803380412874,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.6815909329287422,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 0.4976679547871993,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 3.9100541090726604,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-214",
+      "question": "فين نقدر نخلص فاتورة ONEE بالكاش؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-especes"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 3.371890188493466,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.3826465401992607,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.160164111233336,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 3.371890188493466,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-215",
+      "question": "Ila nhar lkhless ja f nhar 3tla, ach kaytra?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "date-reglement"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 2.5779323410998467,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.5779323410998467,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-216",
+      "question": "إلا نهار الخلاص جا فنهار عطلة، آش كيوقع؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "date-reglement"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 2.5779323410998467,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.5779323410998467,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-217",
+      "question": "Chik dyal ONEE khasni nktbo b smit men?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-cheque"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 4.123937202686294,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.3826465401992607,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.160164111233336,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 4.123937202686294,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-218",
+      "question": "الشيك ديال ONEE خاصني نكتبو بسميت من؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-cheque"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 4.123937202686294,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.3826465401992607,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.160164111233336,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 4.123937202686294,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-219",
+      "question": "Mlli ndir virman ONEE, wach kaywli prélèvement automatique kol chher?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-virement"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 9.890676937734362,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.160164111233336,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 9.890676937734362,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-220",
+      "question": "ملي ندير فيرمان ONEE، واش كيولي الاقتطاع أوتوماتيكي كل شهر؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-virement"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 5.44457895889623,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.160164111233336,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 5.44457895889623,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": false
+    },
+    {
+      "case_id": "retrieval-221",
+      "question": "N9der nkhlles Redal b carte men dari?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-en-ligne-carte"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 2.9792566637132536,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 2.332513064140513,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 1.9141435986593343,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.8968649260090928,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 0.8312990454475649,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 2.9792566637132536,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-222",
+      "question": "نقدر نخلص Redal بالكارت من داري؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-en-ligne-carte"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.087217615882428,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.8968649260090928,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.8512020207915677,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 0.8312990454475649,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.6985268054069586,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.087217615882428,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-223",
+      "question": "N9der nkhlles factora Redal men GAB?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-gab"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 3.06853703913185,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 1.432247109767842,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.4005502448082672,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.3360931288886329,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.8512020207915677,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 3.06853703913185,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-224",
+      "question": "نقدر نخلص فاتورة Redal من الكيشي الأوتوماتيكي؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "paiement-gab"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.087217615882428,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.8968649260090928,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.8512020207915677,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 0.8312990454475649,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.6985268054069586,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.087217615882428,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.2,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-225",
+      "question": "Achno khasni nra9eb f factora Redal bach nt2kked s7i7a?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "lecture-facture"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 1.432247109767842,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.4005502448082672,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.3360931288886329,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 1.1451633956194185,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.8512020207915677,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.432247109767842,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-226",
+      "question": "شنو خاصني نراقب ففاتورة Redal باش نتأكد باللي صحيحة؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "lecture-facture"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.087217615882428,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.8968649260090928,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.8512020207915677,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 0.8312990454475649,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.6985268054069586,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.087217615882428,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.5,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-227",
+      "question": "Factora Redal katji kol chher?",
+      "language": "darija_latn",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "facturation-mensuelle"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 1.432247109767842,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.4005502448082672,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.3360931288886329,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 1.1451633956194185,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.8512020207915677,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.432247109767842,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.3333333333333333,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-228",
+      "question": "فاتورة Redal كتجي كل شهر؟",
+      "language": "darija_arab",
+      "category": "multilingual",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": false,
+      "relevant_section_ids": [
+        "facturation-mensuelle"
+      ],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.087217615882428,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.8968649260090928,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.8512020207915677,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 0.8312990454475649,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.6985268054069586,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.087217615882428,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "binary_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-229",
+      "question": "Kayn chi wallet f telephone bach nkhlles ONEE?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.3826465401992607,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.160164111233336,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.3826465401992607,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-230",
+      "question": "كاينة شي محفظة فالتليفون باش نخلص ONEE؟",
+      "language": "darija_arab",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.3826465401992607,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.160164111233336,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.3826465401992607,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-231",
+      "question": "Ch7al ghadi nzid ila t2khert 3la factora ONEE?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.9446320750668606,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.7403803380412874,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--date-reglement",
+          "section_id": "date-reglement",
+          "score": 0.6815909329287422,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-especes",
+          "section_id": "paiement-especes",
+          "score": 0.5381639205791947,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque",
+          "section_id": "paiement-cheque",
+          "score": 0.4976679547871993,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.9446320750668606,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-232",
+      "question": "شحال غادي نزيد إلا تأخرت على فاتورة ONEE؟",
+      "language": "darija_arab",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "onee",
+      "service_zone_id": "onee_be_national",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-virement",
+          "section_id": "paiement-virement",
+          "score": 2.3826465401992607,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        },
+        {
+          "chunk_id": "onee-regler-facture-residentiel-20260929t192825z--paiement-acompte",
+          "section_id": "paiement-acompte",
+          "score": 2.160164111233336,
+          "title": "Réglement de votre facture",
+          "canonical_url": "https://www.one.org.ma/fr/pages/interne.asp?esp=1&id1=3&id2=46&t2=1",
+          "distributor_id": "onee",
+          "distributor_name": "ONEE - Branche Electricité",
+          "service_zone_id": "onee_be_national"
+        }
+      ],
+      "top_score": 2.3826465401992607,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-233",
+      "question": "Ila t9t3 lia daw Redal, ch7al frais dyal rje3?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.087217615882428,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.8968649260090928,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.8512020207915677,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 0.8312990454475649,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.6985268054069586,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.087217615882428,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-234",
+      "question": "إلا تقطع ليا الضو ديال Redal، شحال مصاريف الترجيع؟",
+      "language": "darija_arab",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.087217615882428,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.8968649260090928,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.8512020207915677,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 0.8312990454475649,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.6985268054069586,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.087217615882428,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-235",
+      "question": "Chno ma3na TVA f factora Redal?",
+      "language": "darija_latn",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 1.432247109767842,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.4005502448082672,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--facturation-mensuelle",
+          "section_id": "facturation-mensuelle",
+          "score": 1.3360931288886329,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 1.1451633956194185,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.8512020207915677,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.432247109767842,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    },
+    {
+      "case_id": "retrieval-236",
+      "question": "شنو معنى TVA ففاتورة Redal؟",
+      "language": "darija_arab",
+      "category": "hard_negative",
+      "audience": "residential",
+      "distributor_id": "srm_rsk",
+      "service_zone_id": "rabat_sale_ex_redal",
+      "split": "test",
+      "should_abstain": true,
+      "relevant_section_ids": [],
+      "ranking": [
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-en-ligne-carte",
+          "section_id": "paiement-en-ligne-carte",
+          "score": 1.087217615882428,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--lecture-facture",
+          "section_id": "lecture-facture",
+          "score": 0.8968649260090928,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-questions-frequentes-20260930t201159z--releve-et-auto-releve",
+          "section_id": "releve-et-auto-releve",
+          "score": 0.8512020207915677,
+          "title": "Questions fréquentes",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/conseils-faq/questions-frequentes",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-ebanking",
+          "section_id": "paiement-ebanking",
+          "score": 0.8312990454475649,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        },
+        {
+          "chunk_id": "redal-e-paiement-20260930t201158z--paiement-gab",
+          "section_id": "paiement-gab",
+          "score": 0.6985268054069586,
+          "title": "E-paiement",
+          "canonical_url": "https://www.redal.ma/fr/votre-agence-ligne/client-particulier/vos-services-digitaux/e-paiement",
+          "distributor_id": "srm_rsk",
+          "distributor_name": "Société Régionale Multiservices Rabat-Salé-Kénitra",
+          "service_zone_id": "rabat_sale_ex_redal"
+        }
+      ],
+      "top_score": 1.087217615882428,
+      "has_candidates": true,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "binary_recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "reciprocal_rank": 0.0,
+      "predicted_abstain": true
+    }
+  ]
+}

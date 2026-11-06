@@ -1,0 +1,33 @@
+.git
+.github
+.venv
+.env
+.env.*
+!.env.example
+__pycache__
+*.py[cod]
+*.egg-info
+.pytest_cache
+.mypy_cache
+.ruff_cache
+
+# Données, modèles et documents locaux : montés à l'exécution, jamais copiés.
+data/raw
+data/processed
+data/indexes
+data/user_documents
+artifacts
+output
+outputs
+tmp
+work
+*.pdf
+*.zip
+*.gguf
+*.safetensors
+Api_Key_*.txt
+
+# Le frontend possède son propre contexte de construction.
+frontend/node_modules
+frontend/dist
+

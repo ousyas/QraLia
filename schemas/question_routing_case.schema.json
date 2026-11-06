@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qralia.local/schemas/question-routing-case.schema.json",
+  "title": "QraLia question routing evaluation case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "case_id",
+    "language",
+    "question",
+    "expected_need_count",
+    "expected_route",
+    "expected_needs"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "case_id": {"type": "string", "pattern": "^route-(fr|ar|da)-[0-9]{3}$"},
+    "language": {"enum": ["fr", "ar", "darija_arab"]},
+    "question": {"type": "string", "minLength": 3},
+    "expected_need_count": {"type": "integer", "minimum": 1, "maximum": 3},
+    "expected_route": {"enum": ["invoice", "official_rag", "both", "unknown"]},
+    "expected_needs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["marker", "source_hint"],
+        "properties": {
+          "marker": {"type": "string", "minLength": 1},
+          "source_hint": {"enum": ["invoice", "official_rag", "both", "unknown"]}
+        }
+      }
+    }
+  }
+}

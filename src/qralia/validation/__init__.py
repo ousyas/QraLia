@@ -1,0 +1,2 @@
+"""Validation déterministe des documents."""
+

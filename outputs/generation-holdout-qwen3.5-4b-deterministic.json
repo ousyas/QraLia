@@ -1,0 +1,988 @@
+{
+  "schema_version": "0.1.0",
+  "protocol": "gold_context_generation_then_deterministic_checks_then_llm_judge",
+  "configuration": {
+    "generator_model": "qwen3.5:4b",
+    "judge_model": null,
+    "temperature": 0,
+    "seed": 42,
+    "prompt_version": "0.1.0",
+    "run_label": "frozen_holdout_qwen3_5_4b",
+    "atlas_rewriter_model": null,
+    "rewrite_languages": [],
+    "case_count": 12,
+    "indexed_chunk_count": 39,
+    "contains_personal_data": false
+  },
+  "summary": {
+    "case_count": 12,
+    "deterministic_pass_rate": 0.5833333333333334,
+    "final_pass_rate": 0.5833333333333334,
+    "critical_fact_violation_count": 0,
+    "judge_mean_scores": null,
+    "generator_mean_latency_ms": 17980.696441663895,
+    "darija_rewriter_mean_latency_ms": null,
+    "darija_rewrite_case_count": 0,
+    "darija_rewrite_fallback_count": 0,
+    "judge_mean_latency_ms": null,
+    "generator_prompt_tokens": 7590,
+    "generator_completion_tokens": 2243,
+    "judge_prompt_tokens": 0,
+    "judge_completion_tokens": 0,
+    "judge_error_count": 0
+  },
+  "breakdown": {
+    "by_split": {
+      "test": {
+        "case_count": 12,
+        "deterministic_pass_rate": 0.5833333333333334,
+        "final_pass_rate": 0.5833333333333334,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      }
+    },
+    "by_language": {
+      "ar": {
+        "case_count": 3,
+        "deterministic_pass_rate": 0.3333333333333333,
+        "final_pass_rate": 0.3333333333333333,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      },
+      "darija_arab": {
+        "case_count": 3,
+        "deterministic_pass_rate": 0.3333333333333333,
+        "final_pass_rate": 0.3333333333333333,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      },
+      "darija_latn": {
+        "case_count": 3,
+        "deterministic_pass_rate": 0.6666666666666666,
+        "final_pass_rate": 0.6666666666666666,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      },
+      "fr": {
+        "case_count": 3,
+        "deterministic_pass_rate": 1.0,
+        "final_pass_rate": 1.0,
+        "critical_fact_violation_count": 0,
+        "judge_mean_scores": null
+      }
+    }
+  },
+  "cases": [
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-101",
+        "question": "Quelles démarches faut-il suivre pour payer automatiquement une facture ONEE par virement, et quand reçoit-on la facture ?",
+        "language": "fr",
+        "provider_id": "onee",
+        "gold_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-virement"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Retirer une demande de domiciliation auprès d'une agence ONEE Branche Électricité.",
+          "Faire remplir la demande par l'agence bancaire.",
+          "Les factures sont ensuite réglées mensuellement par prélèvement automatique.",
+          "Un exemplaire de la facture est reçu 15 jours avant le prélèvement."
+        ],
+        "forbidden_claims": [
+          "La domiciliation se fait uniquement sur le site web.",
+          "La facture est reçue après le prélèvement."
+        ],
+        "critical_values": [
+          "15 jours"
+        ],
+        "split": "test",
+        "notes": "Holdout créé avant l'exécution de Qwen3.5-4B."
+      },
+      "context_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-virement"
+      ],
+      "answer_before_rewrite": null,
+      "answer": {
+        "answer": "Retirez une demande de domiciliation au niveau de votre agence ONEE Branche Electricité et la faites remplir auprès de votre agence bancaire. [onee-regler-facture-residentiel-20260929t192825z--paiement-virement] Vous recevrez un exemplaire de votre facture 15 jours avant la date prévue pour le prélèvement. [onee-regler-facture-residentiel-20260929t192825z--paiement-virement]",
+        "claims": [
+          {
+            "text": "Retirez une demande de domiciliation au niveau de votre agence ONEE Branche Electricité et la faites remplir auprès de votre agence bancaire.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-virement"
+            ]
+          },
+          {
+            "text": "Vous recevrez un exemplaire de votre facture 15 jours avant la date prévue pour le prélèvement.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-virement"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "fr"
+      },
+      "darija_rewrite": null,
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-virement"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 18960.103099932894,
+        "darija_rewriter": null,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 18915.6195,
+          "load_duration_ms": 3.6576,
+          "prompt_tokens": 716,
+          "completion_tokens": 221,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-102",
+        "question": "لمن يجب أن أحرر شيك أداء فاتورة الكهرباء، وأين أقدمه؟",
+        "language": "ar",
+        "provider_id": "onee",
+        "gold_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "يمكن استعمال شيك بنكي أو CCP.",
+          "يحرر الشيك باسم المكتب الوطني للكهرباء والماء الصالح للشرب.",
+          "يقدم الشيك في وكالة فرع الكهرباء."
+        ],
+        "forbidden_claims": [
+          "يحرر الشيك باسم Redal.",
+          "يقدم الشيك في وكالة Orange."
+        ],
+        "critical_values": [
+          "CCP"
+        ],
+        "split": "test",
+        "notes": "Holdout créé avant l'exécution de Qwen3.5-4B."
+      },
+      "context_chunk_ids": [
+        "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+      ],
+      "answer_before_rewrite": null,
+      "answer": {
+        "answer": "يجب أن يُسدد الدفع عبر شيك بنكي أو CCP إلى L'Office National de l'Electricité et de l'Eau Potable. [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque] يجب تقديم الشيك في فرع الوكالة الخاص بالقطاع الكهربائي. [onee-regler-facture-residentiel-20260929t192825z--paiement-cheque]",
+        "claims": [
+          {
+            "text": "يجب أن يُسدد الدفع عبر شيك بنكي أو CCP إلى L'Office National de l'Electricité et de l'Eau Potable.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          },
+          {
+            "text": "يجب تقديم الشيك في فرع الوكالة الخاص بالقطاع الكهربائي.",
+            "citations": [
+              "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "darija_rewrite": null,
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "onee-regler-facture-residentiel-20260929t192825z--paiement-cheque"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 21786.050700000487,
+        "darija_rewriter": null,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 21782.6914,
+          "load_duration_ms": 3.7622,
+          "prompt_tokens": 616,
+          "completion_tokens": 251,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-103",
+        "question": "Kifach nkhlles Redal men GAB, w achno khasni ndkhel?",
+        "language": "darija_latn",
+        "provider_id": "srm_rsk",
+        "gold_chunk_ids": [
+          "redal-e-paiement-20260930t201158z--paiement-gab"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Il faut avoir un compte dans une banque conventionnée.",
+          "Après insertion de la carte, choisir le paiement des factures Redal dans les autres services.",
+          "Saisir la référence client CIL et choisir la facture.",
+          "Le compte est débité et un reçu est remis."
+        ],
+        "forbidden_claims": [
+          "Le paiement GAB ne demande pas de référence client.",
+          "Aucun reçu n'est délivré."
+        ],
+        "critical_values": [
+          "CIL"
+        ],
+        "split": "test",
+        "notes": "Holdout créé avant l'exécution de Qwen3.5-4B."
+      },
+      "context_chunk_ids": [
+        "redal-e-paiement-20260930t201158z--paiement-gab"
+      ],
+      "answer_before_rewrite": null,
+      "answer": {
+        "answer": "Lkhlis Redal men GAB bgha tkhaz l'GAB, tkhaz l'carte, w khz f [redal-e-paiement-20260930t201158z--paiement-gab]",
+        "claims": [
+          {
+            "text": "Lkhlis Redal men GAB bgha tkhaz l'GAB, tkhaz l'carte, w khz f",
+            "citations": [
+              "redal-e-paiement-20260930t201158z--paiement-gab"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "darija_rewrite": null,
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Valeur critique absente ou modifiée : 'CIL'"
+        ],
+        "cited_chunk_ids": [
+          "redal-e-paiement-20260930t201158z--paiement-gab"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 15137.251900043339,
+        "darija_rewriter": null,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 15134.0322,
+          "load_duration_ms": 4.009,
+          "prompt_tokens": 745,
+          "completion_tokens": 172,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-104",
+        "question": "إلا فاتني آخر أجل ديال فاتورة Redal، شنو يقدر يوقع؟",
+        "language": "darija_arab",
+        "provider_id": "srm_rsk",
+        "gold_chunk_ids": [
+          "redal-questions-frequentes-20260930t201159z--date-limite-suspension"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "تاريخ آخر أجل للأداء مكتوب في الفاتورة.",
+          "عدم الأداء بعد هذا التاريخ يؤدي إلى تعليق التزويد."
+        ],
+        "forbidden_claims": [
+          "تلغى الفاتورة تلقائيا.",
+          "لا يحدث أي شيء بعد تاريخ الأداء."
+        ],
+        "critical_values": [],
+        "split": "test",
+        "notes": "Holdout créé avant l'exécution de Qwen3.5-4B."
+      },
+      "context_chunk_ids": [
+        "redal-questions-frequentes-20260930t201159z--date-limite-suspension"
+      ],
+      "answer_before_rewrite": null,
+      "answer": {
+        "answer": "La date limite de paiement est indiquée sur votre facture. [redal-questions-frequentes-20260930t201159z--date-limite-suspension]",
+        "claims": [
+          {
+            "text": "La date limite de paiement est indiquée sur votre facture.",
+            "citations": [
+              "redal-questions-frequentes-20260930t201159z--date-limite-suspension"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": null,
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Le texte produit n'utilise pas majoritairement l'écriture arabe."
+        ],
+        "cited_chunk_ids": [
+          "redal-questions-frequentes-20260930t201159z--date-limite-suspension"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 12987.707899999805,
+        "darija_rewriter": null,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 12984.2819,
+          "load_duration_ms": 4.7502,
+          "prompt_tokens": 644,
+          "completion_tokens": 147,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-105",
+        "question": "Que prévoit IAM lorsqu'une erreur de facturation ou une surfacturation est confirmée ?",
+        "language": "fr",
+        "provider_id": "iam",
+        "gold_chunk_ids": [
+          "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Le client doit en faire la demande.",
+          "IAM vérifie l'erreur ou la surfacturation.",
+          "IAM annule les frais facturés par erreur lorsque l'erreur est avérée."
+        ],
+        "forbidden_claims": [
+          "IAM rembourse automatiquement sans demande ni vérification."
+        ],
+        "critical_values": [
+          "IAM"
+        ],
+        "split": "test",
+        "notes": "Holdout créé avant l'exécution de Qwen3.5-4B."
+      },
+      "context_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+      ],
+      "answer_before_rewrite": null,
+      "answer": {
+        "answer": "En cas d’erreur de facturation ou de surfacturation avérée, IAM procédera sur demande du Client et après vérification, à l’annulation des frais facturés par erreur. [telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation]",
+        "claims": [
+          {
+            "text": "En cas d’erreur de facturation ou de surfacturation avérée, IAM procédera sur demande du Client et après vérification, à l’annulation des frais facturés par erreur.",
+            "citations": [
+              "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "fr"
+      },
+      "darija_rewrite": null,
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-iam-mobile-postpaid-20261001t082840z--erreur-facturation"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 18608.192699961364,
+        "darija_rewriter": null,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 18604.8883,
+          "load_duration_ms": 3.7704,
+          "prompt_tokens": 615,
+          "completion_tokens": 181,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-106",
+        "question": "ما هي طريقة ومدة إشعار اتصالات المغرب إذا أردت إنهاء العقد؟ وهل تبقى الفواتير غير المؤداة مستحقة؟",
+        "language": "ar",
+        "provider_id": "iam",
+        "gold_chunk_ids": [
+          "telecom-iam-mobile-postpaid-20261001t082840z--resiliation-client"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "مدة الإشعار ثلاثون يوما.",
+          "يرسل الإشعار إلى IAM برسالة مضمونة مع إشعار بالتوصل.",
+          "تبقى الفواتير غير المؤداة مستحقة بعد إنهاء العقد."
+        ],
+        "forbidden_claims": [
+          "يمكن الإنهاء فوريا دون إشعار.",
+          "تلغى الفواتير غير المؤداة عند إنهاء العقد."
+        ],
+        "critical_values": [
+          "30"
+        ],
+        "split": "test",
+        "notes": "Holdout créé avant l'exécution de Qwen3.5-4B."
+      },
+      "context_chunk_ids": [
+        "telecom-iam-mobile-postpaid-20261001t082840z--resiliation-client"
+      ],
+      "answer_before_rewrite": null,
+      "answer": {
+        "answer": "يمكن للعميل إنهاء العقد في أي وقت بإرسال إشعار مسبق لمدة 30 يوماً عبر البريد المسجل مع إقرار بالاستلام [Le client peut à tout moment résilier le contrat, sous réserve d'un préavis de trente (30) jours adressé à IAM par lettre recommandée avec accusé de réception.] تظل الفواتير غير المدفوعة مستحقة للدفع عند تاريخ الإنهاء [En cas de résiliation, quel que soit le motif, le Client demeure redevable des sommes correspondantes aux factures non encore payées à la date de résiliation.]",
+        "claims": [
+          {
+            "text": "يمكن للعميل إنهاء العقد في أي وقت بإرسال إشعار مسبق لمدة 30 يوماً عبر البريد المسجل مع إقرار بالاستلام",
+            "citations": [
+              "Le client peut à tout moment résilier le contrat, sous réserve d'un préavis de trente (30) jours adressé à IAM par lettre recommandée avec accusé de réception."
+            ]
+          },
+          {
+            "text": "تظل الفواتير غير المدفوعة مستحقة للدفع عند تاريخ الإنهاء",
+            "citations": [
+              "En cas de résiliation, quel que soit le motif, le Client demeure redevable des sommes correspondantes aux factures non encore payées à la date de résiliation."
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "darija_rewrite": null,
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Citations hors contexte : ['En cas de résiliation, quel que soit le motif, le Client demeure redevable des sommes correspondantes aux factures non encore payées à la date de résiliation.', \"Le client peut à tout moment résilier le contrat, sous réserve d'un préavis de trente (30) jours adressé à IAM par lettre recommandée avec accusé de réception.\"]"
+        ],
+        "cited_chunk_ids": [
+          "En cas de résiliation, quel que soit le motif, le Client demeure redevable des sommes correspondantes aux factures non encore payées à la date de résiliation.",
+          "Le client peut à tout moment résilier le contrat, sous réserve d'un préavis de trente (30) jours adressé à IAM par lettre recommandée avec accusé de réception."
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 27317.991300020367,
+        "darija_rewriter": null,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 27314.3678,
+          "load_duration_ms": 4.9502,
+          "prompt_tokens": 701,
+          "completion_tokens": 266,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-107",
+        "question": "Fin n9der nkhlles facture Orange b cash, w achno khasni njib?",
+        "language": "darija_latn",
+        "provider_id": "orange_ma",
+        "gold_chunk_ids": [
+          "telecom-orange-payer-facture-20261001t082112z--paiement-agents"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Le paiement en espèces est disponible chez Cash plus, Fawatir, Barid cash, MPOST, Damane Cash et WafaCash.",
+          "Il suffit de présenter le numéro de téléphone."
+        ],
+        "forbidden_claims": [
+          "Une carte bancaire est obligatoire.",
+          "Le paiement en espèces se fait uniquement en boutique Orange."
+        ],
+        "critical_values": [
+          "Cash plus",
+          "Fawatir",
+          "Barid cash",
+          "MPOST",
+          "Damane Cash",
+          "WafaCash"
+        ],
+        "split": "test",
+        "notes": "Holdout créé avant l'exécution de Qwen3.5-4B."
+      },
+      "context_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--paiement-agents"
+      ],
+      "answer_before_rewrite": null,
+      "answer": {
+        "answer": "Payez vos factures en espèce chez nos partenaires Cash plus, Fawatir, Barid cash, MPOST, Damane Cash et WafaCash par la simple présentation de votre numéro de téléphone. [telecom-orange-payer-facture-20261001t082112z--paiement-agents]",
+        "claims": [
+          {
+            "text": "Payez vos factures en espèce chez nos partenaires Cash plus, Fawatir, Barid cash, MPOST, Damane Cash et WafaCash par la simple présentation de votre numéro de téléphone.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--paiement-agents"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "darija_rewrite": null,
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-orange-payer-facture-20261001t082112z--paiement-agents"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 18357.630099984817,
+        "darija_rewriter": null,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 18353.5664,
+          "load_duration_ms": 3.7179,
+          "prompt_tokens": 620,
+          "completion_tokens": 188,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-108",
+        "question": "شحال عندي على الأقل باش نخلص فاتورة Orange؟",
+        "language": "darija_arab",
+        "provider_id": "orange_ma",
+        "gold_chunk_ids": [
+          "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "الحد الأدنى لمهلة أداء الفاتورة هو 10 أيام."
+        ],
+        "forbidden_claims": [
+          "المهلة أقل من 10 أيام.",
+          "المهلة 30 يوما."
+        ],
+        "critical_values": [
+          "10"
+        ],
+        "split": "test",
+        "notes": "Holdout créé avant l'exécution de Qwen3.5-4B."
+      },
+      "context_chunk_ids": [
+        "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+      ],
+      "answer_before_rewrite": null,
+      "answer": {
+        "answer": "Vous disposez d'un délai de minimum 10 jours pour effectuer le règlement votre facture. [telecom-orange-payer-facture-20261001t082112z--delai-paiement]",
+        "claims": [
+          {
+            "text": "Vous disposez d'un délai de minimum 10 jours pour effectuer le règlement votre facture.",
+            "citations": [
+              "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_arab"
+      },
+      "darija_rewrite": null,
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Le texte produit n'utilise pas majoritairement l'écriture arabe."
+        ],
+        "cited_chunk_ids": [
+          "telecom-orange-payer-facture-20261001t082112z--delai-paiement"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 15780.636199982837,
+        "darija_rewriter": null,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 15776.9659,
+          "load_duration_ms": 4.0334,
+          "prompt_tokens": 590,
+          "completion_tokens": 144,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-109",
+        "question": "Comment consulter et télécharger une facture Orange, et comment suis-je averti qu'elle est disponible ?",
+        "language": "fr",
+        "provider_id": "orange_ma",
+        "gold_chunk_ids": [
+          "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "La facture peut être consultée et téléchargée depuis l'espace client Orange et moi.",
+          "Un SMS informe le client de la disponibilité de la facture."
+        ],
+        "forbidden_claims": [
+          "La facture ne peut être obtenue qu'en agence.",
+          "Aucune notification n'est envoyée."
+        ],
+        "critical_values": [
+          "SMS"
+        ],
+        "split": "test",
+        "notes": "Holdout créé avant l'exécution de Qwen3.5-4B."
+      },
+      "context_chunk_ids": [
+        "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+      ],
+      "answer_before_rewrite": null,
+      "answer": {
+        "answer": "Vous pouvez consulter et télécharger vos factures sur votre espace client Orange. [telecom-orange-consulter-facture-20261001t082113z--consulter-facture] Un SMS de notification sera envoyé sur votre mobile pour vous informer de la disponibilité de votre facture. [telecom-orange-consulter-facture-20261001t082113z--consulter-facture]",
+        "claims": [
+          {
+            "text": "Vous pouvez consulter et télécharger vos factures sur votre espace client Orange.",
+            "citations": [
+              "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+            ]
+          },
+          {
+            "text": "Un SMS de notification sera envoyé sur votre mobile pour vous informer de la disponibilité de votre facture.",
+            "citations": [
+              "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "fr"
+      },
+      "darija_rewrite": null,
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-orange-consulter-facture-20261001t082113z--consulter-facture"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 17774.026000057347,
+        "darija_rewriter": null,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 17769.5994,
+          "load_duration_ms": 4.4571,
+          "prompt_tokens": 612,
+          "completion_tokens": 180,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-110",
+        "question": "ما هي الهدية عند أداء فاتورة inwi عبر تطبيق My inwi وكم تدوم صلاحيتها؟",
+        "language": "ar",
+        "provider_id": "inwi",
+        "gold_chunk_ids": [
+          "telecom-inwi-payer-facture-20261001t082113z--paiement-my-inwi"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "يحصل العميل على 1Go من الإنترنت مجانا.",
+          "صلاحية الهدية 7jours."
+        ],
+        "forbidden_claims": [
+          "الهدية مكالمات مجانية.",
+          "صلاحية الهدية شهر كامل."
+        ],
+        "critical_values": [
+          "1Go",
+          "7jours"
+        ],
+        "split": "test",
+        "notes": "Holdout créé avant l'exécution de Qwen3.5-4B."
+      },
+      "context_chunk_ids": [
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-my-inwi"
+      ],
+      "answer_before_rewrite": null,
+      "answer": {
+        "answer": "1Go d'internet gratuit [telecom-inwi-payer-facture-20261001t082113z--paiement-my-inwi] valable 7jours [telecom-inwi-payer-facture-20261001t082113z--paiement-my-inwi]",
+        "claims": [
+          {
+            "text": "1Go d'internet gratuit",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-my-inwi"
+            ]
+          },
+          {
+            "text": "valable 7jours",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-my-inwi"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "ar"
+      },
+      "darija_rewrite": null,
+      "deterministic_validation": {
+        "passed": false,
+        "errors": [
+          "Le texte produit n'utilise pas majoritairement l'écriture arabe."
+        ],
+        "cited_chunk_ids": [
+          "telecom-inwi-payer-facture-20261001t082113z--paiement-my-inwi"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": false,
+      "latency_ms": {
+        "generator": 20264.225599938072,
+        "darija_rewriter": null,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 20261.1864,
+          "load_duration_ms": 3.697,
+          "prompt_tokens": 607,
+          "completion_tokens": 209,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-111",
+        "question": "Ch7al men point partenaire kayn bach nkhlles facture inwi, w chkon homa?",
+        "language": "darija_latn",
+        "provider_id": "inwi",
+        "gold_chunk_ids": [
+          "telecom-inwi-payer-facture-20261001t082113z--paiement-agents"
+        ],
+        "should_abstain": false,
+        "required_facts": [
+          "Il existe plus de 8000 agences partenaires dans le Royaume.",
+          "Les partenaires cités sont Wafacash, Tasshilates et Fawatir."
+        ],
+        "forbidden_claims": [
+          "Il existe moins de 100 agences partenaires.",
+          "Orange Money est le seul partenaire."
+        ],
+        "critical_values": [
+          "8000",
+          "Wafacash",
+          "Tasshilates",
+          "Fawatir"
+        ],
+        "split": "test",
+        "notes": "Holdout créé avant l'exécution de Qwen3.5-4B."
+      },
+      "context_chunk_ids": [
+        "telecom-inwi-payer-facture-20261001t082113z--paiement-agents"
+      ],
+      "answer_before_rewrite": null,
+      "answer": {
+        "answer": "Wafacash, Tasshilates & Fawatir +de 8000 agences sur le Royaume [telecom-inwi-payer-facture-20261001t082113z--paiement-agents]",
+        "claims": [
+          {
+            "text": "Wafacash, Tasshilates & Fawatir +de 8000 agences sur le Royaume",
+            "citations": [
+              "telecom-inwi-payer-facture-20261001t082113z--paiement-agents"
+            ]
+          }
+        ],
+        "abstain": false,
+        "abstention_reason": null,
+        "language": "darija_latn"
+      },
+      "darija_rewrite": null,
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": [
+          "telecom-inwi-payer-facture-20261001t082113z--paiement-agents"
+        ]
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 15765.767800039612,
+        "darija_rewriter": null,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 15762.1914,
+          "load_duration_ms": 3.1819,
+          "prompt_tokens": 603,
+          "completion_tokens": 158,
+          "citation_renderer_changed_answer": true,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    },
+    {
+      "case": {
+        "schema_version": "0.1.0",
+        "case_id": "generation-112",
+        "question": "واش نقدر نخلص فاتورة IAM فوكالة Orange بنفس الشروط ديال Orange؟",
+        "language": "darija_arab",
+        "provider_id": "iam",
+        "gold_chunk_ids": [],
+        "should_abstain": true,
+        "required_facts": [],
+        "forbidden_claims": [
+          "يمكن أداء فاتورة IAM في وكالة Orange بنفس شروط Orange.",
+          "قواعد أداء Orange تنطبق على IAM."
+        ],
+        "critical_values": [],
+        "split": "test",
+        "notes": "Hard negative inter-opérateur. Holdout créé avant l'exécution de Qwen3.5-4B."
+      },
+      "context_chunk_ids": [],
+      "answer_before_rewrite": null,
+      "answer": {
+        "answer": "مايكون كادور نخلص فاتورة IAM فوكالة Orange باش تخدم نفس الشروط ديال IAM، لأن ماكناش كاتوجد معلومات ف sources ديالك عشان نعرف هادشي.",
+        "claims": [],
+        "abstain": true,
+        "abstention_reason": "ماكناش كاتوجد أي passage ماعندووش معلومات تشرح باش IAM تخدم فوكالة Orange أو ما الشروط ديالها متطابقين مع Orange.",
+        "language": "darija_arab"
+      },
+      "darija_rewrite": null,
+      "deterministic_validation": {
+        "passed": true,
+        "errors": [],
+        "cited_chunk_ids": []
+      },
+      "judge": null,
+      "judge_error": null,
+      "final_pass": true,
+      "latency_ms": {
+        "generator": 13028.774000005797,
+        "darija_rewriter": null,
+        "judge": null
+      },
+      "usage": {
+        "generator": {
+          "model": "qwen3.5:4b",
+          "total_duration_ms": 13025.0037,
+          "load_duration_ms": 4.5214,
+          "prompt_tokens": 521,
+          "completion_tokens": 126,
+          "citation_renderer_changed_answer": false,
+          "generation_attempts": 1,
+          "generation_error": null
+        },
+        "judge": null
+      }
+    }
+  ]
+}
