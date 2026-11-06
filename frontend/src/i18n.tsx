@@ -2,10 +2,10 @@ import type { ReactNode } from "react";
 
 export type UiLang = "fr" | "ar" | "darija";
 
-export const UI_LANGS: Array<{ id: UiLang; label: string }> = [
-  { id: "fr", label: "FR" },
-  { id: "darija", label: "الدارجة" },
-  { id: "ar", label: "العربية" },
+export const UI_LANGS: Array<{ id: UiLang; label: string; short: string }> = [
+  { id: "fr", label: "FR", short: "FR" },
+  { id: "darija", label: "الدارجة", short: "دارجة" },
+  { id: "ar", label: "العربية", short: "عربي" },
 ];
 
 // Langue de réponse proposée par défaut pour chaque langue d'interface.
@@ -33,7 +33,7 @@ export type Strings = {
   locale: string;
   status: { checking: string; online: string; offline: string };
   guideButton: string;
-  hero: { eyebrow: string; titleA: string; titleB: string; lead: string; ctaRead: string; ctaHow: string };
+  hero: { titleA: string; titleB: string; lead: string; ctaRead: string; ctaHow: string };
   upload: { title: string; hint: string; choose: string; dropHere: string; dropHint: string; change: string; consent: string; read: string; badFormat: string; tooBig: (mb: number) => string };
   reading: { title: (file: string) => string; steps: string[] };
   how: { title: string; items: Array<{ title: string; text: string }> };
@@ -92,7 +92,7 @@ const fr: Strings = {
   status: { checking: "Vérification…", online: "Service disponible", offline: "Service indisponible" },
   guideButton: "Guide",
   hero: {
-    eyebrow: "Votre lecteur de factures", titleA: "Votre facture,", titleB: "lue pour vous.",
+    titleA: "Votre facture,", titleB: "lue pour vous.",
     lead: "QraLia lit votre facture d'électricité ou de téléphone, vous dit combien payer et avant quand, puis répond à vos questions en darija, en arabe ou en français.",
     ctaRead: "Lire ma facture", ctaHow: "Comment ça marche ?",
   },
@@ -175,7 +175,7 @@ const ar: Strings = {
   status: { checking: "جارٍ التحقق…", online: "الخدمة متاحة", offline: "الخدمة غير متاحة" },
   guideButton: "الدليل",
   hero: {
-    eyebrow: "قارئ فواتيرك", titleA: "فاتورتك،", titleB: "نقرؤها من أجلك.",
+    titleA: "فاتورتك،", titleB: "نقرؤها من أجلك.",
     lead: "يقرأ QraLia فاتورة الكهرباء أو الهاتف، ويخبرك بالمبلغ الواجب أداؤه وآخر أجل للأداء، ثم يجيب عن أسئلتك بالدارجة أو العربية أو الفرنسية.",
     ctaRead: "اقرأ فاتورتي", ctaHow: "كيف يعمل؟",
   },
@@ -262,7 +262,7 @@ const darija: Strings = {
   status: { checking: "كنتأكدو…", online: "الخدمة خدامة", offline: "الخدمة ما خدامةش" },
   guideButton: "الدليل",
   hero: {
-    eyebrow: "قارئ الفواتير ديالك", titleA: "الفاتورة ديالك،", titleB: "كنقراوها ليك.",
+    titleA: "الفاتورة ديالك،", titleB: "كنقراوها ليك.",
     lead: "QraLia كتقرا ليك فاتورة الضو ولا التيليفون، كتقول ليك شحال خاصك تخلص وفوقاش، ومن بعد كتجاوبك على الأسئلة ديالك بالدارجة، بالعربية ولا بالفرنسية.",
     ctaRead: "قرا ليا الفاتورة", ctaHow: "كيفاش خدامة؟",
   },

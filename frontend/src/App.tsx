@@ -1,5 +1,6 @@
 import { DragEvent, FormEvent, KeyboardEvent, useEffect, useMemo, useRef, useState } from "react";
 import Guide, { guideAlreadySeen } from "./components/Guide";
+import Logo from "./components/Logo";
 import Countdown from "./components/Countdown";
 import ReadingProgress from "./components/ReadingProgress";
 import ScanDemo, { EXAMPLE_SCAN, type ScanView } from "./components/ScanDemo";
@@ -195,12 +196,16 @@ export default function App() {
     <main className={invoice ? "has-invoice" : undefined}>
       <header className="hero">
         <nav aria-label="QraLia">
-          <a className="brand" href="#top" aria-label="QraLia" dir="ltr"><span>Q</span>raLia</a>
+          <Logo />
           <div className="nav-actions">
             <div className="lang-switch" role="group" aria-label="Langue / اللغة">
-              {UI_LANGS.map((item) => <button key={item.id} className={item.id === uiLang ? "on" : ""} aria-pressed={item.id === uiLang} onClick={() => changeUiLang(item.id)}>{item.label}</button>)}
+              {UI_LANGS.map((item) => <button key={item.id} className={item.id === uiLang ? "on" : ""} aria-pressed={item.id === uiLang} aria-label={item.label} onClick={() => changeUiLang(item.id)}>
+                <span className="lang-long">{item.label}</span><span className="lang-short" aria-hidden="true">{item.short}</span>
+              </button>)}
             </div>
-            <button className="guide-button" onClick={() => setGuideOpen(true)}>{s.guideButton}</button>
+            <button className="guide-button" onClick={() => setGuideOpen(true)} aria-label={s.guideButton}>
+              <span className="guide-icon" aria-hidden="true">?</span><span className="guide-label">{s.guideButton}</span>
+            </button>
             <span className={`status ${online ? "online" : "offline"}`} title={online === null ? s.status.checking : online ? s.status.online : s.status.offline}>
               {online === null ? s.status.checking : online ? s.status.online : s.status.offline}
             </span>
@@ -208,7 +213,6 @@ export default function App() {
         </nav>
         <div className="hero-grid">
           <div className="hero-copy" id="top">
-            <p className="eyebrow">{s.hero.eyebrow}</p>
             <h1>{s.hero.titleA} <em>{s.hero.titleB}</em></h1>
             <p>{s.hero.lead}</p>
             {!invoice && <div className="hero-actions">
