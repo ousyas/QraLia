@@ -22,7 +22,8 @@
   --warn-bg: #fff2d2;
   --shadow: 0 1px 2px rgba(28,24,20,.04);
   --shadow-lg: 0 1px 2px rgba(28,24,20,.05), 0 12px 32px rgba(28,24,20,.06);
-  --content: 920px;
+  --content: 1180px;
+  --majorelle: #2f4ea3;
   font-family: "Geist", sans-serif; color: var(--ink); background: var(--paper);
   font-synthesis: none; -webkit-font-smoothing: antialiased;
 }
@@ -579,3 +580,68 @@ footer strong { color: var(--ink); }
 .sources a { color: var(--terra); }
 .show-page summary { color: var(--ink); }
 @media (max-width: 650px) { .has-invoice .question-form { background: rgba(255,255,255,.92); border-color: var(--line); box-shadow: 0 8px 30px rgba(28,24,20,.12); } }
+
+/* ===== Toute la largeur : deux colonnes en grand écran ===== */
+@media (min-width: 1000px) {
+  .start-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 2.5rem; align-items: start; }
+  .start-grid .how { margin-top: 2.6rem; }
+  .start-grid .how h2 { font-size: 1.05rem; color: var(--ink-soft); font-weight: 600; letter-spacing: -.01em; margin: .35rem 0 .9rem; }
+  .start-grid .how ol { grid-template-columns: 1fr; gap: .75rem; }
+  .start-grid .how li { display: grid; grid-template-columns: auto 1fr; column-gap: .9rem; padding: 1.05rem 1.1rem; }
+  .start-grid .how-icon { grid-row: 1 / span 2; }
+  .start-grid .how h3 { margin: .1rem 0 .25rem; }
+  .start-grid .dropzone { min-height: 250px; }
+
+  .result-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 2rem; align-items: start; }
+  .result-main > :first-child { margin-top: 0; }
+  /* La conversation reste visible pendant qu'on parcourt le résumé. */
+  .result-chat { position: sticky; top: 84px; }
+  .result-chat > .step-heading:first-child { margin-top: 0; }
+  .result-chat .chat-thread { max-height: calc(100vh - 430px); min-height: 120px; overflow-y: auto; padding-inline-end: .3rem; }
+}
+
+/* ===== Touches de couleur zellige ===== */
+/* Frise de quatre carreaux sous la barre : terracotta, ocre, vert zellige, bleu Majorelle. */
+.topbar::after { content: ""; position: absolute; inset: auto 0 -1px 0; height: 3px;
+  background: linear-gradient(90deg, var(--terra) 0 25%, var(--gold) 25% 50%, var(--zellige) 50% 75%, var(--majorelle) 75% 100%); }
+.summary-card::before { background: linear-gradient(90deg, var(--terra), var(--gold), var(--zellige), var(--majorelle)); }
+.hero::after { width: 760px; height: 520px; right: -4%; top: -180px; filter: blur(60px); opacity: .55;
+  background:
+    radial-gradient(closest-side at 35% 45%, rgba(216,149,74,.85), transparent),
+    radial-gradient(closest-side at 65% 40%, rgba(168,74,41,.6), transparent),
+    radial-gradient(closest-side at 55% 75%, rgba(31,107,90,.38), transparent),
+    radial-gradient(closest-side at 80% 60%, rgba(47,78,163,.3), transparent); }
+.how li:nth-child(1) .how-icon { background: #fbece6; color: var(--terra); }
+.how li:nth-child(2) .how-icon { background: #fdf1e2; color: #a8641f; }
+.how li:nth-child(3) .how-icon { background: #e7f2ee; color: var(--zellige); }
+.how li:nth-child(1) .how-step { color: rgba(168,74,41,.55); }
+.how li:nth-child(2) .how-step { color: rgba(168,100,31,.6); }
+.how li:nth-child(3) .how-step { color: rgba(31,107,90,.6); }
+.hero-pill span { background: var(--zellige); }
+.dropzone:hover .upload-icon, .dropzone.dragging .upload-icon { background: var(--terra); }
+.dropzone:hover { box-shadow: 0 0 0 4px rgba(168,74,41,.08); }
+.hero .cta { position: relative; }
+.hero .cta::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none; opacity: 0; transition: opacity .2s;
+  background: linear-gradient(90deg, var(--terra), var(--gold), var(--zellige), var(--majorelle));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+.hero .cta:hover::after { opacity: 1; }
+[dir="rtl"] .hero::after { right: auto; left: -4%; }
+.start-main > .step-heading:first-child { margin-top: .4rem; }
+@media (min-width: 1000px) { .start-grid .how { margin-top: .4rem; } }
+@media (min-width: 1000px) {
+  .result-main .summary-value strong { font-size: clamp(1.7rem, 2.4vw, 2.3rem); white-space: nowrap; }
+  /* Après lecture, l'en-tête se réduit au titre et à la facture lue. */
+  .has-invoice .hero { padding-top: 1.4rem; padding-bottom: 1rem; }
+  .has-invoice .hero-pill, .has-invoice .hero-copy > p:last-of-type { display: none; }
+  .has-invoice .hero h1 { font-size: 2.1rem; }
+  .has-invoice .scan-demo { width: min(230px, 100%); margin-top: 0; }
+}
+@media (min-width: 1000px) {
+  .has-invoice .scan-demo { width: min(205px, 100%); }
+  .has-invoice .scan-demo .paper-lines { display: none; }
+  .has-invoice .scan-demo .paper { padding: .7rem .8rem .8rem; }
+  .has-invoice .scan-demo .paper-title, .has-invoice .scan-demo .paper-row { white-space: nowrap; font-size: .64rem; }
+  .has-invoice .scan-demo .chip { font-size: .8rem; padding: .4rem .6rem; }
+  .has-invoice .scan-demo .chip-provider { top: -1.3rem; }
+  .has-invoice .scan-demo figcaption { margin-top: .4rem; }
+}

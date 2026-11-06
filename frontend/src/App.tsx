@@ -242,7 +242,9 @@ export default function App() {
       </section>
 
       <section className="workspace" aria-live="polite">
-        {!invoice && <>
+        {/* Grand écran : dépôt à gauche, explications à droite. */}
+        {!invoice && <div className="start-grid">
+          <div className="start-main">
           <div className="step-heading" ref={uploadSection}><span>01</span><div><h2>{s.upload.title}</h2><p>{s.upload.hint}</p></div></div>
           <form className="upload-card" onSubmit={handleUpload}>
             {busy === "upload" && file ? <ReadingProgress fileName={file.name} s={s} /> : <>
@@ -261,6 +263,7 @@ export default function App() {
               <button className="primary" disabled={!file || !confirmed || busy !== null}>{s.upload.read}</button>
             </>}
           </form>
+          </div>
 
           <section className="how" aria-labelledby="how-title">
             <h2 id="how-title">{s.how.title}</h2>
@@ -273,11 +276,14 @@ export default function App() {
               </li>)}
             </ol>
           </section>
-        </>}
+        </div>}
 
         {error && <div className="alert error" role="alert">{error}</div>}
 
+        {/* Grand écran : résumé et facture à gauche, conversation à droite. */}
         {invoice && <>
+          <div className="result-grid">
+          <div className="result-main">
           <section className="summary-card" aria-label={s.summary.toPay}>
             <div className="summary-head">
               <div>
@@ -317,6 +323,8 @@ export default function App() {
             </ul>
           </details>
 
+          </div>
+          <div className="result-chat">
           <div className="step-heading"><span>?</span><div><h2>{s.chat.title}</h2><p>{s.chat.hint}</p></div></div>
           <div className="chat-card">
             {(messages.length > 0 || pending) && <section className="chat-thread" aria-label={s.chat.title}>
@@ -364,6 +372,8 @@ export default function App() {
                 <option value="ar">العربية الفصحى</option><option value="darija_arab">الدارجة</option><option value="darija_latn">Darija latine</option>
               </select>
             </div>
+          </div>
+          </div>
           </div>
 
           <button className="delete" onClick={handleDelete} disabled={busy !== null}>{busy === "delete" ? s.removing : s.remove}</button>
