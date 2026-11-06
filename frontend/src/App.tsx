@@ -1,4 +1,7 @@
-import { FormEvent, KeyboardEvent, useEffect, useMemo, useRef, useState } from "react";
+import { DragEvent, FormEvent, KeyboardEvent, useEffect, useMemo, useRef, useState } from "react";
+import Guide, { guideAlreadySeen } from "./components/Guide";
+import ReadingProgress from "./components/ReadingProgress";
+import ScanDemo from "./components/ScanDemo";
 import { checkHealth, createConversation, deleteInvoice, sendConversationMessage, uploadInvoice } from "./api";
 import { confidenceLabel, formatField, isReadable, withoutCitationIds } from "./format";
 import type { ConversationMessageResponse, FieldView, InvoiceResponse } from "./types";
@@ -25,6 +28,13 @@ const SUGGESTED_QUESTIONS = {
   ],
 };
 const TELECOM_PROVIDERS = new Set(["iam", "orange_ma", "inwi"]);
+const ACCEPTED = /\.(pdf|png|jpe?g)$/i;
+
+const HOW_IT_WORKS = [
+  { icon: "📄", title: "Ajoutez la facture", text: "Une photo bien droite ou un PDF : électricité ONEE, Maroc Telecom, Orange ou inwi." },
+  { icon: "🔍", title: "QraLia la lit pour vous", text: "Montant, date limite, fournisseur : chaque chiffre est vérifié, jamais inventé." },
+  { icon: "💬", title: "Posez vos questions", text: "En français, en arabe ou en darija. Les réponses citent leurs sources officielles." },
+];
 
 function SummaryValue({ field, label, missing }: { field: FieldView | undefined; label: string; missing: string }) {
   const readable = isReadable(field) && field.confidence >= 0.7;
@@ -47,8 +57,11 @@ export default function App() {
   const [pending, setPending] = useState<string | null>(null);
   const [busy, setBusy] = useState<"upload" | "question" | "delete" | null>(null);
   const [error, setError] = useState("");
+  const [guideOpen, setGuideOpen] = useState(() => !guideAlreadySeen());
+  const [dragging, setDragging] = useState(false);
 
   const chatEnd = useRef<HTMLDivElement>(null);
+  const uploadSection = useRef<HTMLDivElement>(null);
 
   useEffect(() => { void checkHealth().then(setOnline); }, []);
   // Sur mobile, la dernière réponse doit rester visible au-dessus du champ fixe.
@@ -64,6 +77,21 @@ export default function App() {
     () => invoice?.fields.filter((field) => field.status !== "not_present" && !["total_check", "due_date"].includes(field.name)) ?? [],
     [invoice],
   );
+
+  function pickFile(candidate: File | null | undefined) {
+    if (!candidate) return;
+    if (!ACCEPTED.test(candidate.name)) { setError("Format non accepté : choisissez un PDF, PNG ou JPEG."); return; }
+    setError(""); setFile(candidate);
+  }
+
+  function handleDrop(event: DragEvent<HTMLLabelElement>) {
+    event.preventDefault(); setDragging(false);
+    pickFile(event.dataTransfer.files?.[0]);
+  }
+
+  function goToUpload() {
+    uploadSection.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 
   async function handleUpload(event: FormEvent) {
     event.preventDefault();
@@ -126,30 +154,59 @@ export default function App() {
       <header className="hero">
         <nav aria-label="Navigation principale">
           <a className="brand" href="#top" aria-label="Accueil QraLia"><span>Q</span>raLia</a>
-          <span className={`status ${online ? "online" : "offline"}`}>
-            {online === null ? "Vérification…" : online ? "Service disponible" : "Service indisponible"}
-          </span>
+          <div className="nav-actions">
+            <button className="guide-button" onClick={() => setGuideOpen(true)}>Guide</button>
+            <span className={`status ${online ? "online" : "offline"}`}>
+              {online === null ? "Vérification…" : online ? "Service disponible" : "Service indisponible"}
+            </span>
+          </div>
         </nav>
-        <div className="hero-copy" id="top">
-          <p className="eyebrow">Comprendre sans deviner</p>
-          <h1>Votre facture, <em>en mots simples.</em></h1>
-          <p>Déposez une facture synthétique d'électricité ou d'abonnement télécom. QraLia lit les informations utiles, signale les incertitudes et cite les règles officielles.</p>
+        <div className="hero-grid">
+          <div className="hero-copy" id="top">
+            <p className="eyebrow">Votre lecteur de factures</p>
+            <h1>Votre facture, <em>lue pour vous.</em></h1>
+            <p>QraLia lit votre facture d'électricité ou de téléphone, vous dit combien payer et avant quand, puis répond à vos questions en darija, en arabe ou en français.</p>
+            {!invoice && <div className="hero-actions">
+              <button className="cta" onClick={goToUpload}>Lire ma facture</button>
+              <button className="cta-ghost" onClick={() => setGuideOpen(true)}>Comment ça marche ?</button>
+            </div>}
+          </div>
+          {!invoice && <div className="hero-demo"><ScanDemo /></div>}
         </div>
       </header>
 
       <section className="workspace" aria-live="polite">
         {!invoice && <>
-          <div className="step-heading"><span>01</span><div><h2>Ajouter une facture</h2><p>PDF, PNG ou JPEG — 10 Mo maximum</p></div></div>
+          <div className="step-heading" ref={uploadSection}><span>01</span><div><h2>Ajouter une facture</h2><p>PDF, PNG ou JPEG — 10 Mo maximum</p></div></div>
           <form className="upload-card" onSubmit={handleUpload}>
-            <label className="dropzone">
-              <input type="file" accept=".pdf,.png,.jpg,.jpeg" onChange={(event) => setFile(event.target.files?.[0] ?? null)} />
-              <span className="upload-icon" aria-hidden="true">↑</span>
-              <strong>{file ? file.name : "Choisir une facture"}</strong>
-              <small>{file ? `${(file.size / 1024 / 1024).toFixed(2)} Mo` : "Touchez ici ou glissez votre fichier"}</small>
-            </label>
-            <label className="consent"><input type="checkbox" checked={confirmed} onChange={(event) => setConfirmed(event.target.checked)} /> Cette facture est entièrement synthétique et ne contient aucune donnée personnelle réelle.</label>
-            <button className="primary" disabled={!file || !confirmed || busy !== null}>{busy === "upload" ? "Lecture en cours…" : "Lire la facture"}</button>
+            {busy === "upload" && file ? <ReadingProgress fileName={file.name} /> : <>
+              <label
+                className={`dropzone ${dragging ? "dragging" : ""} ${file ? "has-file" : ""}`}
+                onDragOver={(event) => { event.preventDefault(); setDragging(true); }}
+                onDragLeave={() => setDragging(false)}
+                onDrop={handleDrop}
+              >
+                <input type="file" accept=".pdf,.png,.jpg,.jpeg" onChange={(event) => pickFile(event.target.files?.[0])} />
+                <span className="upload-icon" aria-hidden="true">{file ? "✓" : "↑"}</span>
+                <strong>{file ? file.name : dragging ? "Déposez la facture ici" : "Choisir une facture"}</strong>
+                <small>{file ? `${(file.size / 1024 / 1024).toFixed(2)} Mo — touchez pour changer` : "Touchez ici, prenez une photo ou glissez votre fichier"}</small>
+              </label>
+              <label className="consent"><input type="checkbox" checked={confirmed} onChange={(event) => setConfirmed(event.target.checked)} /> Cette facture est entièrement synthétique et ne contient aucune donnée personnelle réelle.</label>
+              <button className="primary" disabled={!file || !confirmed || busy !== null}>Lire la facture</button>
+            </>}
           </form>
+
+          <section className="how" aria-labelledby="how-title">
+            <h2 id="how-title">Comment ça marche</h2>
+            <ol>
+              {HOW_IT_WORKS.map((item, index) => <li key={item.title}>
+                <span className="how-icon" aria-hidden="true">{item.icon}</span>
+                <span className="how-step">{index + 1}</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </li>)}
+            </ol>
+          </section>
         </>}
 
         {error && <div className="alert error" role="alert">{error}</div>}
@@ -235,6 +292,7 @@ export default function App() {
         </>}
       </section>
 
+      {guideOpen && <Guide onClose={() => setGuideOpen(false)} />}
       <footer><strong>QraLia</strong><p>Prototype pédagogique — aucune donnée réelle ne doit être téléversée.</p></footer>
     </main>
   );
