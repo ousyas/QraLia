@@ -1,28 +1,33 @@
 """Evaluate OCR extraction accuracy against ground-truth on all generated invoices."""
 
+import argparse
 import json
 from pathlib import Path
 
 from qralia.ocr.extractor import extract_invoice
 
 DATA_DIR = Path("data/generated")
+MONEY_FIELDS = {"total_cash", "total_check", "amount_before_tax", "taxes", "previous_unpaid", "out_of_plan_amount"}
+# Les champs évalués sont ceux de chaque vérité terrain, plus le fournisseur reconnu.
 FIELDS = [
+    "provider_id", "invoice_number", "contract_number", "line_number", "plan_name",
     "total_cash", "total_check", "due_date", "invoice_date",
-    "tariff", "amount_before_tax", "taxes", "previous_unpaid",
+    "tariff", "amount_before_tax", "taxes", "out_of_plan_amount", "previous_unpaid",
 ]
 
 
 def _values_match(field_name: str, extracted, expected) -> bool:
     """Compare two normalized values — numeric tolerance for money, exact for strings."""
-    if field_name in ("due_date", "invoice_date", "tariff"):
-        return str(extracted).strip() == str(expected).strip()
-    try:
-        return abs(float(extracted) - float(expected)) < 0.01
-    except (ValueError, TypeError):
-        return str(extracted).strip() == str(expected).strip()
+    if field_name in MONEY_FIELDS:
+        try:
+            return abs(float(extracted) - float(expected)) < 0.01
+        except (ValueError, TypeError):
+            return False
+    return str(extracted).strip() == str(expected).strip()
 
 
-def evaluate():
+def evaluate(data_dir: Path = DATA_DIR):
+    DATA_DIR = data_dir
     gt_files = sorted(DATA_DIR.glob("*.ground_truth.json"))
     if not gt_files:
         print("No ground truth files found in", DATA_DIR)
@@ -54,7 +59,11 @@ def evaluate():
         # Compare field by field
         invoice_correct = 0
         invoice_details = {}
-        for field in FIELDS:
+        # Les vérités terrain ONEE 0.1.0 ne déclarent pas de fournisseur.
+        gt["fields"]["provider_id"] = {"normalized_value": gt.get("provider_id", "onee")}
+        extracted["fields"]["provider_id"] = {"normalized_value": extracted["provider_id"], "status": "extracted"}
+        fields = [field for field in FIELDS if field in gt["fields"]]
+        for field in fields:
             gt_val = gt["fields"][field]["normalized_value"]
             ex_val = extracted["fields"][field]["normalized_value"]
             match = _values_match(field, ex_val, gt_val)
@@ -74,14 +83,14 @@ def evaluate():
                 # Une valeur absente est un refus prudent ; une valeur différente est une altération.
                 total_altered += int(ex_val is not None)
 
-        status = "OK" if invoice_correct == len(FIELDS) else f"{invoice_correct}/{len(FIELDS)}"
+        status = "OK" if invoice_correct == len(fields) else f"{invoice_correct}/{len(fields)}"
         print(status)
 
         if invoice_details:
             for field, detail in invoice_details.items():
                 print(f"    {field}: expected {detail['expected']}, got {detail['got']}")
 
-        results.append({"invoice_id": invoice_id, "correct": invoice_correct, "total": len(FIELDS)})
+        results.append({"invoice_id": invoice_id, "correct": invoice_correct, "total": len(fields)})
 
     # --- Summary ---
     print("\n" + "=" * 50)
@@ -94,7 +103,7 @@ def evaluate():
     print(f"Refused values (unreadable): {total_fields - total_correct - total_altered}/{total_fields}\n")
 
     print("Per-field accuracy:")
-    for field in FIELDS:
+    for field in [field for field in FIELDS if per_field_total[field]]:
         n = per_field_total[field]
         c = per_field_correct[field]
         pct = (c / n * 100) if n else 0
@@ -112,5 +121,8 @@ def evaluate():
 
 
 if __name__ == "__main__":
-    print(f"Evaluating {len(list(DATA_DIR.glob('*.pdf')))} invoices...\n")
-    evaluate()
+    parser = argparse.ArgumentParser(description="Mesure l'OCR sur des factures synthétiques.")
+    parser.add_argument("data_dir", nargs="?", type=Path, default=DATA_DIR)
+    args = parser.parse_args()
+    print(f"Evaluating {len(list(args.data_dir.glob('*.pdf')))} invoices...\n")
+    evaluate(args.data_dir)

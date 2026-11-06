@@ -445,7 +445,10 @@ class ConversationResolver:
         introduced_numbers = set(re.findall(r"\d+(?:[.,]\d+)?", candidate)) - set(re.findall(r"\d+(?:[.,]\d+)?", source))
         if introduced_numbers:
             raise ValueError("La reformulation a inventé une valeur numérique.")
-        forbidden = {"redal", "orange", "inwi", "iam", "maroc telecom"} - {_fold(provider)}
+        # Une reformulation ne peut pas changer de fournisseur ; IAM se nomme
+        # aussi Maroc Telecom.
+        own = {_fold(provider)} | ({"maroc telecom"} if _fold(provider) == "iam" else set())
+        forbidden = {"onee", "redal", "orange", "inwi", "iam", "maroc telecom"} - own
         if any(name in _fold(candidate) for name in forbidden):
             raise ValueError("La reformulation a changé de fournisseur.")
         semantic = validate_semantic_rewrite(result, question, turns)

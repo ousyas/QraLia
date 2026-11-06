@@ -20,9 +20,13 @@ from qralia.domain.extracted_invoice import (
     FieldStatus,
     InvoiceFields,
 )
+from qralia.domain.providers import critical_fields, detect_provider
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".tiff", ".webp"}
-CRITICAL_FIELDS = ("invoice_number", "total_check", "due_date", "invoice_date", "tariff")
+CRITICAL_FIELDS = critical_fields("onee")
+# Sous ce seuil, Tesseract confond des chiffres (9 → S, chiffre dupliqué) : un
+# identifiant faux est pire qu'un identifiant refusé.
+MIN_IDENTIFIER_CONFIDENCE = 0.5
 
 
 @dataclass(frozen=True)
@@ -315,10 +319,39 @@ def _date_field(tokens: list[OcrToken], aliases: Iterable[str]) -> ExtractedFiel
 
 def _identifier_field(tokens: list[OcrToken], aliases: Iterable[str]) -> ExtractedField:
     token = _find_after(tokens, aliases, lambda value: len(re.sub(r"\D", "", value)) >= 4, scan=8)
-    if not token:
+    if not token or token.confidence < MIN_IDENTIFIER_CONFIDENCE:
         return _missing()
     value = re.sub(r"[^A-Za-z0-9._-]", "", token.text)
     return _field(token, value) if value else _missing()
+
+
+def _text_field(tokens: list[OcrToken], aliases: Iterable[str]) -> ExtractedField:
+    # Les alias sont essayés dans l'ordre : « offre souscrite » avant « offre »,
+    # sinon le second mot du libellé serait lu comme une valeur.
+    end = next((found for alias in aliases if (found := _find_label_end(tokens, (alias,))) is not None), None)
+    if end is None:
+        return _missing(FieldStatus.NOT_PRESENT)
+    values = [token for token in _same_line_tokens(tokens, end, tolerance=20) if token.text.strip() not in {":", "-"}]
+    if not values:
+        return _missing()
+    raw = " ".join(token.text for token in values).lstrip(": ").strip()
+    return ExtractedField(
+        raw_value=raw, normalized_value=raw,
+        confidence=round(min(token.confidence for token in values), 4),
+        status=FieldStatus.EXTRACTED,
+        provenance=FieldProvenance(page=values[0].page, bbox=values[0].bbox, method="tesseract"),
+    )
+
+
+def _line_number(tokens: list[OcrToken]) -> ExtractedField:
+    field = _text_field(tokens, ("numero de ligne", "n de ligne", "ligne"))
+    if field.status != FieldStatus.EXTRACTED:
+        return field
+    # Un numéro de ligne masqué ne garde que chiffres et astérisques.
+    compact = re.sub(r"[^0-9*]", "", field.raw_value)
+    if len(compact) < 8:
+        return _missing()
+    return field.model_copy(update={"normalized_value": compact})
 
 
 def _invoice_date(tokens: list[OcrToken], invoice_number: ExtractedField) -> ExtractedField:
@@ -366,18 +399,26 @@ def parse_ocr_tokens(
     tokens: list[OcrToken], source_file: str, *, content_digest: str | None = None,
     extracted_at: datetime | None = None, ocr_engine_version: str | None = None,
 ) -> ExtractedInvoice:
-    invoice_number = _identifier_field(tokens, ("n facture", "no facture", "numero facture"))
-    contract_number = _identifier_field(tokens, ("n contrat", "no contrat", "numero contrat"))
-    total_check = _money_field(tokens, ("total a regler", "total regler"))
+    provider = detect_provider(" ".join(_label_text(token.text) for token in tokens))
+    provider_id = provider.provider_id if provider else "unknown"
+    telecom = provider is not None and provider.domain == "telecommunications"
+    invoice_number = _identifier_field(tokens, ("n facture", "no facture", "numero facture", "n de facture", "reference facture"))
+    contract_number = _identifier_field(tokens, (
+        "n contrat", "no contrat", "numero contrat", "n client", "code client", "numero client", "n de compte client",
+    ))
+    total_check = _money_field(tokens, ("total a regler", "total regler", "montant a payer", "total a payer", "net a payer"))
     amount_before_tax = _money_field(tokens, ("total ht",))
-    taxes = _money_field(tokens, ("total tva", "taxes"))
-    due_date = _date_field(tokens, ("date d echeance du reglement", "date d echeance", "echeance"))
+    taxes = _money_field(tokens, ("total tva", "taxes", "tva"))
+    due_date = _date_field(tokens, (
+        "date d echeance du reglement", "date d echeance", "echeance", "date limite de paiement", "a payer avant le",
+    ))
     invoice_date = _invoice_date(tokens, invoice_number)
-    tariff = _tariff(tokens)
-    previous = _money_field(tokens, ("arrieres", "ancien impaye", "impaye precedent"))
+    # Le tarif BT/MT est propre à l'électricité ; une offre télécom le remplace.
+    tariff = _missing(FieldStatus.NOT_PRESENT) if telecom else _tariff(tokens)
+    previous = _money_field(tokens, ("arrieres", "ancien impaye", "impaye precedent", "solde precedent", "solde anterieur", "report du solde"))
     if previous.status == FieldStatus.UNREADABLE:
         previous = _missing(FieldStatus.NOT_PRESENT)
-    stamp = _money_field(tokens, ("droit de timbre", "timbre"))
+    stamp = _missing(FieldStatus.NOT_PRESENT) if telecom else _money_field(tokens, ("droit de timbre", "timbre"))
     if stamp.status == total_check.status == FieldStatus.EXTRACTED:
         total_cash = ExtractedField(
             raw_value="", normalized_value=round(total_check.normalized_value + stamp.normalized_value, 2),
@@ -385,17 +426,26 @@ def parse_ocr_tokens(
             provenance=FieldProvenance(page=total_check.provenance.page, method="deterministic_derivation", derived_from=["total_check", "stamp_duty"]),
         )
     else:
-        total_cash = _missing()
+        total_cash = _missing(FieldStatus.NOT_PRESENT) if telecom else _missing()
+    telecom_fields = {}
+    if telecom:
+        telecom_fields = {
+            "plan_name": _text_field(tokens, ("offre souscrite", "offre", "forfait")),
+            "line_number": _line_number(tokens),
+            "out_of_plan_amount": _money_field(tokens, ("hors forfait",)),
+        }
     fields = InvoiceFields(
         invoice_number=invoice_number, contract_number=contract_number, total_cash=total_cash,
         total_check=total_check, due_date=due_date, invoice_date=invoice_date, tariff=tariff,
         amount_before_tax=amount_before_tax, taxes=taxes, previous_unpaid=previous,
+        **telecom_fields,
     )
     digest = content_digest or hashlib.sha256(source_file.encode()).hexdigest()
     invoice_id = str(invoice_number.normalized_value) if invoice_number.status == FieldStatus.EXTRACTED else f"document-{digest[:16]}"
-    confidence = min(getattr(fields, name).confidence for name in CRITICAL_FIELDS)
+    confidence = min(getattr(fields, name).confidence for name in critical_fields(provider_id))
     return ExtractedInvoice(
         invoice_id=invoice_id,
+        provider_id=provider_id,
         extraction=ExtractionMetadata(
             extracted_at=extracted_at or datetime.now(timezone.utc), ocr_engine="tesseract",
             ocr_engine_version=ocr_engine_version, source_file=Path(source_file).name,

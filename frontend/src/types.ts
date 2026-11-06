@@ -13,6 +13,9 @@ export type InvoiceResponse = {
   created_at: string;
   expires_at: string;
   document_confidence: number;
+  provider_id: "onee" | "iam" | "orange_ma" | "inwi" | "unknown";
+  provider_name: string | null;
+  document_kind: string | null;
   fields: FieldView[];
   validation: {
     valid: boolean;

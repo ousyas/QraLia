@@ -16,6 +16,10 @@ dependencies = [
 dev = [
     "httpx>=0.27,<1",
     "pytest>=8,<9",
+    # Les tests télécom génèrent des factures synthétiques (groupe synthetic).
+    "arabic-reshaper>=3,<4",
+    "fpdf2>=2.7,<3",
+    "python-bidi>=0.4,<1",
 ]
 api = [
     "fastapi>=0.115,<1",

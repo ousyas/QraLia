@@ -36,6 +36,9 @@ FIELD_LABELS = {
     "amount_before_tax": "Montant hors taxes",
     "taxes": "Taxes",
     "previous_unpaid": "Impayé précédent",
+    "plan_name": "Offre",
+    "line_number": "Numéro de ligne",
+    "out_of_plan_amount": "Consommation hors forfait",
 }
 
 

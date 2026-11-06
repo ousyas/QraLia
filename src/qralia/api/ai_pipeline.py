@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError
 from qralia.api.models import CitationView, EvidenceView, QuestionResponse
 from qralia.api.store import InvoiceRecord
 from qralia.domain.invoice_evidence import FIELD_LABELS, InvoiceEvidence
+from qralia.domain.providers import rag_context
 from qralia.rag.evidence_router import (
     FIELD_CATALOG,
     EvidenceDecision,
@@ -38,13 +39,7 @@ from qralia.rag.reranker_evaluation import Qwen3CrossEncoderReranker
 from qralia.rag.semantic_evaluation import Qwen3LangChainEmbeddings
 
 
-ONEE_CONTEXT = {
-    "domain": "utilities",
-    "provider_id": "onee",
-    "service_type": "electricity",
-    "service_zone_id": "onee_be_national",
-    "audience": "residential",
-}
+ONEE_CONTEXT = rag_context("onee")
 
 # Le catalogue sémantique utilise des noms génériques ; l'OCR conserve des
 # noms proches de la facture. Cette table est la frontière explicite entre les deux.
@@ -57,6 +52,9 @@ FIELD_TO_CATALOG = {
     "taxes": "tax_amount",
     "total_cash": "cash_total",
     "tariff": "tariff_code",
+    "plan_name": "plan_name",
+    "line_number": "line_number",
+    "out_of_plan_amount": "out_of_plan_amount",
 }
 CATALOG_TO_FIELD = {value: key for key, value in FIELD_TO_CATALOG.items()}
 ARABIC = re.compile(r"[\u0600-\u06ff]")
@@ -116,7 +114,10 @@ def _invoice_fields(record: InvoiceRecord) -> list[dict[str, Any]]:
 
 def _fallback_need(question: str) -> RoutedNeed:
     folded = question.casefold()
-    invoice_markers = ("combien", "montant", "total", "date limite", "échéance", "numero", "numéro", "شحال", "المبلغ", "رقم", "تاريخ")
+    invoice_markers = (
+        "combien", "montant", "total", "date limite", "échéance", "numero", "numéro", "شحال", "المبلغ", "رقم", "تاريخ",
+        "mon offre", "quelle offre", "forfait", "العرض", "الباقة",
+    )
     rag_markers = ("comment payer", "où payer", "ou payer", "chèque", "cheque", "virement", "agence", "jour férié", "kifach", "fin", "chik", "كيفاش", "فين", "الشيك", "وكالة", "عطلة")
     invoice = any(marker in folded for marker in invoice_markers)
     # Reconnaît aussi les formulations où un pronom sépare l'interrogatif du
@@ -262,15 +263,18 @@ class LocalEvidenceRuntime:
         # routeur du signal RAG capable de le corriger. Les filtres de corpus,
         # le reranker et les seuils conservateurs décident ensuite si un chunk
         # est réellement admissible.
+        # Le contexte vient du fournisseur reconnu sur la facture : une facture
+        # Orange ne peut récupérer que des règles Orange.
+        context = rag_context(record.invoice.provider_id) or ONEE_CONTEXT
         if allow_rag:
             self._ensure_reranker()
-            rag_candidates = self._provider.retrieve(question, ONEE_CONTEXT)
+            rag_candidates = self._provider.retrieve(question, context)
         return self._router.decide(
             question=question,
             qwen_hint=qwen_hint,
             invoice_fields=_invoice_fields(record),
             rag_candidates=rag_candidates,
-            context=ONEE_CONTEXT,
+            context=context,
         )
 
 

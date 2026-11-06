@@ -65,6 +65,18 @@ FIELD_CATALOG: dict[str, dict[str, Any]] = {
         "description": "tarif ou catégorie tarifaire indiqué sur la facture; التعريفة; الطاريف المكتوب",
         "aliases": ("tarif indiqué", "code tarif", "التعريفة", "الطاريف"),
     },
+    "plan_name": {
+        "description": "offre ou forfait d'abonnement télécom souscrit; العرض أو الباقة المشترك فيها; شنو هو الفورفي ديالي",
+        "aliases": ("mon offre", "mon forfait", "quelle offre", "quel forfait", "العرض", "الباقة", "الفورفي"),
+    },
+    "line_number": {
+        "description": "numéro de la ligne téléphonique facturée; رقم الخط; نمرة التيليفون",
+        "aliases": ("numéro de ligne", "رقم الخط", "نمرة التيليفون"),
+    },
+    "out_of_plan_amount": {
+        "description": "montant de la consommation hors forfait; مبلغ الاستهلاك خارج الباقة; شحال خلصت برا الفورفي",
+        "aliases": ("hors forfait", "خارج الباقة", "برا الفورفي"),
+    },
 }
 
 TRUSTED_SOURCE_ROLES = frozenset({"operator_primary", "legal_primary", "regulator"})

@@ -8,6 +8,8 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from qralia.domain.providers import ProviderId
+
 
 class FieldStatus(str, Enum):
     EXTRACTED = "extracted"
@@ -45,6 +47,13 @@ class ExtractionMetadata(BaseModel):
     source_type: Literal["synthetic", "user_document"]
 
 
+def _not_present() -> ExtractedField:
+    return ExtractedField(
+        raw_value="", normalized_value=None, confidence=0, status=FieldStatus.NOT_PRESENT,
+        provenance=FieldProvenance(page=1, method="not_applicable"),
+    )
+
+
 class InvoiceFields(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -58,6 +67,10 @@ class InvoiceFields(BaseModel):
     amount_before_tax: ExtractedField
     taxes: ExtractedField
     previous_unpaid: ExtractedField
+    # Champs propres aux abonnements télécom ; absents d'une facture ONEE.
+    plan_name: ExtractedField = Field(default_factory=_not_present)
+    line_number: ExtractedField = Field(default_factory=_not_present)
+    out_of_plan_amount: ExtractedField = Field(default_factory=_not_present)
 
 
 class ExtractedInvoice(BaseModel):
@@ -65,8 +78,11 @@ class ExtractedInvoice(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    schema_version: Literal["0.1.0"] = "0.1.0"
+    schema_version: Literal["0.1.0", "0.2.0"] = "0.2.0"
     invoice_id: str = Field(pattern=r"^[A-Za-z0-9][A-Za-z0-9._-]+$")
+    # 0.1.0 ne connaissait que l'ONEE : ces valeurs par défaut gardent les
+    # anciennes extractions valides.
+    provider_id: ProviderId = "onee"
     extraction: ExtractionMetadata
     fields: InvoiceFields
     document_confidence: float = Field(ge=0.0, le=1.0)
